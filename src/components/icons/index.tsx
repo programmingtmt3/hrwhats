@@ -175,3 +175,72 @@ export function UsersIcon(props: IconProps) {
     </Stroke>
   );
 }
+
+/* ---------- Features (bento) ---------- */
+
+export function CodeIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+    </Stroke>
+  );
+}
+
+export function TrendIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M3 3v18h18" />
+      <path d="m7 15 4-4 3 3 6-6" />
+      <path d="M15 8h5v5" />
+    </Stroke>
+  );
+}
+
+export function LockIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <rect x="5" y="11" width="14" height="10" rx="2" />
+      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+      <circle cx="12" cy="16" r="1" />
+    </Stroke>
+  );
+}
+
+export function MegaphoneIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="m3 11 18-5v12L3 14v-3z" />
+      <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+    </Stroke>
+  );
+}
+
+export function UserPlusIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M19 8v6M22 11h-6" />
+    </Stroke>
+  );
+}
+
+export function BriefcaseIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <rect x="2" y="7" width="20" height="14" rx="2" />
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    </Stroke>
+  );
+}
+
+export function LayoutIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <rect x="3" y="3" width="7" height="9" rx="1" />
+      <rect x="14" y="3" width="7" height="5" rx="1" />
+      <rect x="14" y="12" width="7" height="9" rx="1" />
+      <rect x="3" y="16" width="7" height="5" rx="1" />
+    </Stroke>
+  );
+}

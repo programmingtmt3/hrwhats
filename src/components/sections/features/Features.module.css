@@ -1,0 +1,159 @@
+/* Ported from design/index.html — Features (Bento) */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(230px, auto);
+  gap: 18px;
+}
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 30px;
+  overflow: hidden;
+  /* Hover lift uses `translate` so it never conflicts with the reveal's
+     `transform`; the reveal transitions (with their --d delay) are kept here. */
+  transition:
+    opacity 0.8s var(--ease) var(--d, 0s),
+    transform 0.8s var(--ease) var(--d, 0s),
+    translate 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    border-color 0.35s;
+}
+/* Spotlight: --mx/--my are set on pointermove (BentoCard). */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 0%), rgb(var(--wa-rgb) / 0.12), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.card:hover {
+  translate: 0 -6px;
+  box-shadow: var(--shadow-lg);
+  border-color: rgb(var(--wa-rgb) / 0.45);
+}
+.card:hover::after {
+  opacity: 1;
+}
+.card .ic {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgb(var(--wa-rgb) / 0.16), rgb(var(--neon-rgb) / 0.06));
+  color: var(--green);
+  margin-bottom: 22px;
+  border: 1px solid rgb(var(--wa-rgb) / 0.2);
+}
+.card .ic svg {
+  width: 26px;
+  height: 26px;
+}
+.card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.card p {
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+.span2 {
+  grid-column: span 2;
+}
+.row2 {
+  grid-row: span 2;
+}
+/* Decorative highlight stays top-left (0% 0%) as in the design. */
+.card.dark {
+  background: radial-gradient(120% 100% at 0% 0%, var(--dark-glow) 0%, var(--dark) 45%, var(--deep) 100%);
+  color: var(--white);
+  border-color: transparent;
+}
+.card.dark p {
+  color: rgb(var(--white-rgb) / 0.72);
+}
+.card.dark .ic {
+  background: rgb(var(--neon-rgb) / 0.12);
+  color: var(--neon);
+  border-color: rgb(var(--neon-rgb) / 0.25);
+}
+.card.dark::after {
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 0%), rgb(var(--neon-rgb) / 0.16), transparent 40%);
+}
+.card .tag {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgb(var(--neon-rgb) / 0.14);
+  color: var(--neon);
+  border: 1px solid rgb(var(--neon-rgb) / 0.3);
+}
+.miniBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 110px;
+  margin-top: 28px;
+}
+.miniBars i {
+  flex: 1;
+  border-radius: 8px 8px 3px 3px;
+  background: linear-gradient(to top, rgb(var(--neon-rgb) / 0.25), var(--neon));
+  transform-origin: bottom;
+  transform: scaleY(0.2);
+  transition: transform 1.2s var(--ease);
+}
+:global(.in-view) .miniBars i {
+  transform: scaleY(1);
+}
+.apiBadge {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgb(var(--white-rgb) / 0.06);
+  border: 1px solid rgb(var(--white-rgb) / 0.12);
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+.apiBadge img {
+  height: 44px;
+  width: auto;
+  border-radius: 8px;
+  background: var(--white);
+  padding: 4px;
+}
+.apiBadge span {
+  font-size: 0.85rem;
+  color: rgb(var(--white-rgb) / 0.8);
+}
+
+@media (max-width: 1080px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+  .span2,
+  .row2 {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .card {
+    padding: 24px;
+  }
+}
