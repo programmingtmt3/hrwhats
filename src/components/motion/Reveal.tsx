@@ -8,6 +8,7 @@ import {
   useState,
   type CSSProperties,
   type ElementType,
+  type HTMLAttributes,
   type ReactNode,
 } from "react";
 
@@ -45,17 +46,9 @@ export function useInView() {
   return useContext(InViewContext);
 }
 
-type RevealProps = {
-  as?: ElementType;
-  className?: string;
-  /** Transition delay in seconds (the design's `--d`). */
-  delay?: number;
-  style?: CSSProperties;
-  children?: ReactNode;
-} & Record<string, unknown>;
-
-export function Reveal({ as: Tag = "div", className, delay, style, children, ...rest }: RevealProps) {
-  const ref = useRef<HTMLElement>(null);
+/** Observe an element once; returns its ref and whether it has entered the viewport. */
+export function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
@@ -70,14 +63,34 @@ export function Reveal({ as: Tag = "div", className, delay, style, children, ...
     };
   }, []);
 
+  return [ref, inView] as const;
+}
+
+/** className/style for a revealing element: `.reveal`, `.in-view`, and the `--d` delay. */
+export function revealProps(inView: boolean, className?: string, delay?: number, style?: CSSProperties) {
+  return {
+    className: cn("reveal", inView && "in-view", className),
+    style: delay ? ({ ...style, "--d": `${delay}s` } as CSSProperties) : style,
+  };
+}
+
+type RevealProps = {
+  /** HTML tag name only (components can't cross the server/client boundary). */
+  as?: keyof HTMLElementTagNameMap;
+  className?: string;
+  /** Transition delay in seconds (the design's `--d`). */
+  delay?: number;
+  style?: CSSProperties;
+  children?: ReactNode;
+} & Omit<HTMLAttributes<HTMLElement>, "className" | "style" | "children">;
+
+export function Reveal({ as: Tag = "div", className, delay, style, children, ...rest }: RevealProps) {
+  const [ref, inView] = useReveal<HTMLElement>();
+  const Element = Tag as ElementType;
+
   return (
-    <Tag
-      ref={ref}
-      className={cn("reveal", inView && "in-view", className)}
-      style={delay ? ({ ...style, "--d": `${delay}s` } as CSSProperties) : style}
-      {...rest}
-    >
+    <Element ref={ref} {...revealProps(inView, className, delay, style)} {...rest}>
       <InViewContext.Provider value={inView}>{children}</InViewContext.Provider>
-    </Tag>
+    </Element>
   );
 }

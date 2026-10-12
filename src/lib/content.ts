@@ -6,6 +6,7 @@
 import { z } from "zod";
 
 import clientsJson from "../../content/data/clients.json";
+import sectorsJson from "../../content/data/sectors.json";
 import siteJson from "../../content/data/site.json";
 import type { Locale } from "./i18n";
 
@@ -59,4 +60,25 @@ export function getClients(): Client[] {
 /** Shown as "+N" in the trust bar: the client count rounded down to a multiple of 10. */
 export function getClientCountRounded(): number {
   return Math.floor(clients.length / 10) * 10;
+}
+
+/** Clean ASCII kebab-case slug, as used in URLs (/charity/). */
+const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "slug must be lowercase ASCII kebab-case");
+
+// Sectors: one list feeding the home grid, navigation and (later) sector pages.
+const sectorSchema = z.object({
+  slug,
+  name: localized,
+  image: z.string().regex(/^\/images\/sectors\/[a-z0-9-]+\.(jpg|png|webp)$/),
+});
+export type Sector = z.infer<typeof sectorSchema>;
+
+const sectors = z
+  .array(sectorSchema)
+  .min(1)
+  .refine((list) => new Set(list.map((s) => s.slug)).size === list.length, "duplicate sector slug")
+  .parse(sectorsJson);
+
+export function getSectors(): Sector[] {
+  return sectors;
 }

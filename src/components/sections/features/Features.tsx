@@ -1,4 +1,3 @@
-import ExportedImage from "next-image-export-optimizer";
 import type { ComponentType, ReactNode, SVGProps } from "react";
 
 import {
@@ -11,6 +10,7 @@ import {
   TrendIcon,
   UserPlusIcon,
 } from "@/components/icons";
+import { SiteImage } from "@/components/ui/SiteImage";
 import { META_PARTNER } from "@/lib/brand";
 import { getDictionary, type Dictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -62,7 +62,7 @@ export function Features({ locale }: { locale: Locale }) {
     api: (
       <>
         <div className={styles.apiBadge}>
-          <ExportedImage
+          <SiteImage
             src={META_PARTNER.src}
             width={META_PARTNER.width}
             height={META_PARTNER.height}

@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "charity",
+    "name": {
+      "ar": "القطاع غير الربحي والجمعيات",
+      "en": ""
+    },
+    "image": "/images/sectors/charity.jpg"
+  },
+  {
+    "slug": "real-estate-contracting",
+    "name": {
+      "ar": "العقارات والمقاولات",
+      "en": ""
+    },
+    "image": "/images/sectors/real-estate-contracting.jpg"
+  },
+  {
+    "slug": "education-training",
+    "name": {
+      "ar": "التعليم والتدريب",
+      "en": ""
+    },
+    "image": "/images/sectors/education-training.jpg"
+  },
+  {
+    "slug": "tourism-hospitality",
+    "name": {
+      "ar": "السياحة والضيافة",
+      "en": ""
+    },
+    "image": "/images/sectors/tourism-hospitality.jpg"
+  },
+  {
+    "slug": "online-stores-systems",
+    "name": {
+      "ar": "المتاجر الإلكترونية والأنظمة",
+      "en": ""
+    },
+    "image": "/images/sectors/online-stores-systems.jpg"
+  },
+  {
+    "slug": "advertising",
+    "name": {
+      "ar": "وكالات الدعاية والإعلان",
+      "en": ""
+    },
+    "image": "/images/sectors/advertising.jpg"
+  },
+  {
+    "slug": "hr",
+    "name": {
+      "ar": "الموارد البشرية",
+      "en": ""
+    },
+    "image": "/images/sectors/hr.jpg"
+  },
+  {
+    "slug": "operating-service",
+    "name": {
+      "ar": "شركات التشغيل والخدمات",
+      "en": ""
+    },
+    "image": "/images/sectors/operating-service.jpg"
+  },
+  {
+    "slug": "restaurants-cafes",
+    "name": {
+      "ar": "المطاعم والمقاهي",
+      "en": ""
+    },
+    "image": "/images/sectors/restaurants-cafes.jpg"
+  },
+  {
+    "slug": "shops",
+    "name": {
+      "ar": "المحلات التجارية",
+      "en": ""
+    },
+    "image": "/images/sectors/shops.jpg"
+  }
+]

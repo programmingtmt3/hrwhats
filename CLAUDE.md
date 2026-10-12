@@ -35,7 +35,7 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 - No Server Actions, no dynamic Route Handlers, no middleware/proxy, no ISR, no `headers()`/`cookies()`.
 - No `redirects()` / `rewrites()` in `next.config.ts` — they do not work in export. Redirects go into a generated `.htaccess` (see below).
 - Every dynamic route must implement `generateStaticParams` and set `dynamicParams = false`.
-- `next/image` default loader does not work — use the export optimizer's component.
+- `next/image` default loader does not work — always use `SiteImage` (`src/components/ui/SiteImage.tsx`), which wraps the export optimizer's `ExportedImage` with `placeholder="empty"` (otherwise a blurred placeholder shows behind transparent PNGs).
 - `app/sitemap.ts` and `app/robots.ts` are allowed (they export as static files).
 - Server Components by default; add `"use client"` only where interactivity is needed.
 
@@ -97,7 +97,7 @@ Supporting colors used by the design (WhatsApp mockup, gradients) are also varia
 
 **Footer** and **floating WhatsApp button** — exactly as the design; contact and social data come from `content/data/site.json`.
 
-**Animation:** CSS + IntersectionObserver with the design's exact timings (no Motion library on the home page). `prefers-reduced-motion` disables animations; `<noscript>` reveals `.reveal` content when JS is off.
+**Animation:** CSS + IntersectionObserver with the design's exact timings (no Motion library on the home page). Use `<Reveal>` (any HTML tag) or `<RevealLink>` (next/link) from `src/components/motion/`; server components cannot pass a component (e.g. `Link`) as a prop to a client component. Hover effects on `.reveal` elements must use the `translate` property (not `transform`, which the reveal owns). `prefers-reduced-motion` disables animations; `<noscript>` reveals `.reveal` content when JS is off.
 
 **404:** with multiple root layouts, `out/404.html` comes from `src/app/global-not-found.tsx` (experimental `globalNotFound`). It must keep `lang="ar" dir="rtl"` and the Arabic header/footer.
 
@@ -112,6 +112,7 @@ content/
     ├── clients.json      ← client names + logos + optional URL
     ├── partners.json     ← success partners
     ├── packages.json     ← pricing packages
+    ├── sectors.json      ← slug + name + image — the ONLY source of sector names site-wide (home grid, navigation, sector pages)
     ├── faq.json          ← FAQ items
     └── site.json         ← contact info, social links, app URLs
 ```

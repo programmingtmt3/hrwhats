@@ -244,3 +244,31 @@ export function LayoutIcon(props: IconProps) {
     </Stroke>
   );
 }
+
+/* ---------- Why ---------- */
+
+export function FileCheckIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <path d="M14 2v6h6M8 13l3 3 5-5" />
+    </Stroke>
+  );
+}
+
+export function InboxIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <path d="M8 9h8M8 13h5" />
+    </Stroke>
+  );
+}
+
+export function PulseIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+    </Stroke>
+  );
+}

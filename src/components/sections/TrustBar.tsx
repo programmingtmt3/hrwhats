@@ -1,9 +1,9 @@
-import ExportedImage from "next-image-export-optimizer";
 import type { ReactNode } from "react";
 
 import { CalendarCheckIcon, HeadsetIcon, UsersIcon } from "@/components/icons";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
+import { SiteImage } from "@/components/ui/SiteImage";
 import { META_PARTNER } from "@/lib/brand";
 import { getClientCountRounded } from "@/lib/content";
 import { getDictionary, type Locale } from "@/lib/i18n";
@@ -31,7 +31,7 @@ export function TrustBar({ locale }: { locale: Locale }) {
         <Reveal className={styles.grid}>
           <TrustItem
             icon={
-              <ExportedImage
+              <SiteImage
                 src={META_PARTNER.src}
                 width={META_PARTNER.width}
                 height={META_PARTNER.height}

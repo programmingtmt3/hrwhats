@@ -1,5 +1,4 @@
-import ExportedImage from "next-image-export-optimizer";
-
+import { SiteImage } from "@/components/ui/SiteImage";
 import { LOGO } from "@/lib/brand";
 
 type BrandLogoProps = {
@@ -13,7 +12,7 @@ type BrandLogoProps = {
 
 export function BrandLogo({ className, sizes, decorative, priority }: BrandLogoProps) {
   return (
-    <ExportedImage
+    <SiteImage
       src={LOGO.src}
       width={LOGO.width}
       height={LOGO.height}
