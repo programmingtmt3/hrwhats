@@ -5,3 +5,9 @@ export const LOGO = {
   height: 1135,
   alt: "HRwhats",
 } as const;
+
+export const META_PARTNER = {
+  src: "/images/brand/meta-business-partner.png",
+  width: 786,
+  height: 267,
+} as const;

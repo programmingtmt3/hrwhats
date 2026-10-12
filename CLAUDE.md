@@ -239,4 +239,5 @@ npm run lint
 - After changes, run `npm run build` to confirm the static export still succeeds.
 - Never commit secrets. `.env*`, `node_modules/`, `.next/`, `out/`, `.velite/` must be in `.gitignore`.
 - Commit messages: Conventional Commits in English (`feat:`, `fix:`, `chore:`, `content:`).
+- After every **approved** commit, `git push` to `origin` immediately, then confirm `git status` shows the branch up to date with `origin/main`.
 - When unsure about a product detail (features, pricing, wording), ask — don't invent marketing content.

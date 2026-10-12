@@ -44,6 +44,7 @@
   --why-bg-end: #eef6f1;
   --dark-glow: #0f5a40; /* dark bento card highlight */
   --cta-glow: #13704f;
+  --mask-opaque: #000000; /* opaque stop for mask-image gradients */
 
   /* WhatsApp phone mockup */
   --phone-body: #0c1512;
@@ -288,6 +289,14 @@ html:lang(en) {
     transform: translateY(-2px);
   }
 
+  /* Button row (hero + CTA) */
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+  }
+
   /* Directional icons: drawn for RTL (arrow points left = "forward"), flipped in LTR. */
   .icon-forward:dir(ltr) {
     transform: scaleX(-1);
@@ -312,11 +321,17 @@ html:lang(en) {
   section {
     padding-block: 80px;
   }
+  .hero-actions {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 600px) {
   .site-container {
     width: calc(100% - 32px);
+  }
+  .hero-actions .btn {
+    width: 100%;
   }
 }
 

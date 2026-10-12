@@ -5,6 +5,7 @@
  */
 import { z } from "zod";
 
+import clientsJson from "../../content/data/clients.json";
 import siteJson from "../../content/data/site.json";
 import type { Locale } from "./i18n";
 
@@ -43,4 +44,19 @@ const site = siteSchema.parse(siteJson);
 
 export function getSite(): Site {
   return site;
+}
+
+// Logos are added (and made required) when the clients section is built.
+const clientSchema = z.object({ name: localized });
+export type Client = z.infer<typeof clientSchema>;
+
+const clients = z.array(clientSchema).min(1).parse(clientsJson);
+
+export function getClients(): Client[] {
+  return clients;
+}
+
+/** Shown as "+N" in the trust bar: the client count rounded down to a multiple of 10. */
+export function getClientCountRounded(): number {
+  return Math.floor(clients.length / 10) * 10;
 }

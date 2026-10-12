@@ -93,3 +93,85 @@ export function ChatBubbleIcon(props: IconProps) {
     </Stroke>
   );
 }
+
+/* ---------- Hero & trust bar ---------- */
+
+/** Points left (forward in RTL). Add `icon-forward` to flip it in LTR. */
+export function ArrowIcon({ strokeWidth = 2.2, ...props }: IconProps) {
+  return (
+    <Stroke strokeWidth={strokeWidth} {...props}>
+      <path d="M19 12H5M11 18l-6-6 6-6" />
+    </Stroke>
+  );
+}
+
+export function CheckIcon(props: IconProps) {
+  return (
+    <Stroke strokeWidth={2.5} {...props}>
+      <path d="M20 6 9 17l-5-5" />
+    </Stroke>
+  );
+}
+
+export function VerifiedIcon(props: IconProps) {
+  return (
+    <Fill {...props}>
+      <path d="M12 1l2.6 2.1 3.3-.4.9 3.2 2.9 1.7-1.2 3.1 1.2 3.1-2.9 1.7-.9 3.2-3.3-.4L12 23l-2.6-2.1-3.3.4-.9-3.2-2.9-1.7 1.2-3.1-1.2-3.1 2.9-1.7.9-3.2 3.3.4z" />
+      <path d="M10.5 15.5 7 12l1.4-1.4 2.1 2.1 5.1-5.1L17 9z" style={{ fill: "var(--wa-teal)" }} />
+    </Fill>
+  );
+}
+
+export function SendIcon(props: IconProps) {
+  return (
+    <Fill {...props}>
+      <path d="M3 20.5v-6l8-2.5-8-2.5v-6L22 12z" transform="scale(-1,1) translate(-24,0)" />
+    </Fill>
+  );
+}
+
+export function PaperPlaneIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M22 2 11 13M22 2l-7 20-4-9-9-4z" />
+    </Stroke>
+  );
+}
+
+export function BotIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M12 8V4H8" />
+      <rect x="4" y="8" width="16" height="12" rx="2" />
+      <path d="M2 14h2M20 14h2M15 13v2M9 13v2" />
+    </Stroke>
+  );
+}
+
+export function HeadsetIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+      <path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z" />
+    </Stroke>
+  );
+}
+
+export function CalendarCheckIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4" />
+    </Stroke>
+  );
+}
+
+export function UsersIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+    </Stroke>
+  );
+}
