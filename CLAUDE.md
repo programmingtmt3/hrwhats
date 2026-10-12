@@ -21,10 +21,12 @@ Rebuild of **hrwhats.com**, the marketing site for HRwhats (a WhatsApp Business 
 | Content | MDX + JSON, processed by **Velite** with Zod schemas |
 | Images | `next-image-export-optimizer` (build-time optimization) |
 | Forms | React Hook Form + Zod (client-side only) |
-| Fonts | `next/font` — Arabic font (IBM Plex Sans Arabic or Tajawal) + a Latin font for English |
-| Package manager | npm. Node 20+ |
+| Fonts | `next/font/google` — IBM Plex Sans Arabic (Arabic) + IBM Plex Sans (English), weights 400/500/700 only |
+| Package manager | npm. Node 24 LTS |
 
-Do not add dependencies outside this list without asking first.
+Do not add dependencies outside this list without asking first. (`cn`, `class-variance-authority`, `radix-ui`, `tw-animate-css` and `shadcn` come with shadcn/ui and are part of it.)
+
+The project runs **Next.js 16** — see `AGENTS.md`: read the bundled docs in `node_modules/next/dist/docs/` before using an API you are unsure about.
 
 ## Hard constraints: static export
 
@@ -56,6 +58,38 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 - **Never** use `ml-*`, `mr-*`, `pl-*`, `pr-*`, `left-*`, `right-*`, `text-left`, `text-right` for layout.
 - Directional icons (arrows, chevrons) must flip in RTL (`rtl:rotate-180` or locale-aware icon choice).
 - Mobile-first. Test every section at 375px width.
+- shadcn components are generated with `"rtl": true` (components.json). After adding a new one, check it for physical classes (`left`, `right`, `slide-in-from-left`, …) and convert them (e.g. Sheet uses `side="start" | "end"`).
+- Radix direction comes from `DirectionProvider` in `LocaleDocument`.
+
+## Brand & design
+
+**Fonts:** IBM Plex Sans Arabic on Arabic pages (it includes matching Latin glyphs), IBM Plex Sans on English pages. Weights 400, 500, 700 only. Each font lives in its own module (`src/lib/fonts/ar.ts`, `en.ts`) so a page loads only its language's font; CSS picks it via `html:lang(..) { --font-site }`.
+
+**Colors:** white, black and the brand greens. All values are defined **only** as CSS variables in `src/app/globals.css` and exposed to Tailwind via `@theme`. Never write a hex/rgb value in a component.
+
+| Token | Hex | Use |
+|---|---|---|
+| `brand-100` | `#DDEEE0` | soft surfaces (`secondary`, `accent`) with `brand-900` text |
+| `brand-300` | `#66B95D` | decorative only, or background with black text |
+| `brand-500` | `#32B159` | decorative only, or background with black text |
+| `brand-700` | `#16876B` | focus ring; text only if large (≥ 24px, or ≥ 18.66px bold) |
+| `brand-900` | `#076951` | `primary` — buttons, links, headings accent; white text on it |
+| `brand-950` | derived | hover state of `primary` |
+
+Any text on a green background must pass **WCAG AA** (4.5:1 normal text). White on `brand-500`/`brand-300`/`brand-700` fails — use `brand-900` for white text. Contrast notes are kept in the comment at the top of `globals.css`.
+
+**Logo:** `public/images/brand/hrwhats-logo.png`, path defined once in `src/lib/brand.ts` (`LOGO`) — an SVG version will replace it there. Always `alt="HRwhats"`; links to the home page. `src/app/favicon.ico`, `icon.png` and `apple-icon.png` are generated from it (regenerate when the SVG arrives).
+
+**Header** (`src/components/layout/Header.tsx`), in this order:
+1. القطاعات — dropdown with the 10 sectors
+2. الباقات
+3. دليل الاستخدام — dropdown: متطلبات التوثيق، ربط الحساب، شروحات المنصة، حظر الواتساب
+4. المدونة
+5. تواصل معنا
+
+On the other side: "تسجيل الدخول" link → `https://app.hrwhats.com/login` and a prominent "جرب مجاناً" button → `https://app.hrwhats.com/signup`. Logo links home. Desktop dropdowns use shadcn `navigation-menu`; on mobile a side `Sheet` where dropdowns become an `Accordion`. Menu structure is defined in `src/lib/navigation.ts`.
+
+**404:** with multiple root layouts, `out/404.html` comes from `src/app/global-not-found.tsx` (experimental `globalNotFound`). It must keep `lang="ar" dir="rtl"` and the Arabic header/footer.
 
 ## Content architecture
 
@@ -129,18 +163,24 @@ src/
 │   │   ├── [slug]/page.tsx
 │   │   ├── packages/ contact/ news/ category/
 │   │   └── not-found.tsx
-│   ├── (en)/en/              ← English routes (later phase, same shape)
+│   ├── (en)/en/              ← English routes (English phase only — no files before then)
+│   ├── global-not-found.tsx  ← builds out/404.html (Arabic)
+│   ├── favicon.ico icon.png apple-icon.png
 │   ├── sitemap.ts
 │   └── robots.ts
 ├── components/
 │   ├── ui/                   ← shadcn components
-│   ├── layout/               ← Header, Footer, MobileMenu, LanguageSwitcher
+│   ├── layout/               ← LocaleDocument, Header, DesktopNav, MobileMenu, Footer, Logo, LanguageSwitcher
 │   ├── sections/             ← Hero, Features, Sectors, Clients, Partners, FAQ, CTA
 │   ├── pages/                ← shared page components (HomePage, PostPage, …)
 │   └── mdx/                  ← components usable inside MDX
 ├── lib/
 │   ├── content.ts            ← the only content access layer
-│   ├── i18n.ts               ← locales, getDictionary, path helpers
+│   ├── i18n.ts               ← locales, getDictionary, localePath, format
+│   ├── navigation.ts         ← header/footer menu structure
+│   ├── brand.ts              ← LOGO (single source for the logo path)
+│   ├── site.ts               ← SITE_URL, APP_URLS (moves to site.json in phase 2)
+│   ├── fonts/{ar,en}.ts      ← next/font definitions, one module per language
 │   └── seo.ts                ← metadata + JSON-LD helpers
 messages/ar.json
 content/
@@ -164,13 +204,12 @@ No server in production. The form validates client-side and submits to an extern
 ## Phases
 
 1. **Foundation** — project setup, Tailwind + shadcn, RTL, fonts, i18n skeleton, Header/Footer.
-2. **Content layer** — Velite schemas, data JSON files, `lib/content.ts`.
-3. **Home page** — all sections.
-4. **Packages + Contact.**
-5. **Sectors, usage guide, legal pages.**
-6. **Blog** — listing, pagination, categories, post page, WordPress migration.
-7. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, redirect tests, deploy.
-8. **English** — `messages/en.json`, translated pages, then posts gradually.
+2. **Home page** — all sections, built section by section. Create only the data files it needs (`clients`, `partners`, `faq`, `site` JSON) and `lib/content.ts` reading them.
+3. **Packages + Contact.**
+4. **Sectors, usage guide, legal pages** — Velite + MDX setup happens here (schemas, collections), not earlier.
+5. **Blog** — listing, pagination, categories, post page, WordPress migration.
+6. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, redirect tests, deploy.
+7. **English** — `messages/en.json`, translated pages, then posts gradually.
 
 ## Commands
 
@@ -183,6 +222,8 @@ npm run lint
 ## Working rules for Claude
 
 - For any non-trivial task, **propose a short plan first** and wait for approval.
+- Work on **one page at a time**; a long page is built **one section at a time**.
+- After each part: **stop**, ask the developer to review it in the browser, and do not move to the next part until they approve.
 - Keep components small and focused; extract repeated UI into `sections/` or `ui/`.
 - After changes, run `npm run build` to confirm the static export still succeeds.
 - Never commit secrets. `.env*`, `node_modules/`, `.next/`, `out/`, `.velite/` must be in `.gitignore`.

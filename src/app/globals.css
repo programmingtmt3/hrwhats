@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Brand palette — the ONLY place color values are written.
+ * Components use Tailwind classes (bg-primary, text-brand-900, …), never hex codes.
+ *
+ * WCAG AA contrast (normal text needs ≥ 4.5):
+ *   brand-900 #076951  + white text  6.67  ✅  → primary buttons, links
+ *   brand-700 #16876B  + white text  4.46  ❌  large/bold text only (≥ 24px or ≥ 18.66px bold)
+ *   brand-500 #32B159  + white text  2.77  ❌  → use black text (7.57) or decorative only
+ *   brand-300 #66B95D  + white text  2.42  ❌  → use black text (8.66) or decorative only
+ *   brand-100 #DDEEE0  + brand-900   5.52  ✅  → soft surfaces (secondary, accent)
+ */
+:root {
+  --white: #ffffff;
+  --black: #0a0a0a;
+  --gray-600: #525252;
+  --gray-200: #e5e5e5;
+  --gray-50: #f7f7f7;
+
+  --brand-100: #ddeee0;
+  --brand-300: #66b95d;
+  --brand-500: #32b159;
+  --brand-700: #16876b;
+  --brand-900: #076951;
+  /* Darker shade of brand-900 for hover states (derived, not a new brand color). */
+  --brand-950: color-mix(in oklab, var(--brand-900) 80%, var(--black));
+
+  /* Semantic tokens consumed by shadcn/ui */
+  --background: var(--white);
+  --foreground: var(--black);
+  --card: var(--white);
+  --card-foreground: var(--black);
+  --popover: var(--white);
+  --popover-foreground: var(--black);
+  --primary: var(--brand-900);
+  --primary-foreground: var(--white);
+  --primary-hover: var(--brand-950);
+  --secondary: var(--brand-100);
+  --secondary-foreground: var(--brand-900);
+  --muted: var(--gray-50);
+  --muted-foreground: var(--gray-600);
+  --accent: var(--brand-100);
+  --accent-foreground: var(--brand-900);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: var(--gray-200);
+  --input: var(--gray-200);
+  /* Focus ring is a UI indicator: needs ≥ 3:1 against white (brand-700 = 4.46). */
+  --ring: var(--brand-700);
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --color-white: var(--white);
+  --color-black: var(--black);
+  --color-brand-100: var(--brand-100);
+  --color-brand-300: var(--brand-300);
+  --color-brand-500: var(--brand-500);
+  --color-brand-700: var(--brand-700);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* --font-site is set per language below; fonts are loaded in src/lib/fonts.ts */
+  --font-sans: var(--font-site), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+html:lang(ar) {
+  --font-site: var(--font-arabic);
+}
+
+html:lang(en) {
+  --font-site: var(--font-latin);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}

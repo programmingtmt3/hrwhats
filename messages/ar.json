@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "siteName": "HRwhats",
+    "defaultDescription": "منصتنا تساعدك في تحقيق أهدافك بأدوات قوية وميزات سهلة الاستخدام"
+  },
+  "nav": {
+    "mainLabel": "التنقل الرئيسي",
+    "home": "الرئيسية",
+    "sectors": "القطاعات",
+    "packages": "الباقات",
+    "guide": "دليل الاستخدام",
+    "blog": "المدونة",
+    "contact": "تواصل معنا",
+    "login": "تسجيل الدخول",
+    "signup": "جرب مجاناً",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "menuTitle": "القائمة"
+  },
+  "sectors": {
+    "charity": "القطاع الغير الربحي والجمعيات",
+    "real-estate-contracting": "شركات العقارات والمقاولات",
+    "education-training": "قطاع التعليم والتدريب",
+    "tourism-hospitality": "قطاع السياحة والفندقة",
+    "online-stores-systems": "المتاجر والأنظمة الإلكترونية",
+    "advertising": "وكالات التسويق والاعلان",
+    "hr": "الموارد البشرية",
+    "operating-service": "شركات التشغيل والخدمات",
+    "restaurants-cafes": "المطاعم والكافيهات",
+    "shops": "المحلات التجارية"
+  },
+  "guide": {
+    "documentation-requirements-for-meta": "متطلبات التوثيق",
+    "link-account": "ربط الحساب",
+    "hrwhats-guide": "شروحات المنصة",
+    "whatsapp-ban": "حظر الواتساب"
+  },
+  "legal": {
+    "privacy-policy": "سياسة الخصوصية",
+    "terms-of-use": "سياسة الاستخدام",
+    "refund-policy": "سياسة الاسترجاع"
+  },
+  "footer": {
+    "tagline": "منصتنا تساعدك في تحقيق أهدافك بأدوات قوية وميزات سهلة الاستخدام",
+    "quickLinks": "روابط سريعة",
+    "legalLinks": "السياسات",
+    "copyright": "حقوق النشر © لعام {year} محفوظة لموقع حلول واتس اب اعمال | HRwhats",
+    "developedBy": "تطوير وكالة تمتع"
+  },
+  "languageSwitcher": {
+    "label": "English"
+  },
+  "home": {
+    "placeholderTitle": "HRwhats",
+    "placeholderText": "الصفحة الرئيسية قيد الإنشاء."
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "description": "عذراً، الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "backHome": "العودة للرئيسية"
+  }
+}
