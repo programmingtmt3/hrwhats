@@ -1,54 +1,128 @@
 import Link from "next/link";
 
+import {
+  ChatBubbleIcon,
+  InstagramIcon,
+  MailIcon,
+  PhoneIcon,
+  WhatsAppIcon,
+  XIcon,
+  YouTubeIcon,
+} from "@/components/icons";
+import { getSite, t, type SocialPlatform } from "@/lib/content";
 import { format, getDictionary, localePath, type Locale } from "@/lib/i18n";
-import { getLegalLinks, getMainNav, type NavLink } from "@/lib/navigation";
-import { DEVELOPER_URL } from "@/lib/site";
+import {
+  getFooterGuideLinks,
+  getFooterQuickLinks,
+  getLegalLinks,
+  type NavLink,
+} from "@/lib/navigation";
 
-import { Logo } from "./Logo";
+import { BrandLogo } from "./BrandLogo";
+import styles from "./Footer.module.css";
 
-function FooterLinks({ title, links, locale }: { title: string; links: NavLink[]; locale: Locale }) {
-  return (
-    <div>
-      <h2 className="mb-3 text-base font-bold">{title}</h2>
-      <ul className="space-y-2">
-        {links.map((link) => (
-          <li key={link.path}>
-            <Link
-              href={localePath(locale, link.path)}
-              className="text-muted-foreground hover:text-primary hover:underline"
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+const socialIcons: Record<SocialPlatform, typeof XIcon> = {
+  instagram: InstagramIcon,
+  x: XIcon,
+  youtube: YouTubeIcon,
+  whatsapp: WhatsAppIcon,
+};
+
+function FooterLink({ link, locale }: { link: NavLink; locale: Locale }) {
+  return link.external ? (
+    <a href={link.href}>{link.label}</a>
+  ) : (
+    <Link href={localePath(locale, link.href)}>{link.label}</Link>
   );
 }
 
 export function Footer({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
-  // Top-level links only; dropdown groups are reachable from the header.
-  const quickLinks = getMainNav(dict).filter((item): item is NavLink => "path" in item);
+  const site = getSite();
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t bg-muted">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:px-6">
-        <div className="space-y-3 lg:col-span-2">
-          <Logo locale={locale} className="size-20" />
-          <p className="max-w-sm text-muted-foreground">{dict.footer.tagline}</p>
-        </div>
-        <FooterLinks title={dict.footer.quickLinks} links={quickLinks} locale={locale} />
-        <FooterLinks title={dict.footer.legalLinks} links={getLegalLinks(dict)} locale={locale} />
-      </div>
+    <footer className={styles.footer}>
+      <div className="site-container">
+        <div className={styles.grid}>
+          <div>
+            <Link href={localePath(locale, "/")} className={styles.logo}>
+              <BrandLogo sizes="36px" />
+            </Link>
+            <p>{dict.footer.description}</p>
+            <div className={styles.social}>
+              {site.social.map(({ platform, label, url }) => {
+                const Icon = socialIcons[platform];
+                return (
+                  <a key={platform} href={url} target="_blank" rel="noopener" aria-label={label}>
+                    <Icon />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
 
-      <div className="border-t">
-        <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-6">
-          <p>{format(dict.footer.copyright, { year })}</p>
-          <a href={DEVELOPER_URL} target="_blank" rel="noopener" className="hover:text-primary hover:underline">
-            {dict.footer.developedBy}
-          </a>
+          <div>
+            <h4>{dict.footer.quickLinks}</h4>
+            <ul>
+              {getFooterQuickLinks(dict, site).map((link) => (
+                <li key={link.href}>
+                  <FooterLink link={link} locale={locale} />
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4>{dict.footer.guide}</h4>
+            <ul>
+              {getFooterGuideLinks(dict).map((link) => (
+                <li key={link.href}>
+                  <FooterLink link={link} locale={locale} />
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4>{dict.footer.contact}</h4>
+            <ul>
+              <li>
+                <a className={styles.contactLi} href={site.contact.phone.href}>
+                  <PhoneIcon />
+                  <span dir="ltr">{site.contact.phone.display}</span>
+                </a>
+              </li>
+              <li>
+                <a className={styles.contactLi} href={`mailto:${site.contact.email}`}>
+                  <MailIcon />
+                  {site.contact.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  className={styles.contactLi}
+                  href={site.contact.whatsapp.url}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <ChatBubbleIcon />
+                  <span dir="ltr">{site.contact.whatsapp.display}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className={styles.bottom}>
+          <div>
+            {format(dict.footer.copyright, { year })} <b>{t(site.publisher.name, locale)}</b>
+          </div>
+          <div className={styles.pol}>
+            {getLegalLinks(dict).map((link) => (
+              <FooterLink key={link.href} link={link} locale={locale} />
+            ))}
+          </div>
         </div>
       </div>
     </footer>

@@ -5,64 +5,103 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Brand palette — the ONLY place color values are written.
- * Components use Tailwind classes (bg-primary, text-brand-900, …), never hex codes.
+ * Design tokens — taken as-is from the design reference (design/index.html).
+ * This file is the ONLY place color values are written. Components and CSS
+ * modules use var(--token) or Tailwind classes, never hex/rgb literals.
  *
- * WCAG AA contrast (normal text needs ≥ 4.5):
- *   brand-900 #076951  + white text  6.67  ✅  → primary buttons, links
- *   brand-700 #16876B  + white text  4.46  ❌  large/bold text only (≥ 24px or ≥ 18.66px bold)
- *   brand-500 #32B159  + white text  2.77  ❌  → use black text (7.57) or decorative only
- *   brand-300 #66B95D  + white text  2.42  ❌  → use black text (8.66) or decorative only
- *   brand-100 #DDEEE0  + brand-900   5.52  ✅  → soft surfaces (secondary, accent)
+ * `--*-rgb` channel variants exist for translucent colors:
+ *   rgb(var(--wa-rgb) / .1)  ≡  rgba(37,211,102,.1) in the design.
+ *
+ * Note: --muted is the design's muted TEXT color. shadcn's `bg-muted` maps to a
+ * surface (see @theme below); use `text-muted-foreground` or var(--muted) for text.
  */
 :root {
+  /* Brand */
+  --deep: #062a20;
+  --dark: #0b3d2e;
+  --green: #128c4a;
+  --wa: #25d366;
+  --neon: #3cff9a;
+  --bg: #f7faf8;
+  --surface: #ffffff;
+  --ink: #0d1f18;
+  --muted: #5b6b64;
+  --line: #e3ece7;
+
+  --deep-rgb: 6 42 32;
+  --dark-rgb: 11 61 46;
+  --wa-rgb: 37 211 102;
+  --neon-rgb: 60 255 154;
+  --white-rgb: 255 255 255;
+  --black-rgb: 0 0 0;
+
+  /* Supporting colors used by the design */
   --white: #ffffff;
-  --black: #0a0a0a;
-  --gray-600: #525252;
-  --gray-200: #e5e5e5;
-  --gray-50: #f7f7f7;
+  --on-wa: #03251a; /* text on --wa buttons */
+  --wa-alt: #1fbf5b; /* primary button gradient end */
+  --grad-end: #0fb57a; /* .grad text gradient end */
+  --menu-ink: #2a3b34;
+  --why-bg-end: #eef6f1;
+  --dark-glow: #0f5a40; /* dark bento card highlight */
+  --cta-glow: #13704f;
 
-  --brand-100: #ddeee0;
-  --brand-300: #66b95d;
-  --brand-500: #32b159;
-  --brand-700: #16876b;
-  --brand-900: #076951;
-  /* Darker shade of brand-900 for hover states (derived, not a new brand color). */
-  --brand-950: color-mix(in oklab, var(--brand-900) 80%, var(--black));
+  /* WhatsApp phone mockup */
+  --phone-body: #0c1512;
+  --phone-edge: #1d2a25;
+  --phone-edge-inner: #2b3a34;
+  --wa-teal: #075e54;
+  --wa-chat-bg: #efe7dd;
+  --wa-bubble-out: #d9fdd3;
+  --wa-link: #027eb5;
+  --wa-send: #00a884;
+  --wa-meta: #7a8a83;
+  --wa-typing: #99aaaa;
+  --wa-placeholder: #999999;
+  --wa-divider: #eeeeee;
 
-  /* Semantic tokens consumed by shadcn/ui */
-  --background: var(--white);
-  --foreground: var(--black);
-  --card: var(--white);
-  --card-foreground: var(--black);
-  --popover: var(--white);
-  --popover-foreground: var(--black);
-  --primary: var(--brand-900);
-  --primary-foreground: var(--white);
-  --primary-hover: var(--brand-950);
-  --secondary: var(--brand-100);
-  --secondary-foreground: var(--brand-900);
-  --muted: var(--gray-50);
-  --muted-foreground: var(--gray-600);
-  --accent: var(--brand-100);
-  --accent-foreground: var(--brand-900);
+  /* Radii, shadows, easing */
+  --r-sm: 12px;
+  --r: 18px;
+  --r-lg: 28px;
+  --shadow-sm: 0 1px 2px rgb(var(--deep-rgb) / 0.06), 0 2px 8px rgb(var(--deep-rgb) / 0.04);
+  --shadow: 0 10px 30px -10px rgb(var(--deep-rgb) / 0.18), 0 2px 6px rgb(var(--deep-rgb) / 0.05);
+  --shadow-lg: 0 30px 60px -20px rgb(var(--deep-rgb) / 0.3);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Header height (fixed header) */
+  --header-h: 76px;
+
+  /* shadcn semantic tokens mapped onto the design palette */
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--wa);
+  --primary-foreground: var(--on-wa);
+  --secondary: var(--dark);
+  --secondary-foreground: var(--white);
+  --accent: rgb(var(--wa-rgb) / 0.1);
+  --accent-foreground: var(--green);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: var(--gray-200);
-  --input: var(--gray-200);
-  /* Focus ring is a UI indicator: needs ≥ 3:1 against white (brand-700 = 4.46). */
-  --ring: var(--brand-700);
-  --radius: 0.625rem;
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--green);
+  --radius: var(--r-sm);
 }
 
 @theme inline {
+  --color-deep: var(--deep);
+  --color-dark: var(--dark);
+  --color-green: var(--green);
+  --color-wa: var(--wa);
+  --color-neon: var(--neon);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-line: var(--line);
   --color-white: var(--white);
-  --color-black: var(--black);
-  --color-brand-100: var(--brand-100);
-  --color-brand-300: var(--brand-300);
-  --color-brand-500: var(--brand-500);
-  --color-brand-700: var(--brand-700);
-  --color-brand-900: var(--brand-900);
-  --color-brand-950: var(--brand-950);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -72,11 +111,10 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-primary-hover: var(--primary-hover);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--bg);
+  --color-muted-foreground: var(--muted);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -84,17 +122,20 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* --font-site is set per language below; fonts are loaded in src/lib/fonts.ts */
-  --font-sans: var(--font-site), ui-sans-serif, system-ui, sans-serif;
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow);
+  --shadow-lg: var(--shadow-lg);
+  --ease-design: var(--ease);
+
+  /* --font-site is set per language below; fonts are loaded in src/lib/fonts/ */
+  --font-sans: var(--font-site), system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
   --font-heading: var(--font-sans);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-xl: var(--r);
+  --radius-2xl: var(--r-lg);
 }
 
 html:lang(ar) {
@@ -105,18 +146,193 @@ html:lang(en) {
   --font-site: var(--font-latin);
 }
 
+/* ---------- Base (from the design reset) ---------- */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   html {
+    scroll-behavior: smooth;
     @apply font-sans;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  section {
+    padding-block: 110px;
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+}
+
+/* ---------- Shared design primitives ---------- */
+@layer components {
+  .site-container {
+    width: min(1200px, 100% - 40px);
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--green);
+    background: rgb(var(--wa-rgb) / 0.1);
+    border: 1px solid rgb(var(--wa-rgb) / 0.25);
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--wa);
+    box-shadow: 0 0 0 4px rgb(var(--wa-rgb) / 0.2);
+  }
+
+  .sec-head {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 60px;
+  }
+  .sec-head h2 {
+    font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+    line-height: 1.35;
+    font-weight: 700;
+    margin: 16px 0 14px;
+    letter-spacing: -0.01em;
+  }
+  .sec-head p {
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+
+  .grad {
+    background: linear-gradient(120deg, var(--green), var(--wa) 50%, var(--grad-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 14px 26px;
+    border-radius: 999px;
+    transition:
+      transform 0.25s var(--ease),
+      box-shadow 0.25s var(--ease),
+      background 0.25s;
+    white-space: nowrap;
+    font-family: inherit;
+    cursor: pointer;
+    border: 0;
+  }
+  .btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--wa), var(--wa-alt));
+    color: var(--on-wa);
+    box-shadow:
+      0 8px 24px -8px rgb(var(--wa-rgb) / 0.7),
+      inset 0 1px 0 rgb(var(--white-rgb) / 0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 14px 32px -8px rgb(var(--wa-rgb) / 0.8),
+      inset 0 1px 0 rgb(var(--white-rgb) / 0.35);
+  }
+  .btn-ghost {
+    background: var(--surface);
+    color: var(--dark);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+    border-color: rgb(var(--wa-rgb) / 0.5);
+  }
+  .btn-sm {
+    padding: 10px 18px;
+    font-size: 0.92rem;
+  }
+  .btn-outline-light {
+    background: rgb(var(--white-rgb) / 0.08);
+    color: var(--white);
+    border: 1px solid rgb(var(--white-rgb) / 0.25);
+  }
+  .btn-outline-light:hover {
+    background: rgb(var(--white-rgb) / 0.14);
+    transform: translateY(-2px);
+  }
+
+  /* Directional icons: drawn for RTL (arrow points left = "forward"), flipped in LTR. */
+  .icon-forward:dir(ltr) {
+    transform: scaleX(-1);
+  }
+
+  /* Scroll reveal (toggled by <Reveal>) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.8s var(--ease),
+      transform 0.8s var(--ease);
+    transition-delay: var(--d, 0s);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  section {
+    padding-block: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-container {
+    width: calc(100% - 32px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

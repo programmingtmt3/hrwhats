@@ -1,0 +1,146 @@
+/* Ported from design/index.html — Header */
+.header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 100;
+  transition:
+    background 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+.header.scrolled {
+  background: rgb(var(--white-rgb) / 0.82);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-color: var(--line);
+  box-shadow: 0 4px 20px -12px rgb(var(--deep-rgb) / 0.2);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  gap: 24px;
+}
+.logo img {
+  height: 42px;
+  width: auto;
+}
+.menu {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+}
+.menu a {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 500;
+  color: var(--menu-ink);
+  font-size: 0.97rem;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.menu a:hover,
+.menu a[aria-current="page"] {
+  background: rgb(var(--wa-rgb) / 0.1);
+  color: var(--green);
+}
+.navCta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.burger span,
+.burger span::before,
+.burger span::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  position: relative;
+  transition: 0.3s;
+}
+.burger span::before,
+.burger span::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+}
+.burger span::before {
+  top: -6px;
+}
+.burger span::after {
+  top: 6px;
+}
+.header.open .burger span {
+  background: transparent;
+}
+.header.open .burger span::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.header.open .burger span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* Dashboard link inside the menu: mobile only (shown below 1080px). */
+.menu .mOnly {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  .menu,
+  .navCta :global(.btn-ghost) {
+    display: none;
+  }
+  .burger {
+    display: inline-flex;
+  }
+  .header.open {
+    background: var(--white);
+    box-shadow: var(--shadow);
+  }
+  .header.open .menu {
+    display: flex;
+    position: absolute;
+    top: var(--header-h);
+    inset-inline: 0;
+    flex-direction: column;
+    background: var(--white);
+    padding: 12px 20px 24px;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 20px 30px -20px rgb(var(--deep-rgb) / 0.3);
+  }
+  .header.open .menu a {
+    display: block;
+    padding: 12px 16px;
+  }
+  .menu .mOnly {
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+  .navCta :global(.btn-primary) {
+    padding: 9px 14px;
+    font-size: 0.85rem;
+  }
+  .logo img {
+    height: 34px;
+  }
+}

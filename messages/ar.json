@@ -1,51 +1,40 @@
 {
   "meta": {
     "siteName": "HRwhats",
-    "defaultDescription": "منصتنا تساعدك في تحقيق أهدافك بأدوات قوية وميزات سهلة الاستخدام"
+    "homeTitle": "HRwhats | أفضل الحلول للأعمال — منظومة واتساب + CRM",
+    "homeDescription": "HRwhats منصة سعودية لحلول واتساب أعمال API الرسمي + CRM: حملات جماعية بدون حظر، ردود آلية وذكاء اصطناعي، أتمتة المبيعات، OTP وإدارة الموظفين."
   },
   "nav": {
-    "mainLabel": "التنقل الرئيسي",
+    "logoLabel": "HRwhats الرئيسية",
     "home": "الرئيسية",
-    "sectors": "القطاعات",
     "packages": "الباقات",
-    "guide": "دليل الاستخدام",
     "blog": "المدونة",
+    "guide": "دليل الاستخدام",
     "contact": "تواصل معنا",
-    "login": "تسجيل الدخول",
+    "dashboard": "لوحة التحكم",
     "signup": "جرب مجاناً",
-    "openMenu": "فتح القائمة",
-    "closeMenu": "إغلاق القائمة",
-    "menuTitle": "القائمة"
-  },
-  "sectors": {
-    "charity": "القطاع الغير الربحي والجمعيات",
-    "real-estate-contracting": "شركات العقارات والمقاولات",
-    "education-training": "قطاع التعليم والتدريب",
-    "tourism-hospitality": "قطاع السياحة والفندقة",
-    "online-stores-systems": "المتاجر والأنظمة الإلكترونية",
-    "advertising": "وكالات التسويق والاعلان",
-    "hr": "الموارد البشرية",
-    "operating-service": "شركات التشغيل والخدمات",
-    "restaurants-cafes": "المطاعم والكافيهات",
-    "shops": "المحلات التجارية"
-  },
-  "guide": {
-    "documentation-requirements-for-meta": "متطلبات التوثيق",
-    "link-account": "ربط الحساب",
-    "hrwhats-guide": "شروحات المنصة",
-    "whatsapp-ban": "حظر الواتساب"
-  },
-  "legal": {
-    "privacy-policy": "سياسة الخصوصية",
-    "terms-of-use": "سياسة الاستخدام",
-    "refund-policy": "سياسة الاسترجاع"
+    "menu": "القائمة"
   },
   "footer": {
-    "tagline": "منصتنا تساعدك في تحقيق أهدافك بأدوات قوية وميزات سهلة الاستخدام",
+    "description": "منظومة واتساب + CRM متكاملة لزيادة مبيعاتك وتنظيم موظفيك وأعمالك.",
     "quickLinks": "روابط سريعة",
-    "legalLinks": "السياسات",
-    "copyright": "حقوق النشر © لعام {year} محفوظة لموقع حلول واتس اب اعمال | HRwhats",
-    "developedBy": "تطوير وكالة تمتع"
+    "guide": "دليل الاستخدام",
+    "contact": "تواصل معنا",
+    "guideLinks": {
+      "hrwhats-guide": "أدلة المنصة",
+      "link-account": "خطوات ربط الحساب",
+      "documentation-requirements-for-meta": "متطلبات التوثيق",
+      "whatsapp-ban": "حظر الواتساب"
+    },
+    "legalLinks": {
+      "privacy-policy": "سياسة الخصوصية",
+      "terms-of-use": "شروط الاستخدام",
+      "refund-policy": "سياسة الاسترجاع"
+    },
+    "copyright": "© {year} HRwhats — أحد منتجات"
+  },
+  "waFloat": {
+    "label": "تواصل عبر واتساب"
   },
   "languageSwitcher": {
     "label": "English"

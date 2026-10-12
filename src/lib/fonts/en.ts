@@ -4,7 +4,7 @@ import { IBM_Plex_Sans } from "next/font/google";
 // Arabic pages never load it.
 export const latinFont = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-latin",
   display: "swap",
 });

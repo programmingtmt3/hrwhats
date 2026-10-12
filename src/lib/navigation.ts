@@ -1,53 +1,51 @@
+import type { Site } from "./content";
 import type { Dictionary } from "./i18n";
 
-// Slugs double as dictionary keys, so a missing label is a TypeScript error.
-// Sector slugs will come from the sectors content collection once it exists.
-export const sectorSlugs = [
-  "charity",
-  "real-estate-contracting",
-  "education-training",
-  "tourism-hospitality",
-  "online-stores-systems",
-  "advertising",
-  "hr",
-  "operating-service",
-  "restaurants-cafes",
-  "shops",
-] as const satisfies readonly (keyof Dictionary["sectors"])[];
+export type NavLink = {
+  label: string;
+  /** Locale-neutral internal path (wrap with localePath) or an absolute external URL. */
+  href: string;
+  external?: boolean;
+};
 
-export const guideSlugs = [
-  "documentation-requirements-for-meta",
-  "link-account",
+const guideSlugs = [
   "hrwhats-guide",
+  "link-account",
+  "documentation-requirements-for-meta",
   "whatsapp-ban",
-] as const satisfies readonly (keyof Dictionary["guide"])[];
+] as const satisfies readonly (keyof Dictionary["footer"]["guideLinks"])[];
 
-export const legalSlugs = [
+const legalSlugs = [
   "privacy-policy",
   "terms-of-use",
   "refund-policy",
-] as const satisfies readonly (keyof Dictionary["legal"])[];
+] as const satisfies readonly (keyof Dictionary["footer"]["legalLinks"])[];
 
-export type NavLink = { label: string; path: string };
-export type NavItem = NavLink | { label: string; children: NavLink[] };
-
-/** Main navigation, in display order. Paths are locale-neutral; wrap with localePath(). */
-export function getMainNav(dict: Dictionary): NavItem[] {
+/** Header menu, in display order. */
+export function getMainNav(dict: Dictionary): NavLink[] {
   return [
-    {
-      label: dict.nav.sectors,
-      children: sectorSlugs.map((slug) => ({ label: dict.sectors[slug], path: `/${slug}/` })),
-    },
-    { label: dict.nav.packages, path: "/packages/" },
-    {
-      label: dict.nav.guide,
-      children: guideSlugs.map((slug) => ({ label: dict.guide[slug], path: `/${slug}/` })),
-    },
-    { label: dict.nav.blog, path: "/news/" },
-    { label: dict.nav.contact, path: "/contact/" },
+    { label: dict.nav.home, href: "/" },
+    { label: dict.nav.packages, href: "/packages/" },
+    { label: dict.nav.blog, href: "/news/" },
+    { label: dict.nav.guide, href: "/hrwhats-guide/" },
+    { label: dict.nav.contact, href: "/contact/" },
   ];
 }
 
+export function getFooterQuickLinks(dict: Dictionary, site: Site): NavLink[] {
+  return [
+    { label: dict.nav.home, href: "/" },
+    { label: dict.nav.packages, href: "/packages/" },
+    { label: dict.nav.blog, href: "/news/" },
+    { label: dict.nav.contact, href: "/contact/" },
+    { label: dict.nav.dashboard, href: site.appUrls.login, external: true },
+  ];
+}
+
+export function getFooterGuideLinks(dict: Dictionary): NavLink[] {
+  return guideSlugs.map((slug) => ({ label: dict.footer.guideLinks[slug], href: `/${slug}/` }));
+}
+
 export function getLegalLinks(dict: Dictionary): NavLink[] {
-  return legalSlugs.map((slug) => ({ label: dict.legal[slug], path: `/${slug}/` }));
+  return legalSlugs.map((slug) => ({ label: dict.footer.legalLinks[slug], href: `/${slug}/` }));
 }

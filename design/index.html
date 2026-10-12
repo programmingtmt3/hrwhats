@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HRwhats | أفضل الحلول للأعمال — منظومة واتساب + CRM</title>
+<meta name="description" content="HRwhats منصة سعودية لحلول واتساب أعمال API الرسمي + CRM: حملات جماعية بدون حظر، ردود آلية وذكاء اصطناعي، أتمتة المبيعات، OTP وإدارة الموظفين.">
+<link rel="icon" href="https://hrwhats.com/wp-content/uploads/2025/12/HRwhats-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#062A20; --dark:#0B3D2E; --green:#128C4A; --wa:#25D366; --neon:#3CFF9A;
+  --bg:#F7FAF8; --surface:#FFFFFF; --ink:#0D1F18; --muted:#5B6B64; --line:#E3ECE7;
+  --r-sm:12px; --r:18px; --r-lg:28px;
+  --shadow-sm:0 1px 2px rgba(6,42,32,.06),0 2px 8px rgba(6,42,32,.04);
+  --shadow:0 10px 30px -10px rgba(6,42,32,.18),0 2px 6px rgba(6,42,32,.05);
+  --shadow-lg:0 30px 60px -20px rgba(6,42,32,.30);
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{width:min(1200px,100% - 40px);margin-inline:auto}
+section{padding-block:110px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--green);background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);padding:6px 14px;border-radius:999px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 4px rgba(37,211,102,.2)}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 60px}
+.sec-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.35;font-weight:700;margin:16px 0 14px;letter-spacing:-.01em}
+.sec-head p{color:var(--muted);font-size:1.08rem}
+.grad{background:linear-gradient(120deg,var(--green),var(--wa) 50%,#0fb57a);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:1rem;padding:14px 26px;border-radius:999px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s;white-space:nowrap;font-family:inherit;cursor:pointer;border:0}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:linear-gradient(135deg,var(--wa),#1fbf5b);color:#03251A;box-shadow:0 8px 24px -8px rgba(37,211,102,.7),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px -8px rgba(37,211,102,.8),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-ghost{background:var(--surface);color:var(--dark);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.btn-ghost:hover{transform:translateY(-2px);border-color:rgba(37,211,102,.5)}
+.btn-sm{padding:10px 18px;font-size:.92rem}
+
+/* Header */
+.header{position:fixed;inset-inline:0;top:0;z-index:100;transition:background .3s,box-shadow .3s,border-color .3s;border-bottom:1px solid transparent}
+.header.scrolled{background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-color:var(--line);box-shadow:0 4px 20px -12px rgba(6,42,32,.2)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.logo img{height:42px;width:auto}
+.menu{display:flex;gap:6px;list-style:none}
+.menu a{padding:8px 14px;border-radius:999px;font-weight:500;color:#2A3B34;font-size:.97rem;transition:background .2s,color .2s}
+.menu a:hover,.menu a.active{background:rgba(37,211,102,.1);color:var(--green)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:var(--dark);border-radius:2px;position:relative;transition:.3s}
+.burger span::before,.burger span::after{content:"";position:absolute;inset-inline-start:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.header.open .burger span{background:transparent}
+.header.open .burger span::before{top:0;transform:rotate(45deg)}
+.header.open .burger span::after{top:0;transform:rotate(-45deg)}
+
+/* Hero */
+.hero{position:relative;padding-top:160px;padding-bottom:100px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(11,61,46,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(11,61,46,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;pointer-events:none}
+.blob.b1{width:520px;height:520px;background:radial-gradient(circle,rgba(37,211,102,.55),transparent 70%);top:-120px;left:-120px}
+.blob.b2{width:420px;height:420px;background:radial-gradient(circle,rgba(60,255,154,.35),transparent 70%);bottom:-100px;right:10%}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.6rem);line-height:1.3;font-weight:700;letter-spacing:-.015em;margin:22px 0 22px}
+.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:540px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+.hero-checks{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;color:var(--muted);font-size:.93rem}
+.hero-checks span{display:inline-flex;align-items:center;gap:7px}
+.hero-checks svg{width:18px;height:18px;color:var(--wa)}
+
+/* Phone */
+.phone-wrap{position:relative;display:flex;justify-content:center}
+.phone-wrap::before{content:"";position:absolute;width:80%;height:80%;top:10%;background:radial-gradient(circle,rgba(37,211,102,.35),transparent 65%);filter:blur(40px)}
+.phone{position:relative;width:310px;height:630px;border-radius:48px;background:#0c1512;padding:12px;box-shadow:var(--shadow-lg),0 0 0 2px #1d2a25,inset 0 0 0 2px #2b3a34;animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+.phone::after{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:96px;height:26px;background:#0c1512;border-radius:20px;z-index:3}
+.screen{position:relative;height:100%;border-radius:38px;overflow:hidden;background:#EFE7DD;display:flex;flex-direction:column}
+.screen::before{content:"";position:absolute;inset:0;opacity:.35;background-image:radial-gradient(rgba(11,61,46,.12) 1.2px,transparent 1.2px);background-size:16px 16px}
+.chat-head{position:relative;z-index:2;background:#075E54;color:#fff;padding:46px 16px 12px;display:flex;align-items:center;gap:10px}
+.chat-head .av{width:38px;height:38px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden;flex-shrink:0}
+.chat-head .av img{width:30px}
+.chat-head b{display:block;font-size:.95rem;line-height:1.3}
+.chat-head small{font-size:.72rem;opacity:.85}
+.chat-head .verified{width:15px;height:15px;color:var(--neon);vertical-align:-2px}
+.chat-body{position:relative;z-index:1;flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:8px;overflow:hidden;justify-content:flex-end}
+.msg{max-width:82%;padding:8px 11px 6px;border-radius:12px;font-size:.82rem;line-height:1.6;box-shadow:0 1px 1px rgba(0,0,0,.08);opacity:0;transform:translateY(10px) scale(.96);animation:pop .4s var(--ease) forwards}
+.msg.in{background:#fff;align-self:flex-start;border-start-start-radius:3px}
+.msg.out{background:#D9FDD3;align-self:flex-end;border-start-end-radius:3px}
+.msg time{display:block;font-size:.62rem;color:#7a8a83;text-align:left;margin-top:2px}
+.msg .btns{display:grid;gap:4px;margin-top:6px}
+.msg .btns span{display:block;text-align:center;color:#027EB5;border-top:1px solid #eee;padding-top:5px;font-weight:600}
+@keyframes pop{to{opacity:1;transform:none}}
+.typing{align-self:flex-start;background:#fff;border-radius:12px;padding:10px 14px;display:flex;gap:4px;animation:pop .3s forwards;opacity:0}
+.typing i{width:7px;height:7px;border-radius:50%;background:#9aa;animation:dot 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes dot{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+.chat-input{position:relative;z-index:2;display:flex;gap:8px;padding:10px;align-items:center}
+.chat-input div{flex:1;background:#fff;border-radius:999px;padding:9px 14px;font-size:.78rem;color:#999}
+.chat-input b{width:38px;height:38px;border-radius:50%;background:#00A884;display:grid;place-items:center;color:#fff}
+.chat-input svg{width:18px}
+.float-card{position:absolute;z-index:4;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600}
+.float-card .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(37,211,102,.14);color:var(--green)}
+.float-card .ic svg{width:20px}
+.float-card small{display:block;color:var(--muted);font-weight:400;font-size:.75rem}
+.fc1{top:90px;right:-10px;animation:float 5s ease-in-out infinite .5s}
+.fc2{bottom:110px;left:-20px;animation:float 5.5s ease-in-out infinite 1s}
+
+/* Trust bar */
+.trust{padding-block:0;margin-top:-20px;position:relative;z-index:2}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.trust-item{padding:30px 26px;display:flex;align-items:center;gap:16px}
+.trust-item+.trust-item{border-inline-start:1px solid var(--line)}
+.trust-item .ic{width:52px;height:52px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(37,211,102,.16),rgba(60,255,154,.08));color:var(--green)}
+.trust-item .ic svg{width:26px}
+.trust-item .ic img{width:40px}
+.trust-item strong{display:block;font-size:1.45rem;font-weight:700;line-height:1.2;color:var(--dark)}
+.trust-item span{color:var(--muted);font-size:.9rem}
+
+/* Bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(230px,auto);gap:18px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:30px;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(37,211,102,.12),transparent 40%);opacity:0;transition:opacity .35s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(37,211,102,.45)}
+.card:hover::after{opacity:1}
+.card .ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(37,211,102,.16),rgba(60,255,154,.06));color:var(--green);margin-bottom:22px;border:1px solid rgba(37,211,102,.2)}
+.card .ic svg{width:26px;height:26px}
+.card h3{font-size:1.2rem;font-weight:700;margin-bottom:8px;line-height:1.5}
+.card p{color:var(--muted);font-size:.97rem}
+.span-2{grid-column:span 2}
+.row-2{grid-row:span 2}
+.card.dark{background:radial-gradient(120% 100% at 0% 0%,#0f5a40 0%,var(--dark) 45%,var(--deep) 100%);color:#fff;border-color:transparent}
+.card.dark p{color:rgba(255,255,255,.72)}
+.card.dark .ic{background:rgba(60,255,154,.12);color:var(--neon);border-color:rgba(60,255,154,.25)}
+.card.dark::after{background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(60,255,154,.16),transparent 40%)}
+.card .tag{display:inline-block;margin-top:18px;font-size:.78rem;font-weight:600;padding:5px 12px;border-radius:999px;background:rgba(60,255,154,.14);color:var(--neon);border:1px solid rgba(60,255,154,.3)}
+.mini-bars{display:flex;align-items:flex-end;gap:8px;height:110px;margin-top:28px}
+.mini-bars i{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(to top,rgba(60,255,154,.25),var(--neon));transform-origin:bottom;transform:scaleY(.2);transition:transform 1.2s var(--ease)}
+.in-view .mini-bars i{transform:scaleY(1)}
+.api-badge{margin-top:26px;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px 14px}
+.api-badge img{height:44px;width:auto;border-radius:8px;background:#fff;padding:4px}
+.api-badge span{font-size:.85rem;color:rgba(255,255,255,.8)}
+
+/* Why */
+.why{background:linear-gradient(180deg,var(--bg),#EEF6F1)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.why-list{display:grid;gap:16px;margin-top:34px}
+.why-item{display:flex;gap:18px;padding:22px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.why-item:hover{transform:translateX(-6px);box-shadow:var(--shadow);border-color:rgba(37,211,102,.4)}
+.why-item .ic{width:50px;height:50px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;background:var(--dark);color:var(--neon)}
+.why-item .ic svg{width:24px}
+.why-item h3{font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.why-item p{color:var(--muted);font-size:.95rem}
+.why-visual{position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);background:var(--surface);border:1px solid var(--line)}
+.why-visual img{width:100%;height:auto}
+.why .sec-head{text-align:start;margin:0}
+
+/* Sectors */
+.sectors{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.sector{position:relative;aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;display:block;box-shadow:var(--shadow-sm);isolation:isolate}
+.sector img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.sector::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(6,42,32,.92) 0%,rgba(6,42,32,.35) 45%,transparent 75%);transition:background .4s}
+.sector .lbl{position:absolute;z-index:2;bottom:0;inset-inline:0;padding:18px;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
+.sector h3{font-size:1rem;font-weight:600;line-height:1.5}
+.sector .arrow{width:34px;height:34px;flex-shrink:0;border-radius:50%;background:var(--wa);color:var(--deep);display:grid;place-items:center;transform:scale(0) rotate(-45deg);transition:transform .4s var(--ease)}
+.sector .arrow svg{width:16px}
+.sector:hover img{transform:scale(1.08)}
+.sector:hover .arrow{transform:scale(1) rotate(0)}
+.sector:hover::after{background:linear-gradient(to top,rgba(6,42,32,.95) 0%,rgba(11,61,46,.45) 55%,rgba(37,211,102,.1) 100%)}
+
+/* Partners */
+.partners{background:var(--surface);border-block:1px solid var(--line)}
+.partner-row{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-bottom:60px}
+.partner{width:190px;height:110px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);display:grid;place-items:center;padding:16px;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.partner:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(37,211,102,.4)}
+.partner img{max-height:74px;width:auto;object-fit:contain}
+.marquee{position:relative;overflow:hidden;padding-block:8px;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee+.marquee{margin-top:14px}
+.track{display:flex;gap:16px;width:max-content;animation:scroll 60s linear infinite}
+.marquee.rev .track{animation-direction:reverse}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(50%)}}
+.logo-pill{width:150px;height:96px;flex-shrink:0;background:#fff;border:1px solid var(--line);border-radius:16px;display:grid;place-items:center;padding:12px}
+.logo-pill img{max-height:70px;max-width:120px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.75;transition:filter .3s,opacity .3s}
+.logo-pill:hover img{filter:none;opacity:1}
+
+/* FAQ */
+.faq-list{max-width:820px;margin-inline:auto;display:grid;gap:12px}
+.faq{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);transition:border-color .3s,box-shadow .3s}
+.faq[open]{border-color:rgba(37,211,102,.45);box-shadow:var(--shadow)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:600;font-size:1.05rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{width:32px;height:32px;flex-shrink:0;border-radius:50%;background:rgba(37,211,102,.12);color:var(--green);display:grid;place-items:center;transition:transform .35s var(--ease),background .3s,color .3s}
+.faq summary .pm svg{width:16px}
+.faq[open] summary .pm{transform:rotate(45deg);background:var(--wa);color:var(--deep)}
+.faq .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.faq .ans>div{overflow:hidden}
+.faq .ans p{padding:0 26px 22px;color:var(--muted)}
+.faq .ans a{color:var(--green);font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.faq.show .ans{grid-template-rows:1fr}
+
+/* CTA */
+.cta-box{position:relative;overflow:hidden;border-radius:36px;padding:80px 40px;text-align:center;color:#fff;background:radial-gradient(80% 120% at 100% 0%,#13704f 0%,transparent 55%),radial-gradient(60% 100% at 0% 100%,rgba(60,255,154,.25) 0%,transparent 60%),linear-gradient(135deg,var(--dark),var(--deep))}
+.cta-box::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(circle at center,#000,transparent 75%);-webkit-mask-image:radial-gradient(circle at center,#000,transparent 75%)}
+.cta-box>*{position:relative}
+.cta-box h2{font-size:clamp(1.8rem,4vw,2.9rem);line-height:1.35;font-weight:700;max-width:760px;margin:18px auto 16px}
+.cta-box p{color:rgba(255,255,255,.75);font-size:1.1rem;max-width:560px;margin-inline:auto}
+.cta-box .hero-actions{justify-content:center}
+.cta-box .eyebrow{color:var(--neon);background:rgba(60,255,154,.1);border-color:rgba(60,255,154,.3)}
+.btn-outline-light{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn-outline-light:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+
+/* Footer */
+footer{background:var(--deep);color:rgba(255,255,255,.72);padding-top:80px;margin-top:110px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:50px}
+.foot-logo{display:inline-block;background:#fff;border-radius:14px;padding:10px 14px;margin-bottom:18px}
+.foot-logo img{height:36px}
+footer h4{color:#fff;font-size:1rem;margin-bottom:18px;font-weight:600}
+footer ul{list-style:none;display:grid;gap:10px}
+footer a{transition:color .2s}
+footer a:hover{color:var(--neon)}
+.contact-li{display:flex;align-items:center;gap:10px}
+.contact-li svg{width:18px;color:var(--wa);flex-shrink:0}
+.social{display:flex;gap:10px;margin-top:20px}
+.social a{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);transition:background .25s,transform .25s,color .25s}
+.social a:hover{background:var(--wa);color:var(--deep);transform:translateY(-3px)}
+.social svg{width:18px;height:18px}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-block:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.9rem}
+.foot-bottom .pol{display:flex;gap:20px;flex-wrap:wrap}
+.foot-bottom b{color:var(--neon);font-weight:600}
+
+/* Floating WA */
+.wa-float{position:fixed;bottom:24px;left:24px;z-index:90;width:62px;height:62px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -6px rgba(37,211,102,.7);transition:transform .3s var(--ease)}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:32px;height:32px}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--wa);animation:pulse 2s ease-out infinite;z-index:-1}
+@keyframes pulse{to{transform:scale(1.7);opacity:0}}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in-view{opacity:1;transform:none}
+
+/* Responsive */
+@media (max-width:1080px){
+  .menu,.nav-cta .btn-ghost{display:none}
+  .burger{display:inline-flex}
+  .menu.mobile{display:flex}
+  .header.open{background:#fff;box-shadow:var(--shadow)}
+  .header.open .menu{display:flex;position:absolute;top:76px;inset-inline:0;flex-direction:column;background:#fff;padding:12px 20px 24px;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(6,42,32,.3)}
+  .header.open .menu a{display:block;padding:12px 16px}
+  .menu .m-only{display:block}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .sectors{grid-template-columns:repeat(3,1fr)}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .trust-item:nth-child(3){border-inline-start:0}
+  .trust-item:nth-child(n+3){border-top:1px solid var(--line)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+.menu .m-only{display:none}
+@media (max-width:900px){
+  section{padding-block:80px}
+  .hero{padding-top:120px}
+  .hero-grid,.why-grid{grid-template-columns:1fr;gap:56px}
+  .hero-copy{text-align:center}
+  .hero p.lead{margin-inline:auto}
+  .hero-actions,.hero-checks{justify-content:center}
+  .why .sec-head{text-align:center}
+}
+@media (max-width:600px){
+  .container{width:calc(100% - 32px)}
+  .nav-cta .btn-primary{padding:9px 14px;font-size:.85rem}
+  .logo img{height:34px}
+  .hero-actions .btn{width:100%}
+  .phone{width:270px;height:550px}
+  .fc1{right:-6px;top:70px}.fc2{left:-6px;bottom:90px}
+  .float-card{padding:9px 12px;font-size:.78rem}
+  .bento{grid-template-columns:1fr}
+  .span-2,.row-2{grid-column:auto;grid-row:auto}
+  .sectors{grid-template-columns:repeat(2,1fr);gap:12px}
+  .sector .lbl{padding:12px}.sector h3{font-size:.88rem}
+  .trust-grid{grid-template-columns:1fr}
+  .trust-item+.trust-item{border-inline-start:0;border-top:1px solid var(--line)}
+  .partner{width:calc(50% - 9px);height:96px}
+  .logo-pill{width:120px;height:80px}
+  .cta-box{padding:56px 22px;border-radius:26px}
+  .foot-grid{grid-template-columns:1fr}
+  .wa-float{width:56px;height:56px;bottom:18px;left:18px}
+  .card{padding:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ Header ============ -->
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="https://hrwhats.com/" class="logo" aria-label="HRwhats الرئيسية">
+      <img src="https://hrwhats.com/wp-content/uploads/2025/12/HRwhats-logo.png" alt="HRwhats">
+    </a>
+    <ul class="menu" id="menu">
+      <li><a href="https://hrwhats.com/" class="active">الرئيسية</a></li>
+      <li><a href="https://hrwhats.com/packages/">الباقات</a></li>
+      <li><a href="https://hrwhats.com/news/">المدونة</a></li>
+      <li><a href="https://hrwhats.com/hrwhats-guide/">دليل الاستخدام</a></li>
+      <li><a href="https://hrwhats.com/contact/">تواصل معنا</a></li>
+      <li class="m-only"><a href="https://app.hrwhats.com/login">لوحة التحكم</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://app.hrwhats.com/login" class="btn btn-ghost btn-sm">لوحة التحكم</a>
+      <a href="https://app.hrwhats.com/signup" class="btn btn-primary btn-sm">جرب مجاناً</a>
+      <button class="burger" id="burger" aria-label="القائمة" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">HRwhats — أفضل الحلول للأعمال</span>
+      <h1>زد مبيعاتك ونظّم أعمالك عبر منظومة <span class="grad">واتساب + CRM</span> متكاملة</h1>
+      <p class="lead">منظومة واحدة لزيادة مبيعاتك وتنظيم موظفيك وأعمالك: حملات جماعية بدون حظر عبر واتساب API الرسمي، ردود آلية بالذكاء الاصطناعي، وإدارة كاملة لعملائك من مكان واحد.</p>
+      <div class="hero-actions">
+        <a href="https://app.hrwhats.com/signup" class="btn btn-primary">
+          ابدأ تجربتك المجانية 14 يوم
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        </a>
+        <a href="https://hrwhats.com/packages/" class="btn btn-ghost">شاهد الباقات</a>
+      </div>
+      <div class="hero-checks">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>جميع المميزات في التجربة</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>API رسمي من Meta</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>دعم فني 24/7</span>
+      </div>
+    </div>
+
+    <div class="phone-wrap reveal" style="--d:.15s">
+      <div class="phone">
+        <div class="screen">
+          <div class="chat-head">
+            <div class="av"><img src="https://hrwhats.com/wp-content/uploads/2025/12/HRwhats-logo.png" alt=""></div>
+            <div>
+              <b>HRwhats <svg class="verified" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l2.6 2.1 3.3-.4.9 3.2 2.9 1.7-1.2 3.1 1.2 3.1-2.9 1.7-.9 3.2-3.3-.4L12 23l-2.6-2.1-3.3.4-.9-3.2-2.9-1.7 1.2-3.1-1.2-3.1 2.9-1.7.9-3.2 3.3.4z"/><path d="M10.5 15.5 7 12l1.4-1.4 2.1 2.1 5.1-5.1L17 9z" fill="#075E54"/></svg></b>
+              <small id="status">متصل الآن</small>
+            </div>
+          </div>
+          <div class="chat-body" id="chat"></div>
+          <div class="chat-input">
+            <div>اكتب رسالة</div>
+            <b><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-6l8-2.5-8-2.5v-6L22 12z" transform="scale(-1,1) translate(-24,0)"/></svg></b>
+          </div>
+        </div>
+      </div>
+      <div class="float-card fc1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></div>
+        <div>+12,480 رسالة<small>حملة اليوم — بدون حظر</small></div>
+      </div>
+      <div class="float-card fc2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></div>
+        <div>رد آلي بالذكاء الاصطناعي<small>خلال ثانية واحدة</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Trust bar ============ -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-grid reveal">
+      <div class="trust-item">
+        <div class="ic"><img src="https://hrwhats.com/wp-content/uploads/2026/04/Met-Business-Partners.png" alt="Meta Business Partner"></div>
+        <div><strong>شريك Meta</strong><span>واتساب API الرسمي</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg></div>
+        <div><strong>24/7</strong><span>دعم فني على مدار الساعة</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></div>
+        <div><strong>أسبوعين</strong><span>تجربة مجانية كاملة المميزات</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div><strong>+<span class="count" data-to="30">0</span> جهة</strong><span>جمعيات وشركات ومتاجر تثق بنا</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Features (Bento) ============ -->
+<section id="features">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">المميزات</span>
+      <h2>كل ما تحتاجه لتنمية أعمالك <span class="grad">في منصة واحدة</span></h2>
+      <p>من أول رسالة حتى إتمام البيع — أدوات متكاملة لفريق المبيعات والتسويق وخدمة العملاء.</p>
+    </div>
+
+    <div class="bento">
+      <article class="card dark span-2 row-2 reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+        <h3>ربط واتساب API الرسمي</h3>
+        <p>ربط واتساب موثوق ومعتمد من Meta يقلل خطر الحظر ويتيح لك إرسال الرسائل الجماعية بأمان واحترافية.</p>
+        <div class="api-badge">
+          <img src="https://hrwhats.com/wp-content/uploads/2026/04/Met-Business-Partners.png" alt="Meta Business Partners">
+          <span>شريك أعمال رسمي لدى Meta — اتصال مباشر بواجهة WhatsApp Cloud API</span>
+        </div>
+        <span class="tag">✓ أمان وموثوقية</span>
+      </article>
+
+      <article class="card span-2 reveal" style="--d:.05s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/><path d="M15 8h5v5"/></svg></div>
+        <h3>حلول أتمتة التسويق والمبيعات</h3>
+        <p>أدوات ذكية تؤتمت حملاتك على واتساب وتتابع العملاء المحتملين تلقائياً لزيادة مبيعاتك.</p>
+      </article>
+
+      <article class="card reveal" style="--d:.1s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></div>
+        <h3>الردود الآلية والذكاء الاصطناعي</h3>
+        <p>اختر بين ردود آلية فعّالة أو ردود ذكية مدعومة بالذكاء الاصطناعي لدعم عملائك.</p>
+      </article>
+
+      <article class="card reveal" style="--d:.15s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1"/></svg></div>
+        <h3>تفعيل رسائل OTP</h3>
+        <p>أرسل رموز التحقق عبر واتساب مع إمكانية الحصول على بيانات المسجلين في موقعك.</p>
+      </article>
+
+      <article class="card dark span-2 reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+        <h3>الحملات الإعلانية</h3>
+        <p>نظّم حملاتك التسويقية عبر واتساب لتصل إلى آلاف الرسائل دون حظر.</p>
+        <div class="mini-bars" aria-hidden="true">
+          <i style="height:35%"></i><i style="height:55%;transition-delay:.1s"></i><i style="height:45%;transition-delay:.2s"></i><i style="height:70%;transition-delay:.3s"></i><i style="height:60%;transition-delay:.4s"></i><i style="height:85%;transition-delay:.5s"></i><i style="height:100%;transition-delay:.6s"></i>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d:.05s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>
+        <h3>عملاء جدد تلقائياً</h3>
+        <p>اربط موقعك وصفحات الهبوط وحملاتك بالمنصة لجمع بيانات العملاء وتحويلهم إلى عملاء فعليين.</p>
+      </article>
+
+      <article class="card reveal" style="--d:.1s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <h3>وظّف مدير للمنصة</h3>
+        <p>مدير متخصص يدير حسابك بالكامل: التصاميم، الحملات، الردود، وترتيب العملاء الجدد.</p>
+      </article>
+
+      <article class="card span-2 reveal" style="--d:.15s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div>
+        <h3>برنامج CRM متكامل</h3>
+        <p>أدر موظفيك وتابعهم عن بُعد، ونظّم جميع أعمالك ومحادثاتك وصفقاتك من مكان واحد.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Why ============ -->
+<section class="why" id="why">
+  <div class="container why-grid">
+    <div class="reveal">
+      <div class="sec-head">
+        <span class="eyebrow">لماذا HRwhats؟</span>
+        <h2>أدوات ذكية تصنع <span class="grad">الفرق في نتائجك</span></h2>
+        <p>صُممت المنصة لتوفير وقتك ورفع نسبة وصول رسائلك وتفاعل عملائك.</p>
+      </div>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13l3 3 5-5"/></svg></div>
+          <div><h3>إدارة ذكية للأرقام</h3><p>ارفع آلاف الأرقام من ملفات Excel مع فرز تلقائي للأخطاء، واستعادة الأرقام التي لم تستلم الرسائل.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div>
+          <div><h3>منصة موحدة لكل قنواتك</h3><p>أدر رسائل وتعليقات واتساب وإنستغرام وفيسبوك من صندوق وارد واحد.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <div><h3>مؤشر أوقات الذروة</h3><p>اعرف متى يكون عملاؤك متصلين على واتساب، لتُقرأ رسائلك فور وصولها.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual reveal" style="--d:.15s">
+      <img src="https://hrwhats.com/wp-content/uploads/2026/09/34CDABC5-8466-4F24-B207-C17A02505C62.png" alt="لوحة تحكم HRwhats" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ Sectors ============ -->
+<section id="sectors">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">الفئات المستهدفة</span>
+      <h2>حلول مصممة <span class="grad">لكل قطاع</span></h2>
+      <p>اكتشف كيف تخدم HRwhats قطاعك باحتياجاته الخاصة.</p>
+    </div>
+    <div class="sectors" id="sectorGrid"></div>
+  </div>
+</section>
+
+<!-- ============ Partners ============ -->
+<section class="partners" id="partners">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">شركاء النجاح</span>
+      <h2>شركاؤنا و<span class="grad">عملاء يثقون بنا</span></h2>
+      <p>جمعيات خيرية وشركات ومتاجر في مختلف مناطق المملكة اختارت HRwhats.</p>
+    </div>
+    <div class="partner-row reveal" id="partnerRow"></div>
+  </div>
+  <div class="marquee reveal"><div class="track" id="track1"></div></div>
+  <div class="marquee rev reveal"><div class="track" id="track2"></div></div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">الأسئلة الشائعة</span>
+      <h2>لديك سؤال؟ <span class="grad">لدينا الإجابة</span></h2>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section style="padding-bottom:0">
+  <div class="container">
+    <div class="cta-box reveal">
+      <span class="eyebrow">تجربة مجانية لمدة أسبوعين</span>
+      <h2>جاهز تنقل تواصلك مع عملائك إلى مستوى جديد؟</h2>
+      <p>ابدأ الآن مجاناً واستمتع بجميع المميزات لمدة 14 يوماً — بدون أي التزام.</p>
+      <div class="hero-actions">
+        <a href="https://app.hrwhats.com/signup" class="btn btn-primary">ابدأ تجربتك المجانية</a>
+        <a href="https://wa.me/966531664058" class="btn btn-outline-light" target="_blank" rel="noopener">تحدث مع فريق المبيعات</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ Footer ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="https://hrwhats.com/" class="foot-logo"><img src="https://hrwhats.com/wp-content/uploads/2025/12/HRwhats-logo.png" alt="HRwhats"></a>
+        <p>منظومة واتساب + CRM متكاملة لزيادة مبيعاتك وتنظيم موظفيك وأعمالك.</p>
+        <div class="social">
+          <a href="https://instagram.com/hrwhats" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://x.com/hrwhats" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.8l-5.3-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.8 6.3zm-1.2 18h1.7L6.4 3.9H4.6z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCxqh45Te5mvio9ppgAlTGvA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9L15.5 12z"/></svg></a>
+          <a href="https://wa.me/966531664058" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM12 0a12 12 0 0 0-10.3 18L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="https://hrwhats.com/">الرئيسية</a></li>
+          <li><a href="https://hrwhats.com/packages/">الباقات</a></li>
+          <li><a href="https://hrwhats.com/news/">المدونة</a></li>
+          <li><a href="https://hrwhats.com/contact/">تواصل معنا</a></li>
+          <li><a href="https://app.hrwhats.com/login">لوحة التحكم</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>دليل الاستخدام</h4>
+        <ul>
+          <li><a href="https://hrwhats.com/hrwhats-guide/">أدلة المنصة</a></li>
+          <li><a href="https://hrwhats.com/link-account/">خطوات ربط الحساب</a></li>
+          <li><a href="https://hrwhats.com/documentation-requirements-for-meta/">متطلبات التوثيق</a></li>
+          <li><a href="https://hrwhats.com/whatsapp-ban/">حظر الواتساب</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <ul>
+          <li><a class="contact-li" href="tel:0544882560"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span dir="ltr">0544882560</span></a></li>
+          <li><a class="contact-li" href="mailto:info@hrwhats.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>info@hrwhats.com</a></li>
+          <li><a class="contact-li" href="https://wa.me/966531664058" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><span dir="ltr">+966 53 166 4058</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© <span id="yr"></span> HRwhats — أحد منتجات <b>وكالة تمتع</b></div>
+      <div class="pol">
+        <a href="https://hrwhats.com/privacy-policy/">سياسة الخصوصية</a>
+        <a href="https://hrwhats.com/terms-of-use/">شروط الاستخدام</a>
+        <a href="https://hrwhats.com/refund-policy/">سياسة الاسترجاع</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/966531664058" class="wa-float" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM12 0a12 12 0 0 0-10.3 18L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></svg>
+</a>
+
+<script>
+const U = "https://hrwhats.com/wp-content/uploads/";
+
+/* ---------- Data ---------- */
+const sectors = [
+  ["القطاع غير الربحي والجمعيات","2026/04/قطاع-غير-ربحي.jpg.jpeg","https://hrwhats.com/index.php/charity/"],
+  ["العقارات والمقاولات","2026/04/العقارات.jpg.jpeg","https://hrwhats.com/index.php/real-estate-contracting/"],
+  ["التعليم والتدريب","2026/04/التعليم.jpg.jpeg","https://hrwhats.com/index.php/education-training/"],
+  ["السياحة والضيافة","2026/04/السياحة.jpg.jpeg","https://hrwhats.com/tourism-hospitality/"],
+  ["المتاجر الإلكترونية والأنظمة","2026/04/المتاجر-والانظمة.jpg.jpeg","https://hrwhats.com/online-stores-systems/"],
+  ["وكالات الدعاية والإعلان","2026/04/وكالات-تسويق.jpg.jpeg","https://hrwhats.com/advertising/"],
+  ["الموارد البشرية","2026/04/الموارد-البشرية.jpg.jpeg","https://hrwhats.com/hr/"],
+  ["شركات التشغيل والخدمات","2026/04/شركات-تشغيل.jpg.jpeg","https://hrwhats.com/operating-service/"],
+  ["المطاعم والمقاهي","2026/04/المطاعم.jpg.jpeg","https://hrwhats.com/restaurants-cafes/"],
+  ["المحلات التجارية","2026/04/المحلات.jpg.jpeg","https://hrwhats.com/shops/"]
+];
+
+const partners = [
+  ["2026/07/widelogo-300x89.png","مجلس الجمعيات الأهلية بمنطقة مكة المكرمة"],
+  ["2026/07/mbs-300x99.png","Meta Business Suite"],
+  ["2025/12/tmt3-logo-300x300.png","وكالة تمتع معنا للدعاية والإعلان وتقنية المعلومات"],
+  ["2026/07/sky_light-300x300.png","شركة سكاي لايت"],
+  ["2026/10/ncnps.png","المركز الوطني لتنمية القطاع غير الربحي"]
+];
+
+const clients = [
+  ["2026/07/dropship-logo.png","مؤسسة دروب شيب لتقنية المعلومات"],
+  ["2026/07/شعار_التميز_البيئي-300x112.png","شركة التميز البيئي لتنقية المياه"],
+  ["2026/07/المام-300x79.png","شركة إلمام للخدمات العقارية"],
+  ["2026/07/عطاء-300x133.png","جمعية عطاء لخدمة ضيوف الرحمن"],
+  ["2026/07/شعار-جمعية-غيث-300x200.png","جمعية غيث للسقيا"],
+  ["2026/07/البر-بينبع-300x170.jpg","جمعية البر والخدمات الاجتماعية الخيرية بينبع البحر"],
+  ["2026/07/مركز-مكين-199x300.jpg","مركز مكين"],
+  ["2026/07/جعية-الدعوة-بالباحة-285x300.jpeg","جمعية الدعوة والارشاد وتوعية الجاليات بالباحة"],
+  ["2026/07/جمعية-ملبس-300x109.jpeg","جمعية ملبس الأهلية"],
+  ["2026/07/بر-الوديعة-300x212.jpeg","جمعية البر الخيرية بمركز الوديعة"],
+  ["2026/07/بر-احد-195x300.jpeg","جمعية البر الأهلية بمركز أحد بني زيد"],
+  ["2026/07/اللؤلؤ-والمرجان-300x300.jpg","جمعية اللؤلؤ والمرجان لتعليم السنة لوفد الرحمن"],
+  ["2026/07/سبل-300x132.jpeg","جمعية سبل للخدمات الانسانية"],
+  ["2026/07/chant-logo-300x300.png","صالون الزهرة للتزيين النسائي"],
+  ["2026/10/متجر-الوعل.png","متجر الوعل"],
+  ["2026/10/عقارايز.png","عقارايز"],
+  ["2026/10/جمعيه-غسيل-الكلى-300x244.jpeg","جمعية غسيل الكلى بالطائف"],
+  ["2026/10/جمعيه-البر-الخيريه-بالقنفذه-300x300.jpg","جمعية البر بالقنفذة"],
+  ["2026/10/جمعية-نهيل-النسائية-بالخبراء.png","جمعية نهيل النسائية بالخبراء"],
+  ["2026/10/جمعية-مطورون-300x111.png","جمعية مطورون"],
+  ["2026/10/جمعية-تراحم-300x300.png","جمعية تراحم"],
+  ["2026/10/جمعية-تحفيظ-القرآن-بفيفاء-300x126.png","جمعية تحفيظ القرآن بفيفاء"],
+  ["2026/10/جمعية-تحفيظ-القرآن-الكريم-بالعطيف.png","جمعية تحفيظ القرآن الكريم بالعطيف"],
+  ["2026/10/جمعية-تآزر-لرعاية-الايتام.png","جمعية تآزر لرعاية الايتام"],
+  ["2026/10/جمعية-بر-حلي.png","جمعية بر حلي"],
+  ["2026/10/جمعية-ايراق-الاهليه-300x127.png","جمعية ايراق الاهليه"],
+  ["2026/10/جمعية-التنميه-الاهليه-300x195.png","جمعية التنمية الاهلية"],
+  ["2026/10/جمعية-التنمية-الاسرية-بمحافظة-الجموم-197x300.png","جمعية التنمية الاسرية بمحافظة الجموم"],
+  ["2026/10/جمعية-البر-الخيرية-بمحافظة-خليص-300x300.png","جمعية البر الخيرية بمحافظة خليص"],
+  ["2026/10/جمعية-اجلال-222x300.png","جمعية اجلال"],
+  ["2026/10/الجمعية-الخيرية-لتحفيظ-القران-الكريم-بالعارضة-300x300.jpg","الجمعية الخيرية لتحفيظ القران الكريم بالعارضة"],
+  ["2026/10/التزام-القمه-300x238.png","شركة التزام القمة"]
+];
+
+const faqs = [
+  ["هل يمكنني استخدام الرقم المرتبط بمحفظة الأعمال على واتساب؟","نعم، يمكنك ربط رقمك الحالي بواتساب للأعمال من خلال منصة الأعمال في تطبيق واتساب للأعمال."],
+  ["هل يتوفر دعم فني؟","نعم، فريق الدعم الفني متاح لخدمتك على مدار الساعة 24/7."],
+  ["هل يمكنني تجربة الخدمة قبل الاشتراك؟","نعم، نوفر لك تجربة مجانية لمدة أسبوعين بكامل المميزات."],
+  ["هل يلزم الاشتراك لإتمام التوثيق؟","نعم، يتم التوثيق بعد الاشتراك ويستغرق عادةً من 14 إلى 28 يوماً حسب مراجعة البيانات والمستندات."],
+  ["هل يمكن الربط مع الأنظمة الخارجية؟","نعم، عبر واجهة برمجة التطبيقات (API) لتبادل البيانات وتنفيذ العمليات بأمان، مثل التحقق من الهوية وإدارة المدفوعات وتحديث بيانات الأعمال."],
+  ["ما هي متطلبات توثيق محفظة الأعمال؟",'يمكنك الاطلاع على جميع المتطلبات في صفحة <a href="https://hrwhats.com/documentation-requirements-for-meta/">متطلبات التوثيق</a> ضمن دليل الاستخدام.']
+];
+
+/* ---------- Render ---------- */
+const enc = p => U + encodeURI(p);
+const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
+
+document.getElementById("sectorGrid").innerHTML = sectors.map(([t,img,href],i) =>
+  `<a class="sector reveal" style="--d:${(i%5)*.06}s" href="${href}"><img src="${enc(img)}" alt="${t}" loading="lazy"><div class="lbl"><h3>${t}</h3><span class="arrow">${arrow}</span></div></a>`).join("");
+
+document.getElementById("partnerRow").innerHTML = partners.map(([img,t]) =>
+  `<div class="partner" title="${t}"><img src="${enc(img)}" alt="${t}" loading="lazy"></div>`).join("");
+
+const pill = ([img,t]) => `<div class="logo-pill" title="${t}"><img src="${enc(img)}" alt="${t}" loading="lazy"></div>`;
+const half = Math.ceil(clients.length/2);
+const rowA = clients.slice(0,half).map(pill).join(""), rowB = clients.slice(half).map(pill).join("");
+document.getElementById("track1").innerHTML = rowA + rowA;
+document.getElementById("track2").innerHTML = rowB + rowB;
+
+const plus = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+document.getElementById("faqList").innerHTML = faqs.map(([q,a],i) =>
+  `<details class="faq reveal" style="--d:${i*.05}s"><summary>${q}<span class="pm">${plus}</span></summary><div class="ans"><div><p>${a}</p></div></div></details>`).join("");
+
+/* FAQ smooth accordion (one open at a time) */
+document.querySelectorAll(".faq").forEach(d => {
+  d.querySelector("summary").addEventListener("click", e => {
+    e.preventDefault();
+    const opening = !d.open;
+    document.querySelectorAll(".faq[open]").forEach(o => { if (o !== d) closeFaq(o); });
+    opening ? (d.open = true, requestAnimationFrame(() => d.classList.add("show"))) : closeFaq(d);
+  });
+});
+function closeFaq(d){ d.classList.remove("show"); setTimeout(() => d.open = false, 380); }
+
+/* ---------- Header ---------- */
+const header = document.getElementById("header");
+const onScroll = () => header.classList.toggle("scrolled", scrollY > 10);
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+const burger = document.getElementById("burger");
+burger.addEventListener("click", () => {
+  const open = header.classList.toggle("open");
+  burger.setAttribute("aria-expanded", open);
+});
+document.querySelectorAll("#menu a").forEach(a => a.addEventListener("click", () => header.classList.remove("open")));
+
+/* ---------- Reveal + counter ---------- */
+const io = new IntersectionObserver(entries => entries.forEach(en => {
+  if (!en.isIntersecting) return;
+  en.target.classList.add("in-view");
+  en.target.querySelectorAll(".count").forEach(countUp);
+  io.unobserve(en.target);
+}), {threshold:.12, rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+function countUp(el){
+  const to = +el.dataset.to, t0 = performance.now(), dur = 1400;
+  const step = now => {
+    const p = Math.min((now - t0)/dur, 1);
+    el.textContent = Math.round(to * (1 - Math.pow(1-p, 3)));
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+/* Spotlight on bento cards */
+document.querySelectorAll(".card").forEach(c => c.addEventListener("pointermove", e => {
+  const r = c.getBoundingClientRect();
+  c.style.setProperty("--mx", (e.clientX - r.left) + "px");
+  c.style.setProperty("--my", (e.clientY - r.top) + "px");
+}));
+
+/* ---------- Animated WhatsApp chat ---------- */
+const script = [
+  ["in","السلام عليكم، أبغى أعرف عن الحملات الجماعية 👋","10:21"],
+  ["out","وعليكم السلام! أهلاً بك في HRwhats 🌿 نرسل حملاتك لآلاف العملاء عبر واتساب API الرسمي بدون حظر.","10:21"],
+  ["in","ممتاز، وهل فيه ردود آلية؟","10:22"],
+  ["out","أكيد ✅ ردود آلية وذكاء اصطناعي يرد على عملائك 24/7، مع CRM لإدارة فريقك.","10:22"],
+  ["out",'جرّب المنصة مجاناً لمدة 14 يوم 🎁<span class="btns"><span>ابدأ التجربة المجانية</span><span>شاهد الباقات</span></span>',"10:22"],
+  ["in","رائع! سجلت الآن 🚀","10:23"]
+];
+const chat = document.getElementById("chat"), status = document.getElementById("status");
+const wait = ms => new Promise(r => setTimeout(r, ms));
+async function playChat(){
+  while (true){
+    chat.innerHTML = "";
+    for (const [dir,text,time] of script){
+      if (dir === "out"){
+        status.textContent = "يكتب الآن...";
+        const t = document.createElement("div");
+        t.className = "typing"; t.innerHTML = "<i></i><i></i><i></i>";
+        chat.appendChild(t);
+        await wait(1300);
+        t.remove();
+        status.textContent = "متصل الآن";
+      } else await wait(900);
+      const m = document.createElement("div");
+      m.className = "msg " + dir;
+      m.innerHTML = `${text}<time>${time}${dir==="out" ? " ✓✓" : ""}</time>`;
+      chat.appendChild(m);
+      await wait(700);
+    }
+    await wait(4000);
+  }
+}
+playChat();
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

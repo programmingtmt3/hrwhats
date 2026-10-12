@@ -7,8 +7,22 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   images: {
-    // Temporary until next-image-export-optimizer is added.
-    unoptimized: true,
+    // next-image-export-optimizer: images are optimized at build time
+    // (`next-image-export-optimizer` runs after `next build`).
+    loader: "custom",
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+  },
+  transpilePackages: ["next-image-export-optimizer"],
+  env: {
+    nextImageExportOptimizer_imageFolderPath: "public/images",
+    nextImageExportOptimizer_exportFolderPath: "out",
+    nextImageExportOptimizer_quality: "80",
+    nextImageExportOptimizer_storePicturesInWEBP: "true",
+    nextImageExportOptimizer_exportFolderName: "nextImageExportOptimizer",
+    // The design shows no blur placeholders.
+    nextImageExportOptimizer_generateAndUseBlurImages: "false",
+    nextImageExportOptimizer_remoteImageCacheTTL: "0",
   },
   experimental: {
     // Multiple root layouts ((ar) and later (en)) have no shared layout to
@@ -18,6 +32,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     rules: {
       "*.css": {
+        // Tailwind only for global stylesheets. CSS Modules (ported section
+        // styles) are left to Next's native CSS Modules handling — passing them
+        // through this loader would strip their module scoping.
+        condition: { not: { path: /\.module\.css$/ } },
         loaders: ["@tailwindcss/turbopack"],
         as: "*.css",
       },

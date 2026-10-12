@@ -1,0 +1,107 @@
+/* Ported from design/index.html — Footer */
+.footer {
+  background: var(--deep);
+  color: rgb(var(--white-rgb) / 0.72);
+  padding-top: 80px;
+  margin-top: 110px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 50px;
+}
+.logo {
+  display: inline-block;
+  background: var(--white);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+}
+.logo img {
+  height: 36px;
+  width: auto;
+}
+.footer h4 {
+  color: var(--white);
+  font-size: 1rem;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.footer ul {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.footer a {
+  transition: color 0.2s;
+}
+.footer a:hover {
+  color: var(--neon);
+}
+.contactLi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contactLi svg {
+  width: 18px;
+  color: var(--wa);
+  flex-shrink: 0;
+}
+.social {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.social a {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgb(var(--white-rgb) / 0.07);
+  border: 1px solid rgb(var(--white-rgb) / 0.1);
+  transition:
+    background 0.25s,
+    transform 0.25s,
+    color 0.25s;
+}
+.social a:hover {
+  background: var(--wa);
+  color: var(--deep);
+  transform: translateY(-3px);
+}
+.social svg {
+  width: 18px;
+  height: 18px;
+}
+.bottom {
+  border-top: 1px solid rgb(var(--white-rgb) / 0.1);
+  padding-block: 24px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+.pol {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.bottom b {
+  color: var(--neon);
+  font-weight: 600;
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

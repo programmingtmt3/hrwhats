@@ -14,14 +14,14 @@ Rebuild of **hrwhats.com**, the marketing site for HRwhats (a WhatsApp Business 
 |---|---|
 | Framework | Next.js (App Router) + TypeScript (strict) |
 | Output | `output: 'export'`, `trailingSlash: true` |
-| Styling | Tailwind CSS |
+| Styling | Tailwind CSS + CSS Modules for design-ported section styles (see Brand & design) |
 | UI components | shadcn/ui (Radix) |
-| Icons | lucide-react |
-| Animation | Motion — subtle only (section reveal, hover). No heavy effects |
-| Content | MDX + JSON, processed by **Velite** with Zod schemas |
+| Icons | Design SVGs in `src/components/icons/`; lucide-react for anything new |
+| Animation | CSS + IntersectionObserver (as in the design). Motion only if a later page needs it — subtle only |
+| Content | JSON validated with Zod in `lib/content.ts`; MDX via **Velite** from the sectors phase |
 | Images | `next-image-export-optimizer` (build-time optimization) |
 | Forms | React Hook Form + Zod (client-side only) |
-| Fonts | `next/font/google` — IBM Plex Sans Arabic (Arabic) + IBM Plex Sans (English), weights 400/500/700 only |
+| Fonts | `next/font/google` — IBM Plex Sans Arabic (Arabic) + IBM Plex Sans (English), weights 300–700 |
 | Package manager | npm. Node 24 LTS |
 
 Do not add dependencies outside this list without asking first. (`cn`, `class-variance-authority`, `radix-ui`, `tw-animate-css` and `shadcn` come with shadcn/ui and are part of it.)
@@ -54,40 +54,50 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 
 ## Styling rules (RTL-safe)
 
-- Use **logical properties only**: `ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`, `border-s`, `rounded-s`, etc.
-- **Never** use `ml-*`, `mr-*`, `pl-*`, `pr-*`, `left-*`, `right-*`, `text-left`, `text-right` for layout.
-- Directional icons (arrows, chevrons) must flip in RTL (`rtl:rotate-180` or locale-aware icon choice).
+- Use **logical properties only**: `ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`, `border-s`, `rounded-s` in Tailwind; `inset-inline-*`, `margin-inline-*`, `border-inline-*`, `text-align: start|end` in CSS.
+- **Never** use `ml-*`, `mr-*`, `pl-*`, `pr-*`, `left-*`, `right-*`, `text-left`, `text-right` (or `left`/`right` in CSS) for layout. Exceptions: centering (`left:50%; translateX(-50%)`) and decorative background positions copied from the design.
+- Directional icons (arrows) are drawn for RTL and flipped in LTR with the `.icon-forward` class. Direction-dependent transforms (e.g. a hover nudge, the logo marquee) use `:dir(ltr)` overrides.
 - Mobile-first. Test every section at 375px width.
-- shadcn components are generated with `"rtl": true` (components.json). After adding a new one, check it for physical classes (`left`, `right`, `slide-in-from-left`, …) and convert them (e.g. Sheet uses `side="start" | "end"`).
-- Radix direction comes from `DirectionProvider` in `LocaleDocument`.
+- shadcn components are generated with `"rtl": true` (components.json). After adding a new one, check it for physical classes (`left`, `right`, `slide-in-from-left`, …) and convert them.
 
 ## Brand & design
 
-**Fonts:** IBM Plex Sans Arabic on Arabic pages (it includes matching Latin glyphs), IBM Plex Sans on English pages. Weights 400, 500, 700 only. Each font lives in its own module (`src/lib/fonts/ar.ts`, `en.ts`) so a page loads only its language's font; CSS picks it via `html:lang(..) { --font-site }`.
+**The design reference is `design/index.html`** (committed as a reference; excluded from lint via `eslint.config.mjs`, and never imported, so it is not part of the build). The home page, header, footer and floating WhatsApp button must match it exactly — design, colors, copy and animations. New pages reuse its tokens and primitives.
 
-**Colors:** white, black and the brand greens. All values are defined **only** as CSS variables in `src/app/globals.css` and exposed to Tailwind via `@theme`. Never write a hex/rgb value in a component.
+**How design CSS is implemented:**
+- Tokens (colors, radii, shadows, easing) → CSS variables in `src/app/globals.css`, exposed to Tailwind via `@theme`, with shadcn variables mapped onto them.
+- Shared primitives from the design (`.site-container`, `.btn`, `.btn-primary`, `.btn-ghost`, `.btn-sm`, `.btn-outline-light`, `.eyebrow`, `.sec-head`, `.grad`, `.reveal`) → `@layer components` in `globals.css`. (The design's `.container` is renamed `.site-container` because Tailwind v4 has its own `container` utility.)
+- Section-specific CSS → a CSS Module next to the component (`Hero.module.css`, …), copied from the design with logical properties. This keeps pseudo-elements, masks and gradients pixel-identical. Tailwind utilities are fine for simple layout in new pages.
+- CSS Modules are excluded from the Tailwind turbopack loader (`condition: { not: { path: /\.module\.css$/ } }` in `next.config.ts`). Reason: the loader rule renames its output (`as: "*.css"`), which turns a `*.module.css` file into plain global CSS — class names lose their module scoping and `:global()` fails to parse. Consequence: `@apply` / Tailwind directives are not available inside CSS Modules — write plain CSS with `var(--token)`.
+- Icons are the design's inline SVGs, copied verbatim into `src/components/icons/` (not lucide), so they render identically.
 
-| Token | Hex | Use |
+**Colors** (from the design). All values are defined **only** in `globals.css`; components and CSS modules use `var(--token)` or Tailwind classes, never hex/rgb literals. Translucent variants use the `--*-rgb` channels: `rgb(var(--wa-rgb) / .1)`.
+
+| Token | Hex | Role |
 |---|---|---|
-| `brand-100` | `#DDEEE0` | soft surfaces (`secondary`, `accent`) with `brand-900` text |
-| `brand-300` | `#66B95D` | decorative only, or background with black text |
-| `brand-500` | `#32B159` | decorative only, or background with black text |
-| `brand-700` | `#16876B` | focus ring; text only if large (≥ 24px, or ≥ 18.66px bold) |
-| `brand-900` | `#076951` | `primary` — buttons, links, headings accent; white text on it |
-| `brand-950` | derived | hover state of `primary` |
+| `--deep` | `#062A20` | footer, darkest surfaces |
+| `--dark` | `#0B3D2E` | dark cards, icons bg, ghost-button text |
+| `--green` | `#128C4A` | accent text, links, focus ring |
+| `--wa` | `#25D366` | primary buttons (text `--on-wa` `#03251A`) |
+| `--neon` | `#3CFF9A` | highlights on dark backgrounds |
+| `--bg` | `#F7FAF8` | page background |
+| `--surface` | `#FFFFFF` | cards |
+| `--ink` | `#0D1F18` | body text |
+| `--muted` | `#5B6B64` | secondary **text** (shadcn: `text-muted-foreground`; `bg-muted` maps to `--bg`) |
+| `--line` | `#E3ECE7` | borders |
 
-Any text on a green background must pass **WCAG AA** (4.5:1 normal text). White on `brand-500`/`brand-300`/`brand-700` fails — use `brand-900` for white text. Contrast notes are kept in the comment at the top of `globals.css`.
+Supporting colors used by the design (WhatsApp mockup, gradients) are also variables in `globals.css`. Radii `--r-sm/--r/--r-lg`, shadows `--shadow-sm/--shadow/--shadow-lg`, easing `--ease`.
 
-**Logo:** `public/images/brand/hrwhats-logo.png`, path defined once in `src/lib/brand.ts` (`LOGO`) — an SVG version will replace it there. Always `alt="HRwhats"`; links to the home page. `src/app/favicon.ico`, `icon.png` and `apple-icon.png` are generated from it (regenerate when the SVG arrives).
+**Fonts:** IBM Plex Sans Arabic on Arabic pages (it includes matching Latin glyphs), IBM Plex Sans on English pages. Weights 300–700. Each font lives in its own module (`src/lib/fonts/ar.ts`, `en.ts`) so a page loads only its language's font; CSS picks it via `html:lang(..) { --font-site }`.
 
-**Header** (`src/components/layout/Header.tsx`), in this order:
-1. القطاعات — dropdown with the 10 sectors
-2. الباقات
-3. دليل الاستخدام — dropdown: متطلبات التوثيق، ربط الحساب، شروحات المنصة، حظر الواتساب
-4. المدونة
-5. تواصل معنا
+**Logo:** `public/images/brand/hrwhats-logo.png`, path defined once in `src/lib/brand.ts` (`LOGO`), rendered through `BrandLogo` — an SVG version will replace it there. Always `alt="HRwhats"`. `src/app/favicon.ico`, `icon.png` and `apple-icon.png` are generated from it (regenerate when the SVG arrives).
 
-On the other side: "تسجيل الدخول" link → `https://app.hrwhats.com/login` and a prominent "جرب مجاناً" button → `https://app.hrwhats.com/signup`. Logo links home. Desktop dropdowns use shadcn `navigation-menu`; on mobile a side `Sheet` where dropdowns become an `Accordion`. Menu structure is defined in `src/lib/navigation.ts`.
+**Header** — exactly as the design: الرئيسية، الباقات، المدونة، دليل الاستخدام (`/hrwhats-guide/`)، تواصل معنا، a "لوحة التحكم" ghost button → `app.hrwhats.com/login` and a "جرب مجاناً" primary button → `app.hrwhats.com/signup`. No dropdowns. Fixed; gets a blurred white background after 10px of scroll. Below 1080px a burger opens the menu as a panel under the header; the "لوحة التحكم" link appears inside that menu (fixed vs. the design, where a rule-order bug hid it). Server part `Header.tsx`, client part `HeaderBar.tsx`, links in `src/lib/navigation.ts`.
+- The header is `position: fixed` (`--header-h: 76px`): every page's first section needs its own top padding (the hero uses 160px).
+
+**Footer** and **floating WhatsApp button** — exactly as the design; contact and social data come from `content/data/site.json`.
+
+**Animation:** CSS + IntersectionObserver with the design's exact timings (no Motion library on the home page). `prefers-reduced-motion` disables animations; `<noscript>` reveals `.reveal` content when JS is off.
 
 **404:** with multiple root layouts, `out/404.html` comes from `src/app/global-not-found.tsx` (experimental `globalNotFound`). It must keep `lang="ar" dir="rtl"` and the Arabic header/footer.
 
@@ -170,16 +180,17 @@ src/
 │   └── robots.ts
 ├── components/
 │   ├── ui/                   ← shadcn components
-│   ├── layout/               ← LocaleDocument, Header, DesktopNav, MobileMenu, Footer, Logo, LanguageSwitcher
+│   ├── layout/               ← LocaleDocument, Header(+Bar), Footer, WhatsAppFloat, BrandLogo, LanguageSwitcher
+│   ├── icons/                ← design SVG icons
+│   ├── seo/                  ← JsonLd
 │   ├── sections/             ← Hero, Features, Sectors, Clients, Partners, FAQ, CTA
 │   ├── pages/                ← shared page components (HomePage, PostPage, …)
 │   └── mdx/                  ← components usable inside MDX
 ├── lib/
-│   ├── content.ts            ← the only content access layer
+│   ├── content.ts            ← the only content access layer (Zod-validated)
 │   ├── i18n.ts               ← locales, getDictionary, localePath, format
 │   ├── navigation.ts         ← header/footer menu structure
 │   ├── brand.ts              ← LOGO (single source for the logo path)
-│   ├── site.ts               ← SITE_URL, APP_URLS (moves to site.json in phase 2)
 │   ├── fonts/{ar,en}.ts      ← next/font definitions, one module per language
 │   └── seo.ts                ← metadata + JSON-LD helpers
 messages/ar.json

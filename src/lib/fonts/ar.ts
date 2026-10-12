@@ -4,7 +4,7 @@ import { IBM_Plex_Sans_Arabic } from "next/font/google";
 // so mixed text ("HRwhats") on Arabic pages needs no second font.
 export const arabicFont = IBM_Plex_Sans_Arabic({
   subsets: ["arabic", "latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-arabic",
   display: "swap",
 });

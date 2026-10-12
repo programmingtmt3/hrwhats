@@ -1,0 +1,48 @@
+/* Ported from design/index.html — Floating WA.
+   Design uses `left` in an RTL page → inline-end. */
+.waFloat {
+  position: fixed;
+  bottom: 24px;
+  inset-inline-end: 24px;
+  z-index: 90;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--wa);
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 30px -6px rgb(var(--wa-rgb) / 0.7);
+  transition: transform 0.3s var(--ease);
+}
+.waFloat:hover {
+  transform: scale(1.1);
+}
+.waFloat svg {
+  width: 32px;
+  height: 32px;
+}
+.waFloat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--wa);
+  animation: pulse 2s ease-out infinite;
+  z-index: -1;
+}
+@keyframes pulse {
+  to {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .waFloat {
+    width: 56px;
+    height: 56px;
+    bottom: 18px;
+    inset-inline-end: 18px;
+  }
+}
