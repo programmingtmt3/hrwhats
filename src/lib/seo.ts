@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { LOGO } from "./brand";
 import { getSite } from "./content";
 import { getDictionary, localePath, type Locale } from "./i18n";
+import { toPlainText } from "./inline-links";
 
 /** Site-wide defaults set by each root layout. Pages override title/description. */
 export function getRootMetadata(locale: Locale): Metadata {
@@ -48,5 +49,18 @@ export function organizationJsonLd() {
       contactType: "customer service",
       availableLanguage: ["Arabic"],
     },
+  };
+}
+
+/** JSON-LD: FAQPage. Answers use the same visible text as the page (link labels kept, markup removed). */
+export function faqPageJsonLd(items: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: toPlainText(answer) },
+    })),
   };
 }

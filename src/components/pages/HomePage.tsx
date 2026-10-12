@@ -1,3 +1,5 @@
+import { Cta } from "@/components/sections/cta/Cta";
+import { Faq } from "@/components/sections/faq/Faq";
 import { Features } from "@/components/sections/features/Features";
 import { Hero } from "@/components/sections/hero/Hero";
 import { Sectors } from "@/components/sections/sectors/Sectors";
@@ -13,6 +15,8 @@ export function HomePage({ locale }: { locale: Locale }) {
       <Features locale={locale} />
       <Why locale={locale} />
       <Sectors locale={locale} />
+      <Faq locale={locale} />
+      <Cta locale={locale} />
     </>
   );
 }

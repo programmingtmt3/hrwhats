@@ -6,9 +6,11 @@
 import { z } from "zod";
 
 import clientsJson from "../../content/data/clients.json";
+import faqJson from "../../content/data/faq.json";
 import sectorsJson from "../../content/data/sectors.json";
 import siteJson from "../../content/data/site.json";
 import type { Locale } from "./i18n";
+import { hasOnlyInternalLinks } from "./inline-links";
 
 /** Bilingual text field. `en` may be empty until the English phase. */
 const localized = z.object({ ar: z.string().min(1), en: z.string() });
@@ -81,4 +83,18 @@ const sectors = z
 
 export function getSectors(): Sector[] {
   return sectors;
+}
+
+// FAQ: answers may contain `[label](/path/)` links (see lib/inline-links.ts), never raw HTML.
+const answerText = z.string().refine(hasOnlyInternalLinks, "answer: only [label](/internal-path/) links, no HTML");
+const faqSchema = z.object({
+  question: localized,
+  answer: z.object({ ar: answerText.pipe(z.string().min(1)), en: answerText }),
+});
+export type FaqItem = z.infer<typeof faqSchema>;
+
+const faq = z.array(faqSchema).min(1).parse(faqJson);
+
+export function getFaq(): FaqItem[] {
+  return faq;
 }
