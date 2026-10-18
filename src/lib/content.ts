@@ -7,6 +7,7 @@ import { z } from "zod";
 
 import clientsJson from "../../content/data/clients.json";
 import faqJson from "../../content/data/faq.json";
+import partnersJson from "../../content/data/partners.json";
 import sectorsJson from "../../content/data/sectors.json";
 import siteJson from "../../content/data/site.json";
 import type { Locale } from "./i18n";
@@ -49,14 +50,42 @@ export function getSite(): Site {
   return site;
 }
 
-// Logos are added (and made required) when the clients section is built.
-const clientSchema = z.object({ name: localized });
+/** Logo file: `/images/{clients|partners}/NN-ascii-name.ext` + intrinsic size. */
+const logo = (folder: string) =>
+  z.object({
+    src: z.string().regex(new RegExp(`^/images/${folder}/\\d{2}-[a-z0-9-]+\\.(png|jpg|jpeg|webp|svg)$`)),
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+  });
+
+/** Display order = the two-digit number at the start of each logo file name. */
+const orderedByLogo = <T extends { logo: { src: string } }>(list: T[]) =>
+  list.every((item, i) => item.logo.src.split("/").pop()!.startsWith(String(i + 1).padStart(2, "0") + "-"));
+
+const clientSchema = z.object({ name: localized, logo: logo("clients") });
 export type Client = z.infer<typeof clientSchema>;
 
-const clients = z.array(clientSchema).min(1).parse(clientsJson);
+const clients = z
+  .array(clientSchema)
+  .min(1)
+  .refine(orderedByLogo, "clients must be listed in logo-number order (01-, 02-, …)")
+  .parse(clientsJson);
 
 export function getClients(): Client[] {
   return clients;
+}
+
+const partnerSchema = z.object({ name: localized, logo: logo("partners") });
+export type Partner = z.infer<typeof partnerSchema>;
+
+const partners = z
+  .array(partnerSchema)
+  .min(1)
+  .refine(orderedByLogo, "partners must be listed in logo-number order (01-, 02-, …)")
+  .parse(partnersJson);
+
+export function getPartners(): Partner[] {
+  return partners;
 }
 
 /** Shown as "+N" in the trust bar: the client count rounded down to a multiple of 10. */

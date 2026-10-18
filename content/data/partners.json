@@ -1,0 +1,57 @@
+[
+  {
+    "name": {
+      "ar": "المركز الوطني لتنمية القطاع غير الربحي",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/partners/01-ncnps.png",
+      "width": 264,
+      "height": 114
+    }
+  },
+  {
+    "name": {
+      "ar": "مجلس الجمعيات الأهلية بمنطقة مكة المكرمة",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/partners/02-ccm.png",
+      "width": 493,
+      "height": 146
+    }
+  },
+  {
+    "name": {
+      "ar": "Meta Business Suite",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/partners/03-mbs.png",
+      "width": 600,
+      "height": 198
+    }
+  },
+  {
+    "name": {
+      "ar": "وكالة تمتع معنا للدعاية والإعلان وتقنية المعلومات",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/partners/04-tmt3.png",
+      "width": 500,
+      "height": 500
+    }
+  },
+  {
+    "name": {
+      "ar": "شركة سكاي لايت",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/partners/05-sky-light.png",
+      "width": 447,
+      "height": 447
+    }
+  }
+]
