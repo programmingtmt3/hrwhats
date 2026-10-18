@@ -10,7 +10,7 @@ export function ChatPhone({ chat }: { chat: Dictionary["home"]["chat"] }) {
   return (
     <div className={styles.phone}>
       <ChatScreen
-        avatar={<BrandLogo sizes="30px" decorative />}
+        avatar={<BrandLogo sizes="30px" decorative square />}
         messages={messages as ChatMessage[]}
         labels={labels}
       />

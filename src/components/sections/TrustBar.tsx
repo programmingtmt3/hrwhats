@@ -5,7 +5,7 @@ import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { META_PARTNER } from "@/lib/brand";
-import { getClientCountRounded } from "@/lib/content";
+import { getSite } from "@/lib/content";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
 import styles from "./TrustBar.module.css";
@@ -49,7 +49,7 @@ export function TrustBar({ locale }: { locale: Locale }) {
             title={
               <>
                 {trust.clients.prefix}
-                <CountUp to={getClientCountRounded()} />
+                <CountUp to={getSite().trustedCount} />
                 {trust.clients.suffix}
               </>
             }

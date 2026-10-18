@@ -12,8 +12,9 @@
 }
 .header.scrolled {
   background: rgb(var(--white-rgb) / 0.82);
+  /* Unprefixed only: the minifier adds -webkit- itself. Writing both made it
+     keep just the -webkit- one, which Chrome ignores (no blur). */
   backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
   border-color: var(--line);
   box-shadow: 0 4px 20px -12px rgb(var(--deep-rgb) / 0.2);
 }
@@ -24,8 +25,10 @@
   height: var(--header-h);
   gap: 24px;
 }
+/* Trimmed logo file: no transparent margins, so these heights are the
+   visible logo (the design's 42px/34px padded file showed ~29px/~24px). */
 .logo img {
-  height: 42px;
+  height: 54px;
   width: auto;
 }
 .menu {
@@ -141,6 +144,6 @@
     font-size: 0.85rem;
   }
   .logo img {
-    height: 34px;
+    height: 44px;
   }
 }

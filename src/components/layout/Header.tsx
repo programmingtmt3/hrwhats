@@ -15,7 +15,7 @@ export function Header({ locale }: { locale: Locale }) {
 
   return (
     <HeaderBar
-      logo={<BrandLogo sizes="42px" priority />}
+      logo={<BrandLogo sizes="66px" priority />}
       homeHref={localePath(locale, "/")}
       items={items}
       labels={{

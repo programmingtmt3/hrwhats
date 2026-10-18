@@ -47,7 +47,7 @@ export function Footer({ locale }: { locale: Locale }) {
         <div className={styles.grid}>
           <div>
             <Link href={localePath(locale, "/")} className={styles.logo}>
-              <BrandLogo sizes="36px" />
+              <BrandLogo sizes="44px" />
             </Link>
             <p>{dict.footer.description}</p>
             <div className={styles.social}>

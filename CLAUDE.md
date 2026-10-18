@@ -68,6 +68,7 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 - Tokens (colors, radii, shadows, easing) → CSS variables in `src/app/globals.css`, exposed to Tailwind via `@theme`, with shadcn variables mapped onto them.
 - Shared primitives from the design (`.site-container`, `.btn`, `.btn-primary`, `.btn-ghost`, `.btn-sm`, `.btn-outline-light`, `.eyebrow`, `.sec-head`, `.grad`, `.reveal`) → `@layer components` in `globals.css`. (The design's `.container` is renamed `.site-container` because Tailwind v4 has its own `container` utility.)
 - Section-specific CSS → a CSS Module next to the component (`Hero.module.css`, …), copied from the design with logical properties. This keeps pseudo-elements, masks and gradients pixel-identical. Tailwind utilities are fine for simple layout in new pages.
+- **Never write a property together with its `-webkit-` version** (`backdrop-filter` + `-webkit-backdrop-filter`, `mask-image` + `-webkit-mask-image`, …). Write the unprefixed property only; the CSS minifier (lightningcss) adds the prefix. Writing both made it keep only the `-webkit-` one, which Chrome ignores (the header lost its blur).
 - CSS Modules are excluded from the Tailwind turbopack loader (`condition: { not: { path: /\.module\.css$/ } }` in `next.config.ts`). Reason: the loader rule renames its output (`as: "*.css"`), which turns a `*.module.css` file into plain global CSS — class names lose their module scoping and `:global()` fails to parse. Consequence: `@apply` / Tailwind directives are not available inside CSS Modules — write plain CSS with `var(--token)`.
 - Icons are the design's inline SVGs, copied verbatim into `src/components/icons/` (not lucide), so they render identically.
 
@@ -90,7 +91,7 @@ Supporting colors used by the design (WhatsApp mockup, gradients) are also varia
 
 **Fonts:** IBM Plex Sans Arabic on Arabic pages (it includes matching Latin glyphs), IBM Plex Sans on English pages. Weights 300–700. Each font lives in its own module (`src/lib/fonts/ar.ts`, `en.ts`) so a page loads only its language's font; CSS picks it via `html:lang(..) { --font-site }`.
 
-**Logo:** `public/images/brand/hrwhats-logo.png`, path defined once in `src/lib/brand.ts` (`LOGO`), rendered through `BrandLogo` — an SVG version will replace it there. Always `alt="HRwhats"`. `src/app/favicon.ico`, `icon.png` and `apple-icon.png` are generated from it (regenerate when the SVG arrives).
+**Logo:** `public/images/brand/hrwhats-logo-trimmed.png` (transparent margins trimmed), path defined once in `src/lib/brand.ts` (`LOGO`), rendered through `BrandLogo` — an SVG version will replace it there. Heights: header 54px (44px ≤600px), footer 36px. The original padded file stays as `LOGO_SQUARE` (`BrandLogo square`) for the hero chat avatar and as the favicon source. Always `alt="HRwhats"`. `src/app/favicon.ico`, `icon.png` and `apple-icon.png` are generated from it (regenerate when the SVG arrives).
 
 **Header** — exactly as the design: الرئيسية، الباقات، المدونة، دليل الاستخدام (`/hrwhats-guide/`)، تواصل معنا، a "لوحة التحكم" ghost button → `app.hrwhats.com/login` and a "جرب مجاناً" primary button → `app.hrwhats.com/signup`. No dropdowns. Fixed; gets a blurred white background after 10px of scroll. Below 1080px a burger opens the menu as a panel under the header; the "لوحة التحكم" link appears inside that menu (fixed vs. the design, where a rule-order bug hid it). Server part `Header.tsx`, client part `HeaderBar.tsx`, links in `src/lib/navigation.ts`.
 - The header is `position: fixed` (`--header-h: 76px`): every page's first section needs its own top padding (the hero uses 160px).
@@ -114,7 +115,7 @@ content/
     ├── packages.json     ← pricing packages
     ├── sectors.json      ← slug + name + image — the ONLY source of sector names site-wide (home grid, navigation, sector pages)
     ├── faq.json          ← FAQ items
-    └── site.json         ← contact info, social links, app URLs
+    └── site.json         ← contact info, social links, app URLs, `trustedCount` (the "+N جهة" number in the home trust bar — set by hand, NOT computed from clients.json)
 ```
 
 - **File names are ASCII English** (`whatsapp-blue-tick.mdx`). Never Arabic or emoji file names.

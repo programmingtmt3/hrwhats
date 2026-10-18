@@ -25,9 +25,24 @@ export function getRootMetadata(locale: Locale): Metadata {
   };
 }
 
-/** Home page: title/description are the root defaults; only the canonical is added. */
+/** Home page: title/description from the dictionary, mirrored in Open Graph. */
 export function getHomeMetadata(locale: Locale): Metadata {
-  return { alternates: { canonical: localePath(locale, "/") } };
+  const dict = getDictionary(locale);
+  const url = localePath(locale, "/");
+
+  return {
+    title: { absolute: dict.meta.homeTitle },
+    description: dict.meta.homeDescription,
+    alternates: { canonical: url },
+    openGraph: {
+      title: dict.meta.homeTitle,
+      description: dict.meta.homeDescription,
+      url,
+      siteName: dict.meta.siteName,
+      locale: locale === "ar" ? "ar_SA" : "en_US",
+      type: "website",
+    },
+  };
 }
 
 /** JSON-LD: Organization (site-wide). */

@@ -25,6 +25,8 @@ export function t(value: Localized, locale: Locale): string {
 const siteSchema = z.object({
   siteUrl: z.url(),
   name: z.string().min(1),
+  /** "+N" in the home trust bar — edited by hand. */
+  trustedCount: z.number().int().positive(),
   appUrls: z.object({ login: z.url(), signup: z.url() }),
   contact: z.object({
     phone: z.object({ display: z.string().min(1), href: z.string().startsWith("tel:") }),
@@ -88,10 +90,6 @@ export function getPartners(): Partner[] {
   return partners;
 }
 
-/** Shown as "+N" in the trust bar: the client count rounded down to a multiple of 10. */
-export function getClientCountRounded(): number {
-  return Math.floor(clients.length / 10) * 10;
-}
 
 /** Clean ASCII kebab-case slug, as used in URLs (/charity/). */
 const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "slug must be lowercase ASCII kebab-case");

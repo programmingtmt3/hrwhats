@@ -1,5 +1,5 @@
 import { SiteImage } from "@/components/ui/SiteImage";
-import { LOGO } from "@/lib/brand";
+import { LOGO, LOGO_SQUARE } from "@/lib/brand";
 
 type BrandLogoProps = {
   className?: string;
@@ -8,15 +8,18 @@ type BrandLogoProps = {
   /** Empty alt for decorative use (e.g. chat avatar next to the name). */
   decorative?: boolean;
   priority?: boolean;
+  /** Use the original square file (with transparent margins). */
+  square?: boolean;
 };
 
-export function BrandLogo({ className, sizes, decorative, priority }: BrandLogoProps) {
+export function BrandLogo({ className, sizes, decorative, priority, square }: BrandLogoProps) {
+  const logo = square ? LOGO_SQUARE : LOGO;
   return (
     <SiteImage
-      src={LOGO.src}
-      width={LOGO.width}
-      height={LOGO.height}
-      alt={decorative ? "" : LOGO.alt}
+      src={logo.src}
+      width={logo.width}
+      height={logo.height}
+      alt={decorative ? "" : logo.alt}
       sizes={sizes}
       priority={priority}
       className={className}

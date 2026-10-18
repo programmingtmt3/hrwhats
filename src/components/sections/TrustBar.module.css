@@ -45,8 +45,8 @@
   line-height: 1.2;
   color: var(--dark);
 }
-/* As in the design, this also styles the counter's <span> inside <strong>. */
-.item span {
+/* Subtitle only — not the counter <span> inside <strong>. */
+.item strong + span {
   color: var(--muted);
   font-size: 0.9rem;
 }
