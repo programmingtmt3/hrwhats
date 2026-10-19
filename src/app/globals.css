@@ -171,6 +171,15 @@ html:lang(en) {
   section {
     padding-block: 110px;
   }
+  /* Avoid one-word last lines: balanced headings, "pretty" paragraphs. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
@@ -220,6 +229,7 @@ html:lang(en) {
   .sec-head p {
     color: var(--muted);
     font-size: 1.08rem;
+    text-wrap: balance;
   }
 
   .grad {
