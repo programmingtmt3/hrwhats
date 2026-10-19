@@ -1,0 +1,378 @@
+/* New section (not in the design), built from the design's tokens:
+   dark surface like the bento dark cards, neon accents, --r-lg, --shadow-lg. */
+.section {
+  position: relative;
+  overflow: hidden;
+  color: var(--white);
+  background: radial-gradient(120% 100% at 100% 0%, var(--dark-glow) 0%, var(--dark) 45%, var(--deep) 100%);
+}
+.glow {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.45;
+  pointer-events: none;
+  background: radial-gradient(circle, rgb(var(--neon-rgb) / 0.35), transparent 70%);
+  bottom: -180px;
+  inset-inline-start: -120px;
+}
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Text column — placed at the inline end on desktop (mockup at the start). */
+.copy :global(.sec-head) {
+  text-align: start;
+  margin: 0;
+  max-width: none;
+}
+.copy :global(.sec-head) h2 {
+  color: var(--white);
+}
+.copy :global(.sec-head) p {
+  color: rgb(var(--white-rgb) / 0.75);
+}
+/* The design's .grad starts at --green, too dark on this background (AA). */
+.copy :global(.grad) {
+  background-image: linear-gradient(120deg, var(--neon), var(--wa));
+}
+.copy :global(.eyebrow) {
+  color: var(--neon);
+  background: rgb(var(--neon-rgb) / 0.1);
+  border-color: rgb(var(--neon-rgb) / 0.3);
+}
+.features {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 30px;
+}
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--r);
+  background: rgb(var(--white-rgb) / 0.06);
+  border: 1px solid rgb(var(--white-rgb) / 0.12);
+  font-weight: 500;
+  font-size: 0.97rem;
+  line-height: 1.5;
+}
+.feature .ic {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgb(var(--neon-rgb) / 0.12);
+  color: var(--neon);
+  border: 1px solid rgb(var(--neon-rgb) / 0.25);
+}
+.feature .ic svg {
+  width: 20px;
+  height: 20px;
+}
+/* Between the title (≥1.8rem) and the lead (1.08rem). */
+.copy :global(.sec-head .sec-subtitle) {
+  margin: -6px 0 12px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgb(var(--white-rgb) / 0.85);
+}
+.actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+}
+
+/* ---------- Mockup ---------- */
+.mockCol {
+  order: -1;
+  display: flex;
+  justify-content: center;
+}
+.window {
+  width: 100%;
+  max-width: 470px;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.bar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(var(--dark-rgb) / 0.18);
+}
+.body {
+  padding: 18px;
+}
+.mockTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+.mockTitle svg {
+  width: 18px;
+  height: 18px;
+  color: var(--green);
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  align-items: end;
+}
+.field small {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.input {
+  display: block;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  font-size: 0.86rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.searchBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--r-sm);
+  background: var(--wa);
+  color: var(--on-wa);
+  font-weight: 600;
+  font-size: 0.86rem;
+  line-height: 1.75;
+}
+.searchBtn svg {
+  width: 16px;
+  height: 16px;
+}
+.option {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background: var(--wa);
+  color: var(--on-wa);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.checkbox svg {
+  width: 13px;
+  height: 13px;
+}
+.aiBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgb(var(--wa-rgb) / 0.12);
+  color: var(--dark); /* AA on the light green pill; icon stays green */
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+.aiBadge svg {
+  width: 12px;
+  height: 12px;
+  color: var(--green);
+}
+.results {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+.result {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.store {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgb(var(--wa-rgb) / 0.16), rgb(var(--neon-rgb) / 0.06));
+  color: var(--green);
+}
+.store svg {
+  width: 18px;
+  height: 18px;
+}
+.info {
+  flex: 1;
+  min-width: 0;
+}
+.info b {
+  display: block;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+.info span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.info span svg {
+  width: 12px;
+  height: 12px;
+}
+.phone {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--dark);
+}
+.phone svg {
+  width: 14px;
+  height: 14px;
+}
+.added {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgb(var(--wa-rgb) / 0.12);
+  color: var(--dark); /* AA on the light green pill; icon stays green */
+  font-weight: 600;
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+.added svg {
+  width: 12px;
+  height: 12px;
+  color: var(--green);
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+.exportBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--dark);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.exportBtn svg {
+  width: 14px;
+  height: 14px;
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .mockCol {
+    order: 0;
+  }
+  .copy {
+    max-width: 680px;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 600px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    justify-content: center;
+  }
+  .actions :global(.btn) {
+    width: 100%;
+  }
+  .body {
+    padding: 14px;
+  }
+  /* Two fields side by side, search button on its own row. */
+  .fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .searchBtn {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+  .result {
+    gap: 8px;
+    padding: 9px 10px;
+  }
+  .phone {
+    width: 26px;
+    height: 26px;
+  }
+}

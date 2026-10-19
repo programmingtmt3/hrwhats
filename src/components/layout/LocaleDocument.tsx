@@ -22,7 +22,7 @@ export function LocaleDocument({ locale, fontClassName, children }: LocaleDocume
       <body>
         {/* Without JS, scroll-reveal elements would stay invisible. */}
         <noscript>
-          <style>{".reveal{opacity:1;transform:none}"}</style>
+          <style>{".reveal,.reveal .reveal-child{opacity:1;transform:none}"}</style>
         </noscript>
         <JsonLd data={organizationJsonLd()} />
         <Header locale={locale} />

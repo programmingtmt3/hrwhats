@@ -315,6 +315,20 @@ html:lang(en) {
     opacity: 1;
     transform: none;
   }
+
+  /* Children that appear one after another once their .reveal parent is in
+     view (set the order with --i). Visible by default, hidden only while the
+     parent is waiting, so they still show with JS off. */
+  .reveal-child {
+    transition:
+      opacity 0.5s var(--ease),
+      transform 0.5s var(--ease);
+    transition-delay: calc(var(--stagger-start, 0.4s) + var(--i, 0) * 0.15s);
+  }
+  .reveal:not(.in-view) .reveal-child {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 }
 
 @media (max-width: 900px) {
@@ -349,5 +363,9 @@ html:lang(en) {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  /* No staggered appearance either. */
+  .reveal-child {
+    transition-delay: 0s !important;
   }
 }
