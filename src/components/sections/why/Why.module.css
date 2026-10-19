@@ -53,11 +53,29 @@
   font-size: 0.95rem;
 }
 
+/* Banner under the cards: same width as the card row, same gap as between
+   the cards; the image keeps its ratio (never cropped). */
+.banner {
+  margin-top: 16px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.banner img {
+  width: 100%;
+  height: auto;
+}
+
 /* Two columns would leave one card alone on a row, so stack instead —
    centered at a readable width. */
 @media (max-width: 1080px) {
   .list {
     grid-template-columns: 1fr;
+  }
+  .list,
+  .banner {
     max-width: 680px;
     margin-inline: auto;
   }
