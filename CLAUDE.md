@@ -120,6 +120,7 @@ content/
 
 - **File names are ASCII English** (`whatsapp-blue-tick.mdx`). Never Arabic or emoji file names.
 - **Client/partner logos:** `public/images/{clients,partners}/NN-short-english-name.ext` (two-digit display order, lowercase, hyphens). The JSON lists them in the same order — Zod fails the build otherwise. **Any new logo must be at most 600px wide** (downscale before committing, keep format and transparency, never upscale) and its `width`/`height` in the JSON must match the file.
+- **Banners:** `public/images/banners/` with short ASCII English names (`bnr-1.png`, …). Compress before committing without changing dimensions or visible quality (e.g. palette PNG at quality 100), render with `SiteImage` at the file's real width/height.
 - A translation of a post has the **same file name** under the other locale folder.
 - Text fields in JSON data are bilingual objects: `{ "ar": "...", "en": "..." }` (`en` may be empty until the English phase).
 - Every content type has a Zod schema in `velite.config.ts`. A missing required field must fail the build.
@@ -198,7 +199,7 @@ src/
 │   └── seo.ts                ← metadata + JSON-LD helpers
 messages/ar.json
 content/
-public/images/{clients,partners,sectors,posts}/
+public/images/{brand,banners,clients,partners,sectors,posts}/
 scripts/
 ├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX
 ├── generate-htaccess.ts
