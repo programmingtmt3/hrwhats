@@ -1,0 +1,33 @@
+/* Hero background from the design (grid + two blobs). Shared by the home hero
+   and PageHero. The parent must be position: relative; overflow: hidden. */
+.gridBg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(var(--dark-rgb) / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--dark-rgb) / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, var(--mask-opaque) 30%, transparent 75%);
+  pointer-events: none;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.b1 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgb(var(--wa-rgb) / 0.55), transparent 70%);
+  top: -120px;
+  inset-inline-end: -120px;
+}
+.b2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgb(var(--neon-rgb) / 0.35), transparent 70%);
+  bottom: -100px;
+  inset-inline-start: 10%;
+}

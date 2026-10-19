@@ -281,5 +281,50 @@
     "title": "الصفحة غير موجودة",
     "description": "عذراً، الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
     "backHome": "العودة للرئيسية"
+  },
+  "packagesPage": {
+    "hero": {
+      "eyebrow": "الباقات",
+      "title": {
+        "before": "ابدأ رحلتك نحو تواصل أكثر احترافية مع ",
+        "highlight": "باقات تناسب حجم أعمالك",
+        "after": ""
+      }
+    },
+    "whatsapp": {
+      "eyebrow": "اشتراكات المنصة",
+      "title": {
+        "before": "باقات ",
+        "highlight": "الواتس",
+        "after": ""
+      },
+      "lead": "تمتع بإمكانيات هائلة مع برنامج HRwhats، أرسل آلاف الرسائل بدون حظر واحصل على خدمة عملاء مميزة.",
+      "billing": {
+        "label": "مدة الاشتراك",
+        "monthly": "شهري",
+        "yearly": "سنوي"
+      },
+      "perMonth": "ريال / شهر",
+      "perYear": "ريال / سنة",
+      "save": "وفر {amount} ريال",
+      "featuredBadge": "الأكثر طلباً",
+      "cta": "جرب الآن",
+      "features": {
+        "campaigns": "عدد الحملات",
+        "messages": "عدد الرسائل",
+        "contacts": "جهات الاتصال",
+        "quickReplies": "الردود الجاهزة",
+        "users": "المستخدمين",
+        "qrLeads": "سحب العملاء بالباركود",
+        "mapsLeads": "سحب داتا من Google Maps"
+      },
+      "values": {
+        "unlimited": "لا محدود",
+        "available": "متوفر",
+        "unavailable": "غير متوفر",
+        "perMonthResults": "{count} نتيجة شهرياً"
+      }
+    },
+    "vatNote": "تنبيه: الأسعار لا تشمل ضريبة القيمة المضافة 15%."
   }
 }

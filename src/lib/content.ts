@@ -7,6 +7,7 @@ import { z } from "zod";
 
 import clientsJson from "../../content/data/clients.json";
 import faqJson from "../../content/data/faq.json";
+import packagesJson from "../../content/data/packages.json";
 import partnersJson from "../../content/data/partners.json";
 import sectorsJson from "../../content/data/sectors.json";
 import siteJson from "../../content/data/site.json";
@@ -124,4 +125,64 @@ const faq = z.array(faqSchema).min(1).parse(faqJson);
 
 export function getFaq(): FaqItem[] {
   return faq;
+}
+
+// Packages. Yearly savings are computed (monthly × 12 − yearly), never written by hand.
+const unlimited = z.literal("unlimited");
+const whatsappPlanSchema = z
+  .object({
+    id: slug,
+    name: localized,
+    description: localized,
+    monthly: z.number().positive(),
+    yearly: z.number().positive(),
+    featured: z.boolean(),
+    features: z.object({
+      campaigns: z.union([z.number().int().positive(), unlimited]),
+      messages: z.union([z.number().int().positive(), unlimited]),
+      contacts: z.union([z.number().int().positive(), unlimited]),
+      quickReplies: z.union([z.number().int().positive(), unlimited]),
+      users: z.union([z.number().int().positive(), unlimited]),
+      qrLeads: z.boolean(),
+      /** false = not available; a number = results per month. */
+      mapsLeads: z.union([z.literal(false), z.number().int().positive()]),
+    }),
+  })
+  .transform((plan) => ({ ...plan, yearlySavings: plan.monthly * 12 - plan.yearly }))
+  .refine((plan) => plan.yearlySavings >= 0, {
+    message: "yearly price is higher than 12 × monthly (negative savings)",
+  });
+export type WhatsappPlan = z.infer<typeof whatsappPlanSchema>;
+export type WhatsappFeatureKey = keyof WhatsappPlan["features"];
+
+const hiringPlanSchema = z.object({
+  id: slug,
+  name: localized,
+  tagline: localized,
+  price: z.number().positive(),
+  period: z.enum(["day", "week", "month"]),
+  usage: localized,
+  hours: localized,
+});
+export type HiringPlan = z.infer<typeof hiringPlanSchema>;
+
+const packages = z
+  .object({
+    currency: z.literal("SAR"),
+    whatsapp: z.array(whatsappPlanSchema).min(1),
+    hiring: z.array(hiringPlanSchema).min(1),
+  })
+  .refine((p) => p.whatsapp.filter((plan) => plan.featured).length <= 1, "at most one featured plan")
+  .parse(packagesJson);
+
+export function getWhatsappPlans(): WhatsappPlan[] {
+  return packages.whatsapp;
+}
+
+export function getHiringPlans(): HiringPlan[] {
+  return packages.hiring;
+}
+
+export function getCurrency() {
+  return packages.currency;
 }

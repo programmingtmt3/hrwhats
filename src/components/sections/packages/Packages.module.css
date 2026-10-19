@@ -1,0 +1,225 @@
+/* Packages page — cards follow the home bento cards (surface, --line border,
+   --r-lg, hover lift via `translate` so the reveal keeps its transform). */
+.section {
+  padding-top: 60px;
+}
+
+/* ---------- Monthly / yearly switch ---------- */
+.switchWrap {
+  display: flex;
+  justify-content: center;
+  margin: -24px 0 40px;
+}
+.switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.switchBtn {
+  padding: 9px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.switchBtn:hover {
+  color: var(--dark);
+}
+.switchActive,
+.switchActive:hover {
+  background: var(--wa);
+  color: var(--on-wa);
+}
+
+/* Show the price for the active billing period only. */
+.billingRoot[data-billing="monthly"] .yearly,
+.billingRoot[data-billing="yearly"] .monthly {
+  display: none;
+}
+
+/* ---------- Plan cards ---------- */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  transition:
+    opacity 0.8s var(--ease) var(--d, 0s),
+    transform 0.8s var(--ease) var(--d, 0s),
+    translate 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    border-color 0.35s;
+}
+.plan:hover {
+  translate: 0 -6px;
+  box-shadow: var(--shadow-lg);
+  border-color: rgb(var(--wa-rgb) / 0.45);
+}
+.featured,
+.featured:hover {
+  border: 2px solid var(--wa);
+  box-shadow: var(--shadow-lg);
+}
+.badge {
+  position: absolute;
+  top: -14px;
+  inset-inline-start: 50%;
+  translate: 50% 0;
+  padding: 4px 16px;
+  border-radius: 999px;
+  background: var(--wa);
+  color: var(--on-wa);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px -6px rgb(var(--wa-rgb) / 0.7);
+}
+.badge:dir(ltr) {
+  translate: -50% 0;
+}
+.plan h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.desc {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  min-height: 3.3em;
+}
+.price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin-top: 20px;
+}
+.price b {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--dark);
+}
+.price span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.price .save {
+  align-self: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgb(var(--wa-rgb) / 0.12);
+  color: var(--dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.planBtn {
+  margin-top: 22px;
+  width: 100%;
+}
+.features {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+.features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.features b {
+  font-weight: 700;
+  color: var(--dark);
+}
+.mark {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgb(var(--wa-rgb) / 0.14);
+  color: var(--green);
+}
+.mark svg {
+  width: 13px;
+  height: 13px;
+}
+/* Not included: grey ×, faded text (no strike-through). */
+.off {
+  color: var(--muted);
+}
+.off b {
+  color: var(--muted);
+  font-weight: 500;
+}
+.off .mark {
+  background: rgb(var(--dark-rgb) / 0.06);
+  color: var(--muted);
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+}
+.note svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--green);
+}
+
+@media (max-width: 1080px) {
+  .plans {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-inline: auto;
+    gap: 28px;
+  }
+  /* Featured plan first on narrow screens. */
+  .featured {
+    order: -1;
+  }
+  .desc {
+    min-height: 0;
+  }
+}
+@media (max-width: 600px) {
+  .plan {
+    padding: 24px;
+  }
+  .price b {
+    font-size: 2.3rem;
+  }
+}

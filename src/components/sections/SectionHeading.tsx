@@ -4,7 +4,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
-  eyebrow: string;
+  eyebrow?: string;
   /** Title split around the gradient-highlighted words. */
   title: { before: string; highlight: string; after: string };
   /** Optional line between the title and the lead (`.sec-subtitle`). */
@@ -19,7 +19,7 @@ type SectionHeadingProps = {
 export function SectionHeading({ eyebrow, title, subtitle, lead, reveal = true, className }: SectionHeadingProps) {
   const content: ReactNode = (
     <>
-      <span className="eyebrow">{eyebrow}</span>
+      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
       <h2>
         {title.before}
         <span className="grad">{title.highlight}</span>

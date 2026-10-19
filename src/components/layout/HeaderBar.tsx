@@ -22,6 +22,9 @@ type HeaderBarProps = {
 
 const MENU_ID = "site-menu";
 
+/** Compare paths ignoring the trailing slash (/packages vs /packages/). */
+const samePath = (a: string, b: string) => a.replace(/\/+$/, "") === b.replace(/\/+$/, "");
+
 export function HeaderBar({ logo, homeHref, items, labels, urls, extra }: HeaderBarProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -48,7 +51,7 @@ export function HeaderBar({ logo, homeHref, items, labels, urls, extra }: Header
             <li key={item.href}>
               <Link
                 href={item.href}
-                aria-current={pathname === item.href ? "page" : undefined}
+                aria-current={samePath(pathname, item.href) ? "page" : undefined}
                 onClick={close}
               >
                 {item.label}

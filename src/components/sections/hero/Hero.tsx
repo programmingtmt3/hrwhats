@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 
 import { ChatPhone } from "./ChatPhone";
 import styles from "./Hero.module.css";
+import { HeroBackdrop } from "./HeroBackdrop";
 
 export function Hero({ locale }: { locale: Locale }) {
   const { hero, chat } = getDictionary(locale).home;
@@ -15,8 +16,7 @@ export function Hero({ locale }: { locale: Locale }) {
 
   return (
     <section className={styles.hero}>
-      <div className={cn(styles.blob, styles.b1)} />
-      <div className={cn(styles.blob, styles.b2)} />
+      <HeroBackdrop />
 
       <div className={cn("site-container", styles.grid)}>
         <Reveal className={styles.copy}>

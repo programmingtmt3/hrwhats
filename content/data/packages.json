@@ -1,0 +1,94 @@
+{
+  "currency": "SAR",
+  "whatsapp": [
+    {
+      "id": "starter",
+      "name": { "ar": "باقة الانطلاقة", "en": "" },
+      "description": { "ar": "انطلاقة ذكية لإدارة تواصلك اليومي بكفاءة وسهولة", "en": "" },
+      "monthly": 150,
+      "yearly": 1500,
+      "featured": false,
+      "features": {
+        "campaigns": 30,
+        "messages": "unlimited",
+        "contacts": 5000,
+        "quickReplies": 50,
+        "users": 3,
+        "qrLeads": false,
+        "mapsLeads": false
+      }
+    },
+    {
+      "id": "pro",
+      "name": { "ar": "البرو", "en": "" },
+      "description": { "ar": "حل متكامل لنمو أعمالك وتنظيم تواصلك بشكل أكثر احترافية", "en": "" },
+      "monthly": 220,
+      "yearly": 2200,
+      "featured": true,
+      "features": {
+        "campaigns": 300,
+        "messages": "unlimited",
+        "contacts": 50000,
+        "quickReplies": 200,
+        "users": 5,
+        "qrLeads": true,
+        "mapsLeads": 500
+      }
+    },
+    {
+      "id": "business",
+      "name": { "ar": "البزنس", "en": "" },
+      "description": { "ar": "إمكانات متقدمة لإدارة فرق كبيرة وتواصل واسع النطاق بكفاءة عالية", "en": "" },
+      "monthly": 290,
+      "yearly": 2900,
+      "featured": false,
+      "features": {
+        "campaigns": "unlimited",
+        "messages": "unlimited",
+        "contacts": 100000,
+        "quickReplies": 2000,
+        "users": 20,
+        "qrLeads": true,
+        "mapsLeads": 5000
+      }
+    }
+  ],
+  "hiring": [
+    {
+      "id": "day",
+      "name": { "ar": "باقة اليوم الواحد", "en": "" },
+      "tagline": { "ar": "حل سريع للمهام العاجلة", "en": "" },
+      "price": 180,
+      "period": "day",
+      "usage": { "ar": "للمهام العاجلة", "en": "" },
+      "hours": { "ar": "6 ساعات", "en": "" }
+    },
+    {
+      "id": "week",
+      "name": { "ar": "باقة الأسبوع", "en": "" },
+      "tagline": { "ar": "إنجاز مكثف خلال أسبوع", "en": "" },
+      "price": 850,
+      "period": "week",
+      "usage": { "ar": "للأعمال التي تستلزم وقتاً", "en": "" },
+      "hours": { "ar": "30 ساعة خلال 6 أيام", "en": "" }
+    },
+    {
+      "id": "part-time",
+      "name": { "ar": "باقة الدوام الجزئي", "en": "" },
+      "tagline": { "ar": "دعم مرن للمهام اليومية", "en": "" },
+      "price": 1900,
+      "period": "month",
+      "usage": { "ar": "مناسبة للأعمال الشهرية الجزئية", "en": "" },
+      "hours": { "ar": "20 ساعة أسبوعياً (80 ساعة شهرياً)", "en": "" }
+    },
+    {
+      "id": "full-time",
+      "name": { "ar": "باقة الدوام الكامل", "en": "" },
+      "tagline": { "ar": "تغطية كاملة للمهام والتواصل", "en": "" },
+      "price": 2900,
+      "period": "month",
+      "usage": { "ar": "مناسبة للأعمال الكبيرة", "en": "" },
+      "hours": { "ar": "40 ساعة أسبوعياً (160 ساعة شهرياً)", "en": "" }
+    }
+  ]
+}
