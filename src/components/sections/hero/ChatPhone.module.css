@@ -1,15 +1,17 @@
 /* Ported from design/index.html — Phone + animated WhatsApp chat */
+/* Customized (wider, thin bezel) vs. the design: --pw is set on the hero's
+   phone column so the floating cards can anchor to the phone's edges. */
 .phone {
   position: relative;
-  width: 310px;
+  width: var(--pw, 335px);
   height: 630px;
   border-radius: 48px;
   background: var(--phone-body);
-  padding: 12px;
+  padding: 5px;
   box-shadow:
     var(--shadow-lg),
-    0 0 0 2px var(--phone-edge),
-    inset 0 0 0 2px var(--phone-edge-inner);
+    0 0 0 1px var(--phone-edge),
+    inset 0 0 0 1px var(--phone-edge-inner);
   animation: float 6s ease-in-out infinite;
 }
 @keyframes float {
@@ -21,19 +23,20 @@
 .phone::after {
   content: "";
   position: absolute;
-  top: 22px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 96px;
-  height: 26px;
+  width: 72px;
+  height: 20px;
   background: var(--phone-body);
-  border-radius: 20px;
+  border-radius: 12px;
   z-index: 3;
 }
 .screen {
   position: relative;
   height: 100%;
-  border-radius: 38px;
+  /* Outer radius 48px minus the 5px bezel. */
+  border-radius: 43px;
   overflow: hidden;
   background: var(--wa-chat-bg);
   display: flex;
@@ -52,7 +55,7 @@
   z-index: 2;
   background: var(--wa-teal);
   color: var(--white);
-  padding: 46px 16px 12px;
+  padding: 38px 16px 12px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -211,7 +214,6 @@
 
 @media (max-width: 600px) {
   .phone {
-    width: 270px;
     height: 550px;
   }
 }

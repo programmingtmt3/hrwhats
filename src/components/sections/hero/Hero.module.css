@@ -83,6 +83,13 @@
   position: relative;
   display: flex;
   justify-content: center;
+  /* Phone width, shared with ChatPhone.module.css. Grows from 310px to 335px
+     only where the page margin lets the fc2 card move out with it (≈1280px+),
+     so the cards never cover more of the chat than in the design. */
+  --pw: clamp(310px, 100vw - 945px, 335px);
+  /* Distance from the phone's edge to the outer edge of each card. */
+  --fc1-out: 118px;
+  --fc2-out: 129px;
 }
 .phoneWrap::before {
   content: "";
@@ -126,14 +133,20 @@
   font-weight: 400;
   font-size: 0.75rem;
 }
+/* Cards are anchored to the phone's edges (so a wider phone doesn't push them
+   over the messages), but never further out than the column gap (fc1, toward
+   the text) or the page edge (fc2). */
 .fc1 {
   top: 90px;
-  inset-inline-start: -10px;
+  inset-inline-start: max(-45px, calc(50% - var(--pw) / 2 - var(--fc1-out)));
   animation: float 5s ease-in-out infinite 0.5s;
 }
 .fc2 {
   bottom: 110px;
-  inset-inline-end: -20px;
+  inset-inline-end: max(
+    calc((min(1200px, 100vw - 40px) - 100vw) / 2),
+    calc(50% - var(--pw) / 2 - var(--fc2-out))
+  );
   animation: float 5.5s ease-in-out infinite 1s;
 }
 @keyframes float {
@@ -162,12 +175,17 @@
 }
 
 @media (max-width: 600px) {
+  .phoneWrap {
+    --pw: 268px;
+    --fc1-out: 44px;
+    --fc2-out: 44px;
+  }
   .fc1 {
-    inset-inline-start: -6px;
+    inset-inline-start: max(-12px, calc(50% - var(--pw) / 2 - var(--fc1-out)));
     top: 70px;
   }
   .fc2 {
-    inset-inline-end: -6px;
+    inset-inline-end: max(-12px, calc(50% - var(--pw) / 2 - var(--fc2-out)));
     bottom: 90px;
   }
   .floatCard {
