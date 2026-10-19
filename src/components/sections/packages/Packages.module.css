@@ -200,7 +200,63 @@
   color: var(--green);
 }
 
+/* ---------- Hiring plans ---------- */
+.hiring {
+  padding-top: 110px;
+  background: var(--surface);
+  border-block: 1px solid var(--line);
+}
+.hirePlans {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.hirePlans .plan {
+  background: var(--bg);
+  padding: 26px;
+}
+.hirePlans .plan h3 {
+  font-size: 1.15rem;
+}
+.hirePlans .price b {
+  font-size: 2.1rem;
+}
+.tagline {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+.usage {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  margin-bottom: 22px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.usage svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--green);
+}
+.usage b {
+  color: var(--dark);
+  font-weight: 700;
+}
+/* Keeps the buttons aligned at the bottom of equal-height cards. */
+.pushDown {
+  margin-top: auto;
+}
+
 @media (max-width: 1080px) {
+  .hirePlans {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .plans {
     grid-template-columns: 1fr;
     max-width: 520px;
@@ -216,7 +272,14 @@
   }
 }
 @media (max-width: 600px) {
-  .plan {
+  .hiring {
+    padding-top: 80px;
+  }
+  .hirePlans {
+    grid-template-columns: 1fr;
+  }
+  .plan,
+  .hirePlans .plan {
     padding: 24px;
   }
   .price b {

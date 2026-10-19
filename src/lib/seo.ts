@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { LOGO } from "./brand";
-import { getSite } from "./content";
+import { getCurrency, getSite, getWhatsappPlans, t } from "./content";
 import { getDictionary, localePath, type Locale } from "./i18n";
 import { toPlainText } from "./inline-links";
 
@@ -78,4 +78,72 @@ export function faqPageJsonLd(items: { question: string; answer: string }[]) {
       acceptedAnswer: { "@type": "Answer", text: toPlainText(answer) },
     })),
   };
+}
+
+/** Inner page metadata: absolute title, description, canonical and Open Graph. */
+export function getPageMetadata(
+  locale: Locale,
+  path: string,
+  meta: { title: string; description: string },
+): Metadata {
+  const dict = getDictionary(locale);
+  const url = localePath(locale, path);
+
+  return {
+    title: { absolute: meta.title },
+    description: meta.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url,
+      siteName: dict.meta.siteName,
+      locale: locale === "ar" ? "ar_SA" : "en_US",
+      type: "website",
+    },
+  };
+}
+
+/** JSON-LD: BreadcrumbList. `items` are [name, locale-neutral path] from the home page down. */
+export function breadcrumbJsonLd(locale: Locale, items: [name: string, path: string][]) {
+  const base = getSite().siteUrl;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map(([name, path], i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name,
+      item: `${base}${localePath(locale, path)}`,
+    })),
+  };
+}
+
+/** JSON-LD: one Product + monthly Offer per WhatsApp plan. */
+export function whatsappPlansJsonLd(locale: Locale) {
+  const site = getSite();
+  const url = `${site.siteUrl}${localePath(locale, "/packages/")}`;
+  const currency = getCurrency();
+
+  return getWhatsappPlans().map((plan) => ({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${site.name} — ${t(plan.name, locale)}`,
+    description: t(plan.description, locale),
+    brand: { "@type": "Brand", name: site.name },
+    offers: {
+      "@type": "Offer",
+      url,
+      price: plan.monthly,
+      priceCurrency: currency,
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: plan.monthly,
+        priceCurrency: currency,
+        unitCode: "MON",
+        referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+      },
+    },
+  }));
 }

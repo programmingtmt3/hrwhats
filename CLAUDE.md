@@ -224,6 +224,7 @@ No server in production. The form validates client-side and submits to an extern
 4. **Sectors, usage guide, legal pages** — Velite + MDX setup happens here (schemas, collections), not earlier.
 5. **Blog** — listing, pagination, categories, post page, WordPress migration.
 6. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, redirect tests, deploy.
+   - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.
 7. **English** — `messages/en.json`, translated pages, then posts gradually.
 
 ## Commands
