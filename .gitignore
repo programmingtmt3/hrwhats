@@ -46,3 +46,9 @@ next-env.d.ts
 # next-image-export-optimizer output
 **/nextImageExportOptimizer/
 next-image-export-optimizer-hashes.json
+
+# Contact form secrets / runtime files (never commit; real config lives outside public_html)
+hrwhats-config.php
+hrwhats-contact.log
+hrwhats-mail-test.log
+hrwhats-contact-ratelimit/

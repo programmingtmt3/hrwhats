@@ -29,6 +29,10 @@ const siteSchema = z.object({
   /** "+N" in the home trust bar — edited by hand. */
   trustedCount: z.number().int().positive(),
   appUrls: z.object({ login: z.url(), signup: z.url() }),
+  /** Contact form endpoint (PHP on the same host). */
+  contactEndpoint: z.string().startsWith("/"),
+  /** Cloudflare Turnstile site key (public). Empty → see getTurnstileSiteKey(). */
+  turnstileSiteKey: z.string(),
   contact: z.object({
     phone: z.object({ display: z.string().min(1), href: z.string().startsWith("tel:") }),
     email: z.email(),
@@ -51,6 +55,28 @@ const site = siteSchema.parse(siteJson);
 
 export function getSite(): Site {
   return site;
+}
+
+/** Cloudflare's official test site key: always passes. */
+const TURNSTILE_TEST_SITE_KEY = "1x00000000000000000000AA";
+
+/**
+ * Turnstile site key. While `turnstileSiteKey` in site.json is empty, dev uses
+ * Cloudflare's always-pass test key and a production build FAILS, so the site
+ * never ships with a broken form. `ALLOW_TURNSTILE_TEST_KEY=1` lets a local
+ * production build through (never for a real deploy).
+ */
+export function getTurnstileSiteKey(): string {
+  if (site.turnstileSiteKey) return site.turnstileSiteKey;
+  if (process.env.NODE_ENV !== "production") return TURNSTILE_TEST_SITE_KEY;
+  if (process.env.ALLOW_TURNSTILE_TEST_KEY === "1") {
+    console.warn("⚠ Using the Turnstile TEST key (ALLOW_TURNSTILE_TEST_KEY=1). Do not deploy this build.");
+    return TURNSTILE_TEST_SITE_KEY;
+  }
+  throw new Error(
+    "Turnstile site key is missing: set \"turnstileSiteKey\" in content/data/site.json " +
+      "(Cloudflare dashboard → Turnstile → your site → Site Key). See docs/contact-form-setup.md.",
+  );
 }
 
 /** Logo file: `/images/{clients|partners}/NN-ascii-name.ext` + intrinsic size. */

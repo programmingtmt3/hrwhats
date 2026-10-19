@@ -6,6 +6,8 @@
     "login": "https://app.hrwhats.com/login",
     "signup": "https://app.hrwhats.com/signup"
   },
+  "contactEndpoint": "/api/contact.php",
+  "turnstileSiteKey": "",
   "contact": {
     "phone": {
       "display": "0544882560",

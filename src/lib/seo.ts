@@ -147,3 +147,28 @@ export function whatsappPlansJsonLd(locale: Locale) {
     },
   }));
 }
+
+/** JSON-LD: ContactPage with the organization's contact points. */
+export function contactPageJsonLd(locale: Locale, name: string) {
+  const site = getSite();
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name,
+    url: `${site.siteUrl}${localePath(locale, "/contact/")}`,
+    mainEntity: {
+      "@type": "Organization",
+      name: site.name,
+      url: `${site.siteUrl}/`,
+      email: site.contact.email,
+      telephone: site.contact.phone.display,
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: site.contact.whatsapp.display.replace(/\s/g, ""),
+        email: site.contact.email,
+        contactType: "customer service",
+        availableLanguage: ["Arabic"],
+      },
+    },
+  };
+}

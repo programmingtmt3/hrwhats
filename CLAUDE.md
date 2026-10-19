@@ -37,6 +37,7 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 - Every dynamic route must implement `generateStaticParams` and set `dynamicParams = false`.
 - `next/image` default loader does not work — always use `SiteImage` (`src/components/ui/SiteImage.tsx`), which wraps the export optimizer's `ExportedImage` with `placeholder="empty"` (otherwise a blurred placeholder shows behind transparent PNGs).
 - `app/sitemap.ts` and `app/robots.ts` are allowed (they export as static files).
+- Server-side behavior that cannot be static (the contact form) runs as **PHP on the same host** (`public/api/`), never as Next.js API routes.
 - Server Components by default; add `"use client"` only where interactivity is needed.
 
 ## Internationalization (i18n)
@@ -200,6 +201,11 @@ src/
 messages/ar.json
 content/
 public/images/{brand,banners,clients,partners,sectors,posts}/
+public/api/
+├── contact.php               ← contact form endpoint (PHP on the host)
+└── _lib/                     ← PHPMailer 7.1.1 (+ .htaccess deny all)
+config/hrwhats-config.example.php ← template for ~/hrwhats-config.php (no secrets)
+docs/contact-form-setup.md    ← server setup guide (Arabic)
 scripts/
 ├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX
 ├── generate-htaccess.ts
@@ -214,7 +220,13 @@ scripts/
 
 ## Contact form
 
-No server in production. The form validates client-side and submits to an external endpoint (to be decided: `app.hrwhats.com` API, a form service, or a prefilled WhatsApp link). Keep the submit logic isolated in one function so the target can be swapped.
+The static site has no Node server, so the contact form posts to **PHP on the same cPanel host**: `public/api/contact.php` → copied by the build to `out/api/contact.php` → `public_html/api/contact.php`. Setup steps for the server: `docs/contact-form-setup.md`.
+
+- **Client:** `src/components/contact/` — `ContactForm` (React Hook Form + Zod, Arabic errors, honeypot `website` field), `Turnstile` (loads Cloudflare's script only when the form scrolls into view; contact page only). Delivery is isolated in `src/lib/contact-submit.ts` (`submitContact`) — the only place to change if the target changes. Endpoint: `contactEndpoint` in `site.json`.
+- **Turnstile site key:** `turnstileSiteKey` in `site.json` (public). Empty → `next dev` uses Cloudflare's always-pass test key; **`next build` fails** with a clear message. `ALLOW_TURNSTILE_TEST_KEY=1` allows a local test build only — never deploy it.
+- **Server (`contact.php`):** POST + JSON only, Origin check (`https://hrwhats.com`), server-side validation (limits shared with `CONTACT_LIMITS`), honeypot → fake success, rate limit 5 / 10 min per IP, Turnstile `siteverify`, SMTP via PHPMailer (`public/api/_lib/`, blocked by its own `.htaccess`). Always answers `{ ok }` JSON; `display_errors` off; errors logged to `~/hrwhats-contact.log` (outside the web root). Needs PHP ≥ 8.0.
+- **Config:** `~/hrwhats-config.php` = `dirname(__DIR__, 2) . '/hrwhats-config.php'`, i.e. the account home directory **next to** `public_html`, never inside it. Template: `config/hrwhats-config.example.php` (not published). Missing file → generic error to the visitor, reason in the log.
+- **The generated `.htaccess` (launch phase) must not rewrite or block `/api/contact.php`.**
 
 ## Phases
 
@@ -232,6 +244,8 @@ No server in production. The form validates client-side and submits to an extern
 ```bash
 npm run dev        # local development
 npm run build      # velite + next build → out/ (+ .htaccess)
+                   # fails while site.json turnstileSiteKey is empty;
+                   # ALLOW_TURNSTILE_TEST_KEY=1 npm run build for a LOCAL test build only
 npm run lint
 ```
 
@@ -243,7 +257,7 @@ npm run lint
 - **Do not send screenshots for review.** The developer reviews the site in the browser themselves. (Automated checks — builds, measurements, contrast — are still fine; report their results as text.)
 - Keep components small and focused; extract repeated UI into `sections/` or `ui/`.
 - After changes, run `npm run build` to confirm the static export still succeeds.
-- Never commit secrets. `.env*`, `node_modules/`, `.next/`, `out/`, `.velite/` must be in `.gitignore`.
+- **Secrets never enter the repository** — no API keys, SMTP passwords or Turnstile secret keys in code, JSON, docs or examples. Server secrets live only in `~/hrwhats-config.php` on the host (outside `public_html`); the repo holds an empty example. `.env*`, `hrwhats-config.php`, `node_modules/`, `.next/`, `out/`, `.velite/` must be in `.gitignore`.
 - Commit messages: Conventional Commits in English (`feat:`, `fix:`, `chore:`, `content:`).
 - After every **approved** commit, `git push` to `origin` immediately, then confirm `git status` shows the branch up to date with `origin/main`.
 - When unsure about a product detail (features, pricing, wording), ask — don't invent marketing content.

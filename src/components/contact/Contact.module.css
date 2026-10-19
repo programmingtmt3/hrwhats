@@ -1,0 +1,247 @@
+/* Contact page — cards follow the site's surfaces (--surface, --line, --r-lg). */
+.section {
+  padding-top: 40px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ---------- Form card ---------- */
+.formCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 32px;
+}
+.form {
+  display: grid;
+  gap: 18px;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.field {
+  display: grid;
+  gap: 6px;
+}
+.field label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.optional {
+  color: var(--muted);
+  font-weight: 400;
+}
+/* ≥16px so iOS does not zoom into the field on focus. */
+.field input,
+.field textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 11px 14px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+.field textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  background: var(--surface);
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgb(var(--wa-rgb) / 0.2);
+}
+.field [aria-invalid="true"] {
+  border-color: var(--destructive);
+}
+.field [aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+}
+.error {
+  color: var(--destructive);
+  font-size: 0.88rem;
+}
+/* Off-screen, not display:none (some bots skip hidden fields). */
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.actions :global(.btn) {
+  min-width: 160px;
+}
+.actions :global(.btn:disabled) {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.hint {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.status {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: var(--r-sm);
+  font-weight: 500;
+}
+.status > svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.success {
+  background: rgb(var(--wa-rgb) / 0.12);
+  color: var(--dark);
+}
+.success > svg {
+  color: var(--green);
+}
+.failure {
+  background: color-mix(in oklab, var(--destructive) 8%, var(--surface));
+  color: var(--ink);
+}
+.failure > svg {
+  color: var(--destructive);
+}
+.statusLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  color: var(--green);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.statusLink svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- Contact info ---------- */
+.info {
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+.infoCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  transition:
+    box-shadow 0.3s,
+    border-color 0.3s;
+}
+.infoCard:hover {
+  box-shadow: var(--shadow);
+  border-color: rgb(var(--wa-rgb) / 0.4);
+}
+.infoIcon {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: var(--dark);
+  color: var(--neon);
+}
+.infoIcon svg {
+  width: 22px;
+  height: 22px;
+}
+.infoLabel {
+  display: block;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.infoValue {
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--dark);
+  transition: color 0.2s;
+}
+.infoValue:hover {
+  color: var(--green);
+}
+.social {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--dark);
+  transition:
+    background 0.25s,
+    color 0.25s,
+    translate 0.25s;
+}
+.social a:hover {
+  background: var(--wa);
+  color: var(--deep);
+  translate: 0 -3px;
+}
+.social svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 600px) {
+  /* Leaves ≥300px inside for Turnstile's flexible widget at 375px. */
+  .formCard {
+    padding: 20px 16px;
+  }
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .actions :global(.btn) {
+    width: 100%;
+  }
+}
