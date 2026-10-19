@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ArrowIcon, BotIcon, CheckIcon, PaperPlaneIcon } from "@/components/icons";
+import { ArrowIcon, BotIcon, PaperPlaneIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
 import { getSite } from "@/lib/content";
 import { getDictionary, localePath, type Locale } from "@/lib/i18n";
@@ -35,14 +35,6 @@ export function Hero({ locale }: { locale: Locale }) {
             <Link href={localePath(locale, "/packages/")} className="btn btn-ghost">
               {hero.secondaryCta}
             </Link>
-          </div>
-          <div className={styles.checks}>
-            {hero.checks.map((check) => (
-              <span key={check}>
-                <CheckIcon />
-                {check}
-              </span>
-            ))}
           </div>
         </Reveal>
 

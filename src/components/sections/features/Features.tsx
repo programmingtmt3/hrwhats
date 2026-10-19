@@ -4,7 +4,6 @@ import {
   BotIcon,
   BriefcaseIcon,
   CodeIcon,
-  LayoutIcon,
   LockIcon,
   MegaphoneIcon,
   TrendIcon,
@@ -40,7 +39,6 @@ const layout: CardLayout[] = [
   { key: "campaigns", icon: MegaphoneIcon, dark: true, span2: true },
   { key: "leads", icon: UserPlusIcon, delay: 0.05 },
   { key: "manager", icon: BriefcaseIcon, delay: 0.1 },
-  { key: "crm", icon: LayoutIcon, span2: true, delay: 0.15 },
 ];
 
 // Campaign card bars: height (%) and transition delay (s), from the design.

@@ -59,25 +59,6 @@
   color: var(--muted);
   max-width: 540px;
 }
-.checks {
-  display: flex;
-  gap: 22px;
-  flex-wrap: wrap;
-  margin-top: 30px;
-  color: var(--muted);
-  font-size: 0.93rem;
-}
-.checks span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.checks svg {
-  width: 18px;
-  height: 18px;
-  color: var(--wa);
-}
-
 /* Phone column */
 .phoneWrap {
   position: relative;
@@ -168,9 +149,6 @@
   }
   .lead {
     margin-inline: auto;
-  }
-  .checks {
-    justify-content: center;
   }
 }
 

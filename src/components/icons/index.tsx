@@ -105,14 +105,6 @@ export function ArrowIcon({ strokeWidth = 2.2, ...props }: IconProps) {
   );
 }
 
-export function CheckIcon(props: IconProps) {
-  return (
-    <Stroke strokeWidth={2.5} {...props}>
-      <path d="M20 6 9 17l-5-5" />
-    </Stroke>
-  );
-}
-
 export function VerifiedIcon(props: IconProps) {
   return (
     <Fill {...props}>
@@ -230,17 +222,6 @@ export function BriefcaseIcon(props: IconProps) {
     <Stroke {...props}>
       <rect x="2" y="7" width="20" height="14" rx="2" />
       <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-    </Stroke>
-  );
-}
-
-export function LayoutIcon(props: IconProps) {
-  return (
-    <Stroke {...props}>
-      <rect x="3" y="3" width="7" height="9" rx="1" />
-      <rect x="14" y="3" width="7" height="5" rx="1" />
-      <rect x="14" y="12" width="7" height="9" rx="1" />
-      <rect x="3" y="16" width="7" height="5" rx="1" />
     </Stroke>
   );
 }

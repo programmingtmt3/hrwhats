@@ -1,17 +1,13 @@
-/* Ported from design/index.html — Why */
+/* Ported from design/index.html — Why. Customized: no image; the three items
+   sit in one row under a standard centered section head. */
 .why {
   background: linear-gradient(180deg, var(--bg), var(--why-bg-end));
 }
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
+/* Equal widths; grid rows stretch, so the cards share the tallest height. */
 .list {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-top: 34px;
 }
 .item {
   display: flex;
@@ -56,29 +52,13 @@
   color: var(--muted);
   font-size: 0.95rem;
 }
-.visual {
-  position: relative;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  background: var(--surface);
-  border: 1px solid var(--line);
-}
-.visual img {
-  width: 100%;
-  height: auto;
-}
-.why :global(.sec-head) {
-  text-align: start;
-  margin: 0;
-}
 
-@media (max-width: 900px) {
-  .grid {
+/* Two columns would leave one card alone on a row, so stack instead —
+   centered at a readable width. */
+@media (max-width: 1080px) {
+  .list {
     grid-template-columns: 1fr;
-    gap: 56px;
-  }
-  .why :global(.sec-head) {
-    text-align: center;
+    max-width: 680px;
+    margin-inline: auto;
   }
 }
