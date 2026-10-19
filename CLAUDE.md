@@ -240,6 +240,7 @@ npm run lint
 - For any non-trivial task, **propose a short plan first** and wait for approval.
 - Work on **one page at a time**; a long page is built **one section at a time**.
 - After each part: **stop**, ask the developer to review it in the browser, and do not move to the next part until they approve.
+- **Do not send screenshots for review.** The developer reviews the site in the browser themselves. (Automated checks — builds, measurements, contrast — are still fine; report their results as text.)
 - Keep components small and focused; extract repeated UI into `sections/` or `ui/`.
 - After changes, run `npm run build` to confirm the static export still succeeds.
 - Never commit secrets. `.env*`, `node_modules/`, `.next/`, `out/`, `.velite/` must be in `.gitignore`.
