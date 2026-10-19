@@ -70,20 +70,53 @@
   background: linear-gradient(to top, rgb(var(--deep-rgb) / 0.95) 0%, rgb(var(--dark-rgb) / 0.45) 55%, rgb(var(--wa-rgb) / 0.1) 100%);
 }
 
+/* Customized vs. the design: below desktop the 3:4 cards made the ten
+   sectors very long to scroll, so they become square. */
 @media (max-width: 1080px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .sector {
+    aspect-ratio: 1 / 1;
+    background: var(--surface);
+  }
+  /* Smaller icon, lifted above the name so the label doesn't cover it.
+     (transform, because the image library sets size/inset inline.) */
+  .sector img {
+    transform: translateY(-12%) scale(0.72);
+  }
+  .sector:hover img {
+    transform: translateY(-12%) scale(0.78);
+  }
+  /* A lone card on the last row of three sits in the middle column. */
+  .sector:last-child:nth-child(3n + 1) {
+    grid-column: 2;
   }
 }
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 10px;
   }
   .lbl {
-    padding: 12px;
+    padding: 10px 12px;
   }
   .sector h3 {
-    font-size: 0.88rem;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    /* Never more than two lines. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  /* The arrow only appears on hover (none on touch) but still took ~42px
+     beside the name; drop it so names fit in two lines. */
+  .arrow {
+    display: none;
+  }
+  /* Two columns: undo the three-column centering above. */
+  .sector:last-child:nth-child(3n + 1) {
+    grid-column: auto;
   }
 }
