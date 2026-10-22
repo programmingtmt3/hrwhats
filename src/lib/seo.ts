@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { LOGO } from "./brand";
 import { getCurrency, getSite, getWhatsappPlans, t } from "./content";
+import { isProduction } from "./env";
 import { getDictionary, localePath, type Locale } from "./i18n";
 import { toPlainText } from "./inline-links";
 
@@ -17,6 +18,8 @@ export function getRootMetadata(locale: Locale): Metadata {
       template: `%s | ${dict.meta.siteName}`,
     },
     description: dict.meta.homeDescription,
+    // Staging builds must never be indexed; every page inherits this.
+    ...(isProduction ? {} : { robots: { index: false, follow: false } }),
     openGraph: {
       siteName: dict.meta.siteName,
       locale: locale === "ar" ? "ar_SA" : "en_US",

@@ -40,6 +40,15 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 - Server-side behavior that cannot be static (the contact form) runs as **PHP on the same host** (`public/api/`), never as Next.js API routes.
 - Server Components by default; add `"use client"` only where interactivity is needed.
 
+## Build environments (staging vs production)
+
+`SITE_ENV` (read in `src/lib/env.ts`) selects the build target: `staging` (default when unset — the safe choice) or `production`; any other value fails the build. `next.config.ts` prints the target at the top of every build log.
+
+- **staging** (Hostinger preview, see `docs/deploy-hostinger.md`): `robots.txt` = `Disallow: /`, `noindex, nofollow` on every page (via `getRootMetadata`), **no sitemap**. `ALLOW_TURNSTILE_TEST_KEY=1` is allowed here.
+- **production** (the real launch on cPanel): normal indexing. `ALLOW_TURNSTILE_TEST_KEY=1` always fails the build.
+- New SEO outputs must respect this: `app/sitemap.ts` (launch phase) must produce nothing in staging, and no page may override `robots` to make staging indexable.
+- `npm run build` alone must produce the complete `out/` (hosts run nothing else). Node 24 (`engines` + `.nvmrc`).
+
 ## Internationalization (i18n)
 
 | Language | URL | `<html>` |
@@ -194,6 +203,7 @@ src/
 ├── lib/
 │   ├── content.ts            ← the only content access layer (Zod-validated)
 │   ├── i18n.ts               ← locales, getDictionary, localePath, format
+│   ├── env.ts                ← SITE_ENV (staging | production)
 │   ├── navigation.ts         ← header/footer menu structure
 │   ├── brand.ts              ← LOGO (single source for the logo path)
 │   ├── fonts/{ar,en}.ts      ← next/font definitions, one module per language
@@ -206,6 +216,7 @@ public/api/
 └── _lib/                     ← PHPMailer 7.1.1 (+ .htaccess deny all)
 config/hrwhats-config.example.php ← template for ~/hrwhats-config.php (no secrets)
 docs/contact-form-setup.md    ← server setup guide (Arabic)
+docs/deploy-hostinger.md      ← staging deploy on Hostinger (Arabic)
 scripts/
 ├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX
 ├── generate-htaccess.ts
@@ -243,9 +254,10 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 
 ```bash
 npm run dev        # local development
-npm run build      # velite + next build → out/ (+ .htaccess)
-                   # fails while site.json turnstileSiteKey is empty;
-                   # ALLOW_TURNSTILE_TEST_KEY=1 npm run build for a LOCAL test build only
+npm run build      # next build + image optimizer → out/ (later: velite, .htaccess)
+                   # SITE_ENV=staging (default) | production
+                   # fails while site.json turnstileSiteKey is empty, unless
+                   # ALLOW_TURNSTILE_TEST_KEY=1 (staging only — fails with SITE_ENV=production)
 npm run lint
 ```
 

@@ -1,5 +1,14 @@
 import type { NextConfig } from "next";
 
+import { SITE_ENV } from "./src/lib/env";
+
+// Make the build target obvious in every build log (Hostinger, local).
+console.log(
+  SITE_ENV === "production"
+    ? "▶ SITE_ENV=production — indexable site (robots allow, no noindex)"
+    : "▶ SITE_ENV=staging — NOT indexable (robots.txt Disallow: /, noindex on every page, no sitemap)",
+);
+
 // Static export for shared cPanel hosting — no Node server in production.
 // Do not add redirects/rewrites/headers here: they are ignored by `output: 'export'`.
 // Redirects are generated into out/.htaccess by scripts/generate-htaccess.ts.

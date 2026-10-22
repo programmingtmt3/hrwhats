@@ -11,6 +11,7 @@ import packagesJson from "../../content/data/packages.json";
 import partnersJson from "../../content/data/partners.json";
 import sectorsJson from "../../content/data/sectors.json";
 import siteJson from "../../content/data/site.json";
+import { isProduction } from "./env";
 import type { Locale } from "./i18n";
 import { hasOnlyInternalLinks } from "./inline-links";
 
@@ -62,15 +63,20 @@ const TURNSTILE_TEST_SITE_KEY = "1x00000000000000000000AA";
 
 /**
  * Turnstile site key. While `turnstileSiteKey` in site.json is empty, dev uses
- * Cloudflare's always-pass test key and a production build FAILS, so the site
- * never ships with a broken form. `ALLOW_TURNSTILE_TEST_KEY=1` lets a local
- * production build through (never for a real deploy).
+ * Cloudflare's always-pass test key and a `next build` FAILS, so the site never
+ * ships with a broken form. `ALLOW_TURNSTILE_TEST_KEY=1` allows the test key in
+ * staging builds only; with SITE_ENV=production it always fails the build.
  */
 export function getTurnstileSiteKey(): string {
+  const allowTestKey = process.env.ALLOW_TURNSTILE_TEST_KEY === "1";
+  // Never in a production build, whatever the key.
+  if (allowTestKey && isProduction) {
+    throw new Error("ALLOW_TURNSTILE_TEST_KEY=1 is not allowed with SITE_ENV=production.");
+  }
   if (site.turnstileSiteKey) return site.turnstileSiteKey;
   if (process.env.NODE_ENV !== "production") return TURNSTILE_TEST_SITE_KEY;
-  if (process.env.ALLOW_TURNSTILE_TEST_KEY === "1") {
-    console.warn("⚠ Using the Turnstile TEST key (ALLOW_TURNSTILE_TEST_KEY=1). Do not deploy this build.");
+  if (allowTestKey) {
+    console.warn("⚠ Using the Turnstile TEST key (ALLOW_TURNSTILE_TEST_KEY=1). Staging only — never deploy as production.");
     return TURNSTILE_TEST_SITE_KEY;
   }
   throw new Error(
