@@ -14,7 +14,7 @@ Rebuild of **hrwhats.com**, the marketing site for HRwhats (a WhatsApp Business 
 |---|---|
 | Framework | Next.js (App Router) + TypeScript (strict) |
 | Output | `output: 'export'`, `trailingSlash: true` |
-| Styling | Tailwind CSS + CSS Modules for design-ported section styles (see Brand & design) |
+| Styling | Tailwind CSS (via PostCSS) + CSS Modules for design-ported section styles (see Brand & design) |
 | UI components | shadcn/ui (Radix) |
 | Icons | Design SVGs in `src/components/icons/`; lucide-react for anything new |
 | Animation | CSS + IntersectionObserver (as in the design). Motion only if a later page needs it — subtle only |
@@ -79,7 +79,8 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 - Shared primitives from the design (`.site-container`, `.btn`, `.btn-primary`, `.btn-ghost`, `.btn-sm`, `.btn-outline-light`, `.eyebrow`, `.sec-head`, `.grad`, `.reveal`) → `@layer components` in `globals.css`. (The design's `.container` is renamed `.site-container` because Tailwind v4 has its own `container` utility.)
 - Section-specific CSS → a CSS Module next to the component (`Hero.module.css`, …), copied from the design with logical properties. This keeps pseudo-elements, masks and gradients pixel-identical. Tailwind utilities are fine for simple layout in new pages.
 - **Never write a property together with its `-webkit-` version** (`backdrop-filter` + `-webkit-backdrop-filter`, `mask-image` + `-webkit-mask-image`, …). Write the unprefixed property only; the CSS minifier (lightningcss) adds the prefix. Writing both made it keep only the `-webkit-` one, which Chrome ignores (the header lost its blur).
-- CSS Modules are excluded from the Tailwind turbopack loader (`condition: { not: { path: /\.module\.css$/ } }` in `next.config.ts`). Reason: the loader rule renames its output (`as: "*.css"`), which turns a `*.module.css` file into plain global CSS — class names lose their module scoping and `:global()` fails to parse. Consequence: `@apply` / Tailwind directives are not available inside CSS Modules — write plain CSS with `var(--token)`.
+- **Bundlers:** `npm run dev` uses Turbopack; **`npm run build` uses Webpack** (`next build --webpack`). Turbopack builds crashed on Hostinger (it could not start its CSS-loader subprocess). Tailwind runs through **PostCSS** (`postcss.config.mjs`, `@tailwindcss/postcss`) for both — no `turbopack.rules` in `next.config.ts`. CSS Modules keep their scoping (Tailwind's PostCSS plugin skips files without Tailwind directives), so `@apply` is still not available inside them — write plain CSS with `var(--token)`.
+- **Prefixing:** dev (Turbopack) prefixes with Lightning CSS; the production build runs Next's bundled `postcss-preset-env` (same options as Next's default, which a custom PostCSS config disables). Targets come from `browserslist` in `package.json` (= Next's defaults: chrome/edge/firefox 111, safari 16.4). Keep writing unprefixed properties only.
 - Icons are the design's inline SVGs, copied verbatim into `src/components/icons/` (not lucide), so they render identically.
 
 **Colors** (from the design). All values are defined **only** in `globals.css`; components and CSS modules use `var(--token)` or Tailwind classes, never hex/rgb literals. Translucent variants use the `--*-rgb` channels: `rgb(var(--wa-rgb) / .1)`.
@@ -254,7 +255,7 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 
 ```bash
 npm run dev        # local development
-npm run build      # next build + image optimizer → out/ (later: velite, .htaccess)
+npm run build      # next build --webpack + image optimizer → out/ (later: velite, .htaccess)
                    # SITE_ENV=staging (default) | production
                    # fails while site.json turnstileSiteKey is empty, unless
                    # ALLOW_TURNSTILE_TEST_KEY=1 (staging only — fails with SITE_ENV=production)

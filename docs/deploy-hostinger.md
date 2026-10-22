@@ -17,7 +17,8 @@
 | إصدار Node.js | `24` |
 
 - **إصدار Node:** محدّد أيضاً في `package.json` (`"engines": { "node": ">=24" }`) وفي ملف `.nvmrc`.
-- **أمر البناء:** `npm run build` وحده ينفّذ كل الخطوات: `next build` ثم تحسين الصور (`next-image-export-optimizer`). الناتج مجلد `out/` كامل، ولا يلزم أي أمر آخر.
+- **أمر البناء:** `npm run build` وحده ينفّذ كل الخطوات: `next build --webpack` ثم تحسين الصور (`next-image-export-optimizer`). الناتج مجلد `out/` كامل، ولا يلزم أي أمر آخر.
+- **لماذا Webpack في البناء؟** Turbopack كان يتعطل على Hostinger أثناء معالجة CSS (`TurbopackInternalError` لأن عملية Node الفرعية خرجت قبل الاتصال). البناء النهائي يستخدم Webpack، والتطوير المحلي (`npm run dev`) ما زال يستخدم Turbopack.
 
 ## 2) متغيرات البيئة للنسخة التجريبية
 

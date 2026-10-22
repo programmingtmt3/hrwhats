@@ -38,18 +38,6 @@ const nextConfig: NextConfig = {
     // compose a 404 from, so out/404.html comes from app/global-not-found.tsx.
     globalNotFound: true,
   },
-  turbopack: {
-    rules: {
-      "*.css": {
-        // Tailwind only for global stylesheets. CSS Modules (ported section
-        // styles) are left to Next's native CSS Modules handling — passing them
-        // through this loader would strip their module scoping.
-        condition: { not: { path: /\.module\.css$/ } },
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
 };
 
 export default nextConfig;
