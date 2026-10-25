@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --webpack && next-image-export-optimizer",
+    "build": "node scripts/build.mjs",
     "lint": "eslint"
   },
   "dependencies": {

@@ -48,6 +48,7 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 - **production** (the real launch on cPanel): normal indexing. `ALLOW_TURNSTILE_TEST_KEY=1` always fails the build.
 - New SEO outputs must respect this: `app/sitemap.ts` (launch phase) must produce nothing in staging, and no page may override `robots` to make staging indexable.
 - `npm run build` alone must produce the complete `out/` (hosts run nothing else). Node 24 (`engines` + `.nvmrc`).
+- `npm run build` runs `scripts/build.mjs`. Hostinger's Next.js preset renames `next.config.*` and writes its own config without `output: 'export'` (out/ then holds only images). So the real config lives in **`next.base.ts`** (edit it there); `next.config.ts` only re-exports it, and the script restores it, deletes any other `next.config.*` and drops `NEXT_PRIVATE_STANDALONE/OUTPUT` before building, then fails if `out/index.html` is missing.
 
 ## Internationalization (i18n)
 
@@ -219,6 +220,7 @@ config/hrwhats-config.example.php ← template for ~/hrwhats-config.php (no secr
 docs/contact-form-setup.md    ← server setup guide (Arabic)
 docs/deploy-hostinger.md      ← staging deploy on Hostinger (Arabic)
 scripts/
+├── build.mjs                 ← `npm run build` (restores next.config.ts, see Build environments)
 ├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX
 ├── generate-htaccess.ts
 └── test-redirects.ts
@@ -255,7 +257,7 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 
 ```bash
 npm run dev        # local development
-npm run build      # next build --webpack + image optimizer → out/ (later: velite, .htaccess)
+npm run build      # scripts/build.mjs: next build --webpack + image optimizer → out/ (later: velite, .htaccess)
                    # SITE_ENV=staging (default) | production
                    # fails while site.json turnstileSiteKey is empty, unless
                    # ALLOW_TURNSTILE_TEST_KEY=1 (staging only — fails with SITE_ENV=production)

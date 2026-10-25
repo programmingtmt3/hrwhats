@@ -20,12 +20,14 @@
 1. على جهازك، ابنِ الموقع:
    ```bash
    # PowerShell
-   $env:SITE_ENV="staging"; $env:ALLOW_TURNSTILE_TEST_KEY="1"; npm run build
+   $env:SITE_ENV="staging"; npm run build
    ```
-   `npm run build` وحده ينفّذ كل الخطوات: `next build --webpack` ثم تحسين الصور (`next-image-export-optimizer`). الناتج مجلد `out/` كامل.
+   `npm run build` وحده ينفّذ كل الخطوات (`scripts/build.mjs`): `next build --webpack` ثم تحسين الصور (`next-image-export-optimizer`). الناتج مجلد `out/` كامل.
 2. في hPanel: أنشئ موقعاً عادياً (Website) على نطاق فرعي تجريبي، **وليس Node.js Web App**.
 3. من File Manager: ارفع **محتوى** `out/` إلى `public_html`، وليس المجلد نفسه. أسهل طريقة: اضغط محتواه في ملف zip، ثم ارفعه وفك ضغطه هناك.
 4. احذف تطبيق Node.js القديم من hPanel، حتى لا يحاول البناء مع كل `push`.
+
+**البناء من GitHub على Hostinger (Build command `npm run build`، Output directory `out`):** إعداد Next.js الجاهز في Hostinger يغيّر اسم `next.config.ts` ويكتب إعداداً بدون `output: "export"`، فلا يحتوي `out/` إلا على الصور. لذلك الإعداد الحقيقي في `next.base.ts`، و`next.config.ts` سطر يعيد تصديره فقط، و`scripts/build.mjs` يعيده (ويحذف أي `next.config.*` آخر) قبل البناء. سجل البناء يُظهر ذلك بسطر `▶ next.config.ts was replaced ...`. عدّل الإعدادات في `next.base.ts` فقط.
 
 **ميزة إضافية:** الموقع العادي يشغّل PHP، فيمكن تجربة نموذج التواصل عليه أيضاً (انظر القسم 5).
 
@@ -40,7 +42,7 @@
 | المتغير | القيمة | السبب |
 |---|---|---|
 | `SITE_ENV` | `staging` | يمنع محركات البحث من فهرسة النسخة التجريبية |
-| `ALLOW_TURNSTILE_TEST_KEY` | `1` | يسمح بالبناء بمفتاح Turnstile الاختباري لأن المفتاح الحقيقي لم يُضف بعد |
+| `ALLOW_TURNSTILE_TEST_KEY` | لا تضبطه | لم يعد مطلوباً: مفتاح Turnstile الحقيقي موجود في `site.json`. يلزم فقط إذا كان `turnstileSiteKey` فارغاً |
 
 ### ماذا يفعل `SITE_ENV=staging`؟
 
