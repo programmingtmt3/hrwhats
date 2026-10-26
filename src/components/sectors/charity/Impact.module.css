@@ -1,0 +1,139 @@
+/* Measure & improve: heading + features beside a dark dashboard mockup. */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 60px;
+  align-items: center;
+}
+.head {
+  text-align: start;
+  margin: 0 0 28px;
+  max-width: none;
+}
+.features {
+  display: grid;
+  gap: 14px;
+}
+
+/* ---------- Dashboard ---------- */
+.dash {
+  position: relative;
+  border-radius: var(--r-lg);
+  padding: 28px;
+  color: var(--white);
+  background: radial-gradient(120% 100% at 0% 0%, var(--dark-glow) 0%, var(--dark) 45%, var(--deep) 100%);
+  box-shadow: var(--shadow-lg);
+}
+.dashHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.dashHead b {
+  font-size: 1.1rem;
+}
+.dashHead span {
+  font-size: 0.75rem;
+  color: rgb(var(--white-rgb) / 0.7);
+  border: 1px solid rgb(var(--white-rgb) / 0.2);
+  border-radius: 999px;
+  padding: 3px 12px;
+}
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.kpis li {
+  background: rgb(var(--white-rgb) / 0.06);
+  border: 1px solid rgb(var(--white-rgb) / 0.12);
+  border-radius: var(--r-sm);
+  padding: 14px 12px;
+}
+.kpis b {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: var(--neon);
+}
+.kpis span {
+  font-size: 0.78rem;
+  color: rgb(var(--white-rgb) / 0.75);
+}
+.chartTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: rgb(var(--white-rgb) / 0.85);
+}
+.bars {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.bars li {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.82rem;
+}
+.bars b {
+  text-align: end;
+  font-weight: 600;
+}
+.track {
+  height: 10px;
+  border-radius: 999px;
+  background: rgb(var(--white-rgb) / 0.1);
+  overflow: hidden;
+}
+.track i {
+  display: block;
+  height: 100%;
+  inline-size: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--neon), var(--wa));
+  transition: inline-size 1.2s var(--ease) var(--bd, 0.4s);
+}
+:global(.in-view) .track i {
+  inline-size: calc(var(--p) * 1%);
+}
+.dash figcaption {
+  text-align: end;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .head {
+    text-align: center;
+  }
+}
+@media (max-width: 600px) {
+  .dash {
+    padding: 20px;
+  }
+  .kpis {
+    gap: 8px;
+  }
+  .kpis li {
+    padding: 10px 8px;
+  }
+  .kpis b {
+    font-size: 1.2rem;
+  }
+  .kpis span {
+    font-size: 0.7rem;
+  }
+  .bars li {
+    grid-template-columns: 84px 1fr 36px;
+    gap: 8px;
+    font-size: 0.78rem;
+  }
+}

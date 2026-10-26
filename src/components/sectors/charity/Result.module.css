@@ -1,0 +1,261 @@
+/* The result: one large statement on the darkest surface + four cards that
+   show it with relative motion only (bars, arrows, a rising line — no figures).
+   Each card animates once, when its <Reveal> gets `.in-view`.
+   Decorative glow positions are physical on purpose (background only). */
+.section {
+  color: var(--white);
+  background:
+    radial-gradient(50% 60% at 50% 0%, rgb(var(--wa-rgb) / 0.18), transparent 70%),
+    var(--deep);
+}
+.copy {
+  max-width: 880px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+.eyebrow {
+  display: inline-flex;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--neon);
+  background: rgb(var(--neon-rgb) / 0.1);
+  border: 1px solid rgb(var(--neon-rgb) / 0.3);
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+.copy h2 {
+  font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+  line-height: 1.6;
+  font-weight: 700;
+  margin-top: 20px;
+}
+.highlight {
+  color: var(--neon);
+}
+
+/* ---------- Cards ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--r-lg);
+  padding: 24px;
+  background: rgb(var(--white-rgb) / 0.05);
+  border: 1px solid rgb(var(--white-rgb) / 0.12);
+}
+.ic {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgb(var(--neon-rgb) / 0.12);
+  border: 1px solid rgb(var(--neon-rgb) / 0.25);
+  color: var(--neon);
+  margin-bottom: 16px;
+}
+.ic svg {
+  width: 24px;
+  height: 24px;
+}
+.card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.visual {
+  margin-top: auto;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Shared timing: starts after the card has revealed, one step per --i. */
+.rows span,
+.columns i {
+  transition-delay: calc(0.5s + var(--i, 0) * 0.15s);
+}
+
+/* 1. Organized campaigns: tidy rows slide into place. */
+.rows {
+  display: grid;
+  gap: 12px;
+}
+.rows li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rows i {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: var(--neon);
+  box-shadow: 0 0 0 3px rgb(var(--neon-rgb) / 0.15);
+}
+.rows span {
+  height: 10px;
+  inline-size: 0;
+  border-radius: 999px;
+  background: rgb(var(--white-rgb) / 0.35);
+  transition-property: inline-size;
+  transition-duration: 0.9s;
+  transition-timing-function: var(--ease);
+}
+.card:global(.in-view) .rows span {
+  inline-size: calc(var(--w) * 1%);
+}
+
+/* 2. More effective communication: a rising engagement line.
+   Drawn toward the reading direction (mirrored in RTL). */
+.spark {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.spark:dir(rtl) {
+  transform: scaleX(-1);
+}
+.sparkLine {
+  fill: none;
+  stroke: var(--neon);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.6s var(--ease) 0.5s;
+}
+.sparkArea {
+  fill: rgb(var(--neon-rgb) / 0.12);
+  opacity: 0;
+  transition: opacity 0.8s ease 1.4s;
+}
+.card:global(.in-view) .sparkLine {
+  stroke-dashoffset: 0;
+}
+.card:global(.in-view) .sparkArea {
+  opacity: 1;
+}
+
+/* 3. Clear increase in donations: growing columns + a green up arrow. */
+.growth {
+  position: relative;
+  height: 100%;
+}
+.columns {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100%;
+}
+.columns i {
+  flex: 1;
+  height: calc(var(--h) * 1%);
+  border-radius: 6px 6px 2px 2px;
+  background: linear-gradient(to top, rgb(var(--wa-rgb) / 0.35), var(--wa));
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition-property: transform;
+  transition-duration: 0.9s;
+  transition-timing-function: var(--ease);
+}
+.card:global(.in-view) .columns i {
+  transform: scaleY(1);
+}
+.up {
+  position: absolute;
+  top: -6px;
+  inset-inline-start: 0;
+  width: 30px;
+  height: 30px;
+  color: var(--wa);
+  opacity: 0;
+  translate: 0 12px;
+  transition:
+    opacity 0.6s var(--ease) 1.3s,
+    translate 0.6s var(--ease) 1.3s;
+}
+/* Arrow points toward the reading direction. */
+.up:dir(rtl) {
+  transform: scaleX(-1);
+}
+.card:global(.in-view) .up {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* 4. Less manual effort: the manual bar shrinks while automation fills. */
+.compare {
+  display: grid;
+  gap: 14px;
+}
+.meter span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: rgb(var(--white-rgb) / 0.75);
+  margin-bottom: 6px;
+}
+.meter span svg {
+  width: 14px;
+  height: 14px;
+  color: var(--neon);
+}
+.meter b {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background: rgb(var(--white-rgb) / 0.1);
+  overflow: hidden;
+}
+.meter i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transition: inline-size 1.4s var(--ease) 0.6s;
+}
+.manual i {
+  inline-size: 90%;
+  background: rgb(var(--white-rgb) / 0.4);
+}
+.auto i {
+  inline-size: 8%;
+  background: linear-gradient(90deg, var(--neon), var(--wa));
+}
+.card:global(.in-view) .manual i {
+  inline-size: 22%;
+}
+.card:global(.in-view) .auto i {
+  inline-size: 94%;
+}
+
+/* Reduced motion: final state at once (globals.css zeroes durations, not delays). */
+@media (prefers-reduced-motion: reduce) {
+  .card * {
+    transition-delay: 0s !important;
+  }
+}
+
+@media (max-width: 1080px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding: 22px;
+  }
+}

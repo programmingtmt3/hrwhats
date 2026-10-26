@@ -145,6 +145,13 @@ export function getSectors(): Sector[] {
   return sectors;
 }
 
+/** One sector by slug. Each sector page has its own static route, so a missing slug fails the build. */
+export function getSector(slug: string): Sector {
+  const sector = sectors.find((s) => s.slug === slug);
+  if (!sector) throw new Error(`Sector "${slug}" is not in content/data/sectors.json`);
+  return sector;
+}
+
 // FAQ: answers may contain `[label](/path/)` links (see lib/inline-links.ts), never raw HTML.
 const answerText = z.string().refine(hasOnlyInternalLinks, "answer: only [label](/internal-path/) links, no HTML");
 const faqSchema = z.object({

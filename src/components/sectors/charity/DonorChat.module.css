@@ -1,0 +1,86 @@
+/* Rich WhatsApp messages (poster, receipt, project update) on top of the
+   home hero's phone/bubble styles (ChatPhone.module.css). */
+.phone {
+  height: 600px;
+}
+.av {
+  color: var(--green);
+}
+.av svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+.msg {
+  max-width: 86%;
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.ok {
+  color: var(--wa-send);
+}
+.ok svg {
+  width: 16px;
+  height: 16px;
+}
+.poster {
+  display: grid;
+  place-items: center;
+  height: 96px;
+  margin: -4px -7px 8px;
+  border-radius: 9px;
+  color: var(--white);
+  background:
+    radial-gradient(60% 80% at 80% 20%, rgb(var(--neon-rgb) / 0.35), transparent 70%),
+    linear-gradient(135deg, var(--dark), var(--green));
+}
+.poster svg {
+  width: 40px;
+  height: 40px;
+  stroke-width: 1.6;
+}
+.rows {
+  display: grid;
+  gap: 2px;
+  margin-top: 4px;
+  font-size: 0.78rem;
+}
+.rows div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px dashed var(--wa-divider);
+  padding-top: 3px;
+}
+.rows dt {
+  color: var(--wa-meta);
+}
+.rows dd {
+  font-weight: 600;
+}
+.progress {
+  display: block;
+  height: 7px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: rgb(var(--wa-rgb) / 0.16);
+  overflow: hidden;
+}
+.progress i {
+  display: block;
+  height: 100%;
+  inline-size: calc(var(--p) * 1%);
+  border-radius: inherit;
+  background: var(--wa-send);
+  animation: fill 1.2s var(--ease) 0.3s backwards;
+}
+@keyframes fill {
+  from {
+    inline-size: 0;
+  }
+}

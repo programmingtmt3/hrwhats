@@ -1,0 +1,251 @@
+/* Charity hero: warm background, campaign card with floating notifications.
+   Decorative gradient positions are physical on purpose (background only). */
+.hero {
+  position: relative;
+  padding-top: 160px;
+  padding-bottom: 110px;
+  overflow: hidden;
+  background:
+    radial-gradient(45% 55% at 12% 30%, rgb(var(--wa-rgb) / 0.14), transparent 70%),
+    radial-gradient(40% 45% at 90% 85%, rgb(var(--neon-rgb) / 0.1), transparent 70%),
+    linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 22px 0;
+}
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* ---------- Campaign card ---------- */
+.visual {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 400px);
+}
+.visual::before {
+  content: "";
+  position: absolute;
+  inset: 10% 5%;
+  background: radial-gradient(circle, rgb(var(--wa-rgb) / 0.3), transparent 65%);
+  filter: blur(40px);
+}
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-lg);
+}
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--green);
+}
+.status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--wa);
+  box-shadow: 0 0 0 4px rgb(var(--wa-rgb) / 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 7px rgb(var(--wa-rgb) / 0.08);
+  }
+}
+.poster {
+  height: 130px;
+  border-radius: var(--r);
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  background:
+    radial-gradient(60% 80% at 80% 20%, rgb(var(--neon-rgb) / 0.35), transparent 70%),
+    linear-gradient(135deg, var(--dark), var(--green));
+  margin-bottom: 16px;
+}
+.poster svg {
+  width: 52px;
+  height: 52px;
+  stroke-width: 1.6;
+}
+.name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.amount {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.amount b {
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+.bar {
+  height: 10px;
+  border-radius: 999px;
+  background: rgb(var(--wa-rgb) / 0.14);
+  margin-block: 10px 16px;
+  overflow: hidden;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  inline-size: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--wa), var(--green));
+  transition: inline-size 1.4s var(--ease) 0.5s;
+}
+:global(.in-view) .bar i {
+  inline-size: calc(var(--p) * 1%);
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  text-align: center;
+}
+.stats b {
+  display: block;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+.stats span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ---------- Floating notifications ---------- */
+.note {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgb(var(--white-rgb) / 0.94);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 10px 14px;
+  box-shadow: var(--shadow);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.note small {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.72rem;
+}
+.ic {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgb(var(--wa-rgb) / 0.14);
+  color: var(--green);
+}
+.ic svg {
+  width: 18px;
+  height: 18px;
+}
+/* Float only after the staggered entrance (`translate`, so it never fights
+   the reveal-child `transform`). */
+.n1 {
+  top: 34px;
+  inset-inline-start: -56px;
+  animation: float 5s ease-in-out infinite 1.2s;
+}
+.n2 {
+  top: 46%;
+  inset-inline-end: -64px;
+  animation: float 5.5s ease-in-out infinite 1.6s;
+}
+.n3 {
+  bottom: -22px;
+  inset-inline-start: -30px;
+  animation: float 6s ease-in-out infinite 2s;
+}
+@keyframes float {
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .n1 {
+    inset-inline-start: -30px;
+  }
+  /* Narrow two-column layout: the card sits close to the page edge. */
+  .n2 {
+    inset-inline-end: -8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .copy {
+    text-align: center;
+  }
+  .lead {
+    margin-inline: auto;
+  }
+}
+
+/* Phones: the notifications stack under the card instead of floating around it. */
+@media (max-width: 600px) {
+  .notes {
+    display: grid;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .note {
+    position: static;
+    white-space: normal;
+    animation: none;
+  }
+}

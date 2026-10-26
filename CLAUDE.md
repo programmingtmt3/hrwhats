@@ -18,7 +18,7 @@ Rebuild of **hrwhats.com**, the marketing site for HRwhats (a WhatsApp Business 
 | UI components | shadcn/ui (Radix) |
 | Icons | Design SVGs in `src/components/icons/`; lucide-react for anything new |
 | Animation | CSS + IntersectionObserver (as in the design). Motion only if a later page needs it — subtle only |
-| Content | JSON validated with Zod in `lib/content.ts`; MDX via **Velite** from the sectors phase |
+| Content | JSON validated with Zod in `lib/content.ts`; MDX via **Velite** from phase 4 (usage guide + legal pages) |
 | Images | `next-image-export-optimizer` (build-time optimization) |
 | Forms | React Hook Form + Zod (client-side only) |
 | Fonts | `next/font/google` — IBM Plex Sans Arabic (Arabic) + IBM Plex Sans (English), weights 300–700 |
@@ -118,7 +118,6 @@ Supporting colors used by the design (WhatsApp mockup, gradients) are also varia
 ```
 content/
 ├── posts/ar/*.mdx        ← blog posts (later posts/en/)
-├── sectors/ar/*.mdx      ← 10 sector landing pages
 ├── pages/ar/*.mdx        ← usage guide + legal pages
 └── data/
     ├── clients.json      ← client names + logos (+ intrinsic width/height)
@@ -135,6 +134,8 @@ content/
 - A translation of a post has the **same file name** under the other locale folder.
 - Text fields in JSON data are bilingual objects: `{ "ar": "...", "en": "..." }` (`en` may be empty until the English phase).
 - Every content type has a Zod schema in `velite.config.ts`. A missing required field must fail the build.
+- **Sector pages are custom, one design per sector** — no shared sector template and no sector MDX. Each sector has a static route folder `src/app/(ar)/<slug>/page.tsx` (thin wrapper) and its own sections in `src/components/sectors/<slug>/` (e.g. `charity/`). Shared: tokens, fonts, buttons, `SectionHeading`, header, footer, `Cta`, `Reveal`. The slug and name come from `sectors.json` via `getSector(slug)` (throws if missing); all page text lives in `messages/ar.json` under `sectors.<slug>`. Page-only images go in `public/images/sectors/<slug>/` (never mixed with the sector card image `public/images/sectors/<slug>.jpg`).
+- **Illustrative mockups** built in code (campaign cards, chats, dashboards) use generic example data from `ar.json`, carry a visible "مثال توضيحي" tag (`ExampleTag`), and never use real organization names or numbers that look like real platform statistics.
 - **Pages never read content files directly.** All access goes through `src/lib/content.ts` (`getPosts(locale)`, `getPostBySlug(locale, slug)`, `getClients()`, …). This layer is the only thing that changes if we later add a Git-based CMS (Keystatic).
 
 Post frontmatter (minimum):
@@ -156,7 +157,7 @@ cover: /images/posts/whatsapp-blue-tick.jpg
 The current site ranks on Google. **Protecting existing traffic is the top priority.**
 
 - **All new slugs are clean English.** Old Arabic/emoji slugs go into `legacySlugs` and are 301-redirected.
-- Pages, sectors and posts all live at the **site root** (`/slug/`), served by one `[slug]` route that looks up posts → sectors → pages. The build must **fail if the same slug exists in two collections**.
+- Pages, sectors and posts all live at the **site root** (`/slug/`). Posts and MDX pages are served by one `[slug]` route (posts → pages); sectors have their own static route folders. The build must **fail if the same slug exists twice** — the check (blog phase) must cover posts, MDX pages, every slug in `sectors.json` and every static route folder under `app/(ar)/` (`packages`, `contact`, `news`, sector folders, …).
 - Blog index: `/news/`, pagination: `/news/page/2/`, categories: `/category/{whatsapp|marketing|hrwhats-guide}/`.
 - Old `/index.php/...` URLs redirect to the clean URL.
 - **Redirects:** a build script generates `out/.htaccess` from all `legacySlugs` (+ the `/index.php/` rule + `ErrorDocument 404 /404.html`). Arabic legacy slugs must be matched correctly in their percent-encoded form — this must be verified by the redirect test script, not assumed.
@@ -187,6 +188,7 @@ src/
 │   │   ├── page.tsx
 │   │   ├── [slug]/page.tsx
 │   │   ├── packages/ contact/ news/ category/
+│   │   ├── charity/ …         ← one static folder per sector (slug from sectors.json)
 │   │   └── not-found.tsx
 │   ├── (en)/en/              ← English routes (English phase only — no files before then)
 │   ├── global-not-found.tsx  ← builds out/404.html (Arabic)
@@ -198,6 +200,7 @@ src/
 │   ├── layout/               ← LocaleDocument, Header(+Bar), Footer, WhatsAppFloat, BrandLogo, LanguageSwitcher
 │   ├── icons/                ← design SVG icons
 │   ├── seo/                  ← JsonLd
+│   ├── sectors/<slug>/       ← one folder per sector page (custom design)
 │   ├── sections/             ← Hero, Features, Sectors, Clients, Partners, FAQ, CTA
 │   ├── pages/                ← shared page components (HomePage, PostPage, …)
 │   └── mdx/                  ← components usable inside MDX
@@ -245,7 +248,7 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 1. **Foundation** — project setup, Tailwind + shadcn, RTL, fonts, i18n skeleton, Header/Footer.
 2. **Home page** — all sections, built section by section. Create only the data files it needs (`clients`, `partners`, `faq`, `site` JSON) and `lib/content.ts` reading them.
 3. **Packages + Contact.**
-4. **Sectors, usage guide, legal pages** — Velite + MDX setup happens here (schemas, collections), not earlier.
+4. **Sectors, usage guide, legal pages** — sectors are custom pages, one at a time (see Content architecture). Velite + MDX setup (usage guide + legal) happens here, not earlier.
 5. **Blog** — listing, pagination, categories, post page, WordPress migration.
 6. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, redirect tests, deploy.
    - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.

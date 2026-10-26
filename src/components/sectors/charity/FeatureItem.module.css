@@ -1,0 +1,41 @@
+.item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-sm);
+}
+.item h3,
+.item h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.item p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.points {
+  display: grid;
+  gap: 6px;
+  margin-block: 10px 4px;
+}
+.points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.93rem;
+  color: var(--ink);
+}
+.points svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+  padding: 3px;
+  border-radius: 50%;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.14);
+  stroke-width: 3;
+}

@@ -83,11 +83,14 @@ export function faqPageJsonLd(items: { question: string; answer: string }[]) {
   };
 }
 
-/** Inner page metadata: absolute title, description, canonical and Open Graph. */
+type OgImage = { url: string; width: number; height: number; alt: string };
+
+/** Inner page metadata: absolute title, description, canonical and Open Graph (optional page image). */
 export function getPageMetadata(
   locale: Locale,
   path: string,
   meta: { title: string; description: string },
+  image?: OgImage,
 ): Metadata {
   const dict = getDictionary(locale);
   const url = localePath(locale, path);
@@ -103,7 +106,25 @@ export function getPageMetadata(
       siteName: dict.meta.siteName,
       locale: locale === "ar" ? "ar_SA" : "en_US",
       type: "website",
+      ...(image && { images: [image] }),
     },
+  };
+}
+
+/** JSON-LD: Service offered by the organization to one audience (sector pages). */
+export function serviceJsonLd(
+  locale: Locale,
+  service: { name: string; description: string; path: string; audience: string },
+) {
+  const site = getSite();
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    description: service.description,
+    url: `${site.siteUrl}${localePath(locale, service.path)}`,
+    provider: { "@type": "Organization", name: site.name, url: `${site.siteUrl}/` },
+    audience: { "@type": "Audience", audienceType: service.audience },
   };
 }
 

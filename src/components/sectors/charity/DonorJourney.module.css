@@ -1,0 +1,160 @@
+/* Donor journey: numbered stages on a timeline + a sticky WhatsApp phone.
+   No overflow:hidden on this section or its children: it would break sticky. */
+.section {
+  background: var(--surface);
+  border-block: 1px solid var(--line);
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* ---------- Stages ---------- */
+.steps {
+  position: relative;
+  display: grid;
+}
+/* Timeline line through the markers. */
+.steps::before {
+  content: "";
+  position: absolute;
+  inset-block: 24px;
+  inset-inline-start: 23px;
+  width: 2px;
+  background: linear-gradient(to bottom, rgb(var(--wa-rgb) / 0.5), var(--line));
+}
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 24px;
+  /* Room to scroll each stage across the middle of the viewport. */
+  min-height: 62vh;
+  padding-bottom: 48px;
+}
+.step:last-child {
+  min-height: 0;
+  padding-bottom: 0;
+}
+.marker {
+  position: relative;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  color: var(--muted);
+  transition:
+    background 0.4s var(--ease),
+    border-color 0.4s var(--ease),
+    color 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+.reached .marker {
+  border-color: var(--wa);
+  color: var(--green);
+}
+.current .marker {
+  background: var(--wa);
+  color: var(--on-wa);
+  box-shadow: 0 0 0 8px rgb(var(--wa-rgb) / 0.15);
+}
+.stepLabel {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--green);
+  padding-top: 10px;
+}
+.stepBody h3 {
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 4px 0 18px;
+}
+.features {
+  display: grid;
+  gap: 14px;
+}
+
+/* ---------- Sticky phone (desktop) ---------- */
+.phoneCol {
+  align-self: stretch;
+}
+.sticky {
+  position: sticky;
+  top: calc(var(--header-h) + 32px);
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  --pw: 330px;
+}
+
+/* ---------- Inline chat (small screens) ---------- */
+.inlineChat {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  .layout {
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+  }
+  .sticky {
+    --pw: 310px;
+  }
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .phoneCol {
+    display: none;
+  }
+  .step {
+    min-height: 0;
+  }
+  .inlineChat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 12px;
+    margin-bottom: 16px;
+    border-radius: var(--r);
+    background: var(--wa-chat-bg);
+  }
+  .inlineChat > div {
+    max-width: 88%;
+  }
+  .inlineTag {
+    align-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .step {
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    padding-bottom: 36px;
+  }
+  .marker {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+  .steps::before {
+    inset-inline-start: 17px;
+    inset-block: 18px;
+  }
+  .stepLabel {
+    padding-top: 5px;
+  }
+}
