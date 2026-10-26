@@ -265,6 +265,12 @@ npm run build      # next build --webpack + image optimizer → out/ (later: vel
 npm run lint
 ```
 
+## Next.js security upgrades
+
+- **Due 2026-10-28: upgrade Next.js 16.4.0 → 16.4.1** (patch only; it fixes GHSA-673q-mjm6-r5xr, GHSA-2464-fhr4-w9xw and GHSA-p3m5-59mp-jv5r). Waiting until then so the release is at least two weeks old. The site is not affected meanwhile: all three need a running Next.js server (`use cache`, the `/_next/image` API, Server Actions), and the static export has none; `sharp` is already 0.35.5 (the fixed version). Steps: `npm ci`, staging build, check every page, separate `chore:` commit, push.
+- Upgrade policy: latest patch of the current minor (16.4.x), released at least two weeks ago — never a new major/minor without asking.
+- **"Build fails the first time, passes on retry" is intended Next.js behavior, only inside AI agents.** Next.js defaults to `experimental.agentUpgrade: "security"`: each build checks npm advisories, and when the installed version is affected and an AI agent is detected (env such as `CLAUDECODE`, `AI_AGENT`), it stops with a `SecurityFatalError` and writes a retry receipt in `.next/cache/next-agentic-upgrade-retries/` valid for 5 minutes, so the same command passes on retry. In CI (GitHub Actions, Hostinger) or a non-interactive shell it never stops the build; in a human terminal it shows a prompt. **Do not disable `agentUpgrade`** — the warning is useful. Never run the `next upgrade --agent=…` command it suggests without the developer's approval.
+
 ## Working rules for Claude
 
 - For any non-trivial task, **propose a short plan first** and wait for approval.
