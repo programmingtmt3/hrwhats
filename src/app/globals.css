@@ -48,6 +48,8 @@
   --mask-opaque: #000000; /* opaque stop for mask-image gradients */
   --cream: #fbf6ec; /* warm background (charity page) */
   --cream-rgb: 251 246 236;
+  --sun: #ffcf5c; /* drawn sun / key-card chip (tourism page) */
+  --sand: #f2e6cc; /* drawn beach and postcard paper (tourism page) */
 
   /* WhatsApp phone mockup */
   --phone-body: #0c1512;

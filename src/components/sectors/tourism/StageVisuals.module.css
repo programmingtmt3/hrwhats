@@ -1,0 +1,598 @@
+/* Stage mockups. `ARMED` below = :global(.tour-armed:not(.tour-played)), the
+   start state before a slide is first shown; the base rules are the final state. */
+
+.figure {
+  position: relative;
+  border-radius: var(--r);
+  padding: 18px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.chatBg {
+  background: var(--wa-chat-bg);
+}
+.caption {
+  margin-top: 12px;
+  text-align: end;
+}
+.bubble {
+  position: relative;
+  max-width: 92%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border-start-start-radius: 4px;
+  background: var(--white);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  box-shadow: 0 1px 1px rgb(var(--black-rgb) / 0.08);
+}
+.bubble + .bubble {
+  margin-top: 10px;
+}
+
+/* ---------- Drawn photos ---------- */
+.scene {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.scene i {
+  position: absolute;
+  display: block;
+}
+/* Sea view: sky, sun, sea, balcony rail. */
+.scene1 {
+  background: linear-gradient(180deg, rgb(var(--wa-rgb) / 0.12) 0 55%, var(--wa-teal) 55% 100%);
+}
+.scene1 i:nth-child(1) {
+  width: 34px;
+  height: 34px;
+  top: 18%;
+  inset-inline-end: 20%;
+  border-radius: 50%;
+  background: var(--sun);
+}
+.scene1 i:nth-child(2) {
+  inset-inline: 0;
+  top: 62%;
+  height: 4px;
+  background: rgb(var(--white-rgb) / 0.35);
+  box-shadow: 0 10px 0 rgb(var(--white-rgb) / 0.2);
+}
+.scene1 i:nth-child(3) {
+  inset-inline: 0;
+  bottom: 0;
+  height: 26%;
+  background: repeating-linear-gradient(90deg, var(--dark) 0 3px, transparent 3px 22px);
+  border-top: 3px solid var(--dark);
+}
+/* Suite: wall, bed, pillows, a window. */
+.scene2 {
+  background: linear-gradient(180deg, var(--sand) 0 68%, rgb(var(--dark-rgb) / 0.25) 68% 100%);
+}
+.scene2 i:nth-child(1) {
+  inset-inline: 18%;
+  bottom: 14%;
+  height: 30%;
+  border-radius: 8px 8px 4px 4px;
+  background: var(--white);
+  box-shadow: 0 -10px 0 -2px var(--green);
+}
+/* Two pillows (one symmetric element). */
+.scene2 i:nth-child(2) {
+  inset-inline: 26%;
+  bottom: 38%;
+  height: 12%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--white) 0 44%, transparent 44% 56%, var(--white) 56%);
+}
+.scene2 i:nth-child(3) {
+  top: 12%;
+  inset-inline-end: 10%;
+  width: 22%;
+  height: 34%;
+  border: 3px solid var(--white);
+  background: rgb(var(--wa-rgb) / 0.25);
+}
+/* Pool: water with ripples, an umbrella, the pool edge. */
+.scene3 {
+  background: linear-gradient(180deg, var(--sand) 0 40%, var(--wa-send) 40% 100%);
+}
+.scene3 i:nth-child(1) {
+  inset: 50% 0 0;
+  background: repeating-linear-gradient(170deg, transparent 0 10px, rgb(var(--white-rgb) / 0.3) 10px 12px);
+}
+.scene3 i:nth-child(2) {
+  top: 8%;
+  inset-inline-start: 16%;
+  width: 70px;
+  height: 34px;
+  border-radius: 70px 70px 0 0;
+  background: var(--green);
+}
+.scene3 i:nth-child(3) {
+  top: 38%;
+  inset-inline: 0;
+  height: 6px;
+  background: var(--white);
+}
+
+/* ---------- 1 Album + quick replies ---------- */
+.album {
+  position: relative;
+  height: 170px;
+  margin-top: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.photo {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.7s var(--ease);
+  transition-delay: calc(0.4s + var(--i, 0) * 1.2s);
+}
+.photoCaption {
+  position: absolute;
+  bottom: 8px;
+  inset-inline-start: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgb(var(--white-rgb) / 0.88);
+}
+:global(.tour-armed:not(.tour-played)) .photo:not(:first-child) {
+  opacity: 0;
+}
+.quick {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+  max-width: 92%;
+}
+.quick li {
+  text-align: center;
+  padding: 8px;
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--wa-link);
+  font-size: 0.84rem;
+  font-weight: 700;
+  transition:
+    opacity 0.4s var(--ease),
+    translate 0.4s var(--ease);
+  transition-delay: calc(2.9s + var(--i, 0) * 0.15s);
+}
+:global(.tour-armed:not(.tour-played)) .quick li {
+  opacity: 0;
+  translate: 0 8px;
+}
+
+/* ---------- 2 Booking ---------- */
+.step {
+  transition:
+    opacity 0.5s var(--ease),
+    translate 0.5s var(--ease);
+  transition-delay: calc(0.3s + var(--i, 0) * 0.8s);
+}
+:global(.tour-armed:not(.tour-played)) .step {
+  opacity: 0;
+  translate: 0 10px;
+}
+.link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.link > svg {
+  width: 20px;
+  height: 20px;
+  color: var(--wa-link);
+}
+.link span {
+  display: grid;
+  line-height: 1.45;
+}
+.link small {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.stamp {
+  position: absolute;
+  top: 8px;
+  inset-inline-end: -10px;
+  padding: 4px 12px;
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  color: var(--green);
+  font-weight: 800;
+  font-size: 0.82rem;
+  background: rgb(var(--white-rgb) / 0.85);
+  rotate: -10deg;
+  transition:
+    scale 0.45s cubic-bezier(0.3, 1.6, 0.5, 1),
+    opacity 0.3s ease;
+  transition-delay: 1.2s;
+}
+:global(.tour-armed:not(.tour-played)) .stamp {
+  scale: 1.8;
+  opacity: 0;
+}
+.reminderTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--wa-teal);
+}
+.reminderTitle svg {
+  width: 17px;
+  height: 17px;
+}
+.countdown {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--on-wa);
+  background: var(--wa);
+}
+
+/* ---------- 3 Door hanger ---------- */
+.sent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+.sent svg {
+  width: 16px;
+  height: 16px;
+}
+.hanger {
+  position: relative;
+  max-width: 340px;
+  margin-inline: auto;
+  padding: 74px 18px 20px;
+  border-radius: 26px 26px 14px 14px;
+  background: linear-gradient(180deg, var(--dark), var(--deep));
+  color: var(--white);
+  box-shadow: var(--shadow-lg);
+  /* The hole for the door handle (centered). */
+  mask-image: radial-gradient(circle at 50% 36px, transparent 21px, var(--mask-opaque) 22px);
+}
+.hangerTitle {
+  display: block;
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+  color: var(--neon);
+}
+.hanger ul {
+  display: grid;
+  gap: 10px;
+}
+.hanger li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgb(var(--white-rgb) / 0.07);
+}
+.hanger li > svg {
+  width: 20px;
+  height: 20px;
+  color: var(--neon);
+}
+.request {
+  display: grid;
+  line-height: 1.45;
+  font-size: 0.84rem;
+}
+.request small {
+  font-size: 0.74rem;
+  color: rgb(var(--white-rgb) / 0.65);
+}
+.status {
+  display: grid;
+  justify-items: end;
+}
+.status em {
+  grid-area: 1 / 1;
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  color: var(--white);
+  background: rgb(var(--white-rgb) / 0.14);
+  opacity: 0;
+}
+.status .final {
+  opacity: 1;
+  color: var(--on-wa);
+  background: var(--wa);
+  transition: opacity 0.4s ease;
+  transition-delay: calc(0.4s + var(--i, 0) * 0.8s);
+}
+:global(.tour-armed:not(.tour-played)) .status .final {
+  opacity: 0;
+}
+/* Earlier statuses blink in and out once, in turn, before the final one. */
+:global(.tour-played) .status em:not(.final) {
+  animation: blip 0.8s ease both;
+  animation-delay: calc(0.4s + var(--i, 0) * 0.8s);
+}
+@keyframes blip {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+}
+
+/* ---------- 4 Rating + postcard ---------- */
+.rating {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: 14px;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  margin-bottom: 16px;
+}
+.stars {
+  display: flex;
+  gap: 6px;
+}
+.stars svg {
+  width: 28px;
+  height: 28px;
+  color: var(--sun);
+  fill: var(--sun);
+  transition:
+    scale 0.35s cubic-bezier(0.3, 1.6, 0.5, 1),
+    color 0.3s,
+    fill 0.3s;
+  transition-delay: calc(0.4s + var(--i, 0) * 0.2s);
+}
+:global(.tour-armed:not(.tour-played)) .stars svg {
+  color: var(--line);
+  fill: transparent;
+  scale: 0.7;
+}
+.ratingReply {
+  font-size: 0.82rem;
+  color: var(--muted);
+  transition: opacity 0.4s ease 1.6s;
+}
+:global(.tour-armed:not(.tour-played)) .ratingReply {
+  opacity: 0;
+}
+.postcard {
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 6px;
+  background: var(--sand);
+  box-shadow: var(--shadow);
+  rotate: -1.5deg;
+  transition:
+    opacity 0.6s var(--ease),
+    translate 0.6s var(--ease);
+  transition-delay: 1.9s;
+}
+:global(.tour-armed:not(.tour-played)) .postcard {
+  opacity: 0;
+  translate: 0 16px;
+}
+.postText {
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+.offer {
+  margin-block: 6px 4px;
+  font-weight: 800;
+  color: var(--green);
+}
+.postSide {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  justify-items: end;
+  border-inline-start: 1px solid rgb(var(--dark-rgb) / 0.2);
+  padding-inline-start: 12px;
+}
+/* Stamp with perforated (scalloped) edges. */
+.postStamp {
+  display: block;
+  width: 64px;
+  height: 76px;
+  padding: 5px;
+  background: var(--white);
+  mask-image: radial-gradient(circle at 3px 3px, transparent 2.6px, var(--mask-opaque) 3px);
+  mask-size: 8px 8px;
+  mask-position: -1px -1px;
+}
+/* Round postmark over the stamp's corner. */
+.postmark {
+  position: absolute;
+  top: 40px;
+  inset-inline-end: 46px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgb(var(--dark-rgb) / 0.45);
+  background: repeating-linear-gradient(0deg, transparent 0 7px, rgb(var(--dark-rgb) / 0.3) 7px 9px);
+  rotate: -14deg;
+}
+.address {
+  font-size: 0.76rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgb(var(--dark-rgb) / 0.35);
+  padding-bottom: 2px;
+}
+
+/* ---------- 5 Key rack + report board ---------- */
+.backstage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.rack,
+.board {
+  border-radius: var(--r-sm);
+  padding: 14px;
+}
+.rack {
+  background: linear-gradient(180deg, var(--sand), rgb(var(--dark-rgb) / 0.1));
+  border: 1px solid var(--line);
+}
+.rackTitle,
+.boardTitle {
+  display: block;
+  font-size: 0.86rem;
+  margin-bottom: 10px;
+}
+.slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.slotCol {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 6px;
+  padding: 8px 4px;
+  border-radius: 8px;
+  background: rgb(var(--white-rgb) / 0.65);
+  box-shadow: inset 0 2px 6px rgb(var(--black-rgb) / 0.08);
+}
+.hook {
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+.slotCol ul {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+}
+/* Key tags hanging from a hook. */
+.slotCol li {
+  position: relative;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.4;
+  padding: 10px 4px 5px;
+  border-radius: 4px 4px 10px 10px;
+  color: var(--white);
+  background: var(--green);
+  transition:
+    opacity 0.4s var(--ease),
+    translate 0.4s var(--ease);
+  transition-delay: calc(0.4s + var(--i, 0) * 0.3s);
+}
+.slotCol li::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(var(--white-rgb) / 0.85);
+}
+:global(.tour-armed:not(.tour-played)) .slotCol li {
+  opacity: 0;
+  translate: 0 -14px;
+}
+.board {
+  background: var(--deep);
+  color: var(--white);
+}
+.boardTitle {
+  color: var(--neon);
+}
+.board ul {
+  display: grid;
+  gap: 6px;
+}
+.board li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  padding: 6px 0;
+  border-bottom: 1px solid rgb(var(--white-rgb) / 0.1);
+}
+/* Split-flap cell: flips down into place once. */
+.flap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--neon);
+  background: rgb(var(--white-rgb) / 0.08);
+  transform-origin: top;
+  transition: rotate 0.45s var(--ease);
+  transition-delay: calc(0.4s + var(--i, 0) * 0.3s);
+}
+.flap svg {
+  width: 13px;
+  height: 13px;
+}
+:global(.tour-armed:not(.tour-played)) .flap {
+  rotate: x 90deg;
+}
+
+@media (max-width: 600px) {
+  .figure {
+    padding: 14px 12px;
+  }
+  .album {
+    height: 140px;
+  }
+  .postcard {
+    grid-template-columns: 1fr 86px;
+    padding: 12px;
+  }
+  .postStamp {
+    width: 52px;
+    height: 62px;
+  }
+  .postmark {
+    inset-inline-end: 34px;
+  }
+  .backstage {
+    grid-template-columns: 1fr;
+  }
+}

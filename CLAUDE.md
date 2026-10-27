@@ -139,6 +139,19 @@ content/
 - Shared sector building blocks live in `src/components/sectors/shared/` (`ExampleTag`, `FeatureItem` — `plain` variant for section-level text). A sector page may replace the site-wide `<Cta>` with its own closing panel when its closing text already is the call to action (e.g. real-estate).
 - **Pages never read content files directly.** All access goes through `src/lib/content.ts` (`getPosts(locale)`, `getPostBySlug(locale, slug)`, `getClients()`, …). This layer is the only thing that changes if we later add a Git-based CMS (Keystatic).
 
+### Sector page ideas already used
+
+Each sector page must look and behave differently. **Before proposing a new sector page, check this list and reuse none of it; add the new page here when it ships.**
+
+| Page | Visual theme | Signature elements | Interaction / motion |
+|---|---|---|---|
+| `charity` | Warm cream background, "impact" | Campaign card with a progress bar + floating glass notifications; bento with an inbox mockup; WhatsApp phone; dark campaign dashboard (KPIs + bars); result as 4 animated cards (rows, rising line, growing columns, shrinking vs filling bars) | **Sticky phone** while the donor-journey stages scroll past (timeline with numbered markers); spotlight hover on bento cards |
+| `real-estate-contracting` | **Blueprint** grid paper (light + dark), drawing sheets with corner marks | WhatsApp-Web window with a property card + building line drawing; inquiry routing list; WhatsApp list message; campaign composer; **Kanban** pipeline; sales-team dots + bars; **conversion funnel**; dark closing panel with a **Saudi landmarks skyline** | Stage index (anchor links) + **alternating numbered sheets** on a dashed path; Kanban cards slide between columns |
+| `education-training` | **Ruled notebook paper** with a margin line | One floating WhatsApp message with a course card; **taped sticky notes**; inquiry folders; self-filling registration form (typing); **monthly calendar**; **attendance sheet**; admission team trays; **report rings**; **graduation certificate** closing with a seal | **WAI-ARIA tabs** (binder-divider tabs; on phones a strip scrolling inside itself); each tab plays its mockup once |
+| `tourism-hospitality` | **Dot-matrix world map** (one SVG mask, Saudi Arabia highlighted, pulse on Riyadh, flight lines to 4 continents) behind the hero, then plain; travel objects | **Boarding-pass** booking confirmation + **room key card** + dotted flight path with a plane; drawn room-photo album; booking stamp + arrival reminder; **door hanger** with request statuses; star rating + **postcard with stamp and postmark**; reception **key rack**; **departures (split-flap) board**; **luggage tag** closing with a strap | **Carousel** (scroll-snap track, swipe, prev/next, route stops, arrow keys) with a **suitcase moving along a dotted route**; each slide plays once |
+
+Closing sections: charity uses the site-wide `<Cta>`; the others use their own closing panel instead (dark blueprint panel, certificate, luggage tag).
+
 Post frontmatter (minimum):
 
 ```yaml

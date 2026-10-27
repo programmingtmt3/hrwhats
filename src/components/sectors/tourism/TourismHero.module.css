@@ -1,0 +1,271 @@
+/* Tourism hero: a booking confirmation shaped like a boarding pass, a room key
+   card behind it, and a dotted flight path drawn once. */
+.hero {
+  position: relative;
+  padding-top: 160px;
+  padding-bottom: 110px;
+  overflow: hidden;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
+  line-height: 1.38;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 22px 0;
+}
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.visual {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 440px);
+  padding-top: 70px;
+}
+
+/* ---------- Flight path ---------- */
+.flight {
+  position: absolute;
+  top: 0;
+  inset-inline: -20px;
+  height: 120px;
+}
+.flight svg {
+  width: 100%;
+  height: 100%;
+}
+/* Drawn for LTR; mirrored so the plane flies in the reading direction. */
+.flight svg:dir(rtl) {
+  scale: -1 1;
+}
+.flight path {
+  stroke: rgb(var(--green-rgb) / 0.55);
+  stroke-width: 2;
+  stroke-dasharray: 2 8;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.6s var(--ease) 0.5s;
+}
+:global(.in-view) .flight path {
+  clip-path: inset(0);
+}
+.plane {
+  position: absolute;
+  top: 18px;
+  inset-inline-end: -6px;
+  width: 26px;
+  height: 26px;
+  color: var(--green);
+  rotate: 20deg;
+  opacity: 0;
+  transition: opacity 0.4s ease 1.9s;
+}
+.plane:dir(rtl) {
+  scale: -1 1;
+  rotate: -20deg;
+}
+:global(.in-view) .plane {
+  opacity: 1;
+}
+
+/* ---------- Room key card ---------- */
+.keyCard {
+  position: absolute;
+  top: 40px;
+  inset-inline-end: -26px;
+  width: 190px;
+  height: 120px;
+  padding: 16px;
+  border-radius: 14px;
+  color: var(--white);
+  background:
+    radial-gradient(80% 80% at 90% 10%, rgb(var(--neon-rgb) / 0.35), transparent 60%),
+    linear-gradient(135deg, var(--dark), var(--deep));
+  box-shadow: var(--shadow-lg);
+  rotate: 9deg;
+  display: grid;
+  align-content: space-between;
+}
+.chip {
+  width: 34px;
+  height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--sun), rgb(var(--white-rgb) / 0.6));
+}
+.keyCard svg {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+  width: 22px;
+  height: 22px;
+  opacity: 0.8;
+}
+.keyCard b {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Message + boarding-pass ticket ---------- */
+.message {
+  position: relative;
+  z-index: 1;
+  padding: 12px 12px 0;
+  border-radius: 18px;
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+}
+.ticket {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 112px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+/* Notches at both ends of the perforation (cut out with the bubble color). */
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 101px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+.ticket::before {
+  top: -12px;
+}
+.ticket::after {
+  bottom: -12px;
+}
+.main {
+  padding: 14px 16px;
+}
+.heading {
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+}
+.fields div:first-child {
+  grid-column: 1 / -1;
+}
+.fields dt {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.fields dd {
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+/* The stub, behind a perforated line. */
+.stub {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 2px;
+  padding: 14px 10px;
+  border-inline-start: 2px dashed var(--line);
+  text-align: center;
+}
+.stub span {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.stub b {
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+.barcode {
+  width: 80px;
+  margin-top: 8px;
+  color: var(--ink);
+}
+.button {
+  display: block;
+  margin-top: 10px;
+  padding: 11px 0;
+  text-align: center;
+  font-weight: 700;
+  color: var(--wa-link);
+  border-top: 1px solid var(--wa-divider);
+}
+.tag {
+  position: absolute;
+  bottom: -32px;
+  inset-inline-start: 0;
+}
+
+@media (max-width: 1080px) {
+  .keyCard {
+    inset-inline-end: -8px;
+  }
+  .flight {
+    inset-inline: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .copy {
+    text-align: center;
+  }
+  .lead {
+    margin-inline: auto;
+  }
+}
+
+/* Phones: the stub moves under the ticket (horizontal perforation). */
+@media (max-width: 600px) {
+  .keyCard {
+    width: 150px;
+    height: 96px;
+    top: 52px;
+    inset-inline-end: 0;
+  }
+  .ticket {
+    grid-template-columns: 1fr;
+  }
+  /* No notches: the perforation runs across the ticket here. */
+  .ticket::before,
+  .ticket::after {
+    display: none;
+  }
+  .stub {
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    justify-items: start;
+    gap: 4px 10px;
+    border-inline-start: 0;
+    border-top: 2px dashed var(--line);
+    text-align: start;
+  }
+  .barcode {
+    justify-self: end;
+    margin-top: 0;
+    width: 90px;
+  }
+}

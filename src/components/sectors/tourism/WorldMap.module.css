@@ -1,0 +1,129 @@
+/* World map stage: the map sits behind the hero and the start of the journey
+   section, then fades out. Positions here are geographic, so they use
+   physical `left` on purpose (the map is never mirrored in RTL). */
+.stage {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+.fade {
+  position: absolute;
+  z-index: -1;
+  inset-inline: 0;
+  top: 0;
+  height: 1100px;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, var(--mask-opaque) 0 52%, transparent 88%);
+}
+/* Desktop: the world a little wider than the page, shifted so Saudi Arabia
+   (x = 113.35 / 180 of the map) falls in the gap between the hero text and
+   the ticket (~49% of the page), not under the heading. */
+.map {
+  position: absolute;
+  top: 70px;
+  left: calc(49% - 125% * 113.35 / 180);
+  width: 125%;
+  aspect-ratio: 180 / 68;
+}
+.dots {
+  position: absolute;
+  inset: 0;
+  /* World dots carry 55% alpha in the mask → ≈ .14; Saudi Arabia → .26. */
+  background-color: rgb(var(--green-rgb) / 0.26);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Flight lines: dashed like the hero's flight path, drawn once on load
+   (a solid stroke in the mask grows along each line). */
+.route {
+  fill: none;
+  stroke: rgb(var(--green-rgb) / 0.38);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 6;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.reveal {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 3;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 2.2s var(--ease) forwards;
+  animation-delay: calc(0.8s + var(--i, 0) * 0.4s);
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.city {
+  fill: var(--green);
+  opacity: 0;
+  animation: appear 0.5s ease forwards;
+  animation-delay: calc(2.6s + var(--i, 0) * 0.4s);
+}
+@keyframes appear {
+  to {
+    opacity: 0.7;
+  }
+}
+
+/* Saudi Arabia: a soft pulse on Riyadh. */
+.home {
+  fill: var(--green);
+  opacity: 0.75;
+}
+.ping {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 0.3;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ping 2.4s ease-out infinite;
+}
+@keyframes ping {
+  from {
+    scale: 1;
+    opacity: 0.7;
+  }
+  to {
+    scale: 4;
+    opacity: 0;
+  }
+}
+
+/* Phones: zoomed on the Middle East (Riyadh near the center), lighter. */
+@media (max-width: 600px) {
+  .fade {
+    height: 760px;
+    opacity: 0.7;
+  }
+  .map {
+    top: 64px;
+    width: 330%;
+    /* Riyadh is at x = 113.35 / 180 of the map's width. */
+    left: calc(50% - 330% * 113.35 / 180);
+  }
+}
+
+/* Reduced motion: no pulse, lines and cities shown at once. */
+@media (prefers-reduced-motion: reduce) {
+  .ping {
+    display: none;
+  }
+  .reveal {
+    stroke-dashoffset: 0;
+  }
+  .city {
+    opacity: 0.7;
+  }
+}

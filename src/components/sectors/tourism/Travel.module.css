@@ -1,0 +1,27 @@
+/* Shared travel surfaces for the tourism page. */
+
+/* A small WhatsApp sender line above a message card. */
+.sender {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+.sender b {
+  font-weight: 700;
+  color: var(--wa-teal);
+}
+.sender time {
+  margin-inline-start: auto;
+  font-size: 0.7rem;
+  color: var(--wa-meta);
+}
+.auto {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 999px;
+  color: var(--wa-send);
+  background: rgb(var(--wa-rgb) / 0.12);
+}

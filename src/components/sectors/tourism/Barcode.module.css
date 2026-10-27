@@ -1,0 +1,12 @@
+.barcode {
+  display: flex;
+  gap: 2px;
+  height: 36px;
+}
+.barcode i {
+  flex-basis: 0;
+  background: currentColor;
+}
+.barcode i:nth-child(even) {
+  opacity: 0;
+}
