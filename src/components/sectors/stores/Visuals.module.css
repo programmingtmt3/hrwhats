@@ -1,0 +1,590 @@
+/* Service mockups for the stores page. Motion runs once, when the parent
+   .reveal gets .in-view; hidden-before states only apply while waiting. */
+
+.card {
+  padding: 18px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+}
+
+/* ---------- 01 Inquiry filters ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.filter {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--dark);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+.filter:hover {
+  border-color: rgb(var(--wa-rgb) / 0.6);
+}
+.filter[aria-pressed="true"] {
+  color: var(--white);
+  background: var(--green);
+  border-color: var(--green);
+}
+.filter:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+.inbox {
+  display: grid;
+  gap: 8px;
+  min-height: 236px;
+  align-content: start;
+}
+.chat {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  background: var(--bg);
+  animation: chatIn 0.3s var(--ease);
+}
+@keyframes chatIn {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.14);
+}
+.chatText {
+  display: grid;
+  min-width: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.chatText b {
+  color: var(--ink);
+}
+.chatTag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.12);
+  white-space: nowrap;
+}
+.showing {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ---------- 02 Bot suggestion ---------- */
+.chatCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  max-width: 88%;
+  padding: 8px 11px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  box-shadow: 0 1px 1px rgb(var(--black-rgb) / 0.08);
+}
+/* The store's inbox view: the customer writes in, the bot answers out. */
+.in {
+  align-self: flex-start;
+  background: var(--white);
+}
+.out {
+  align-self: flex-end;
+  background: var(--wa-bubble-out);
+}
+.bot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--wa-send);
+}
+.bot svg {
+  width: 13px;
+  height: 13px;
+}
+.options {
+  display: grid;
+  gap: 4px;
+  margin-top: 6px;
+}
+.options span {
+  text-align: center;
+  padding: 5px;
+  border-radius: 8px;
+  background: rgb(var(--white-rgb) / 0.7);
+  color: var(--wa-link);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.options .picked {
+  color: var(--white);
+  background: var(--wa-send);
+}
+.suggested {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 10px;
+  background: var(--white);
+}
+.suggestedArt {
+  width: 64px;
+}
+.suggested span {
+  display: grid;
+  line-height: 1.45;
+}
+.suggested small {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.price {
+  color: var(--green);
+}
+.view {
+  display: block;
+  margin-top: 6px;
+  padding-top: 6px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--wa-link);
+  border-top: 1px solid var(--wa-divider);
+}
+
+/* ---------- 03 Printed invoice ---------- */
+.printer {
+  position: relative;
+  max-width: 380px;
+  margin-inline: auto;
+}
+.slot {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  height: 44px;
+  border-radius: 14px;
+  color: rgb(var(--white-rgb) / 0.8);
+  background: linear-gradient(180deg, var(--dark), var(--deep));
+  box-shadow: var(--shadow);
+}
+.slot svg {
+  width: 20px;
+  height: 20px;
+}
+/* The paper comes out of the slot: clipped at the top, slides down once. */
+.paperClip {
+  margin-inline: 18px;
+  margin-top: -8px;
+  padding-bottom: 12px;
+  overflow: hidden;
+}
+.invoice {
+  --paper: var(--surface);
+  padding: 22px 18px 16px;
+  background: var(--paper);
+  box-shadow: 0 6px 18px -8px rgb(var(--deep-rgb) / 0.3);
+  font-size: 0.86rem;
+  transition: translate 1.6s var(--ease) 0.3s;
+}
+:global(.reveal:not(.in-view)) .invoice {
+  translate: 0 -100%;
+}
+.invoiceHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.muted {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.total {
+  font-weight: 800;
+  color: var(--dark);
+}
+.stamp {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 4px 12px;
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  color: var(--green);
+  font-weight: 800;
+  font-size: 0.82rem;
+  rotate: -6deg;
+  transition:
+    scale 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) 2.6s,
+    opacity 0.3s ease 2.6s;
+}
+:global(.reveal:not(.in-view)) .stamp {
+  scale: 1.8;
+  opacity: 0;
+}
+
+/* ---------- 05 Compare slider ---------- */
+.compareCard {
+  padding: 18px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.compareLabels {
+  display: flex;
+  gap: 18px;
+  font-size: 0.82rem;
+}
+.compareLabels b:first-child {
+  color: var(--muted);
+}
+.compareLabels b:last-child {
+  color: var(--green);
+}
+.compareMeta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+}
+.dragHint {
+  font-size: 0.74rem;
+  color: var(--muted);
+  transition:
+    opacity 0.5s var(--ease),
+    visibility 0s;
+}
+.dragHintGone {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s var(--ease),
+    visibility 0s 0.5s;
+}
+/* Both panes share one grid cell (same height); each lays its chats out in
+   its own half, clear of the handle, so both are complete at rest. */
+.compare {
+  --v: 50;
+  --clear: 26px;
+  position: relative;
+  display: grid;
+  border-radius: 12px;
+  overflow: hidden;
+  /* Horizontal drags move the handle; vertical drags still scroll the page. */
+  touch-action: pan-y;
+  user-select: none;
+  cursor: ew-resize;
+}
+.after,
+.before {
+  grid-area: 1 / 1;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 14px;
+}
+.after {
+  padding-inline-start: calc(50% + var(--clear));
+  background: rgb(var(--wa-rgb) / 0.08);
+}
+.after li,
+.before li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: var(--white);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.after li > span,
+.before li > span {
+  flex-basis: 100%;
+}
+.after li {
+  box-shadow: var(--shadow-sm);
+}
+.after em {
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 999px;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.12);
+}
+.after small {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.7rem;
+  color: var(--wa-send);
+}
+.after small svg {
+  width: 12px;
+  height: 12px;
+}
+/* "Before" covers the start side up to the handle. */
+.before {
+  padding-inline-end: calc(50% + var(--clear));
+  background: var(--bg);
+  clip-path: inset(0 0 0 calc((100 - var(--v)) * 1%));
+}
+.before:dir(ltr) {
+  clip-path: inset(0 calc((100 - var(--v)) * 1%) 0 0);
+}
+.before li {
+  rotate: calc((var(--i, 0) - 2) * 1.4deg);
+  translate: calc((var(--i, 0) - 2) * 3px) 0;
+}
+.before small {
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--muted);
+}
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: calc(var(--v) * 1%);
+  width: 3px;
+  margin-inline-start: -1.5px;
+  background: var(--green);
+  cursor: ew-resize;
+}
+.handle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--green);
+  box-shadow: var(--shadow);
+}
+.handle svg {
+  width: 20px;
+  height: 20px;
+}
+.handle:focus-visible {
+  outline: none;
+}
+.handle:focus-visible span {
+  outline: 3px solid rgb(var(--wa-rgb) / 0.5);
+  outline-offset: 2px;
+}
+
+/* ---------- 05 Tracking ---------- */
+.tracking {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.trackingTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  margin-bottom: 10px;
+}
+.trackingTitle svg {
+  width: 20px;
+  height: 20px;
+  color: var(--green);
+}
+.tracking ol {
+  display: grid;
+  gap: 10px;
+  position: relative;
+}
+/* The rail joining the ticks. */
+.tracking ol::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 11px;
+  top: 12px;
+  bottom: 12px;
+  border-inline-start: 2px dashed rgb(var(--green-rgb) / 0.35);
+}
+.tracking li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+.tick {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--wa-send);
+}
+.tick svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 3;
+}
+
+/* ---------- 06 Heatmap ---------- */
+/* Header row (empty corner + time slots), then one row per day. */
+.heat {
+  display: grid;
+  grid-template-columns: 64px repeat(var(--cols), 1fr);
+  gap: 4px;
+  align-items: center;
+}
+.slotName {
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.heatRow {
+  display: contents;
+}
+.day {
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+.heatRow i {
+  height: 26px;
+  border-radius: 6px;
+}
+.l0 {
+  background: rgb(var(--wa-rgb) / 0.08);
+}
+.l1 {
+  background: rgb(var(--wa-rgb) / 0.25);
+}
+.l2 {
+  background: rgb(var(--wa-rgb) / 0.5);
+}
+.l3 {
+  background: var(--wa-send);
+}
+.l4 {
+  background: var(--dark);
+}
+.legend {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.legend span {
+  display: flex;
+  gap: 3px;
+}
+.legend i {
+  width: 16px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+  .card,
+  .compareCard {
+    padding: 14px 12px;
+  }
+  .cardHead {
+    flex-wrap: wrap;
+  }
+  .heat {
+    grid-template-columns: 48px repeat(var(--cols), 1fr);
+    gap: 3px;
+  }
+  .heatRow i {
+    height: 22px;
+  }
+  .compare {
+    --clear: 22px;
+  }
+  .after,
+  .before {
+    padding-block: 12px;
+    padding-inline: 10px;
+  }
+  .after {
+    padding-inline-start: calc(50% + var(--clear));
+  }
+  .before {
+    padding-inline-end: calc(50% + var(--clear));
+  }
+  .after li,
+  .before li {
+    padding: 6px 8px;
+    font-size: 0.78rem;
+  }
+  /* Narrow half: keep the tilt, drop the sideways shift so chats stay clear of the handle. */
+  .before li {
+    translate: none;
+  }
+}

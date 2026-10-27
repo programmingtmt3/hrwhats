@@ -64,3 +64,42 @@
 .item.plain .points li {
   font-size: 0.98rem;
 }
+
+/* Inline points: one centered row; 2×2 on tablets and phones. */
+.item .points.inline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 26px;
+}
+@media (max-width: 900px) {
+  .item .points.inline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    justify-content: center;
+    gap: 12px 24px;
+    text-align: start;
+  }
+}
+@media (max-width: 600px) {
+  .item .points.inline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 14px;
+  }
+}
+
+/* Inverse variant: light text on dark backgrounds. */
+.item.inverse h3,
+.item.inverse h4 {
+  color: var(--white);
+}
+.item.inverse p {
+  color: rgb(var(--white-rgb) / 0.78);
+}
+.item.inverse .points li {
+  color: rgb(var(--white-rgb) / 0.9);
+}
+.item.inverse .points svg {
+  color: var(--neon);
+  background: rgb(var(--neon-rgb) / 0.14);
+}

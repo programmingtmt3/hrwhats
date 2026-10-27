@@ -1,0 +1,34 @@
+/* Receipt paper: zigzag (torn-receipt) edges drawn with gradients in the
+   paper's own color, so they work on any background. Set --paper to match. */
+.zigzagBottom,
+.zigzagTop {
+  position: relative;
+  --paper: var(--surface);
+  --tooth: 12px;
+}
+.zigzagBottom::after,
+.zigzagTop::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: calc(var(--tooth) / 2);
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, var(--paper) 25%, transparent 25%) calc(var(--tooth) / -2) 0,
+    linear-gradient(225deg, var(--paper) 25%, transparent 25%) calc(var(--tooth) / -2) 0;
+  background-size: var(--tooth) var(--tooth);
+}
+.zigzagBottom::after {
+  top: 100%;
+}
+.zigzagTop::before {
+  bottom: 100%;
+  scale: 1 -1;
+}
+
+/* A dotted rule between receipt lines. */
+.rule {
+  border: 0;
+  border-top: 2px dotted var(--line);
+  margin-block: 14px;
+}

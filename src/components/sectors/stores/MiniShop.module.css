@@ -1,0 +1,242 @@
+/* Interactive WhatsApp catalog (hero). */
+.shop {
+  position: relative;
+  padding: 16px;
+  border-radius: var(--r-lg);
+  background: var(--wa-chat-bg);
+  box-shadow: var(--shadow-lg);
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.hint {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--wa-teal);
+}
+.message {
+  padding: 10px 12px 12px;
+  border-radius: 14px;
+  border-start-start-radius: 4px;
+  background: var(--white);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  box-shadow: 0 1px 1px rgb(var(--black-rgb) / 0.08);
+}
+.sender {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+.sender b {
+  color: var(--wa-teal);
+}
+.sender time {
+  font-size: 0.7rem;
+  color: var(--wa-meta);
+}
+
+/* Products */
+.products {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+.products li {
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+.art {
+  width: 58px;
+}
+.info {
+  display: grid;
+  line-height: 1.45;
+}
+.info span {
+  font-weight: 700;
+  color: var(--green);
+}
+.info small {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.add,
+.checkout,
+.restart {
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 0;
+  transition:
+    background 0.2s,
+    translate 0.2s var(--ease),
+    opacity 0.2s;
+}
+.add {
+  padding: 7px 14px;
+  font-size: 0.8rem;
+  color: var(--white);
+  background: var(--wa-send);
+}
+.add:hover:not(:disabled) {
+  translate: 0 -2px;
+}
+.add:disabled,
+.checkout:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.add:focus-visible,
+.checkout:focus-visible,
+.restart:focus-visible,
+.confirmTitle:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* Cart bar */
+.cartBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+.cart svg {
+  width: 22px;
+  height: 22px;
+}
+.badge {
+  min-width: 24px;
+  height: 24px;
+  padding-inline: 6px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--white);
+  background: var(--muted);
+}
+.bump {
+  background: var(--green);
+  animation: bump 0.4s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+@keyframes bump {
+  from {
+    scale: 1.5;
+  }
+}
+.checkout {
+  padding: 10px 20px;
+  font-size: 0.88rem;
+  color: var(--on-wa);
+  background: linear-gradient(135deg, var(--wa), var(--wa-alt));
+}
+
+/* Confirmation */
+.confirm {
+  position: relative;
+  margin-top: 12px;
+  animation: pop 0.4s var(--ease);
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+}
+.confirmTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--wa-send);
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+.invoice {
+  --paper: var(--bg);
+  padding: 12px 14px 10px;
+  margin-bottom: 14px;
+  background: var(--bg);
+  border-radius: 8px 8px 0 0;
+  font-size: 0.84rem;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.row small {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.total {
+  font-weight: 800;
+  color: var(--dark);
+}
+.delivery {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.read {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 12px;
+  color: var(--wa-link);
+}
+.read svg {
+  width: 16px;
+  height: 16px;
+}
+.restart {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 7px 14px;
+  font-size: 0.8rem;
+  color: var(--dark);
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.restart svg {
+  width: 15px;
+  height: 15px;
+}
+
+@media (max-width: 600px) {
+  .shop {
+    padding: 12px;
+  }
+  .products li {
+    grid-template-columns: 50px 1fr auto;
+    gap: 10px;
+  }
+  .art {
+    width: 50px;
+  }
+  .add {
+    padding: 7px 11px;
+  }
+}

@@ -10,14 +10,11 @@ import { Services } from "./Services";
 /** Slug + name come from content/data/sectors.json; the route folder must match it. */
 const SLUG = "education-training";
 
-/** Open Graph only — never shown on the page. */
-const OG_IMAGE = { url: "/images/sectors/education-training/og.jpg", width: 1600, height: 648 };
-
 const sectorPath = () => `/${getSector(SLUG).slug}/`;
 
+/** No page image: inherits the site-wide Open Graph image (launch phase). */
 export function educationMetadata(locale: Locale) {
-  const { meta } = getDictionary(locale).sectors.education;
-  return getPageMetadata(locale, sectorPath(), meta, { ...OG_IMAGE, alt: meta.ogImageAlt });
+  return getPageMetadata(locale, sectorPath(), getDictionary(locale).sectors.education.meta);
 }
 
 export function EducationPage({ locale }: { locale: Locale }) {

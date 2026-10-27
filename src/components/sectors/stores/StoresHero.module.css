@@ -1,0 +1,47 @@
+/* Stores hero: white "receipt" band with a zigzag bottom edge. */
+.hero {
+  --paper: var(--surface);
+  padding-top: 160px;
+  padding-bottom: 110px;
+  background:
+    radial-gradient(40% 50% at 12% 30%, rgb(var(--wa-rgb) / 0.1), transparent 70%),
+    var(--surface);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
+  line-height: 1.38;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 22px 0;
+}
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+.visual {
+  justify-self: center;
+  width: min(100%, 440px);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .copy {
+    text-align: center;
+  }
+  .lead {
+    margin-inline: auto;
+  }
+}

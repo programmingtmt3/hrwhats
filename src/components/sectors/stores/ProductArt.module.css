@@ -1,0 +1,97 @@
+/* Products drawn with CSS (headphones, smart watch, backpack). Shapes are
+   symmetric or centered on purpose, so they read the same in RTL and LTR. */
+.art {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background:
+    radial-gradient(70% 70% at 50% 35%, rgb(var(--white-rgb) / 0.9), transparent 70%),
+    linear-gradient(160deg, rgb(var(--wa-rgb) / 0.18), rgb(var(--green-rgb) / 0.12));
+}
+.art i {
+  position: absolute;
+  display: block;
+}
+
+/* Headphones: headband arc + two ear cups. */
+.headphones i:nth-child(1) {
+  top: 20%;
+  left: 24%;
+  width: 52%;
+  height: 46%;
+  border: 6px solid var(--dark);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+}
+.headphones i:nth-child(2),
+.headphones i:nth-child(3) {
+  top: 46%;
+  width: 18%;
+  height: 30%;
+  border-radius: 8px;
+  background: var(--green);
+  box-shadow: inset 0 -4px 0 rgb(var(--black-rgb) / 0.15);
+}
+.headphones i:nth-child(2) {
+  left: 17%;
+}
+.headphones i:nth-child(3) {
+  right: 17%;
+}
+
+/* Smart watch: strap + face + screen glow. */
+.watch i:nth-child(1) {
+  top: 8%;
+  left: 40%;
+  width: 20%;
+  height: 84%;
+  border-radius: 8px;
+  background: var(--dark);
+}
+.watch i:nth-child(2) {
+  top: 28%;
+  left: 27%;
+  width: 46%;
+  height: 44%;
+  border-radius: 14px;
+  background: var(--deep);
+  border: 3px solid var(--green);
+}
+.watch i:nth-child(3) {
+  top: 40%;
+  left: 39%;
+  width: 22%;
+  height: 20%;
+  border-radius: 50%;
+  border: 3px solid var(--neon);
+  border-inline-end-color: transparent;
+}
+
+/* Backpack: body + front pocket + top handle. */
+.backpack i:nth-child(1) {
+  top: 22%;
+  left: 26%;
+  width: 48%;
+  height: 64%;
+  border-radius: 16px 16px 10px 10px;
+  background: var(--green);
+}
+.backpack i:nth-child(2) {
+  top: 56%;
+  left: 34%;
+  width: 32%;
+  height: 22%;
+  border-radius: 6px;
+  background: var(--dark);
+}
+.backpack i:nth-child(3) {
+  top: 12%;
+  left: 40%;
+  width: 20%;
+  height: 16%;
+  border: 4px solid var(--dark);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+}

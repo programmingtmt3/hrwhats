@@ -48,9 +48,4 @@ export function localePath(locale: Locale, path: string = "/"): string {
   return clean ? `${prefix}/${clean}/` : `${prefix}/`;
 }
 
-/** Replace `{name}` placeholders in a dictionary string. */
-export function format(template: string, values: Record<string, string | number>): string {
-  return template.replace(/\{(\w+)\}/g, (match, key: string) =>
-    key in values ? String(values[key]) : match,
-  );
-}
+export { format } from "./format";

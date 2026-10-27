@@ -1,0 +1,110 @@
+/* Services printed on one long receipt (text column), each with its mockup
+   beside it on the same side. The abandoned-cart spotlight breaks the receipt
+   in the middle. */
+.section {
+  padding-top: 130px;
+}
+.receipt {
+  display: grid;
+}
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  column-gap: 56px;
+  align-items: stretch;
+}
+
+/* The paper column: one continuous strip with dotted lines between items. */
+.line {
+  --paper: var(--surface);
+  --tooth: 14px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 40px 34px;
+  background: var(--paper);
+  box-shadow:
+    1px 0 0 var(--line),
+    -1px 0 0 var(--line);
+}
+.line + .visual {
+  align-self: center;
+  padding-block: 32px;
+}
+.row + .row .line {
+  border-top: 2px dotted var(--line);
+}
+/* Zigzag (torn receipt) edges at the start and the end of the strip. */
+.first::before,
+.last::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: calc(var(--tooth) / 2);
+  background:
+    linear-gradient(135deg, var(--paper) 25%, transparent 25%) calc(var(--tooth) / -2) 0,
+    linear-gradient(225deg, var(--paper) 25%, transparent 25%) calc(var(--tooth) / -2) 0;
+  background-size: var(--tooth) var(--tooth);
+}
+.first::before {
+  bottom: 100%;
+  scale: 1 -1;
+}
+.last::after {
+  top: 100%;
+}
+
+@media (max-width: 1080px) {
+  .row {
+    column-gap: 36px;
+  }
+  .line {
+    padding: 32px 26px;
+  }
+}
+
+/* Phones/tablets: each item is its own receipt slip, mockup underneath. */
+@media (max-width: 900px) {
+  .section {
+    padding-top: 100px;
+  }
+  .receipt {
+    gap: 56px;
+  }
+  .row {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+  .row + .row .line {
+    border-top: 0;
+  }
+  .line::before,
+  .line::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    height: calc(var(--tooth) / 2);
+    background:
+      linear-gradient(135deg, var(--paper) 25%, transparent 25%) calc(var(--tooth) / -2) 0,
+      linear-gradient(225deg, var(--paper) 25%, transparent 25%) calc(var(--tooth) / -2) 0;
+    background-size: var(--tooth) var(--tooth);
+  }
+  .line::before {
+    top: auto;
+    bottom: 100%;
+    scale: 1 -1;
+  }
+  .line::after {
+    top: 100%;
+    bottom: auto;
+  }
+  .line + .visual {
+    padding-block: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .line {
+    padding: 26px 18px;
+  }
+}
