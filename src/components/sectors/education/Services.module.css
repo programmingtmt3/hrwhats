@@ -1,0 +1,125 @@
+/* Services as binder tabs: file-divider tabs over a sheet of paper. */
+.binder {
+  position: relative;
+}
+
+/* ---------- Tab strip ---------- */
+.stripWrap {
+  position: relative;
+}
+.strip {
+  display: flex;
+  gap: 6px;
+  padding-inline: 16px;
+}
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-width: 0;
+  padding: 12px 16px 14px;
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+  background: rgb(var(--wa-rgb) / 0.08);
+  color: var(--dark);
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: start;
+  white-space: nowrap;
+  translate: 0 6px;
+  transition:
+    translate 0.25s var(--ease),
+    background 0.25s,
+    box-shadow 0.25s;
+}
+.tab span {
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: var(--green);
+}
+.tab:hover {
+  translate: 0 2px;
+  background: rgb(var(--wa-rgb) / 0.14);
+}
+.tab[aria-selected="true"] {
+  translate: 0 1px;
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  box-shadow: 0 -6px 16px -10px rgb(var(--deep-rgb) / 0.3);
+}
+.tab[aria-selected="true"] span {
+  color: var(--wa-send);
+}
+.tab:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -4px;
+}
+
+/* ---------- Panel (the sheet) ---------- */
+.panel {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow);
+  padding: 40px;
+}
+.panel:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+.panelGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (max-width: 1080px) {
+  .tab {
+    padding-inline: 12px;
+    font-size: 0.85rem;
+  }
+  .panel {
+    padding: 32px;
+  }
+  .panelGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+/* Phones/tablets: the strip scrolls sideways inside itself (never the page),
+   with faded edges hinting at more tabs. */
+@media (max-width: 900px) {
+  .strip {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 24px;
+    scrollbar-width: none;
+    padding-top: 8px;
+    mask-image: linear-gradient(90deg, transparent, var(--mask-opaque) 24px, var(--mask-opaque) calc(100% - 24px), transparent);
+  }
+  .strip::-webkit-scrollbar {
+    display: none;
+  }
+  .tab {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .strip {
+    padding-inline: 12px;
+  }
+  .panel {
+    padding: 22px 16px;
+    border-radius: var(--r);
+  }
+}

@@ -1,0 +1,449 @@
+/* Tab mockups. Motion starts once, when the tab panel (.reveal) gets .in-view. */
+
+/* ---------- 01 Folders ---------- */
+.folders {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.folder {
+  border-radius: 4px var(--r-sm) var(--r-sm) var(--r-sm);
+  background: rgb(var(--wa-rgb) / 0.08);
+  border: 1px solid rgb(var(--wa-rgb) / 0.25);
+  padding: 10px;
+  min-height: 190px;
+}
+.folderTab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.folderTab svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--green);
+}
+.folder ul {
+  display: grid;
+  gap: 8px;
+}
+.folder li {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.folder li b {
+  display: block;
+  color: var(--ink);
+  font-size: 0.8rem;
+}
+
+/* ---------- 02 Auto-filled form ---------- */
+.autoForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.miniChat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-radius: var(--r-sm);
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  max-width: 90%;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  box-shadow: 0 1px 1px rgb(var(--black-rgb) / 0.08);
+}
+.in {
+  align-self: flex-start;
+  background: var(--white);
+}
+.out {
+  align-self: flex-end;
+  background: var(--wa-bubble-out);
+}
+.form {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+.formTitle {
+  font-size: 0.9rem;
+}
+.field span:first-child {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.input {
+  display: block;
+  min-height: 36px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+/* Typed in after the chat, one field after the other. A transition, not a
+   keyframe animation: animations restart whenever a hidden tab is shown again. */
+.value {
+  display: inline-block;
+  clip-path: inset(0);
+  transition: clip-path 0.8s steps(14);
+  transition-delay: calc(1.4s + var(--i, 0) * 0.65s);
+}
+/* RTL text grows from the right edge, LTR from the left. */
+:global(.reveal:not(.in-view)) .value {
+  clip-path: inset(0 0 0 100%);
+}
+:global(.reveal:not(.in-view)) .value:dir(ltr) {
+  clip-path: inset(0 100% 0 0);
+}
+.done {
+  justify-self: start;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  color: var(--on-wa);
+  background: var(--wa);
+}
+
+/* ---------- 03 Calendar ---------- */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.weekday {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted);
+  padding-bottom: 4px;
+}
+.day {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 58px;
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  min-width: 0;
+}
+.day small {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.empty {
+  background: transparent;
+  border-style: dashed;
+}
+.event {
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 3px 4px;
+  border-radius: 4px;
+  color: var(--white);
+  background: var(--ev);
+}
+.e1 {
+  --ev: var(--green);
+}
+.e2 {
+  --ev: var(--dark);
+}
+.e3 {
+  --ev: var(--wa-send);
+}
+.e4 {
+  --ev: var(--wa-teal);
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 14px;
+  font-size: 0.78rem;
+}
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--ev);
+}
+
+/* ---------- 04 Attendance ---------- */
+.sentTitle {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.sent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.sent li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--wa-bubble-out);
+  color: var(--dark);
+}
+.sent svg {
+  width: 13px;
+  height: 13px;
+  color: var(--wa-send);
+}
+.sheet {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+.sheet th,
+.sheet td {
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.sheet thead th {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.sheet tbody th {
+  text-align: start;
+  font-weight: 600;
+}
+.mark {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--wa-send);
+}
+.mark svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 3;
+}
+.absent {
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+/* ---------- 05 Admission team ---------- */
+.incoming {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.14);
+}
+.incoming svg {
+  width: 22px;
+  height: 22px;
+}
+.members {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.member {
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  padding: 10px;
+  min-height: 150px;
+}
+.memberHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.memberHead i {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  font-size: 0.74rem;
+  color: var(--white);
+  background: var(--dark);
+}
+.member ul {
+  display: grid;
+  gap: 6px;
+}
+.member li {
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.45;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: var(--surface);
+  border-inline-start: 3px solid var(--wa);
+  box-shadow: var(--shadow-sm);
+}
+/* Each chat drops from the inbox above into its team member. */
+:global(.reveal:not(.in-view)) .member li {
+  transform: translateY(-24px);
+}
+.speed {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.speed b {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: rgb(var(--dark-rgb) / 0.08);
+  overflow: hidden;
+}
+.speed i {
+  display: block;
+  height: 100%;
+  inline-size: 88%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--wa), var(--green));
+  transition: inline-size 1.4s var(--ease) 1.2s;
+}
+:global(.reveal:not(.in-view)) .speed i {
+  inline-size: 12%;
+}
+
+/* ---------- 06 Rings ---------- */
+.rings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.rings li {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+.ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+}
+.ring svg {
+  position: absolute;
+  inset: 0;
+  rotate: -90deg;
+}
+.ring circle {
+  fill: none;
+  stroke-width: 7;
+}
+.ring circle:first-child {
+  stroke: rgb(var(--wa-rgb) / 0.14);
+}
+.ring circle:last-child {
+  stroke: var(--wa-send);
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - var(--fill));
+  transition: stroke-dashoffset 1.4s var(--ease);
+  transition-delay: calc(0.4s + var(--i, 0) * 0.2s);
+}
+:global(.reveal:not(.in-view)) .ring circle:last-child {
+  stroke-dashoffset: 100;
+}
+/* RTL: fill clockwise from the top is fine either way (no reading direction). */
+.ring > svg + svg {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  rotate: none;
+  color: var(--green);
+}
+
+@media (max-width: 600px) {
+  .folders,
+  .autoForm {
+    grid-template-columns: 1fr;
+  }
+  .folder {
+    min-height: 0;
+  }
+  .day {
+    min-height: 40px;
+    padding: 3px;
+  }
+  /* Phones: an event is a colored bar; the legend names it. */
+  .event {
+    height: 6px;
+    padding: 0;
+    font-size: 0;
+    overflow: hidden;
+  }
+  .members {
+    grid-template-columns: 1fr;
+  }
+  .member {
+    min-height: 0;
+  }
+  .member ul {
+    grid-template-columns: 1fr 1fr;
+  }
+  .rings {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 18px;
+  }
+}

@@ -1,0 +1,39 @@
+/* Shared "student notebook" surfaces for the education page. */
+
+/* Ruled paper: faint horizontal lines + a green margin line on the start side. */
+.ruled {
+  position: relative;
+  background-color: var(--bg);
+  background-image: linear-gradient(transparent calc(100% - 1px), rgb(var(--green-rgb) / 0.1) 0);
+  background-size: 100% 34px;
+}
+.ruled::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: max(16px, calc((100% - 1200px) / 2 - 36px));
+  width: 2px;
+  background: rgb(var(--wa-rgb) / 0.22);
+  pointer-events: none;
+}
+
+/* A sheet of paper lying on the notebook. */
+.paper {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+.paperHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+}
+.paperHead b {
+  font-weight: 700;
+}

@@ -1,0 +1,233 @@
+/* Education hero: ruled notebook paper, one large WhatsApp message with a
+   course card, and sticky notes taped around it. */
+.hero {
+  padding-top: 160px;
+  padding-bottom: 110px;
+  overflow: hidden;
+}
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 22px 0;
+}
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* ---------- The message ---------- */
+.visual {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 380px);
+}
+.message {
+  position: relative;
+  padding: 12px 12px 8px;
+  border-radius: 18px;
+  border-start-start-radius: 4px;
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+/* Bubble tail on the start side. */
+.message::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline-start: -9px;
+  width: 10px;
+  height: 14px;
+  background: var(--white);
+  /* Attached edge faces the bubble: its left side in RTL, its right side in LTR. */
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.message:dir(ltr)::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+.sender {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--wa-send);
+  margin-bottom: 2px;
+}
+.course {
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.cover {
+  display: grid;
+  place-items: center;
+  height: 120px;
+  color: var(--white);
+  background:
+    radial-gradient(60% 90% at 85% 15%, rgb(var(--neon-rgb) / 0.4), transparent 70%),
+    repeating-linear-gradient(0deg, rgb(var(--white-rgb) / 0.07) 0 1px, transparent 1px 18px),
+    linear-gradient(135deg, var(--dark), var(--green));
+}
+.cover svg {
+  width: 52px;
+  height: 52px;
+  stroke-width: 1.5;
+}
+.course b {
+  display: block;
+  padding: 10px 12px 2px;
+  font-size: 1.02rem;
+}
+.course ul {
+  display: grid;
+  gap: 2px;
+  padding: 2px 12px 12px;
+}
+.course li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.course li svg {
+  width: 15px;
+  height: 15px;
+  color: var(--green);
+}
+.message time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.66rem;
+  color: var(--wa-meta);
+  margin-top: 4px;
+}
+.message time svg {
+  width: 14px;
+  height: 14px;
+  color: var(--wa-link);
+}
+.button {
+  display: block;
+  margin: 6px -12px -8px;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: 700;
+  color: var(--wa-link);
+  border-top: 1px solid var(--wa-divider);
+}
+.tag {
+  position: absolute;
+  top: -30px;
+  inset-inline-end: 0;
+}
+
+/* ---------- Sticky notes ---------- */
+.note {
+  position: absolute;
+  z-index: 2;
+  padding: 14px 16px 12px;
+  max-width: 190px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark);
+  background:
+    linear-gradient(rgb(var(--wa-rgb) / 0.16), rgb(var(--wa-rgb) / 0.16)),
+    var(--surface);
+  box-shadow: 0 10px 20px -10px rgb(var(--deep-rgb) / 0.35);
+  /* `rotate` (not transform), so the reveal-child drop never resets it. */
+  rotate: var(--tilt, -3deg);
+}
+/* A strip of tape, centered on purpose. */
+.note::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 58px;
+  height: 18px;
+  background: rgb(var(--white-rgb) / 0.7);
+  border: 1px solid rgb(var(--dark-rgb) / 0.08);
+}
+/* Notes drop in from slightly higher (overrides the reveal-child offset). */
+:global(.reveal:not(.in-view)) .note {
+  transform: translateY(-18px);
+}
+.n1 {
+  top: -34px;
+  inset-inline-start: -70px;
+  --tilt: -4deg;
+}
+.n2 {
+  top: 44%;
+  inset-inline-end: -84px;
+  --tilt: 3deg;
+}
+.n3 {
+  bottom: -40px;
+  inset-inline-start: -46px;
+  --tilt: -2deg;
+}
+
+@media (max-width: 1180px) {
+  .n1 {
+    inset-inline-start: -24px;
+  }
+  .n2 {
+    inset-inline-end: -4px;
+  }
+  .n3 {
+    inset-inline-start: -16px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+  .copy {
+    text-align: center;
+  }
+  .lead {
+    margin-inline: auto;
+  }
+}
+
+/* Phones: notes line up under the message instead of floating around it. */
+@media (max-width: 600px) {
+  .grid {
+    gap: 64px;
+  }
+  .notes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 10px;
+    margin-top: 26px;
+  }
+  .note {
+    position: static;
+    max-width: none;
+    font-size: 0.8rem;
+    padding: 12px 12px 10px;
+  }
+}
