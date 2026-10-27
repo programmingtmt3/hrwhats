@@ -5,8 +5,8 @@ import { SectionHeading } from "@/components/sections/SectionHeading";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-import { ExampleTag } from "./ExampleTag";
-import { FeatureItem } from "./FeatureItem";
+import { ExampleTag } from "../shared/ExampleTag";
+import { FeatureItem } from "../shared/FeatureItem";
 import styles from "./Impact.module.css";
 
 /** Measure & improve: campaign dashboard mockup + the analytics features. */

@@ -10,16 +10,19 @@ export type Feature = { title: string; text: string; points: string[]; note: str
 export function FeatureItem({
   feature,
   heading: Heading = "h4",
+  plain,
   className,
 }: {
   feature: Feature;
   heading?: "h3" | "h4";
+  /** No card: just the text, with a larger title (section-level features). */
+  plain?: boolean;
   className?: string;
 }) {
   const { title, text, points, note } = feature;
 
   return (
-    <article className={cn(styles.item, className)}>
+    <article className={cn(styles.item, plain && styles.plain, className)}>
       <Heading>{title}</Heading>
       {text && <p>{text}</p>}
       {points.length > 0 && (

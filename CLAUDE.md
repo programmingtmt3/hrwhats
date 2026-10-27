@@ -135,7 +135,8 @@ content/
 - Text fields in JSON data are bilingual objects: `{ "ar": "...", "en": "..." }` (`en` may be empty until the English phase).
 - Every content type has a Zod schema in `velite.config.ts`. A missing required field must fail the build.
 - **Sector pages are custom, one design per sector** — no shared sector template and no sector MDX. Each sector has a static route folder `src/app/(ar)/<slug>/page.tsx` (thin wrapper) and its own sections in `src/components/sectors/<slug>/` (e.g. `charity/`). Shared: tokens, fonts, buttons, `SectionHeading`, header, footer, `Cta`, `Reveal`. The slug and name come from `sectors.json` via `getSector(slug)` (throws if missing); all page text lives in `messages/ar.json` under `sectors.<slug>`. Page-only images go in `public/images/sectors/<slug>/` (never mixed with the sector card image `public/images/sectors/<slug>.jpg`).
-- **Illustrative mockups** built in code (campaign cards, chats, dashboards) use generic example data from `ar.json`, carry a visible "مثال توضيحي" tag (`ExampleTag`), and never use real organization names or numbers that look like real platform statistics.
+- **Illustrative data — rule for every sector page.** Mockups built in code (chats, cards, boards, dashboards) use generic example data from `ar.json` and carry a visible "مثال توضيحي" tag (`ExampleTag`). Allowed: generic campaign names, common first names for customers and staff, reasonable prices/areas/amounts, and places described by type + area ("شقة 3 غرف — شمال الرياض"). Never: real company, association or project names, invented project names (they may match real ones), or numbers that look like statistics about the platform. Relative visuals (bars, dots, funnels) carry no figures.
+- Shared sector building blocks live in `src/components/sectors/shared/` (`ExampleTag`, `FeatureItem` — `plain` variant for section-level text). A sector page may replace the site-wide `<Cta>` with its own closing panel when its closing text already is the call to action (e.g. real-estate).
 - **Pages never read content files directly.** All access goes through `src/lib/content.ts` (`getPosts(locale)`, `getPostBySlug(locale, slug)`, `getClients()`, …). This layer is the only thing that changes if we later add a Git-based CMS (Keystatic).
 
 Post frontmatter (minimum):
@@ -200,7 +201,7 @@ src/
 │   ├── layout/               ← LocaleDocument, Header(+Bar), Footer, WhatsAppFloat, BrandLogo, LanguageSwitcher
 │   ├── icons/                ← design SVG icons
 │   ├── seo/                  ← JsonLd
-│   ├── sectors/<slug>/       ← one folder per sector page (custom design)
+│   ├── sectors/<slug>/       ← one folder per sector page (custom design); shared/ for common blocks
 │   ├── sections/             ← Hero, Features, Sectors, Clients, Partners, FAQ, CTA
 │   ├── pages/                ← shared page components (HomePage, PostPage, …)
 │   └── mdx/                  ← components usable inside MDX

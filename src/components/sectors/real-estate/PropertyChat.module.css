@@ -1,0 +1,236 @@
+/* WhatsApp-Web style window (not a phone). Uses the WhatsApp mockup tokens. */
+.window {
+  position: relative;
+  width: min(100%, 460px);
+  margin-inline: auto;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--wa-chat-bg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+}
+.titleBar {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.titleBar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line);
+}
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--wa-teal);
+  color: var(--white);
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: rgb(var(--white-rgb) / 0.18);
+}
+.who {
+  flex: 1;
+  display: grid;
+  line-height: 1.4;
+}
+.who b {
+  font-size: 0.92rem;
+}
+.who small {
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--neon);
+  color: var(--on-wa);
+}
+
+/* Messages */
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 14px;
+  min-height: 430px;
+  justify-content: flex-end;
+}
+.body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: radial-gradient(rgb(var(--dark-rgb) / 0.12) 1.2px, transparent 1.2px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+.msg {
+  position: relative;
+  max-width: 82%;
+  padding: 7px 11px 5px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  box-shadow: 0 1px 1px rgb(var(--black-rgb) / 0.08);
+  /* One message every 0.8s once the window is in view (overrides .reveal-child). */
+  transition-delay: calc(0.5s + var(--i, 0) * 0.8s);
+}
+.in {
+  align-self: flex-start;
+  background: var(--white);
+  border-start-start-radius: 3px;
+}
+.out {
+  align-self: flex-end;
+  background: var(--wa-bubble-out);
+  border-start-end-radius: 3px;
+}
+.msg time {
+  display: block;
+  font-size: 0.62rem;
+  color: var(--wa-meta);
+  text-align: end;
+  margin-top: 2px;
+}
+.auto {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--wa-send);
+}
+
+/* Property card */
+.rich {
+  width: 82%;
+  padding: 5px 5px 5px;
+}
+.rich > :not(.sketch, .button) {
+  margin-inline: 6px;
+}
+.sketch {
+  display: block;
+  border-radius: 9px;
+  padding: 10px 14px 4px;
+  color: var(--neon);
+  margin-bottom: 8px;
+  background-color: var(--dark);
+  background-image:
+    linear-gradient(rgb(var(--neon-rgb) / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--neon-rgb) / 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+.sketch svg {
+  width: 100%;
+  height: auto;
+}
+.title {
+  display: block;
+  font-size: 0.92rem;
+}
+.location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  color: var(--wa-meta);
+}
+.location svg {
+  width: 13px;
+  height: 13px;
+}
+.price {
+  display: block;
+  font-size: 1rem;
+  color: var(--dark);
+  margin-top: 2px;
+}
+.specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-block: 6px 8px;
+}
+.specs span {
+  font-size: 0.7rem;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: rgb(var(--dark-rgb) / 0.07);
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 0 3px;
+  border-top: 1px solid var(--wa-divider);
+  color: var(--wa-link);
+  font-weight: 600;
+}
+.button svg {
+  width: 15px;
+  height: 15px;
+}
+.rich time {
+  margin-inline: 6px;
+}
+
+/* Input bar */
+.input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+}
+.input span {
+  flex: 1;
+  background: var(--white);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  color: var(--wa-placeholder);
+}
+.input b {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--wa-send);
+  color: var(--white);
+}
+.input svg {
+  width: 17px;
+}
+.caption {
+  position: absolute;
+  top: 6px;
+  inset-inline-end: 12px;
+}
+
+@media (max-width: 600px) {
+  .body {
+    min-height: 0;
+    padding: 14px 10px;
+  }
+  .msg {
+    max-width: 88%;
+  }
+  .rich {
+    width: 88%;
+  }
+}

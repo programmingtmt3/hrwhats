@@ -1,0 +1,76 @@
+/* Shared "architectural drawing" surfaces for the real-estate page.
+   Grid lines are decorative backgrounds (physical directions are fine here). */
+
+/* Light drafting paper: fine grid + a major grid every 5 cells. */
+.paper {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgb(var(--green-rgb) / 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--green-rgb) / 0.09) 1px, transparent 1px),
+    linear-gradient(rgb(var(--green-rgb) / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--green-rgb) / 0.04) 1px, transparent 1px);
+  background-size:
+    160px 160px,
+    160px 160px,
+    32px 32px,
+    32px 32px;
+}
+
+/* Dark plan: neon grid on the deepest surface. */
+.darkPaper {
+  background-color: var(--deep);
+  background-image:
+    linear-gradient(rgb(var(--neon-rgb) / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--neon-rgb) / 0.08) 1px, transparent 1px),
+    linear-gradient(rgb(var(--neon-rgb) / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--neon-rgb) / 0.035) 1px, transparent 1px);
+  background-size:
+    160px 160px,
+    160px 160px,
+    32px 32px,
+    32px 32px;
+}
+
+/* A drawing sheet: white card with corner registration marks. */
+.sheet {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.sheet::before,
+.sheet::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--wa);
+  pointer-events: none;
+}
+.sheet::before {
+  top: -7px;
+  inset-inline-start: -7px;
+  border-inline-end: 0;
+  border-bottom: 0;
+}
+.sheet::after {
+  bottom: -7px;
+  inset-inline-end: -7px;
+  border-inline-start: 0;
+  border-top: 0;
+}
+.sheetHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.88rem;
+}
+.sheetHead b {
+  font-weight: 700;
+}

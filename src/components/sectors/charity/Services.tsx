@@ -7,7 +7,7 @@ import { BentoCard } from "@/components/sections/features/BentoCard";
 import { getDictionary, type Dictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-import { ExampleTag } from "./ExampleTag";
+import { ExampleTag } from "../shared/ExampleTag";
 import styles from "./Services.module.css";
 
 type ServiceKey = keyof Dictionary["sectors"]["charity"]["services"]["items"];

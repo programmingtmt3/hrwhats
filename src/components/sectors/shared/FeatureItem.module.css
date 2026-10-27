@@ -39,3 +39,28 @@
   background: rgb(var(--wa-rgb) / 0.14);
   stroke-width: 3;
 }
+
+/* Plain variant: no card, larger title. */
+.item.plain {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+.item.plain h3,
+.item.plain h4 {
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+.item.plain p {
+  font-size: 1.02rem;
+}
+.item.plain .points {
+  gap: 8px;
+  margin-block: 14px 10px;
+}
+.item.plain .points li {
+  font-size: 0.98rem;
+}

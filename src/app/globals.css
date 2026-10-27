@@ -30,6 +30,7 @@
 
   --deep-rgb: 6 42 32;
   --dark-rgb: 11 61 46;
+  --green-rgb: 18 140 74;
   --wa-rgb: 37 211 102;
   --neon-rgb: 60 255 154;
   --white-rgb: 255 255 255;
@@ -371,6 +372,9 @@ html:lang(en) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    /* No waiting either: staggered animations show their final state at once. */
+    animation-delay: 0s !important;
+    transition-delay: 0s !important;
   }
   .reveal {
     opacity: 1;

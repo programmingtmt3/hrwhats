@@ -8,7 +8,7 @@ import { getDictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 import styles from "./CharityHero.module.css";
-import { ExampleTag } from "./ExampleTag";
+import { ExampleTag } from "../shared/ExampleTag";
 
 // One icon per floating notification, in dictionary order.
 const noteIcons = [CircleCheck, Heart, UserPlus];

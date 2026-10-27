@@ -1,0 +1,153 @@
+/* Deal pipeline (Kanban). Cards are absolutely placed from CSS vars so they can
+   slide between columns: --f* = before, --t* = after the board enters the view.
+   Desktop: 4 columns in a row. Phones: 2×2 grid (x/y vars). */
+.figure {
+  position: relative;
+}
+.board {
+  --gap: 12px;
+  --headH: 46px;
+  --cardH: 96px;
+  --rowH: 106px;
+  --colH: calc(var(--headH) + 2 * var(--rowH) + 6px);
+  --colW: calc((100% - 3 * var(--gap)) / 4);
+  position: relative;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+.columns li {
+  height: var(--colH);
+  border-radius: var(--r);
+  background: rgb(var(--white-rgb) / 0.7);
+  border: 1px dashed rgb(var(--green-rgb) / 0.3);
+}
+.colHead {
+  display: flex;
+  align-items: center;
+  height: var(--headH);
+  padding-inline: 14px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--dark);
+  border-bottom: 1px dashed rgb(var(--green-rgb) / 0.25);
+}
+.columns .dealColumn {
+  background: rgb(var(--wa-rgb) / 0.08);
+  border-style: solid;
+  border-color: rgb(var(--wa-rgb) / 0.45);
+}
+.dealColumn .colHead {
+  color: var(--green);
+}
+
+/* ---------- Cards ---------- */
+.cards {
+  position: absolute;
+  inset: 0;
+}
+.card {
+  position: absolute;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  inline-size: calc(var(--colW) - 16px);
+  height: var(--cardH);
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  inset-inline-start: calc(var(--fc) * (var(--colW) + var(--gap)) + 8px);
+  top: calc(var(--headH) + 8px + var(--row) * var(--rowH));
+  transition:
+    inset-inline-start 0.9s var(--ease),
+    top 0.9s var(--ease),
+    opacity 0.6s var(--ease),
+    box-shadow 0.4s;
+  transition-delay: calc(0.7s + var(--step) * 0.8s);
+}
+:global(.in-view) .card {
+  inset-inline-start: calc(var(--tc) * (var(--colW) + var(--gap)) + 8px);
+}
+/* A new inquiry fades into the first column after the others have moved. */
+:global(.reveal:not(.in-view)) .enters {
+  opacity: 0;
+}
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+}
+.cardTop b {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tag {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 999px;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.12);
+}
+.cardText {
+  font-size: 0.76rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.closed {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--green);
+  transition: opacity 0.4s var(--ease);
+  transition-delay: inherit;
+}
+.closed svg {
+  width: 14px;
+  height: 14px;
+}
+/* The moving deal shows "closed" only once it has arrived. */
+:global(.reveal:not(.in-view)) .moves .closed {
+  opacity: 0;
+}
+.caption {
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* Phones: 2×2 columns. */
+@media (max-width: 600px) {
+  .board {
+    --gap: 10px;
+    --colW: calc((100% - var(--gap)) / 2);
+  }
+  .columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .colHead {
+    padding-inline: 10px;
+    font-size: 0.8rem;
+  }
+  .card {
+    inline-size: calc(var(--colW) - 12px);
+    padding: 9px 10px;
+    inset-inline-start: calc(var(--fx) * (var(--colW) + var(--gap)) + 6px);
+    top: calc(var(--fy) * (var(--colH) + var(--gap)) + var(--headH) + 8px + var(--row) * var(--rowH));
+  }
+  :global(.in-view) .card {
+    inset-inline-start: calc(var(--tx) * (var(--colW) + var(--gap)) + 6px);
+    top: calc(var(--ty) * (var(--colH) + var(--gap)) + var(--headH) + 8px + var(--row) * var(--rowH));
+  }
+}

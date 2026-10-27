@@ -1,0 +1,88 @@
+/* Closing + CTA: dark blueprint panel with a line-drawn skyline. */
+.box {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  color: var(--white);
+  border-radius: var(--r-lg);
+  padding: 72px 40px 150px;
+  box-shadow: var(--shadow-lg);
+}
+.box h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  line-height: 1.35;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.box p {
+  max-width: 640px;
+  margin-inline: auto;
+  font-size: 1.08rem;
+  color: rgb(var(--white-rgb) / 0.78);
+}
+.box .highlight {
+  margin-top: 14px;
+  font-weight: 700;
+  color: var(--neon);
+}
+.actions {
+  justify-content: center;
+}
+/* Landmarks skyline: same thin neon stroke as the grid, no fill. */
+.skyline {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 110px;
+}
+.skyline svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.narrow {
+  display: none;
+}
+.skyline path {
+  stroke: rgb(var(--neon-rgb) / 0.55);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.8s var(--ease);
+  transition-delay: calc(0.3s + var(--i, 0) * 0.12s);
+}
+:global(.in-view) .skyline path {
+  stroke-dashoffset: 0;
+}
+/* Ground line: always edge to edge, whatever the drawing's width. */
+.ground {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: rgb(var(--neon-rgb) / 0.55);
+  scale: 0 1;
+  transition: scale 1.4s var(--ease) 0.2s;
+}
+:global(.in-view) .ground {
+  scale: 1 1;
+}
+
+/* Phones: the four best-known landmarks only, kept readable. */
+@media (max-width: 600px) {
+  .box {
+    padding: 56px 20px 130px;
+  }
+  .skyline {
+    height: 100px;
+  }
+  .wide {
+    display: none;
+  }
+  .narrow {
+    display: block;
+  }
+}

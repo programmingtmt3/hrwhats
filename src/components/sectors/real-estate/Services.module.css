@@ -1,0 +1,151 @@
+/* Six drawing sheets along the deal path, with a stage index on top. */
+.section {
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Stage index ---------- */
+.index {
+  margin-bottom: 72px;
+}
+.index ol {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.index a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 14px;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.5;
+  transition:
+    border-color 0.25s,
+    translate 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+.index a:hover,
+.index a:focus-visible {
+  border-color: rgb(var(--wa-rgb) / 0.6);
+  translate: 0 -3px;
+  box-shadow: var(--shadow);
+}
+.index a span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Panels ---------- */
+.panels {
+  position: relative;
+  display: grid;
+  gap: 110px;
+}
+/* The deal path: a dashed line down the middle (desktop), centered on purpose. */
+.panels::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-inline-start: 2px dashed rgb(var(--green-rgb) / 0.25);
+}
+.panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  /* Index links land below the fixed header. */
+  scroll-margin-top: calc(var(--header-h) + 28px);
+}
+/* Alternate sides. */
+.panel:nth-child(even) .visual {
+  order: -1;
+}
+.sheetNo {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  padding: 4px 12px;
+  border: 1px solid rgb(var(--wa-rgb) / 0.35);
+  border-radius: 6px;
+  background: var(--surface);
+  margin-bottom: 14px;
+}
+.text,
+.visual {
+  position: relative;
+  z-index: 1;
+}
+
+/* Wide panel (the leads board): text on top, board across the full width. */
+.wide {
+  grid-template-columns: 1fr;
+  gap: 36px;
+}
+.wide .text {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+.wide .text ul {
+  justify-items: center;
+}
+.panel.wide .visual {
+  order: 0;
+}
+
+@media (max-width: 1080px) {
+  .index ol {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .panel {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 900px) {
+  .panels {
+    gap: 80px;
+  }
+  .panels::before {
+    display: none;
+  }
+  .panel {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .panel:nth-child(even) .visual {
+    order: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .index {
+    margin-bottom: 56px;
+  }
+  .index ol {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .index a {
+    padding: 12px;
+    font-size: 0.82rem;
+  }
+  .wide .text {
+    text-align: start;
+  }
+  .wide .text ul {
+    justify-items: start;
+  }
+}

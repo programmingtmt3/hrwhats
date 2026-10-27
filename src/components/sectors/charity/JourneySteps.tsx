@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 
 import { DonorMessages, DonorPhone, type DonorMessage, type PhoneLabels } from "./DonorChat";
 import styles from "./DonorJourney.module.css";
-import { ExampleTag } from "./ExampleTag";
-import { FeatureItem, type Feature } from "./FeatureItem";
+import { ExampleTag } from "../shared/ExampleTag";
+import { FeatureItem, type Feature } from "../shared/FeatureItem";
 
 type JourneyStepsProps = {
   stages: { title: string; features: Feature[] }[];

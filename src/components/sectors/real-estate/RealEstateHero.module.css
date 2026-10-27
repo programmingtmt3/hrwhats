@@ -1,0 +1,79 @@
+/* Real-estate hero: drafting-paper grid fading out toward the bottom. */
+.hero {
+  position: relative;
+  padding-top: 160px;
+  padding-bottom: 110px;
+  overflow: hidden;
+}
+/* Soft glow + fade the grid into the plain page background. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 50% at 15% 40%, rgb(var(--wa-rgb) / 0.12), transparent 70%),
+    linear-gradient(180deg, transparent 55%, var(--bg));
+}
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 22px 0;
+}
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.badges li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.badges svg {
+  width: 18px;
+  height: 18px;
+  color: var(--green);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .copy {
+    text-align: center;
+  }
+  .lead {
+    margin-inline: auto;
+  }
+  .badges {
+    justify-content: center;
+  }
+}
