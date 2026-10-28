@@ -100,9 +100,8 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 
 Supporting colors used by the design (WhatsApp mockup, gradients) are also variables in `globals.css`. Radii `--r-sm/--r/--r-lg`, shadows `--shadow-sm/--shadow/--shadow-lg`, easing `--ease`.
 
-**Fonts:** IBM Plex Sans Arabic on Arabic pages (it includes matching Latin glyphs), IBM Plex Sans on English pages. Weights 300–700. Each font lives in its own module (`src/lib/fonts/ar.ts`, `en.ts`) so a page loads only its language's font; CSS picks it via `html:lang(..) { --font-site }`.
-- **The site font is set in one place only** (`src/lib/fonts/` + `--font-site`/`--font-sans` in `globals.css`). No page, section or component may set `font-family` to anything but `inherit` (form controls), or redefine `--font-sans`/`--font-site`/`--font-arabic`, or add `@font-face`. A decorative face (e.g. chalk lettering) would need approval first and must be scoped to its own element.
-- **If the whole site suddenly looks like Arial/Tahoma in `npm run dev`:** next/font could not download the font from Google, and the dev server silently uses the `… Fallback` face (Arial) and keeps it in its cache. Check `.next/dev/logs/next-development.log` for "Failed to download IBM Plex Sans Arabic"; fix: stop the dev server, delete `.next/dev`, start it again. Code is not the cause. (`next build` does not fall back silently: check that `out/_next/static/css/*.css` contains the `IBM Plex Sans Arabic` `@font-face` rules.)
+**Fonts:** IBM Plex Sans Arabic on Arabic pages (it includes matching Latin glyphs), IBM Plex Sans on English pages. **Self-hosted** with `next/font/local`: woff2 files in `src/fonts/` from the official `@ibm/plex-sans-arabic` / `@ibm/plex-sans` packages, subset to Arabic + Latin / Latin (ranges and steps in `src/fonts/README.md`, license `src/fonts/OFL.txt`). Weights **400–700 only** — the ones the site uses (`font-weight: 800` renders with 700); adding a weight means subsetting its file the same way. `display: swap` + `adjustFontFallback: "Arial"` (the fallback is sized to Plex's metrics, so nothing jumps when the font loads). Each font lives in its own module (`src/lib/fonts/ar.ts`, `en.ts`) so a page loads only its language's font; CSS picks it via `html:lang(..) { --font-site }`.
+- **The site font is set in one place only** (`src/fonts/` + `src/lib/fonts/` + `--font-site`/`--font-sans` in `globals.css`). No page, section or component may set `font-family` to anything but `inherit` (form controls), or redefine `--font-sans`/`--font-site`/`--font-arabic`, or add `@font-face`. Never load a font from Google Fonts or another CDN. A decorative face (e.g. chalk lettering) would need approval first and must be scoped to its own element.
 
 **Logo:** `public/images/brand/hrwhats-logo-trimmed.png` (transparent margins trimmed), path defined once in `src/lib/brand.ts` (`LOGO`), rendered through `BrandLogo` — an SVG version will replace it there. Heights: header 54px (44px ≤600px), footer 36px. The original padded file stays as `LOGO_SQUARE` (`BrandLogo square`) for the hero chat avatar and as the favicon source. Always `alt="HRwhats"`. `src/app/favicon.ico`, `icon.png` and `apple-icon.png` are generated from it (regenerate when the SVG arrives).
 
@@ -217,6 +216,7 @@ src/
 │   ├── favicon.ico icon.png apple-icon.png
 │   ├── sitemap.ts
 │   └── robots.ts
+├── fonts/                    ← self-hosted IBM Plex woff2 + OFL.txt + README.md (subsetting steps)
 ├── components/
 │   ├── ui/                   ← shadcn components
 │   ├── layout/               ← LocaleDocument, Header(+Bar), Footer, WhatsAppFloat, BrandLogo, LanguageSwitcher
@@ -232,7 +232,7 @@ src/
 │   ├── env.ts                ← SITE_ENV (staging | production)
 │   ├── navigation.ts         ← header/footer menu structure
 │   ├── brand.ts              ← LOGO (single source for the logo path)
-│   ├── fonts/{ar,en}.ts      ← next/font definitions, one module per language
+│   ├── fonts/{ar,en}.ts      ← next/font/local definitions, one module per language
 │   └── seo.ts                ← metadata + JSON-LD helpers
 messages/ar.json
 content/
