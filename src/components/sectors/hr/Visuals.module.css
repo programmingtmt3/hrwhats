@@ -1,0 +1,720 @@
+/* Workplace mockups. Hidden-before states only apply while the parent
+   .reveal waits for .in-view. */
+.card {
+  padding: 18px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.headTitle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+.headTitle > svg {
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+}
+.headTitle small {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* ---------- Recruiting: CV → candidate card ---------- */
+.cv {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 14px;
+  align-items: start;
+}
+.doc {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 6px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  font-size: 0.74rem;
+}
+.docHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.docHead > span {
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+}
+.docPhoto {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--line);
+}
+.line {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line);
+}
+.short {
+  width: 65%;
+}
+.doc mark {
+  justify-self: start;
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--ink);
+  background: rgb(var(--wa-rgb) / 0.28);
+  transition: background-color 0.4s var(--ease);
+  transition-delay: calc(0.6s + var(--i, 0) * 0.35s);
+}
+:global(.reveal:not(.in-view)) .doc mark {
+  background: transparent;
+}
+/* Scan line: one pass from top to bottom. */
+.scan {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: var(--wa);
+  box-shadow: 0 0 12px rgb(var(--wa-rgb) / 0.8);
+  opacity: 0;
+}
+:global(.in-view) .scan {
+  animation: scan 1.8s var(--ease) 0.4s 1;
+}
+@keyframes scan {
+  0% {
+    opacity: 1;
+    top: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: 100%;
+  }
+}
+.candidate {
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.candidateTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+.candidateTitle svg {
+  width: 18px;
+  height: 18px;
+  color: var(--green);
+}
+.position {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.candidate dl {
+  display: grid;
+  gap: 5px;
+}
+.candidate dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 0.78rem;
+}
+.candidate dt {
+  color: var(--muted);
+}
+.candidate dd {
+  font-weight: 600;
+  text-align: end;
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.status svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ---------- Automation: guided steps ---------- */
+.always {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--dark);
+}
+.always svg {
+  width: 13px;
+  height: 13px;
+  color: var(--neon);
+}
+.thread {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  max-width: 90%;
+  padding: 8px 11px 5px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  box-shadow: var(--shadow-sm);
+}
+.bubble time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.64rem;
+  color: var(--wa-meta);
+}
+.bubble time svg {
+  width: 14px;
+  height: 14px;
+  color: var(--wa-link);
+}
+.out {
+  justify-self: end;
+  background: var(--wa-bubble-out);
+  border-start-end-radius: 3px;
+}
+.in {
+  justify-self: start;
+  background: var(--white);
+  border-start-start-radius: 3px;
+}
+.bot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--wa-send);
+}
+.bot svg {
+  width: 13px;
+  height: 13px;
+}
+.steps {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  margin-block: 8px 4px;
+}
+/* A thin line joining the numbered steps. */
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  inset-inline-start: 10px;
+  border-inline-start: 2px dotted rgb(var(--green-rgb) / 0.4);
+}
+.steps li {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.steps b {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  color: var(--white);
+  background: var(--green);
+}
+.formBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 6px;
+  font-weight: 700;
+  color: var(--wa-link);
+  border-top: 1px solid rgb(var(--black-rgb) / 0.08);
+}
+.formBtn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- Requests: routing slip ---------- */
+.paper {
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    repeating-linear-gradient(-45deg, var(--green) 0 10px, var(--surface) 10px 20px) border-box;
+  border: 4px solid transparent;
+}
+.slipFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.slipFields > div {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.slipFields dt {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.slipFields dd {
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+.boxes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+}
+.boxes li {
+  display: grid;
+  grid-template-rows: auto 52px auto;
+  justify-items: center;
+  gap: 4px;
+  padding: 8px 6px;
+  text-align: center;
+}
+.boxes li + li {
+  border-inline-start: 1.5px solid var(--ink);
+}
+.boxes b {
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+.boxes small {
+  font-size: 0.66rem;
+  color: var(--muted);
+}
+.sign {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+.sign svg {
+  width: 82%;
+  height: 40px;
+  overflow: visible;
+  fill: none;
+  stroke: var(--wa-link);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sign path {
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.9s ease-in-out;
+  transition-delay: calc(0.5s + var(--i, 0) * 0.9s);
+}
+:global(.reveal:not(.in-view)) .sign path {
+  stroke-dashoffset: 1;
+}
+.sign .tick {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5px;
+  padding: 5px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--wa-send);
+  transition:
+    scale 0.4s var(--ease) 0.5s,
+    opacity 0.4s var(--ease) 0.5s;
+}
+:global(.reveal:not(.in-view)) .tick {
+  scale: 0.4;
+  opacity: 0;
+}
+.approved {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  transition: opacity 0.5s var(--ease) 2.9s;
+}
+.approved span {
+  padding: 3px 14px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--on-wa);
+  background: var(--wa);
+}
+:global(.reveal:not(.in-view)) .approved {
+  opacity: 0;
+}
+
+/* ---------- Internal communication: memo ---------- */
+.memo {
+  padding: 16px;
+  border-radius: 4px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--dark);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.82rem;
+}
+.letterhead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.letterhead > span:nth-child(2) {
+  flex: 1;
+  display: grid;
+  line-height: 1.4;
+}
+.letterhead small {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.orgMark {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--dark);
+}
+.memoMeta {
+  display: grid;
+  text-align: end;
+}
+.memoKind {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--dark);
+}
+.subject {
+  margin-top: 6px;
+  font-weight: 700;
+}
+.body {
+  margin-top: 4px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.memoSign {
+  margin-top: 10px;
+  text-align: end;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+.recipientsTitle {
+  margin-block: 12px 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.recipients {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+.recipients li {
+  display: grid;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.recipients li > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--wa-meta);
+}
+.recipients svg {
+  width: 15px;
+  height: 15px;
+  transition: color 0.4s var(--ease);
+  transition-delay: calc(0.8s + var(--i, 0) * 0.3s);
+}
+.recipients .read svg {
+  color: var(--wa-link);
+}
+:global(.reveal:not(.in-view)) .recipients .read svg {
+  color: var(--wa-meta);
+}
+
+/* ---------- Team: org chart ---------- */
+.org {
+  display: grid;
+  justify-items: center;
+}
+.node {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+  padding: 10px 8px;
+  min-width: 0;
+  width: 100%;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  text-align: center;
+}
+.node b {
+  font-size: 0.84rem;
+}
+.node small {
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.nodeAvatar {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--dark);
+  background: rgb(var(--wa-rgb) / 0.2);
+}
+.manager {
+  width: auto;
+  min-width: 170px;
+  color: var(--white);
+  background: var(--dark);
+  border-color: var(--dark);
+}
+.manager small {
+  color: rgb(var(--white-rgb) / 0.75);
+}
+.manager .nodeAvatar {
+  color: var(--on-wa);
+  background: var(--wa);
+}
+.members {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  padding-top: 28px;
+}
+/* Connector lines: a stub down from the manager, a bar across the three
+   columns' centers, and a stub down to each member. */
+.members::before,
+.members::after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+.members::before {
+  left: 50%;
+  height: 14px;
+  border-left: 2px solid var(--line);
+}
+.members::after {
+  top: 14px;
+  inset-inline: calc((100% - 20px) / 6);
+  border-top: 2px solid var(--line);
+}
+.members li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+.members li::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  height: 14px;
+  border-left: 2px solid var(--line);
+}
+/* Each chat drops from the manager's line to its specialist. */
+.drop {
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--on-wa);
+  background: var(--wa);
+  box-shadow: var(--shadow-sm);
+  transition:
+    translate 0.8s var(--ease),
+    opacity 0.4s var(--ease);
+  transition-delay: calc(0.5s + var(--i, 0) * 0.3s);
+}
+:global(.reveal:not(.in-view)) .drop {
+  opacity: 0;
+  translate: 0 -60px;
+}
+
+/* ---------- Reports: gauges ---------- */
+.gauges {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.gauges li {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 12px 8px;
+  border-radius: 12px;
+  background: var(--bg);
+  text-align: center;
+}
+.gauges svg {
+  width: 100%;
+  max-width: 130px;
+}
+/* The gauge reads from the start side: mirror it in RTL. */
+.gauges svg:dir(rtl) {
+  scale: -1 1;
+}
+.track,
+.fill {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+.track {
+  stroke: var(--line);
+}
+.fill {
+  stroke: var(--wa);
+  stroke-dasharray: var(--level) 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.2s var(--ease);
+  transition-delay: calc(0.4s + var(--i, 0) * 0.2s);
+}
+.needle {
+  transform-box: view-box;
+  transform-origin: 60px 60px;
+  rotate: calc(var(--level) * 180deg - 90deg);
+  transition: rotate 1.2s var(--ease);
+  transition-delay: calc(0.4s + var(--i, 0) * 0.2s);
+}
+.needle line {
+  stroke: var(--dark);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.needle circle {
+  fill: var(--dark);
+}
+:global(.reveal:not(.in-view)) .fill {
+  stroke-dashoffset: var(--level);
+}
+:global(.reveal:not(.in-view)) .needle {
+  rotate: -90deg;
+}
+.scale {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 130px;
+}
+.scale small {
+  font-size: 0.64rem;
+  color: var(--muted);
+}
+.gauges b {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 14px 12px;
+  }
+  .head {
+    flex-wrap: wrap;
+  }
+  .cv {
+    grid-template-columns: 1fr;
+  }
+  .boxes b {
+    font-size: 0.68rem;
+  }
+  .members {
+    gap: 6px;
+  }
+  .gauges {
+    gap: 6px;
+  }
+  .gauges li {
+    padding-inline: 4px;
+  }
+}

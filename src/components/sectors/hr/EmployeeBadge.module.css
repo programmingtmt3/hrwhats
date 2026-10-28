@@ -1,0 +1,132 @@
+/* Employee ID card on a lanyard. The swing (hero) and the tap (closing) are
+   added by the parent through className. */
+.badge {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: 210px;
+}
+.withStrap {
+  padding-top: var(--strap, 120px);
+}
+/* Lanyard: a woven strap with brand-colored edges. */
+.strap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: 26px;
+  height: calc(var(--strap, 120px) + 8px);
+  border-radius: 0 0 4px 4px;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 10px, rgb(var(--white-rgb) / 0.08) 10px 12px),
+    linear-gradient(90deg, var(--wa) 0 3px, var(--dark) 3px calc(100% - 3px), var(--wa) calc(100% - 3px));
+}
+.clip {
+  position: relative;
+  z-index: 1;
+  width: 34px;
+  height: 18px;
+  margin-bottom: -6px;
+  border-radius: 6px 6px 3px 3px;
+  background: linear-gradient(180deg, var(--line), var(--muted));
+  box-shadow: var(--shadow-sm);
+}
+.card {
+  position: relative;
+  width: 100%;
+  padding: 0 16px 14px;
+  border-radius: 16px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 74px;
+  background: linear-gradient(135deg, var(--dark), var(--green));
+}
+.slot {
+  position: relative;
+  display: block;
+  width: 44px;
+  height: 7px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: var(--bg);
+}
+.company {
+  position: relative;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.photo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  margin: 10px auto 8px;
+  border-radius: 50%;
+  border: 4px solid var(--surface);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--dark);
+  background: linear-gradient(180deg, rgb(var(--wa-rgb) / 0.25), rgb(var(--wa-rgb) / 0.1));
+}
+.name {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.role {
+  font-size: 0.84rem;
+  color: var(--green);
+  font-weight: 600;
+}
+.department {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+.id {
+  display: grid;
+  text-align: start;
+}
+.id small {
+  font-size: 0.64rem;
+  color: var(--muted);
+}
+.id b {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.code {
+  display: grid;
+  grid-template-columns: repeat(7, 5px);
+  gap: 1px;
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+}
+.code i {
+  width: 5px;
+  height: 5px;
+}
+.code i.on {
+  background: var(--ink);
+}

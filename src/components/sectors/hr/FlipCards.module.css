@@ -1,0 +1,162 @@
+/* Flip cards: both faces in one grid cell (constant height), 3D turn. */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.hint {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.card {
+  display: grid;
+  gap: 10px;
+  perspective: 1000px;
+}
+.inner {
+  display: grid;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: rotate 0.7s var(--ease);
+}
+.flipped .inner {
+  rotate: y 180deg;
+}
+.face {
+  grid-area: 1 / 1;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 16px;
+  border-radius: var(--r);
+  backface-visibility: hidden;
+}
+.front {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.back {
+  rotate: y 180deg;
+  color: var(--white);
+  background: linear-gradient(160deg, var(--dark), var(--deep));
+  box-shadow: var(--shadow);
+}
+.topic {
+  justify-self: start;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.12);
+}
+.back .topic {
+  color: var(--neon);
+  background: rgb(var(--neon-rgb) / 0.12);
+}
+.who {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.back .who {
+  color: rgb(var(--white-rgb) / 0.75);
+}
+.who svg {
+  width: 14px;
+  height: 14px;
+}
+.bubble {
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+.question {
+  background: var(--wa-bubble-out);
+  border-start-end-radius: 3px;
+}
+.answer {
+  color: var(--ink);
+  background: var(--white);
+  border-start-start-radius: 3px;
+}
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--dark);
+  cursor: pointer;
+}
+.toggle svg {
+  width: 16px;
+  height: 16px;
+  transition: rotate 0.5s var(--ease);
+}
+.toggle:hover {
+  border-color: var(--green);
+}
+.toggle[aria-pressed="true"] {
+  color: var(--white);
+  background: var(--dark);
+  border-color: var(--dark);
+}
+.toggle[aria-pressed="true"] svg {
+  rotate: 180deg;
+}
+.toggle:focus-visible {
+  outline: 3px solid rgb(var(--wa-rgb) / 0.5);
+  outline-offset: 2px;
+}
+
+/* Reduced motion: no turn — the faces swap in place (opacity keeps both
+   faces available to screen readers). */
+@media (prefers-reduced-motion: reduce) {
+  .flipped .inner,
+  .back {
+    rotate: none;
+  }
+  .face {
+    backface-visibility: visible;
+  }
+  .back,
+  .flipped .front {
+    opacity: 0;
+  }
+  .flipped .back {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .head {
+    flex-wrap: wrap;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,224 @@
+.hero {
+  padding-top: 150px;
+  padding-bottom: 90px;
+  background:
+    radial-gradient(45% 55% at 85% 20%, rgb(var(--wa-rgb) / 0.1), transparent 70%),
+    linear-gradient(180deg, var(--surface), var(--bg));
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 22px 0;
+}
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* Badge hanging at the start side, the chat overlapping it at the end side. */
+.visual {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: start;
+  /* The lanyard comes down from the top of the page, behind the header. */
+  margin-top: -150px;
+  --strap: 240px;
+}
+.swing {
+  flex-shrink: 0;
+  transform-origin: 50% 0;
+}
+:global(.in-view) .swing {
+  animation: swing 2.8s ease-out 0.4s 1;
+}
+@keyframes swing {
+  0% {
+    rotate: 0deg;
+  }
+  15% {
+    rotate: 7deg;
+  }
+  35% {
+    rotate: -5deg;
+  }
+  55% {
+    rotate: 3deg;
+  }
+  75% {
+    rotate: -1.5deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
+
+.chat {
+  position: relative;
+  z-index: 2;
+  align-self: flex-end;
+  width: 290px;
+  margin-inline-start: -36px;
+  margin-bottom: -24px;
+  border-radius: var(--r);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.chatHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  color: var(--white);
+  background: var(--wa-teal);
+}
+.chatHead > span:nth-child(2) {
+  flex: 1;
+  display: grid;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+.chatHead small {
+  font-size: 0.68rem;
+  opacity: 0.8;
+}
+.chatAvatar {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(var(--white-rgb) / 0.18);
+}
+.chatAvatar svg {
+  width: 18px;
+  height: 18px;
+}
+.tag {
+  flex-shrink: 0;
+}
+.thread {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  max-width: 88%;
+  padding: 8px 11px 5px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  box-shadow: var(--shadow-sm);
+}
+.bubble time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.64rem;
+  color: var(--wa-meta);
+}
+.bubble time svg {
+  width: 14px;
+  height: 14px;
+  color: var(--wa-link);
+}
+.out {
+  justify-self: end;
+  background: var(--wa-bubble-out);
+  border-start-end-radius: 3px;
+}
+.in {
+  justify-self: start;
+  background: var(--white);
+  border-start-start-radius: 3px;
+}
+.bot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--wa-send);
+}
+.bot svg {
+  width: 13px;
+  height: 13px;
+}
+.balance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-block: 6px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgb(var(--wa-rgb) / 0.12);
+}
+.balance svg {
+  width: 20px;
+  height: 20px;
+  color: var(--green);
+}
+.balance b {
+  font-size: 1.15rem;
+  color: var(--dark);
+}
+.summary {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.submit {
+  display: block;
+  margin-top: 6px;
+  padding-top: 6px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--wa-link);
+  border-top: 1px solid rgb(var(--black-rgb) / 0.08);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .copy {
+    text-align: center;
+  }
+  .lead {
+    margin-inline: auto;
+  }
+  .visual {
+    margin-top: 0;
+    --strap: 90px;
+  }
+}
+@media (max-width: 600px) {
+  .visual {
+    flex-direction: column;
+    align-items: center;
+  }
+  .chat {
+    align-self: center;
+    width: min(100%, 320px);
+    margin-inline-start: 0;
+    margin-top: -14px;
+    margin-bottom: 0;
+  }
+}
