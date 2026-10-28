@@ -50,6 +50,13 @@
   --cream-rgb: 251 246 236;
   --sun: #ffcf5c; /* drawn sun / key-card chip (tourism page) */
   --sand: #f2e6cc; /* drawn beach and postcard paper (tourism page) */
+  /* Example agency clients (advertising page mockups only): calm, readable on white. */
+  --client-food: #a84e15;
+  --client-food-rgb: 168 78 21;
+  --client-clinic: #2363a3;
+  --client-clinic-rgb: 35 99 163;
+  --client-shop: #7048a8;
+  --client-shop-rgb: 112 72 168;
 
   /* WhatsApp phone mockup */
   --phone-body: #0c1512;

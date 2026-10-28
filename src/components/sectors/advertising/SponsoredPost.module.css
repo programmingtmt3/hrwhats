@@ -1,0 +1,172 @@
+/* Closing + CTA as a sponsored post. */
+.section {
+  padding-bottom: 110px;
+}
+.post {
+  max-width: 600px;
+  margin-inline: auto;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 18px 10px;
+}
+.avatar {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--white);
+  overflow: hidden;
+}
+.avatar img {
+  width: 100%;
+  height: auto;
+}
+.author > span:last-child {
+  display: grid;
+  line-height: 1.4;
+}
+.author small {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.author small svg {
+  width: 12px;
+  height: 12px;
+}
+.text {
+  padding: 0 18px 14px;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.creative {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+  padding: 40px 28px;
+  overflow: hidden;
+  text-align: center;
+  color: var(--white);
+  background:
+    radial-gradient(60% 70% at 50% 0%, rgb(var(--neon-rgb) / 0.18), transparent 70%),
+    linear-gradient(160deg, var(--dark), var(--deep));
+}
+.creative h2 {
+  position: relative;
+  font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+  line-height: 1.45;
+  font-weight: 700;
+}
+.highlight {
+  color: var(--neon);
+}
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgb(var(--neon-rgb) / 0.25);
+}
+.shapeA {
+  width: 180px;
+  height: 180px;
+  top: -60px;
+  inset-inline-start: -50px;
+}
+.shapeB {
+  width: 120px;
+  height: 120px;
+  bottom: -40px;
+  inset-inline-end: -30px;
+  background: rgb(var(--wa-rgb) / 0.12);
+  border: 0;
+}
+
+.adBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.adText {
+  display: grid;
+  gap: 2px;
+  text-align: start;
+}
+.adText small {
+  justify-self: start;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.adText b {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.adBar :global(.btn) {
+  flex-shrink: 0;
+}
+.actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 12px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+.actions li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.actions svg {
+  width: 18px;
+  height: 18px;
+}
+
+.sales {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: 22px auto 0;
+  font-weight: 700;
+  color: var(--dark);
+}
+.sales svg {
+  width: 18px;
+  height: 18px;
+  color: var(--wa-send);
+}
+.sales:hover {
+  color: var(--green);
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-bottom: 88px;
+  }
+  .adBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .creative {
+    min-height: 220px;
+    padding-inline: 18px;
+  }
+}

@@ -1,0 +1,611 @@
+/* Artboard mockups. Hidden-before states only apply while the artboard
+   (.reveal) waits for .in-view. --c / --c-rgb come from the client classes. */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.headTitle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+/* ---------- 01 Unified inbox ---------- */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-bottom: 10px;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.legend i {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  background: var(--c);
+}
+.inbox {
+  display: grid;
+  gap: 8px;
+}
+.chat {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: var(--surface);
+  border-inline-start: 4px solid var(--c);
+  box-shadow: var(--shadow-sm);
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--c);
+  background: rgb(var(--c-rgb) / 0.12);
+}
+.chatText {
+  display: grid;
+  min-width: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+.chatText b {
+  font-size: 0.78rem;
+}
+.chatTags {
+  display: grid;
+  justify-items: end;
+  gap: 3px;
+}
+.chatTags em {
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 999px;
+  color: var(--c);
+  background: rgb(var(--c-rgb) / 0.1);
+}
+.chatTags small {
+  font-size: 0.68rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---------- 02 Auto-reply menu ---------- */
+.sender {
+  font-weight: 700;
+}
+.always {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: var(--white);
+  background: var(--dark);
+}
+.always svg {
+  width: 13px;
+  height: 13px;
+  color: var(--neon);
+}
+.thread {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  position: relative;
+  max-width: 86%;
+  padding: 8px 11px 6px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  box-shadow: var(--shadow-sm);
+}
+.bubble time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.66rem;
+  color: var(--wa-meta);
+}
+.bubble time svg {
+  width: 14px;
+  height: 14px;
+  color: var(--wa-link);
+}
+.in {
+  justify-self: start;
+  background: var(--white);
+  border-start-start-radius: 3px;
+}
+.out {
+  justify-self: end;
+  background: var(--wa-bubble-out);
+  border-start-end-radius: 3px;
+}
+.digit {
+  min-width: 64px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.bot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--wa-send);
+}
+.bot svg {
+  width: 13px;
+  height: 13px;
+}
+.menu {
+  display: grid;
+  gap: 4px;
+  margin-block: 6px 2px;
+}
+.menu li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.menu b {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  color: var(--white);
+  background: var(--wa-send);
+}
+.package {
+  display: flex;
+  gap: 10px;
+  margin-block: 6px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--white);
+}
+.package > svg {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  padding: 7px;
+  border-radius: 10px;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.14);
+}
+.package > span {
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+}
+.package small {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.package em {
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 999px;
+  color: var(--green);
+  border: 1px solid rgb(var(--green-rgb) / 0.35);
+}
+.contact {
+  display: block;
+  padding-top: 6px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--wa-link);
+  border-top: 1px solid rgb(var(--black-rgb) / 0.08);
+}
+
+/* ---------- 04 Lead thermometer ---------- */
+.leads {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 14px;
+  align-items: start;
+}
+.gauge {
+  --row: 62px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 12px;
+  padding-bottom: 26px;
+}
+.tube {
+  position: relative;
+  grid-row: 1;
+  width: 14px;
+  justify-self: center;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+.tube i {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to top, var(--client-clinic), var(--sun), var(--client-food));
+  transform-origin: bottom;
+  transition: scale 1.2s var(--ease) 0.4s;
+}
+:global(.reveal:not(.in-view)) .tube i {
+  scale: 1 0;
+}
+.gaugeIcon {
+  position: absolute;
+  bottom: 0;
+  inset-inline-start: 1px;
+  width: 24px;
+  height: 24px;
+  color: var(--client-food);
+}
+.levels {
+  grid-row: 1;
+  display: grid;
+}
+.levels li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--row);
+  border-bottom: 1px dashed var(--line);
+}
+.levelName {
+  flex-shrink: 0;
+  width: 46px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+.level0 .levelName {
+  color: var(--client-clinic);
+}
+.level1 .levelName {
+  color: var(--ink);
+}
+.level2 .levelName {
+  color: var(--client-food);
+}
+.lead {
+  display: grid;
+  min-width: 0;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  transition:
+    translate 0.9s var(--ease),
+    opacity 0.5s var(--ease);
+  transition-delay: calc(0.7s + var(--climb) * 0.25s);
+}
+.lead small {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+/* Every lead starts in the "cold" row and climbs to its own level. */
+:global(.reveal:not(.in-view)) .lead {
+  opacity: 0;
+  translate: 0 calc(var(--climb) * var(--row));
+}
+.capture {
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.captureTitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.capture dl {
+  display: grid;
+  gap: 6px;
+}
+.capture dl > div {
+  display: grid;
+  gap: 1px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: var(--bg);
+}
+.capture dt {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.capture dd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.capture dd svg {
+  width: 14px;
+  height: 14px;
+  color: var(--wa-send);
+}
+.followUp {
+  margin-top: 8px;
+  padding: 7px 9px;
+  border-radius: 10px;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  background: var(--wa-bubble-out);
+}
+
+/* ---------- 05 Team on client accounts ---------- */
+.multi {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.12);
+}
+.accounts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.account {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--surface);
+  border-top: 3px solid var(--c);
+  box-shadow: var(--shadow-sm);
+}
+.accountHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.accountHead i {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  font-style: normal;
+  font-size: 0.68rem;
+  color: var(--white);
+  background: var(--c);
+}
+.skeleton {
+  display: grid;
+  gap: 5px;
+  /* Room for the cursor, which works over these placeholder lines only. */
+  min-height: 52px;
+  align-content: start;
+}
+.skeleton i {
+  height: 7px;
+  border-radius: 999px;
+  background: rgb(var(--c-rgb) / 0.16);
+}
+.skeleton i:nth-child(2) {
+  width: 70%;
+}
+.skeleton i:nth-child(3) {
+  width: 85%;
+}
+.account small {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.workCursor {
+  top: 44px;
+  inset-inline-start: 18%;
+  animation: work 7s ease-in-out infinite;
+}
+.work1 {
+  animation-delay: -2.3s;
+}
+.work2 {
+  animation-delay: -4.6s;
+}
+@keyframes work {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  30% {
+    translate: 14px 4px;
+  }
+  60% {
+    translate: -6px 8px;
+  }
+}
+.speedTitle {
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.speed {
+  display: grid;
+  gap: 6px;
+}
+.speed li {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+}
+.bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  width: calc(var(--w) * 100%);
+  border-radius: inherit;
+  background: var(--green);
+  /* Grows from the start side. */
+  transform-origin: left;
+  transition: scale 1s var(--ease) 0.6s;
+}
+.bar i:dir(rtl) {
+  transform-origin: right;
+}
+:global(.reveal:not(.in-view)) .bar i {
+  scale: 0 1;
+}
+
+/* ---------- 06 White-label report ---------- */
+.report {
+  padding: 14px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.reportHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--c);
+}
+.reportHead > span:last-child {
+  display: grid;
+  font-size: 0.9rem;
+}
+.reportHead small {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.logo {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--c);
+}
+.sparks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.sparks li {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--bg);
+}
+.sparks small {
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+.sparks svg {
+  width: 100%;
+  height: 34px;
+  overflow: visible;
+}
+.sparks polyline {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.2s var(--ease);
+  transition-delay: calc(0.5s + var(--i, 0) * 0.15s);
+}
+:global(.reveal:not(.in-view)) .sparks polyline {
+  stroke-dashoffset: 1;
+}
+/* The export "button" is only a picture of one: not a link, not focusable. */
+.export {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 9px;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--dark);
+  user-select: none;
+}
+.export svg {
+  width: 17px;
+  height: 17px;
+}
+
+@media (max-width: 600px) {
+  .leads {
+    grid-template-columns: 1fr;
+  }
+  .accounts {
+    gap: 6px;
+  }
+  .account {
+    padding: 8px;
+  }
+  .chat {
+    grid-template-columns: auto 1fr;
+  }
+  .chatTags {
+    grid-column: 2;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+  }
+}

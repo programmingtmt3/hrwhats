@@ -1,0 +1,68 @@
+/* Advertising page: a design-tool canvas (dot grid), example-client colors
+   and the team's named cursors. */
+.page {
+  background:
+    radial-gradient(circle, rgb(var(--dark-rgb) / 0.13) 1px, transparent 1.6px) 0 0 / 22px 22px,
+    var(--bg);
+  /* Cursors and selection handles may sit on an edge; never scroll sideways. */
+  overflow-x: clip;
+}
+
+/* Example clients: each mockup element sets --c / --c-rgb through these. */
+.client0 {
+  --c: var(--client-food);
+  --c-rgb: var(--client-food-rgb);
+}
+.client1 {
+  --c: var(--client-clinic);
+  --c-rgb: var(--client-clinic-rgb);
+}
+.client2 {
+  --c: var(--client-shop);
+  --c-rgb: var(--client-shop-rgb);
+}
+
+/* A teammate's cursor: arrow + name chip (decorative, physical layout like a real pointer). */
+.cursor {
+  --tone: var(--wa-link);
+  --tone-ink: var(--white);
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: flex-start;
+  pointer-events: none;
+}
+.cursor svg {
+  width: 16px;
+  height: 20px;
+  fill: var(--tone);
+  stroke: var(--white);
+  stroke-width: 1.4;
+  filter: drop-shadow(0 2px 3px rgb(var(--deep-rgb) / 0.25));
+}
+.cursor b {
+  margin-top: 14px;
+  margin-left: -2px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: nowrap;
+  color: var(--tone-ink);
+  background: var(--tone);
+  box-shadow: var(--shadow-sm);
+}
+.tone0 {
+  --tone: var(--wa-link);
+}
+.tone1 {
+  --tone: var(--wa-teal);
+}
+.tone2 {
+  --tone: var(--dark);
+}
+.tone3 {
+  --tone: var(--sun);
+  --tone-ink: var(--ink);
+}

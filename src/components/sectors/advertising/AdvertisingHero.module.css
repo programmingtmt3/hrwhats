@@ -1,0 +1,106 @@
+.hero {
+  padding-top: 160px;
+  padding-bottom: 96px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
+  line-height: 1.38;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 22px 0;
+}
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.badges li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.badges svg {
+  width: 18px;
+  height: 18px;
+  color: var(--green);
+}
+
+/* Board + two drifting teammate cursors just outside its frame. */
+.visual {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 460px);
+  padding-block: 42px;
+}
+.cursorA {
+  top: 0;
+  inset-inline-end: 12%;
+  animation: drift-a 9s ease-in-out infinite;
+}
+.cursorB {
+  bottom: 0;
+  inset-inline-start: 14%;
+  animation: drift-b 11s ease-in-out infinite;
+}
+@keyframes drift-a {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  35% {
+    translate: -46px 4px;
+  }
+  70% {
+    translate: -18px -6px;
+  }
+}
+@keyframes drift-b {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  40% {
+    translate: 52px -4px;
+  }
+  75% {
+    translate: 20px 4px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .copy {
+    text-align: center;
+  }
+  .lead {
+    margin-inline: auto;
+  }
+  .badges {
+    justify-content: center;
+  }
+}

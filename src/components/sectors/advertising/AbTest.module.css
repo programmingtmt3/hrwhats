@@ -1,0 +1,165 @@
+/* 03 — A/B test with an audience switch. */
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.switch:focus-visible {
+  outline: 3px solid rgb(var(--wa-rgb) / 0.5);
+  outline-offset: 2px;
+}
+.side {
+  transition: color 0.3s var(--ease);
+}
+.current {
+  font-weight: 700;
+  color: var(--green);
+}
+.track {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--line);
+  transition: background-color 0.3s var(--ease);
+}
+.track i {
+  position: absolute;
+  top: 3px;
+  inset-inline-start: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: inset-inline-start 0.3s var(--ease);
+}
+.switch[aria-checked="true"] .track {
+  background: var(--wa);
+}
+.switch[aria-checked="true"] .track i {
+  inset-inline-start: 19px;
+}
+
+.variants {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.variant {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  transition: border-color 0.4s var(--ease);
+}
+.won {
+  border-color: var(--wa);
+}
+.variantName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-style: normal;
+  font-size: 0.68rem;
+  color: var(--on-wa);
+  background: var(--wa);
+  animation: pop 0.4s var(--ease);
+}
+.badge svg {
+  width: 12px;
+  height: 12px;
+}
+.message {
+  min-height: 5.2em;
+  padding: 9px 11px;
+  border-radius: 12px;
+  border-start-end-radius: 3px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  background: var(--wa-bubble-out);
+  animation: fade 0.4s var(--ease);
+}
+.engagement {
+  display: grid;
+  gap: 4px;
+}
+.engagement small {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  width: calc(var(--w) * 100%);
+  border-radius: inherit;
+  background: var(--green);
+  transition:
+    width 0.6s var(--ease),
+    scale 1s var(--ease) 0.6s;
+  transform-origin: left;
+}
+.bar i:dir(rtl) {
+  transform-origin: right;
+}
+:global(.reveal:not(.in-view)) .bar i {
+  scale: 0 1;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: 0.7;
+  }
+}
+
+@media (max-width: 600px) {
+  .variants {
+    grid-template-columns: 1fr;
+  }
+  .message {
+    min-height: 0;
+  }
+}
