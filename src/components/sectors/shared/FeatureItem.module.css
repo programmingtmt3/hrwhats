@@ -5,6 +5,7 @@
   padding: 20px 22px;
   box-shadow: var(--shadow-sm);
 }
+.item h2,
 .item h3,
 .item h4 {
   font-size: 1.05rem;
@@ -48,6 +49,7 @@
   padding: 0;
   box-shadow: none;
 }
+.item.plain h2,
 .item.plain h3,
 .item.plain h4 {
   font-size: clamp(1.4rem, 2.6vw, 1.8rem);
@@ -89,6 +91,7 @@
 }
 
 /* Inverse variant: light text on dark backgrounds. */
+.item.inverse h2,
 .item.inverse h3,
 .item.inverse h4 {
   color: var(--white);

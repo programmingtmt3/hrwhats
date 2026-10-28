@@ -62,6 +62,10 @@
   --alert-rgb: 180 55 43;
   --amber: #8f5a00;
   --amber-rgb: 143 90 0;
+  /* Restaurants page: chalkboard and its wooden frame. */
+  --chalk: #24332c;
+  --chalk-rgb: 36 51 44;
+  --wood: #7a5230;
 
   /* WhatsApp phone mockup */
   --phone-body: #0c1512;

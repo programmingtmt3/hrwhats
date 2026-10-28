@@ -1,0 +1,115 @@
+/* Closing: neon "open now" sign on a dark brick wall. */
+.section {
+  padding-bottom: 110px;
+}
+.wall {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  padding: 70px 40px 56px;
+  border-radius: var(--r-lg);
+  text-align: center;
+  color: var(--white);
+  background:
+    linear-gradient(rgb(var(--black-rgb) / 0.35) 2px, transparent 2px) 0 0 / 100% 34px,
+    linear-gradient(90deg, rgb(var(--black-rgb) / 0.35) 2px, transparent 2px) 0 0 / 68px 68px,
+    linear-gradient(90deg, rgb(var(--black-rgb) / 0.35) 2px, transparent 2px) 34px 34px / 68px 68px,
+    linear-gradient(180deg, var(--dark), var(--deep));
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+/* The cable the sign hangs from. */
+.wire {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: 2px;
+  height: 46px;
+  background: rgb(var(--white-rgb) / 0.35);
+}
+.sign {
+  padding: 10px 34px 14px;
+  border: 3px solid var(--neon);
+  border-radius: 999px;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--neon);
+  text-shadow:
+    0 0 6px var(--neon),
+    0 0 18px rgb(var(--neon-rgb) / 0.7),
+    0 0 36px rgb(var(--neon-rgb) / 0.45);
+  box-shadow:
+    0 0 12px rgb(var(--neon-rgb) / 0.6),
+    inset 0 0 12px rgb(var(--neon-rgb) / 0.4);
+}
+/* Unlit until first seen… */
+:global(.reveal:not(.in-view)) .sign {
+  opacity: 0.25;
+  text-shadow: none;
+  box-shadow: none;
+}
+/* …then it flickers on, once. */
+:global(.in-view) .sign {
+  animation: flicker 1.3s linear 0.4s 1 both;
+}
+@keyframes flicker {
+  0%,
+  14%,
+  28%,
+  44% {
+    opacity: 0.25;
+    text-shadow: none;
+    box-shadow: none;
+  }
+  10%,
+  22%,
+  36%,
+  100% {
+    opacity: 1;
+  }
+}
+
+.content {
+  max-width: 660px;
+  margin-top: 34px;
+  transition-delay: 1.4s;
+}
+.content h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.highlight {
+  color: var(--neon);
+}
+.content p {
+  font-size: 1.04rem;
+  color: rgb(var(--white-rgb) / 0.8);
+}
+.content .lead {
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--white);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-bottom: 88px;
+  }
+  .wall {
+    padding: 60px 18px 40px;
+  }
+  .sign {
+    padding-inline: 22px;
+  }
+}

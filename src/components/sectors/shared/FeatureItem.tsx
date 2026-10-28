@@ -16,7 +16,7 @@ export function FeatureItem({
   className,
 }: {
   feature: Feature;
-  heading?: "h3" | "h4";
+  heading?: "h2" | "h3" | "h4";
   /** No card: just the text, with a larger title (section-level features). */
   plain?: boolean;
   /** Light text for dark backgrounds. */

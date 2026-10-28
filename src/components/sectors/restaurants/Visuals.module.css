@@ -1,0 +1,490 @@
+/* Restaurant mockups (floor-plan panel). */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.headTitle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+.always {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--dark);
+}
+.always svg {
+  width: 13px;
+  height: 13px;
+  color: var(--neon);
+}
+
+/* Chats */
+.thread {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  max-width: 90%;
+  padding: 8px 11px 6px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  box-shadow: var(--shadow-sm);
+}
+.bubble time {
+  display: block;
+  text-align: end;
+  font-size: 0.64rem;
+  color: var(--wa-meta);
+}
+.in {
+  justify-self: start;
+  background: var(--white);
+  border-start-start-radius: 3px;
+}
+.out {
+  justify-self: end;
+  background: var(--wa-bubble-out);
+  border-start-end-radius: 3px;
+}
+.note {
+  margin-top: 12px;
+  width: fit-content;
+  border: 1px solid var(--line);
+}
+.bot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--wa-send);
+}
+.bot svg {
+  width: 13px;
+  height: 13px;
+}
+.file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--bg);
+}
+.file > svg {
+  width: 28px;
+  height: 28px;
+  color: var(--alert);
+}
+.file > span {
+  display: grid;
+  line-height: 1.4;
+}
+.file small {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+/* 1 Order screen */
+.screen {
+  padding: 12px;
+  border-radius: 14px;
+  border: 6px solid var(--phone-body);
+  background: var(--deep);
+  color: var(--white);
+}
+.screenTitle {
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--neon);
+}
+.screen ul {
+  display: grid;
+  gap: 6px;
+}
+.screen li {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgb(var(--white-rgb) / 0.07);
+  font-size: 0.8rem;
+}
+.screen li > span {
+  display: grid;
+  min-width: 0;
+  line-height: 1.45;
+}
+.screen small {
+  color: rgb(var(--white-rgb) / 0.7);
+}
+.screen em {
+  font-style: normal;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+.delivery {
+  color: var(--deep);
+  background: var(--neon);
+}
+.pickup {
+  color: var(--white);
+  border: 1px solid rgb(var(--white-rgb) / 0.4);
+}
+.fresh {
+  position: absolute;
+  top: -7px;
+  inset-inline-end: 8px;
+  padding: 0 7px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--on-wa);
+  background: var(--wa);
+  animation: blink 1.6s ease-in-out infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* 3 Rail */
+.rail {
+  margin-top: 18px;
+}
+.confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin-top: 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.confirm svg {
+  width: 15px;
+  height: 15px;
+}
+.confirm span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* 4 Delivery status */
+.plateRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: center;
+}
+.plate {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: 96px;
+  padding-top: 30px;
+}
+.plateSteam {
+  position: absolute;
+  top: 0;
+}
+/* A plate with a dome of food, drawn in CSS (direct child only: the steam has its own <i>s). */
+.plate > i {
+  width: 96px;
+  height: 40px;
+  border-radius: 50%;
+  background:
+    radial-gradient(60% 70% at 50% 35%, var(--sun) 0 45%, transparent 47%),
+    radial-gradient(closest-side, var(--white) 70%, var(--line) 72% 100%);
+  box-shadow: var(--shadow);
+}
+.statuses {
+  display: grid;
+  gap: 6px;
+}
+.statuses li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.statuses i {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+}
+.statuses svg {
+  width: 15px;
+  height: 15px;
+}
+.done {
+  color: var(--ink);
+}
+.done i {
+  color: var(--white);
+  background: var(--wa-send);
+  border-color: var(--wa-send);
+}
+.current {
+  font-weight: 700;
+  color: var(--green);
+}
+.current i {
+  color: var(--green);
+  border-color: var(--wa);
+  box-shadow: 0 0 0 4px rgb(var(--wa-rgb) / 0.2);
+}
+
+/* 5 Loyalty */
+.loyalty {
+  padding: 14px;
+  border-radius: 14px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--dark), var(--green));
+  box-shadow: var(--shadow);
+}
+.loyaltyHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+.loyaltyHead span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+}
+.loyaltyHead svg {
+  width: 14px;
+  height: 14px;
+}
+.stamps {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  margin-block: 12px 8px;
+}
+.stamps li {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px dashed rgb(var(--white-rgb) / 0.4);
+}
+.stamps svg {
+  width: 55%;
+  height: 55%;
+  opacity: 0.4;
+}
+.stamped {
+  background: var(--white);
+  border-style: solid;
+}
+.stamped svg {
+  color: var(--green);
+  opacity: 1;
+}
+.free {
+  border-color: var(--neon);
+  border-style: solid;
+}
+.free svg {
+  color: var(--neon);
+  opacity: 1;
+}
+.reward {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--neon);
+}
+.replies {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.replies span {
+  flex: 1;
+  padding: 3px 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--wa-link);
+  border: 1px solid var(--line);
+}
+
+/* 6 Team split */
+.incoming {
+  width: fit-content;
+  margin-inline: auto;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--on-wa);
+  background: var(--wa);
+}
+.roles {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 26px;
+}
+/* Branch lines from the order to each role. */
+.roles::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  inset-inline: calc((100% - 16px) / 6);
+  height: 14px;
+  border: 2px solid var(--line);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+}
+.roles::after {
+  content: "";
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  height: 26px;
+  border-left: 2px solid var(--line);
+}
+.roles li {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 12px 8px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  text-align: center;
+  font-size: 0.8rem;
+}
+.roles i {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.14);
+}
+.roles svg {
+  width: 18px;
+  height: 18px;
+}
+.roles small {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+/* 7 Peak dial */
+.peak {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: center;
+}
+.dial {
+  --c0: rgb(var(--wa-rgb) / calc(0.15 + var(--l0) * 0.425));
+  --c1: rgb(var(--wa-rgb) / calc(0.15 + var(--l1) * 0.425));
+  --c2: rgb(var(--wa-rgb) / calc(0.15 + var(--l2) * 0.425));
+  --c3: rgb(var(--wa-rgb) / calc(0.15 + var(--l3) * 0.425));
+  --c4: rgb(var(--wa-rgb) / calc(0.15 + var(--l4) * 0.425));
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--c0) 0 var(--share),
+    var(--c1) 0 calc(var(--share) * 2),
+    var(--c2) 0 calc(var(--share) * 3),
+    var(--c3) 0 calc(var(--share) * 4),
+    var(--c4) 0 360deg
+  );
+}
+/* The face of the dial with a single hand. */
+.dial i {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--dark), var(--dark)) 50% 12px / 3px 26px no-repeat,
+    var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.slots {
+  display: grid;
+  gap: 6px;
+}
+.slots li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+.slots small {
+  margin-inline-start: auto;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: rgb(var(--wa-rgb) / calc(0.15 + var(--level) * 0.425));
+}
+
+@media (max-width: 600px) {
+  .head {
+    flex-wrap: wrap;
+  }
+  .plateRow,
+  .peak {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .slots {
+    width: 100%;
+  }
+}

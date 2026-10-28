@@ -1,0 +1,94 @@
+/* A printed menu card: double border, ornament, dotted leaders. */
+.section {
+  padding-bottom: 110px;
+}
+.menu {
+  max-width: 640px;
+  margin-inline: auto;
+  padding: 44px 48px;
+  border: 3px double rgb(var(--dark-rgb) / 0.45);
+  outline: 8px solid var(--cream);
+  outline-offset: -14px;
+  border-radius: 6px;
+  background: var(--cream);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--green);
+}
+.menu h2 {
+  margin-top: 6px;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.4;
+  font-weight: 700;
+}
+/* ——◆—— */
+.ornament {
+  position: relative;
+  display: block;
+  width: 140px;
+  height: 12px;
+  margin: 12px auto;
+  background:
+    linear-gradient(rgb(var(--dark-rgb) / 0.3), rgb(var(--dark-rgb) / 0.3)) 0 50% / 56px 2px no-repeat,
+    linear-gradient(rgb(var(--dark-rgb) / 0.3), rgb(var(--dark-rgb) / 0.3)) 100% 50% / 56px 2px no-repeat;
+}
+.ornament::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  translate: -50% -50%;
+  rotate: 45deg;
+  background: var(--green);
+}
+.intro {
+  color: var(--muted);
+}
+.menu ul {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+  text-align: start;
+}
+.menu li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.menu li i {
+  flex: 1;
+  min-width: 24px;
+  border-bottom: 2px dotted rgb(var(--dark-rgb) / 0.3);
+}
+.menu li svg {
+  flex-shrink: 0;
+  align-self: center;
+  width: 22px;
+  height: 22px;
+  padding: 3px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--green);
+  stroke-width: 3;
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-bottom: 88px;
+  }
+  .menu {
+    padding: 34px 20px;
+  }
+  .menu li {
+    font-size: 0.95rem;
+  }
+}
