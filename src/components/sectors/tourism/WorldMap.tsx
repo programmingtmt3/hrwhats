@@ -8,16 +8,23 @@ import styles from "./WorldMap.module.css";
  * The dots are ONE static SVG used as a CSS mask (public/images/...; world
  * dots at 55% alpha, Saudi Arabia at 100%), so their color comes from the
  * design tokens. Generated once from Natural Earth 110m (world-atlas@2.0.2):
- * equirectangular, 2° cells, 78°N..58°S → a 180 × 68 grid. The small inline
+ * equirectangular, 2° cells, 78°N..58°S → a 180 × 68 grid, rotated so it
+ * starts at 134°W: 46°E (Saudi Arabia) is the center column, the Americas are
+ * on the left, East Asia and Australia on the right. The small inline
  * SVG on top (same grid) holds the Riyadh pulse and the flight lines.
  * Geographic, so it is never mirrored in RTL.
  */
-const WORLD_DOTS = "/images/sectors/tourism-hospitality/world-dots.svg";
+// The file name changes whenever the dots change: it is not content-hashed,
+// so browsers and the host cache would keep serving the old map.
+const WORLD_DOTS = "/images/sectors/tourism-hospitality/world-dots-46e.svg";
 const COLS = 180;
 const ROWS = 68;
 
+/** Longitude at the map's left edge (the center is START_LON + 180 = 46°E). */
+const START_LON = -134;
+
 /** [lon, lat] → grid coordinates (x right/east, y down/south). */
-const project = ([lon, lat]: [number, number]) => [(lon + 180) / 2, (78 - lat) / 2] as const;
+const project = ([lon, lat]: [number, number]) => [((lon - START_LON + 360) % 360) / 2, (78 - lat) / 2] as const;
 
 const RIYADH = project([46.7, 24.7]);
 

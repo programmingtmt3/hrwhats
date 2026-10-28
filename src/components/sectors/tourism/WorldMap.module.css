@@ -15,14 +15,13 @@
   pointer-events: none;
   mask-image: linear-gradient(180deg, var(--mask-opaque) 0 52%, transparent 88%);
 }
-/* Desktop: the world a little wider than the page, shifted so Saudi Arabia
-   (x = 113.35 / 180 of the map) falls in the gap between the hero text and
-   the ticket (~49% of the page), not under the heading. */
+/* The whole world across the full width; Saudi Arabia is the center column
+   of the (rotated) map, so Riyadh sits at the middle of the page. */
 .map {
   position: absolute;
   top: 70px;
-  left: calc(49% - 125% * 113.35 / 180);
-  width: 125%;
+  left: 0;
+  width: 100%;
   aspect-ratio: 180 / 68;
 }
 .dots {
@@ -110,8 +109,8 @@
   .map {
     top: 64px;
     width: 330%;
-    /* Riyadh is at x = 113.35 / 180 of the map's width. */
-    left: calc(50% - 330% * 113.35 / 180);
+    /* Riyadh is at x = 90.35 / 180 of the map's width. */
+    left: calc(50% - 330% * 90.35 / 180);
   }
 }
 
