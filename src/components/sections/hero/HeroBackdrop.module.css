@@ -1,5 +1,5 @@
-/* Hero background from the design (two blobs; the grid was removed). Shared
-   by the home hero and PageHero. The parent must be position: relative;
+/* Hero background from the design (two blobs; the grid was removed). Used by
+   the home hero (inner pages use PageGlow). The parent must be position: relative;
    overflow: hidden. */
 .blob {
   position: absolute;

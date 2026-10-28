@@ -1,5 +1,6 @@
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Cta } from "@/components/sections/cta/Cta";
+import { PageGlow } from "@/components/sections/PageGlow";
 import { PageHero } from "@/components/sections/PageHero";
 import { HiringPlans } from "@/components/sections/packages/HiringPlans";
 import { WhatsappPlans } from "@/components/sections/packages/WhatsappPlans";
@@ -21,10 +22,12 @@ export function PackagesPage({ locale }: { locale: Locale }) {
       {whatsappPlansJsonLd(locale).map((product) => (
         <JsonLd key={product.name} data={product} />
       ))}
-      <PageHero eyebrow={hero.eyebrow} title={hero.title} />
-      <WhatsappPlans locale={locale} />
-      <HiringPlans locale={locale} />
-      <Cta locale={locale} />
+      <PageGlow>
+        <PageHero eyebrow={hero.eyebrow} title={hero.title} />
+        <WhatsappPlans locale={locale} />
+        <HiringPlans locale={locale} />
+        <Cta locale={locale} />
+      </PageGlow>
     </>
   );
 }

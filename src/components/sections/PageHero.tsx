@@ -1,7 +1,6 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
 
-import { HeroBackdrop } from "./hero/HeroBackdrop";
 import styles from "./PageHero.module.css";
 
 type PageHeroProps = {
@@ -11,11 +10,10 @@ type PageHeroProps = {
   lead?: string;
 };
 
-/** Hero for inner pages: same backdrop as the home hero, shorter. */
+/** Hero for inner pages: shorter than the home hero; its glow comes from the surrounding <PageGlow>. */
 export function PageHero({ eyebrow, title, lead }: PageHeroProps) {
   return (
     <section className={styles.hero}>
-      <HeroBackdrop />
       <Reveal className={cn("site-container", styles.inner)}>
         <span className="eyebrow">{eyebrow}</span>
         <h1>

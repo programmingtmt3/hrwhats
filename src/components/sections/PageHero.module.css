@@ -1,7 +1,6 @@
-/* Inner-page hero: the home hero's backdrop, shorter, centered heading. */
+/* Inner-page hero: shorter, centered heading. No background or clipping of
+   its own — the glow behind it is the page-wide <PageGlow>. */
 .hero {
-  position: relative;
-  overflow: hidden;
   padding-top: 150px;
   padding-bottom: 40px;
   text-align: center;

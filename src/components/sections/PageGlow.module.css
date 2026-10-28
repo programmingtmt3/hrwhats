@@ -1,0 +1,69 @@
+/* Page-wide glow. The stage is its own stacking context, so the blobs
+   (z-index: -1) always sit behind the sections and cards, on the page
+   background. overflow-x: clip stops the blobs that reach past the sides
+   from causing horizontal scroll, without making a scroll container. */
+.stage {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+.blob {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+/* The two hero blobs, same as HeroBackdrop, no longer cut at the hero's end. */
+.top {
+  width: 520px;
+  height: 520px;
+  top: -120px;
+  inset-inline-end: -120px;
+  opacity: 0.55;
+  background: radial-gradient(circle, rgb(var(--wa-rgb) / 0.55), transparent 70%);
+}
+.heroEnd {
+  width: 420px;
+  height: 420px;
+  top: 180px;
+  inset-inline-start: 10%;
+  opacity: 0.55;
+  background: radial-gradient(circle, rgb(var(--neon-rgb) / 0.35), transparent 70%);
+}
+/* Fainter blobs further down, on alternating sides. Kept clear of opaque
+   bands (e.g. the white hiring section on the packages page) so they fade
+   out instead of being cut by a band's edge. */
+.middle {
+  width: 560px;
+  height: 560px;
+  top: 22%;
+  inset-inline-end: -180px;
+  opacity: 0.4;
+  background: radial-gradient(circle, rgb(var(--wa-rgb) / 0.4), transparent 70%);
+}
+.lower {
+  width: 480px;
+  height: 480px;
+  bottom: 120px;
+  inset-inline-start: -140px;
+  opacity: 0.35;
+  background: radial-gradient(circle, rgb(var(--neon-rgb) / 0.35), transparent 70%);
+}
+
+@media (max-width: 600px) {
+  .top {
+    width: 360px;
+    height: 360px;
+  }
+  .heroEnd,
+  .lower {
+    width: 300px;
+    height: 300px;
+  }
+  .middle {
+    width: 340px;
+    height: 340px;
+    inset-inline-end: -140px;
+  }
+}
