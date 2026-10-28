@@ -45,7 +45,6 @@
   line-height: 1.2;
   color: var(--dark);
 }
-/* Subtitle only — not the counter <span> inside <strong>. */
 .item strong + span {
   color: var(--muted);
   font-size: 0.9rem;

@@ -122,19 +122,19 @@ content/
 └── data/
     ├── clients.json      ← client names + logos (+ intrinsic width/height)
     ├── partners.json     ← success partners (same shape)
-    ├── packages.json     ← pricing packages
-    ├── sectors.json      ← slug + name + image — the ONLY source of sector names site-wide (home grid, navigation, sector pages)
+    ├── packages.json     ← pricing packages (the home trust bar's "من N ر.س" = lowest monthly WhatsApp plan, via `getStartingMonthlyPrice()` — never typed by hand)
+    ├── sectors.json      ← slug + name — the ONLY source of sector names site-wide (home grid, navigation, sector pages)
     ├── faq.json          ← FAQ items
-    └── site.json         ← contact info, social links, app URLs, `trustedCount` (the "+N جهة" number in the home trust bar — set by hand, NOT computed from clients.json)
+    └── site.json         ← contact info, social links, app URLs
 ```
 
 - **File names are ASCII English** (`whatsapp-blue-tick.mdx`). Never Arabic or emoji file names.
 - **Client/partner logos:** `public/images/{clients,partners}/NN-short-english-name.ext` (two-digit display order, lowercase, hyphens). The JSON lists them in the same order — Zod fails the build otherwise. **Any new logo must be at most 600px wide** (downscale before committing, keep format and transparency, never upscale) and its `width`/`height` in the JSON must match the file.
-- **Banners:** `public/images/banners/` with short ASCII English names (`bnr-1.png`, …). Compress before committing without changing dimensions or visible quality (e.g. palette PNG at quality 100), render with `SiteImage` at the file's real width/height.
+- **No image banners.** Promotional panels are built in code from the design tokens (e.g. the Meta verification panel under "لماذا HRwhats": `src/components/sections/why/MetaVerify.tsx`) — never a picture of text.
 - A translation of a post has the **same file name** under the other locale folder.
 - Text fields in JSON data are bilingual objects: `{ "ar": "...", "en": "..." }` (`en` may be empty until the English phase).
 - Every content type has a Zod schema in `velite.config.ts`. A missing required field must fail the build.
-- **Sector pages are custom, one design per sector** — no shared sector template and no sector MDX. Each sector has a static route folder `src/app/(ar)/<slug>/page.tsx` (thin wrapper) and its own sections in `src/components/sectors/<slug>/` (e.g. `charity/`). Shared: tokens, fonts, buttons, `SectionHeading`, header, footer, `Cta`, `Reveal`. The slug and name come from `sectors.json` via `getSector(slug)` (throws if missing); all page text lives in `messages/ar.json` under `sectors.<slug>`. Page-only assets go in `public/images/sectors/<slug>/` (never mixed with the sector card image `public/images/sectors/<slug>.jpg`). **Sector pages use no images from the old WordPress site — not on the page and not as Open Graph images.** Every visual is built in code (or generated, like the tourism world map). Sector pages set no page OG image: they inherit the site-wide one (1200×630, launch phase). The only old-site images kept are the sector card images on the home page.
+- **Sector pages are custom, one design per sector** — no shared sector template and no sector MDX. Each sector has a static route folder `src/app/(ar)/<slug>/page.tsx` (thin wrapper) and its own sections in `src/components/sectors/<slug>/` (e.g. `charity/`). Shared: tokens, fonts, buttons, `SectionHeading`, header, footer, `Cta`, `Reveal`. The slug and name come from `sectors.json` via `getSector(slug)` (throws if missing); all page text lives in `messages/ar.json` under `sectors.<slug>`. Page-only assets go in `public/images/sectors/<slug>/`. **Sector pages use no images from the old WordPress site — not on the page and not as Open Graph images.** Every visual is built in code (or generated, like the tourism world map). Sector pages set no page OG image: they inherit the site-wide one (1200×630, launch phase). The home sector cards use no images either: each card (`src/components/sections/sectors/`) has a small code-drawn motif from its page's theme (`SectorMotif`) and a short line from `home.sectors.cards.<slug>` in `ar.json` (a missing line fails the build). **A new sector page needs its card motif and line too.**
 - **Illustrative data — rule for every sector page.** Mockups built in code (chats, cards, boards, dashboards) use generic example data from `ar.json` and carry a visible "مثال توضيحي" tag (`ExampleTag`). Allowed: generic campaign names, common first names for customers and staff, reasonable prices/areas/amounts, and places described by type + area ("شقة 3 غرف — شمال الرياض"). Never: real company, association or project names, invented project names (they may match real ones), or numbers that look like statistics about the platform. Relative visuals (bars, dots, funnels) carry no figures.
 - Shared sector building blocks live in `src/components/sectors/shared/` (`ExampleTag`, `FeatureItem` — `plain` variant for section-level text). A sector page may replace the site-wide `<Cta>` with its own closing panel when its closing text already is the call to action (e.g. real-estate).
 - **Pages never read content files directly.** All access goes through `src/lib/content.ts` (`getPosts(locale)`, `getPostBySlug(locale, slug)`, `getClients()`, …). This layer is the only thing that changes if we later add a Git-based CMS (Keystatic).
@@ -234,7 +234,7 @@ src/
 │   └── seo.ts                ← metadata + JSON-LD helpers
 messages/ar.json
 content/
-public/images/{brand,banners,clients,partners,sectors,posts}/
+public/images/{brand,clients,partners,sectors,posts}/
 public/api/
 ├── contact.php               ← contact form endpoint (PHP on the host)
 └── _lib/                     ← PHPMailer 7.1.1 (+ .htaccess deny all)

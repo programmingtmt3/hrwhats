@@ -1,15 +1,6 @@
-/* Hero background from the design (grid + two blobs). Shared by the home hero
-   and PageHero. The parent must be position: relative; overflow: hidden. */
-.gridBg {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgb(var(--dark-rgb) / 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--dark-rgb) / 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, var(--mask-opaque) 30%, transparent 75%);
-  pointer-events: none;
-}
+/* Hero background from the design (two blobs; the grid was removed). Shared
+   by the home hero and PageHero. The parent must be position: relative;
+   overflow: hidden. */
 .blob {
   position: absolute;
   border-radius: 50%;

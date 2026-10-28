@@ -1,0 +1,559 @@
+/* Sector card motifs (home). Quiet, code-drawn miniatures of each sector
+   page's theme. Backgrounds and full-width pieces (awning, tape, route) follow
+   the motif's size; the central object keeps fixed pixel sizes and shrinks
+   with --s on phones. Hover movements are one short transition each (none
+   with reduced motion, via the global rule). */
+.motif {
+  --s: 1;
+  position: relative;
+  overflow: hidden;
+  height: 128px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  border-block-end: 1px solid var(--line);
+}
+.motif i,
+.motif b {
+  display: block;
+}
+
+.campaign,
+.building,
+.note,
+.ticket,
+.receipt,
+.frame,
+.cursor,
+.lanyard,
+.leds,
+.board,
+.shelf {
+  scale: var(--s);
+}
+
+/* Shared placeholder text line. */
+.bar,
+.note i,
+.ticketMain i,
+.receipt i,
+.frame i,
+.badge i {
+  height: 5px;
+  border-radius: 3px;
+  background: rgb(var(--dark-rgb) / 0.12);
+}
+.short {
+  width: 55%;
+}
+
+/* ---------- charity: cream + campaign progress ---------- */
+.charity {
+  background: var(--cream);
+}
+.campaign {
+  width: 150px;
+  padding: 12px;
+  display: grid;
+  gap: 7px;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.track {
+  margin-top: 3px;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgb(var(--wa-rgb) / 0.16);
+}
+.track b {
+  width: 62%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), var(--wa));
+  transition: width 0.6s var(--ease);
+}
+
+/* ---------- real estate: blueprint ---------- */
+.real-estate-contracting {
+  background-color: rgb(var(--green-rgb) / 0.04);
+  background-image:
+    linear-gradient(rgb(var(--green-rgb) / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--green-rgb) / 0.1) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+.building {
+  width: 130px;
+  stroke: var(--green);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: translate 0.4s var(--ease);
+}
+.mark {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 0 solid rgb(var(--green-rgb) / 0.45);
+}
+.markStart {
+  top: 10px;
+  inset-inline-start: 10px;
+  border-block-start-width: 1.5px;
+  border-inline-start-width: 1.5px;
+}
+.markEnd {
+  bottom: 10px;
+  inset-inline-end: 10px;
+  border-block-end-width: 1.5px;
+  border-inline-end-width: 1.5px;
+}
+
+/* ---------- education: ruled notebook + sticky note ---------- */
+.education-training {
+  background-image: linear-gradient(transparent calc(100% - 1px), rgb(var(--green-rgb) / 0.12) 0);
+  background-size: 100% 16px;
+}
+.education-training::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 22px;
+  width: 2px;
+  background: rgb(var(--wa-rgb) / 0.3);
+}
+.note {
+  position: relative;
+  width: 80px;
+  height: 66px;
+  padding: 18px 10px 8px;
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  background:
+    linear-gradient(rgb(var(--wa-rgb) / 0.18), rgb(var(--wa-rgb) / 0.18)),
+    var(--surface);
+  box-shadow: var(--shadow-sm);
+  rotate: -4deg;
+  transition: rotate 0.4s var(--ease);
+}
+.note i:last-child {
+  width: 60%;
+}
+/* Tape strip (centered: the allowed left: 50% exception). */
+.note::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 36px;
+  height: 13px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: rgb(var(--white-rgb) / 0.75);
+  box-shadow: 0 1px 2px rgb(var(--deep-rgb) / 0.1);
+}
+
+/* ---------- tourism: route + perforated ticket ---------- */
+.tourism-hospitality {
+  background: var(--sand);
+}
+.route {
+  position: absolute;
+  top: 12px;
+  inset-inline: 8%;
+  width: 84%;
+  height: 44px;
+  stroke: rgb(var(--green-rgb) / 0.5);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 5;
+  stroke-linecap: round;
+}
+.route path {
+  vector-effect: non-scaling-stroke;
+}
+.ticket {
+  position: relative;
+  display: flex;
+  width: 160px;
+  height: 54px;
+  margin-top: 22px;
+  background: var(--surface);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+}
+.ticketMain {
+  flex: 1;
+  padding: 12px;
+  display: grid;
+  align-content: center;
+  gap: 7px;
+}
+.ticketMain i:last-child {
+  width: 55%;
+}
+.stub {
+  position: relative;
+  width: 46px;
+  display: grid;
+  place-items: center;
+  border-inline-start: 1.5px dashed rgb(var(--dark-rgb) / 0.2);
+  color: var(--green);
+}
+/* The two half-circle notches of the perforation. */
+.stub::before,
+.stub::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: -8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--sand);
+}
+.stub::before {
+  top: -7px;
+}
+.stub::after {
+  bottom: -7px;
+}
+.stub svg {
+  width: 18px;
+  height: 18px;
+  transition: translate 0.5s var(--ease);
+}
+/* The plane flies toward inline-end. */
+.stub svg:dir(rtl) {
+  scale: -1 1;
+}
+
+/* ---------- online stores: receipt with a torn edge ---------- */
+.online-stores-systems {
+  background: rgb(var(--green-rgb) / 0.07);
+}
+.receipt {
+  position: absolute;
+  top: 0;
+  width: 112px;
+  height: 104px;
+  padding: 16px 14px 18px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  background: var(--surface);
+  transform-origin: top center;
+  translate: 0 -8px;
+  transition: translate 0.5s var(--ease);
+  /* Zigzag bottom edge. */
+  mask:
+    conic-gradient(from -45deg at bottom, transparent, var(--mask-opaque) 1deg 89deg, transparent 90deg) 50% / 12px 100%;
+}
+.receipt i:nth-child(2) {
+  width: 70%;
+}
+.receipt i:nth-child(3) {
+  width: 85%;
+}
+.receipt .total {
+  margin-top: 4px;
+  width: 50%;
+  height: 7px;
+  margin-inline-start: auto;
+  background: rgb(var(--green-rgb) / 0.45);
+}
+
+/* ---------- advertising: canvas, selection, cursor ---------- */
+.advertising {
+  background-color: var(--surface);
+  background-image: radial-gradient(rgb(var(--dark-rgb) / 0.16) 1px, transparent 1.3px);
+  background-size: 12px 12px;
+}
+.frame {
+  position: relative;
+  width: 120px;
+  height: 58px;
+  padding: 12px;
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  background: rgb(var(--white-rgb) / 0.85);
+  border: 1.5px solid var(--green);
+}
+.frame i:nth-of-type(2) {
+  width: 60%;
+}
+.frame b {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: var(--surface);
+  border: 1.5px solid var(--green);
+}
+.frame b:nth-of-type(1) {
+  top: -4px;
+  inset-inline-start: -4px;
+}
+.frame b:nth-of-type(2) {
+  top: -4px;
+  inset-inline-end: -4px;
+}
+.frame b:nth-of-type(3) {
+  bottom: -4px;
+  inset-inline-start: -4px;
+}
+.frame b:nth-of-type(4) {
+  bottom: -4px;
+  inset-inline-end: -4px;
+}
+.cursor {
+  position: absolute;
+  top: 64%;
+  inset-inline-end: 14%;
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  transition: translate 0.5s var(--ease);
+}
+.cursor svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--client-clinic);
+}
+.cursor svg:dir(rtl) {
+  scale: -1 1;
+}
+.cursor em {
+  margin-top: 10px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--client-clinic);
+  color: var(--white);
+  font-size: 0.68rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* ---------- hr: lanyard + ID badge ---------- */
+.hr {
+  background: rgb(var(--green-rgb) / 0.05);
+  place-items: start center;
+}
+.lanyard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  rotate: -3deg;
+  transition: rotate 0.6s var(--ease);
+}
+.ribbon {
+  width: 12px;
+  height: 38px;
+  background: repeating-linear-gradient(45deg, var(--green) 0 4px, var(--wa) 4px 8px);
+  border-block-end: 4px solid rgb(var(--dark-rgb) / 0.45);
+}
+.badge {
+  width: 66px;
+  padding: 10px 8px;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border-radius: 10px;
+  border-block-start: 6px solid var(--dark);
+  box-shadow: var(--shadow);
+}
+.badge i {
+  width: 80%;
+}
+.badge .short {
+  width: 50%;
+}
+.badge .photo {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgb(var(--wa-rgb) / 0.5), rgb(var(--green-rgb) / 0.4));
+}
+
+/* ---------- operating: diagonal tape + status lights ---------- */
+.operating-service {
+  place-items: end center;
+  padding-block-end: 18px;
+}
+.tape {
+  position: absolute;
+  top: 22px;
+  inset-inline: -20%;
+  height: 22px;
+  rotate: -8deg;
+  opacity: 0.85;
+  background: repeating-linear-gradient(-45deg, var(--dark) 0 12px, var(--wa) 12px 24px);
+}
+.leds {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--dark);
+  box-shadow: var(--shadow-sm);
+  transform-origin: bottom center;
+}
+.leds i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(var(--white-rgb) / 0.18);
+  transition:
+    background 0.3s,
+    box-shadow 0.3s;
+}
+.leds i:first-child {
+  background: var(--wa);
+  box-shadow: 0 0 8px rgb(var(--wa-rgb) / 0.8);
+}
+
+/* ---------- restaurants: chalkboard ---------- */
+.restaurants-cafes {
+  background: var(--cream);
+}
+.board {
+  width: 150px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  background: var(--chalk);
+  border: 6px solid var(--wood);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+.board svg {
+  width: 70px;
+  stroke: rgb(var(--white-rgb) / 0.75);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.board .steam {
+  stroke: rgb(var(--white-rgb) / 0.45);
+  transition:
+    translate 0.6s var(--ease),
+    opacity 0.6s;
+}
+
+/* ---------- shops: awning + shelf ---------- */
+.awning {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  height: 30px;
+  background: repeating-linear-gradient(90deg, var(--dark) 0 18px, var(--wa) 18px 36px);
+  transform-origin: top center;
+  transition: scale 0.4s var(--ease);
+}
+/* Scalloped edge (decorative background positions, as on the shops page). */
+.awning::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  height: 9px;
+  background:
+    radial-gradient(circle at 9px 0, var(--dark) 8px, transparent 9px) 0 0 / 36px 9px repeat-x,
+    radial-gradient(circle at 9px 0, var(--wa) 8px, transparent 9px) 18px 0 / 36px 9px repeat-x;
+}
+.shelf {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding-inline: 14px;
+  border-block-end: 4px solid var(--kraft);
+  transform-origin: bottom center;
+}
+.shelf i {
+  width: 22px;
+  height: 26px;
+  border-radius: 4px 4px 0 0;
+  background: rgb(var(--green-rgb) / 0.25);
+}
+.shelf i:nth-child(2) {
+  height: 36px;
+  background: rgb(var(--wa-rgb) / 0.4);
+}
+.shelf i:nth-child(3) {
+  height: 20px;
+  background: var(--kraft);
+}
+
+/* ---------- hover (devices that hover) ---------- */
+@media (hover: hover) {
+  a:hover > .motif .track b {
+    width: 82%;
+  }
+  a:hover > .motif .building {
+    translate: 0 -3px;
+  }
+  a:hover > .motif .note {
+    rotate: 0deg;
+  }
+  a:hover > .motif .stub svg {
+    translate: -3px -2px;
+  }
+  a:hover > .motif .stub svg:dir(ltr) {
+    translate: 3px -2px;
+  }
+  a:hover > .motif .receipt {
+    translate: 0 0;
+  }
+  a:hover > .motif .cursor {
+    translate: 8px -6px;
+  }
+  a:hover > .motif .cursor:dir(ltr) {
+    translate: -8px -6px;
+  }
+  a:hover > .motif .lanyard {
+    rotate: 3deg;
+  }
+  a:hover > .motif .leds i:nth-child(2) {
+    background: var(--wa);
+    box-shadow: 0 0 8px rgb(var(--wa-rgb) / 0.8);
+  }
+  a:hover > .motif .steam {
+    translate: 0 -3px;
+    opacity: 0.6;
+  }
+  a:hover > .motif .awning {
+    scale: 1 1.08;
+  }
+}
+
+/* Phones: the motif becomes a strip beside the text; objects shrink. */
+@media (max-width: 600px) {
+  .motif {
+    --s: 0.62;
+    width: 116px;
+    height: auto;
+    border-block-end: 0;
+    border-inline-end: 1px solid var(--line);
+  }
+  .ribbon {
+    height: 18px;
+  }
+  .tape {
+    top: 14px;
+    height: 16px;
+  }
+  .operating-service {
+    padding-block-end: 8px;
+  }
+  .shelf {
+    bottom: 12px;
+  }
+  .awning {
+    height: 20px;
+  }
+}

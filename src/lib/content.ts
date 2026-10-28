@@ -27,8 +27,6 @@ export function t(value: Localized, locale: Locale): string {
 const siteSchema = z.object({
   siteUrl: z.url(),
   name: z.string().min(1),
-  /** "+N" in the home trust bar — edited by hand. */
-  trustedCount: z.number().int().positive(),
   appUrls: z.object({ login: z.url(), signup: z.url() }),
   /** Contact form endpoint (PHP on the same host). */
   contactEndpoint: z.string().startsWith("/"),
@@ -131,7 +129,6 @@ const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "slug must be lowerc
 const sectorSchema = z.object({
   slug,
   name: localized,
-  image: z.string().regex(/^\/images\/sectors\/[a-z0-9-]+\.(jpg|png|webp)$/),
 });
 export type Sector = z.infer<typeof sectorSchema>;
 
@@ -220,6 +217,11 @@ export function getWhatsappPlans(): WhatsappPlan[] {
 
 export function getHiringPlans(): HiringPlan[] {
   return packages.hiring;
+}
+
+/** Lowest monthly WhatsApp plan price ("من N ر.س" in the home trust bar). */
+export function getStartingMonthlyPrice(): number {
+  return Math.min(...packages.whatsapp.map((plan) => plan.monthly));
 }
 
 export function getCurrency() {

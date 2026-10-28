@@ -1,16 +1,16 @@
+import { Tag } from "lucide-react";
 import type { ReactNode } from "react";
 
-import { CalendarCheckIcon, HeadsetIcon, UsersIcon } from "@/components/icons";
-import { CountUp } from "@/components/motion/CountUp";
+import { CalendarCheckIcon, HeadsetIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { META_PARTNER } from "@/lib/brand";
-import { getSite } from "@/lib/content";
-import { getDictionary, type Locale } from "@/lib/i18n";
+import { getStartingMonthlyPrice } from "@/lib/content";
+import { format, getDictionary, type Locale } from "@/lib/i18n";
 
 import styles from "./TrustBar.module.css";
 
-function TrustItem({ icon, title, subtitle }: { icon: ReactNode; title: ReactNode; subtitle: string }) {
+function TrustItem({ icon, title, subtitle }: { icon: ReactNode; title: string; subtitle: string }) {
   return (
     <div className={styles.item}>
       <div className={styles.ic}>{icon}</div>
@@ -45,15 +45,9 @@ export function TrustBar({ locale }: { locale: Locale }) {
           <TrustItem icon={<HeadsetIcon />} title={trust.support.title} subtitle={trust.support.subtitle} />
           <TrustItem icon={<CalendarCheckIcon />} title={trust.trial.title} subtitle={trust.trial.subtitle} />
           <TrustItem
-            icon={<UsersIcon />}
-            title={
-              <>
-                {trust.clients.prefix}
-                <CountUp to={getSite().trustedCount} />
-                {trust.clients.suffix}
-              </>
-            }
-            subtitle={trust.clients.subtitle}
+            icon={<Tag aria-hidden="true" />}
+            title={format(trust.price.title, { price: getStartingMonthlyPrice().toLocaleString("en-US") })}
+            subtitle={trust.price.subtitle}
           />
         </Reveal>
       </div>

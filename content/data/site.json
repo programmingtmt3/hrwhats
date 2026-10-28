@@ -1,7 +1,6 @@
 {
   "siteUrl": "https://hrwhats.com",
   "name": "HRwhats",
-  "trustedCount": 40,
   "appUrls": {
     "login": "https://app.hrwhats.com/login",
     "signup": "https://app.hrwhats.com/signup"
