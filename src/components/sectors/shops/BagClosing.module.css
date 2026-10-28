@@ -1,0 +1,146 @@
+/* Closing: a kraft shopping bag with rope handles and a gift tag. */
+.section {
+  padding-block: 40px 110px;
+}
+.scene {
+  display: grid;
+  justify-items: center;
+  padding-top: 70px;
+}
+.bag {
+  position: relative;
+  width: min(100%, 640px);
+  padding: 56px 48px 40px;
+  border-radius: 6px 6px 14px 14px;
+  text-align: center;
+  color: var(--ink);
+  background:
+    linear-gradient(90deg, rgb(var(--black-rgb) / 0.06), transparent 8% 92%, rgb(var(--black-rgb) / 0.06)),
+    var(--kraft);
+  box-shadow: var(--shadow-lg);
+  transform-origin: 50% 0;
+}
+/* Drops in and sways once (the .reveal parent handles the fade). */
+:global(.in-view) .bag {
+  animation: drop 1.4s var(--ease) 0.15s 1 both;
+}
+@keyframes drop {
+  0% {
+    translate: 0 -60px;
+    rotate: -3deg;
+  }
+  45% {
+    translate: 0 0;
+    rotate: 2deg;
+  }
+  70% {
+    rotate: -1deg;
+  }
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+}
+/* Rope handles above the bag. */
+.handles i {
+  position: absolute;
+  bottom: 100%;
+  width: 90px;
+  height: 64px;
+  border: 5px solid var(--dark);
+  border-bottom: 0;
+  border-radius: 50px 50px 0 0;
+}
+.handles i:first-child {
+  inset-inline-start: 22%;
+}
+.handles i:last-child {
+  inset-inline-end: 22%;
+}
+/* The folded top edge. */
+.fold {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  height: 22px;
+  border-bottom: 2px dashed rgb(var(--dark-rgb) / 0.25);
+  background: rgb(var(--black-rgb) / 0.05);
+}
+.bag h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.highlight {
+  color: var(--dark);
+  text-decoration: underline;
+  text-decoration-color: var(--wa);
+  text-decoration-thickness: 5px;
+  text-underline-offset: 6px;
+}
+.bag p {
+  font-size: 1.04rem;
+  color: var(--ink);
+}
+.bag .lead {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+/* Gift tag holding the buttons. */
+.giftTag {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  width: fit-content;
+  margin: 28px auto 0;
+  padding: 22px 26px 18px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  rotate: -1.5deg;
+}
+.tie {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  translate: -50% 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--dark);
+  background: var(--kraft);
+}
+.sales {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.sales svg {
+  width: 18px;
+  height: 18px;
+  color: var(--wa-send);
+}
+.sales:hover {
+  color: var(--green);
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-bottom: 88px;
+  }
+  .bag {
+    padding: 48px 18px 30px;
+  }
+  .handles i {
+    width: 64px;
+    height: 50px;
+  }
+  .giftTag {
+    padding: 20px 16px 16px;
+  }
+}

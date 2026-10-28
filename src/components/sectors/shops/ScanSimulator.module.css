@@ -1,0 +1,334 @@
+/* "Press to scan" simulator: step list + phone + controls. */
+.sim {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 40px;
+  align-items: center;
+}
+.steps {
+  display: grid;
+  gap: 12px;
+}
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  font-weight: 600;
+  color: var(--muted);
+  transition:
+    border-color 0.3s var(--ease),
+    color 0.3s var(--ease),
+    background-color 0.3s var(--ease);
+}
+.num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--dark);
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+}
+.num svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 3;
+}
+.done {
+  color: var(--ink);
+}
+.done .num {
+  color: var(--white);
+  background: var(--wa-send);
+  border-color: var(--wa-send);
+}
+.current {
+  color: var(--ink);
+  border-color: var(--wa);
+  background: rgb(var(--wa-rgb) / 0.08);
+}
+.current .num {
+  color: var(--on-wa);
+  background: var(--wa);
+  border-color: var(--wa);
+}
+
+.stage {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+}
+/* The phone */
+.phone {
+  position: relative;
+  display: grid;
+  width: 230px;
+  height: 330px;
+  padding: 26px 12px 14px;
+  border-radius: 30px;
+  background: var(--phone-body);
+  box-shadow: var(--shadow-lg);
+}
+.notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  translate: -50% 0;
+  width: 60px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--phone-edge-inner);
+}
+.camera {
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: radial-gradient(circle at 50% 45%, var(--phone-edge-inner), var(--phone-body));
+}
+/* Viewfinder corners around the code. */
+.frame {
+  position: relative;
+  width: 140px;
+  padding: 10px;
+  background:
+    linear-gradient(var(--wa), var(--wa)) 0 0 / 24px 3px no-repeat,
+    linear-gradient(var(--wa), var(--wa)) 0 0 / 3px 24px no-repeat,
+    linear-gradient(var(--wa), var(--wa)) 100% 0 / 24px 3px no-repeat,
+    linear-gradient(var(--wa), var(--wa)) 100% 0 / 3px 24px no-repeat,
+    linear-gradient(var(--wa), var(--wa)) 0 100% / 24px 3px no-repeat,
+    linear-gradient(var(--wa), var(--wa)) 0 100% / 3px 24px no-repeat,
+    linear-gradient(var(--wa), var(--wa)) 100% 100% / 24px 3px no-repeat,
+    linear-gradient(var(--wa), var(--wa)) 100% 100% / 3px 24px no-repeat;
+}
+.scanLine {
+  position: absolute;
+  inset-inline: 6px;
+  top: 10px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--wa);
+  box-shadow: 0 0 10px var(--wa);
+  opacity: 0;
+}
+.scanning .scanLine {
+  opacity: 1;
+  animation: sweep 0.65s ease-in-out infinite alternate;
+}
+@keyframes sweep {
+  to {
+    top: calc(100% - 13px);
+  }
+}
+
+/* WhatsApp screen */
+.wa {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--wa-chat-bg);
+  animation: open 0.35s var(--ease);
+}
+@keyframes open {
+  from {
+    opacity: 0;
+    scale: 0.96;
+  }
+}
+.waHead {
+  padding: 10px 12px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--wa-teal);
+}
+.waBody {
+  display: grid;
+  align-content: end;
+  gap: 8px;
+  padding: 10px;
+}
+.sent {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border-start-end-radius: 3px;
+  font-size: 0.86rem;
+  background: var(--wa-bubble-out);
+  box-shadow: var(--shadow-sm);
+  animation: open 0.35s var(--ease);
+}
+.sent svg {
+  width: 15px;
+  height: 15px;
+  color: var(--wa-link);
+}
+.savedCard {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  animation: open 0.4s var(--ease) 0.2s both;
+}
+.savedCard > svg {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--wa-send);
+}
+.savedCard > span {
+  display: grid;
+  line-height: 1.45;
+  font-size: 0.8rem;
+}
+.savedCard b {
+  color: var(--green);
+}
+.savedCard small {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  background: var(--wa-divider);
+}
+.draft {
+  flex: 1;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  background: var(--white);
+}
+.send {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--wa-send);
+  cursor: pointer;
+  animation: nudge 1.2s ease-in-out 2;
+}
+.send svg {
+  width: 18px;
+  height: 18px;
+}
+.send:focus-visible {
+  outline: 3px solid var(--wa);
+  outline-offset: 2px;
+}
+@keyframes nudge {
+  50% {
+    scale: 1.12;
+  }
+}
+
+/* Controls */
+.controls {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+.scan,
+.again {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  /* A long press must not open the copy menu or select text. */
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+.scan {
+  color: var(--on-wa);
+  background: var(--wa);
+  box-shadow: 0 8px 20px rgb(var(--wa-rgb) / 0.35);
+}
+.scan:disabled {
+  cursor: default;
+  opacity: 0.55;
+  box-shadow: none;
+}
+.scan svg,
+.again svg {
+  width: 20px;
+  height: 20px;
+}
+/* Progress ring around the button while scanning. */
+.ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  border: 3px solid transparent;
+  pointer-events: none;
+}
+.scanningBtn .ring {
+  border-color: var(--dark);
+  clip-path: inset(0 100% 0 0);
+  animation: fill 1.3s linear forwards;
+}
+.scanningBtn .ring:dir(rtl) {
+  clip-path: inset(0 0 0 100%);
+  animation-name: fill-rtl;
+}
+@keyframes fill {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes fill-rtl {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.scan:focus-visible,
+.again:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 4px;
+}
+.again {
+  color: var(--dark);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+}
+.hint {
+  font-size: 0.76rem;
+  color: var(--muted);
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  .sim {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+}

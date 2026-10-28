@@ -1,0 +1,505 @@
+/* Shop mockups (on the shelves). */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.headTitle {
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+.green {
+  color: var(--green);
+}
+
+/* Chats */
+.thread {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  max-width: 88%;
+  padding: 7px 10px 5px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  box-shadow: var(--shadow-sm);
+}
+.bubble time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.64rem;
+  color: var(--wa-meta);
+}
+.bubble time svg {
+  width: 14px;
+  height: 14px;
+  color: var(--wa-link);
+}
+.in {
+  justify-self: start;
+  background: var(--white);
+  border-start-start-radius: 3px;
+}
+.out {
+  justify-self: end;
+  background: var(--wa-bubble-out);
+  border-start-end-radius: 3px;
+}
+.wide {
+  max-width: 94%;
+}
+.bot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--wa-send);
+}
+.bot svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* 1 Shelf card */
+.shelfCard {
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.shelfTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+/* Price on a small hanging tag shape. */
+.tagPrice {
+  position: relative;
+  padding: 3px 12px 3px 10px;
+  padding-inline-start: 18px;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  background: var(--kraft);
+}
+.tagPrice::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 6px;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+.rowLabel {
+  margin-block: 10px 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.sizes {
+  display: flex;
+  gap: 6px;
+}
+.sizes li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-width: 44px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  font-size: 0.82rem;
+}
+.sizes i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--wa);
+}
+.sizes .out {
+  color: var(--muted);
+  border-style: dashed;
+}
+.sizes .out b {
+  text-decoration: line-through;
+}
+.sizes .out i {
+  background: var(--line);
+}
+.sizes small {
+  font-size: 0.62rem;
+}
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 0.82rem;
+}
+.colors li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.colors i {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+}
+.black {
+  background: var(--ink);
+}
+.olive {
+  background: var(--dark);
+}
+.white {
+  background: var(--white);
+}
+
+/* 2 Product sheet */
+.sheet {
+  display: flex;
+  gap: 10px;
+  margin-block: 6px;
+  padding: 8px;
+  border-radius: 10px;
+  background: var(--white);
+}
+.sheet > span:last-child {
+  display: grid;
+  line-height: 1.45;
+}
+.sheet small {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+/* A drawn perfume bottle. */
+.bottle {
+  position: relative;
+  flex-shrink: 0;
+  display: grid;
+  place-items: end center;
+  width: 54px;
+  height: 64px;
+  border-radius: 8px;
+  background: var(--bg);
+}
+.bottle i {
+  position: relative;
+  width: 30px;
+  height: 38px;
+  margin-bottom: 6px;
+  border-radius: 8px 8px 6px 6px;
+  background: linear-gradient(160deg, var(--sun), var(--kraft));
+  box-shadow: inset -4px 0 0 rgb(var(--white-rgb) / 0.35);
+}
+.bottle i::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  translate: -50% 0;
+  width: 12px;
+  height: 10px;
+  border-radius: 3px 3px 0 0;
+  background: var(--dark);
+}
+.similarTitle {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.similar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.miniTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+.miniTag svg {
+  width: 13px;
+  height: 13px;
+  color: var(--green);
+}
+
+/* 3 Pickup order */
+.item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 0.86rem;
+}
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+.options li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border-radius: 12px;
+  border: 1.5px solid var(--line);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+}
+.options svg {
+  width: 24px;
+  height: 24px;
+}
+.options .picked {
+  color: var(--ink);
+  border-color: var(--wa);
+  background: rgb(var(--wa-rgb) / 0.08);
+}
+.options .picked > svg:first-child {
+  color: var(--green);
+}
+.options .pickedMark {
+  position: absolute;
+  top: 6px;
+  inset-inline-end: 6px;
+  width: 18px;
+  height: 18px;
+  padding: 3px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--wa-send);
+  stroke-width: 3;
+}
+.confirm {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border-start-end-radius: 3px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  background: var(--wa-bubble-out);
+}
+.code {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.code svg {
+  width: 15px;
+  height: 15px;
+}
+.code b {
+  padding: 1px 10px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  color: var(--dark);
+  background: var(--white);
+  border: 1.5px dashed var(--green);
+}
+
+/* 4 Window offer */
+.window {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  min-height: 150px;
+  padding: 20px;
+  border: 8px solid var(--dark);
+  border-radius: 6px;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--why-bg-end), var(--bg));
+}
+.glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgb(var(--white-rgb) / 0.7) 32% 36%, transparent 38%);
+}
+/* Window decals: bold, slightly tilted vinyl letters. */
+.decal {
+  position: relative;
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--alert);
+  rotate: -4deg;
+}
+.decalBig {
+  font-size: 1.5rem;
+  color: var(--alert);
+  background: var(--white);
+  border: 3px solid var(--alert);
+  rotate: 3deg;
+}
+.broadcast {
+  margin-top: 10px;
+  max-width: 100%;
+}
+.broadcast small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--wa-send);
+}
+.broadcast small svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* 5 Care follow-up */
+.later {
+  justify-self: center;
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  background: rgb(var(--white-rgb) / 0.8);
+}
+
+/* 6 Sales team */
+.lanes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.lane {
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--bg);
+}
+.laneTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.laneTitle svg {
+  width: 16px;
+  height: 16px;
+  color: var(--green);
+}
+.lane ul {
+  display: grid;
+  gap: 6px;
+}
+.lane li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 0.8rem;
+}
+.lane li > span:last-child {
+  display: grid;
+  line-height: 1.45;
+}
+.lane small {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.avatar {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--dark);
+  background: rgb(var(--wa-rgb) / 0.2);
+}
+
+/* 7 Bestsellers */
+.stacks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  align-items: end;
+  padding-bottom: 8px;
+  border-bottom: 8px solid var(--wood);
+}
+.stacks li {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  text-align: center;
+  font-size: 0.78rem;
+}
+.stack {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+}
+.stack i {
+  width: 46px;
+  height: 18px;
+  border-radius: 3px;
+  background: var(--kraft);
+  border: 1.5px solid rgb(var(--dark-rgb) / 0.2);
+  transition:
+    opacity 0.4s var(--ease),
+    translate 0.4s var(--ease);
+  transition-delay: calc(0.3s + var(--i, 0) * 0.12s);
+}
+.stack i:nth-child(odd) {
+  background: var(--sand);
+}
+:global(.reveal:not(.in-view)) .stack i {
+  opacity: 0;
+  translate: 0 -14px;
+}
+
+@media (max-width: 600px) {
+  .head {
+    flex-wrap: wrap;
+  }
+  .lanes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .stack i {
+    width: 34px;
+  }
+}

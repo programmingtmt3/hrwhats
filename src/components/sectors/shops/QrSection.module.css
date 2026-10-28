@@ -1,0 +1,296 @@
+/* QR section: simulator, comparison, placements. */
+.section {
+  padding-block: 96px 110px;
+  background: linear-gradient(180deg, var(--bg), var(--why-bg-end));
+}
+.text {
+  max-width: 720px;
+  margin: 16px auto 0;
+  text-align: center;
+  font-size: 1.06rem;
+  color: var(--muted);
+}
+.simWrap {
+  position: relative;
+  margin-top: 48px;
+  padding: 40px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.tag {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+}
+
+/* Old way vs scan */
+.compare {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+  margin-top: 40px;
+}
+.side {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 12px;
+  padding: 24px;
+  border-radius: var(--r);
+  text-align: center;
+}
+.old {
+  background: var(--surface);
+  border: 1.5px dashed var(--line);
+}
+.new {
+  background: rgb(var(--wa-rgb) / 0.1);
+  border: 1.5px solid var(--wa);
+}
+.sideTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+.sideTitle svg {
+  width: 20px;
+  height: 20px;
+  color: var(--green);
+}
+.old .sideTitle svg {
+  color: var(--muted);
+}
+.ask {
+  padding: 6px 14px;
+  border-radius: 14px;
+  border-end-start-radius: 3px;
+  font-weight: 700;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+/* A computer: monitor with a "mobile number" field, stand, keyboard. */
+.computer {
+  display: grid;
+  justify-items: center;
+  width: 170px;
+}
+.monitor {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 92px;
+  padding: 10px;
+  border: 6px solid var(--dark);
+  border-radius: 8px;
+  background: var(--bg);
+}
+.field {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  text-align: start;
+}
+.field small {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.input {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding-inline: 8px;
+  border-radius: 5px;
+  border: 1.5px solid var(--line);
+  background: var(--white);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+/* The digits appear one by one, once (all at once with reduced motion). */
+.typed {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.typed s {
+  color: var(--alert);
+  text-decoration-thickness: 2px;
+}
+:global(.reveal:not(.in-view)) .typed {
+  max-width: 0;
+}
+:global(.in-view) .typed {
+  animation: type 1.8s steps(10, end) 0.5s both;
+}
+@keyframes type {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 13ch;
+  }
+}
+.caret {
+  width: 1.5px;
+  height: 16px;
+  margin-inline-start: 1px;
+  background: var(--ink);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.stand {
+  width: 34px;
+  height: 14px;
+  background: linear-gradient(90deg, var(--muted), var(--dark), var(--muted));
+}
+.keyboard {
+  width: 150px;
+  height: 22px;
+  margin-top: 4px;
+  border-radius: 4px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 3px, var(--line) 3px 13px) 4px 4px / calc(100% - 8px) 6px no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 3px, var(--line) 3px 13px) 4px 12px / calc(100% - 8px) 6px no-repeat,
+    var(--muted);
+}
+.note {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.vs {
+  align-self: center;
+  width: 2px;
+  height: 60%;
+  background: var(--line);
+}
+.oneScan {
+  width: 110px;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+/* Placements */
+.placesTitle {
+  margin-top: 48px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.places {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+.place {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.scene {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 150px;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.code {
+  position: absolute;
+  z-index: 1;
+  width: 56px;
+  padding: 4px;
+  border-radius: 6px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+/* At the cashier: a counter with an acrylic stand. */
+.scene0::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 44px;
+  background: var(--wood);
+}
+.scene0::after {
+  content: "";
+  position: absolute;
+  bottom: 44px;
+  inset-inline-end: 18%;
+  width: 70px;
+  height: 70px;
+  border-radius: 6px 6px 0 0;
+  background: var(--dark);
+}
+.scene0 .code {
+  bottom: 52px;
+  inset-inline-end: calc(18% + 7px);
+}
+/* On the glass front: a window with a sticker. */
+.scene1 {
+  background:
+    linear-gradient(115deg, transparent 30%, rgb(var(--white-rgb) / 0.7) 32% 38%, transparent 40%),
+    var(--why-bg-end);
+  border: 8px solid var(--dark);
+}
+.scene1 .code {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+/* On the shelf / price tag: a shelf edge with a tag. */
+.scene2::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 34%;
+  height: 10px;
+  background: var(--wood);
+}
+.scene2 .code {
+  top: calc(34% + 12px);
+  inset-inline-start: 50%;
+  width: 46px;
+  translate: 50% 0;
+}
+.scene2 .code:dir(ltr) {
+  translate: -50% 0;
+}
+
+@media (max-width: 900px) {
+  .simWrap {
+    padding: 48px 20px 28px;
+  }
+  .compare {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .vs {
+    width: 60%;
+    height: 2px;
+    justify-self: center;
+  }
+}
+@media (max-width: 600px) {
+  .section {
+    padding-block: 72px 88px;
+  }
+  .places {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

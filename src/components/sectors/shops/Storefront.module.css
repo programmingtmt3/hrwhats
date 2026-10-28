@@ -1,0 +1,151 @@
+/* Shop front: sign, awning, glass front with shelves, rolling shutter. */
+.store {
+  position: relative;
+  display: grid;
+  width: 100%;
+}
+.signboard {
+  justify-self: center;
+  padding: 6px 26px;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--dark);
+}
+/* Striped awning in brand greens with a scalloped edge. */
+.awning {
+  position: relative;
+  z-index: 2;
+  height: 46px;
+  border-radius: 6px 6px 0 0;
+  background: repeating-linear-gradient(90deg, var(--dark) 0 28px, var(--wa) 28px 56px);
+  box-shadow: 0 8px 14px rgb(var(--deep-rgb) / 0.2);
+}
+.awning::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  height: 14px;
+  background:
+    radial-gradient(circle at 14px 0, var(--dark) 13px, transparent 14px) 0 0 / 56px 14px repeat-x,
+    radial-gradient(circle at 14px 0, var(--wa) 13px, transparent 14px) 28px 0 / 56px 14px repeat-x;
+}
+.front {
+  position: relative;
+  height: 230px;
+  margin-inline: 12px;
+  border: 8px solid var(--dark);
+  border-top: 0;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgb(var(--white-rgb) / 0.9), var(--why-bg-end));
+}
+.interior {
+  position: absolute;
+  inset: 28px 14px 10px;
+  display: grid;
+  align-content: space-evenly;
+}
+.shelf {
+  display: block;
+  padding-bottom: 4px;
+  border-bottom: 7px solid var(--wood);
+}
+.sticker {
+  position: absolute;
+  z-index: 1;
+  bottom: 14px;
+  inset-inline-start: 14px;
+  width: 54px;
+  padding: 4px;
+  border-radius: 6px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+/* Rolling metal shutter: rises once on first view. */
+.shutter {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background:
+    repeating-linear-gradient(180deg, var(--line) 0 9px, var(--muted) 9px 11px),
+    var(--line);
+  transition: translate 1.6s cubic-bezier(0.6, 0, 0.3, 1) 0.4s;
+  translate: 0 -100%;
+}
+:global(.reveal:not(.in-view)) .shutter {
+  translate: 0 0;
+}
+.step {
+  height: 12px;
+  margin-inline: 4px;
+  border-radius: 0 0 6px 6px;
+  background: var(--muted);
+}
+
+/* Shelf goods */
+.goods {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 8px;
+}
+.clothes {
+  display: grid;
+  gap: 2px;
+}
+.clothes i {
+  width: 42px;
+  height: 9px;
+  border-radius: 3px;
+  background: var(--dark);
+}
+.clothes i:nth-child(2) {
+  background: var(--wa);
+}
+.clothes i:nth-child(3) {
+  background: var(--sand);
+}
+.bottles {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+.bottles i {
+  position: relative;
+  width: 14px;
+  height: 24px;
+  border-radius: 4px 4px 3px 3px;
+  background: linear-gradient(180deg, var(--sun), var(--kraft));
+}
+.bottles i::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  translate: -50% 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--dark);
+}
+.bottles i:nth-child(2) {
+  height: 30px;
+  background: linear-gradient(180deg, var(--wa), var(--green));
+}
+.boxes {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+.boxes i {
+  width: 26px;
+  height: 26px;
+  border-radius: 3px;
+  background: var(--kraft);
+  border: 2px solid rgb(var(--dark-rgb) / 0.2);
+}
+.boxes i:nth-child(2) {
+  height: 18px;
+}

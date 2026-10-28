@@ -1,0 +1,177 @@
+.hero {
+  padding-top: 160px;
+  padding-bottom: 96px;
+  background:
+    radial-gradient(45% 55% at 15% 35%, rgb(var(--wa-rgb) / 0.1), transparent 70%),
+    var(--surface);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 22px 0;
+}
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* Shop front, with the chat overlapping its lower end corner. */
+.visual {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 470px);
+  padding-bottom: 170px;
+}
+.storeWrap {
+  width: min(100%, 380px);
+}
+.chat {
+  position: absolute;
+  bottom: 0;
+  inset-inline-end: 0;
+  z-index: 3;
+  width: 280px;
+  border-radius: var(--r);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.chatHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 12px;
+  color: var(--white);
+  background: var(--wa-teal);
+  font-size: 0.88rem;
+}
+.tag {
+  flex-shrink: 0;
+}
+.thread {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  max-width: 92%;
+  padding: 7px 10px 5px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  box-shadow: var(--shadow-sm);
+}
+.bubble time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.64rem;
+  color: var(--wa-meta);
+}
+.bubble time svg {
+  width: 14px;
+  height: 14px;
+  color: var(--wa-link);
+}
+.in {
+  justify-self: start;
+  background: var(--white);
+  border-start-start-radius: 3px;
+}
+.out {
+  justify-self: end;
+  background: var(--wa-bubble-out);
+  border-start-end-radius: 3px;
+}
+.available {
+  color: var(--green);
+}
+.product {
+  display: flex;
+  gap: 8px;
+  margin-block: 6px;
+  padding: 8px;
+  border-radius: 10px;
+  background: var(--white);
+}
+.product > svg {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 7px;
+  border-radius: 10px;
+  color: var(--white);
+  background: var(--ink);
+}
+.product > span {
+  display: grid;
+  line-height: 1.45;
+}
+.product small {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.price {
+  color: var(--green);
+}
+.branch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.branch svg {
+  width: 13px;
+  height: 13px;
+}
+.reserve {
+  display: block;
+  margin-top: 6px;
+  padding-top: 6px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--wa-link);
+  border-top: 1px solid rgb(var(--black-rgb) / 0.08);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .copy {
+    text-align: center;
+  }
+  .lead {
+    margin-inline: auto;
+  }
+}
+@media (max-width: 600px) {
+  .visual {
+    padding-bottom: 0;
+  }
+  .storeWrap {
+    width: 100%;
+  }
+  .chat {
+    position: relative;
+    width: auto;
+    margin: -40px 12px 0;
+  }
+}

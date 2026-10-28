@@ -57,7 +57,7 @@
   --client-clinic-rgb: 35 99 163;
   --client-shop: #7048a8;
   --client-shop-rgb: 112 72 168;
-  /* Priority + status lights (operating page mockups only); readable on white and on a 12% tint. */
+  /* Priority + status lights (operating page), sale decals (shops page) — mockups only; readable on white and on a 12% tint. */
   --alert: #b4372b;
   --alert-rgb: 180 55 43;
   --amber: #8f5a00;
@@ -66,6 +66,8 @@
   --chalk: #24332c;
   --chalk-rgb: 36 51 44;
   --wood: #7a5230;
+  /* Shops page: kraft paper (shopping bag, price tags). */
+  --kraft: #d9b98f;
 
   /* WhatsApp phone mockup */
   --phone-body: #0c1512;

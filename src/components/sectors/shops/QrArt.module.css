@@ -1,0 +1,8 @@
+.qr {
+  display: block;
+  fill: var(--ink);
+  shape-rendering: crispEdges;
+}
+.paper {
+  fill: var(--white);
+}
