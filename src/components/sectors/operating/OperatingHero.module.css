@@ -1,0 +1,272 @@
+.hero {
+  padding-top: 160px;
+  padding-bottom: 96px;
+  background: radial-gradient(45% 55% at 12% 35%, rgb(var(--wa-rgb) / 0.1), transparent 70%), var(--surface);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 22px 0;
+}
+.lead {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.visual {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 440px);
+}
+.chat {
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.chatHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  color: var(--white);
+  background: var(--wa-teal);
+  font-size: 0.9rem;
+}
+.chatHead b {
+  flex: 1;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  background: rgb(var(--white-rgb) / 0.2);
+}
+.tag {
+  flex-shrink: 0;
+}
+.thread {
+  padding: 14px;
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  max-width: 92%;
+  margin-inline-start: auto;
+  padding: 6px 6px 5px;
+  border-radius: 12px;
+  border-start-end-radius: 3px;
+  background: var(--wa-bubble-out);
+  box-shadow: var(--shadow-sm);
+}
+.bubble p {
+  padding: 6px 6px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.bubble time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  padding-inline: 6px;
+  font-size: 0.66rem;
+  color: var(--wa-meta);
+}
+.bubble time svg {
+  width: 14px;
+  height: 14px;
+  color: var(--wa-link);
+}
+.attachments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+/* Shared location: a simple drawn street map with a pin. */
+.map,
+.photo {
+  position: relative;
+  height: 108px;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.map {
+  background: var(--why-bg-end);
+}
+.road {
+  position: absolute;
+  inset-inline: 0;
+  top: 42%;
+  height: 9px;
+  background: var(--white);
+}
+.roadV {
+  inset-inline: auto;
+  top: 0;
+  bottom: 0;
+  left: 58%;
+  width: 9px;
+  height: auto;
+}
+.roadD {
+  top: 72%;
+  rotate: -18deg;
+  inset-inline: -10%;
+  height: 6px;
+}
+.pin {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  translate: -50% 0;
+  width: 30px;
+  height: 30px;
+  color: var(--alert);
+  fill: rgb(var(--alert-rgb) / 0.2);
+}
+/* Photo of the fault: a wall AC unit with a warning sign. */
+.photo {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, var(--sand), var(--cream));
+}
+.unit {
+  display: grid;
+  gap: 4px;
+  width: 74%;
+  padding: 14px 10px 8px;
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.unit i {
+  height: 3px;
+  border-radius: 999px;
+  background: var(--line);
+}
+.warn {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 10px;
+  width: 26px;
+  height: 26px;
+  color: var(--amber);
+  fill: var(--sun);
+}
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 6px 0;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.meta svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* The work order that comes out of the chat. */
+.order {
+  /* Overlaps only the chat's bottom edge, shifted toward the start side. */
+  position: relative;
+  width: 300px;
+  margin-top: -10px;
+  margin-inline-start: -28px;
+  padding: 14px 16px;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--alert);
+  box-shadow: var(--shadow-lg);
+  transition:
+    translate 0.8s var(--ease) 0.9s,
+    opacity 0.5s var(--ease) 0.9s;
+}
+:global(.reveal:not(.in-view)) .order {
+  opacity: 0;
+  translate: 0 -60px;
+}
+.orderHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+.orderHead b {
+  flex: 1;
+}
+.orderHead > svg {
+  width: 20px;
+  height: 20px;
+  color: var(--green);
+}
+.auto {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.auto svg {
+  width: 13px;
+  height: 13px;
+  color: var(--wa-send);
+}
+.order dl {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+.order dl > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+  font-size: 0.82rem;
+}
+.order dt {
+  color: var(--muted);
+}
+.order dd {
+  font-weight: 600;
+  text-align: end;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .copy {
+    text-align: center;
+  }
+  .lead {
+    margin-inline: auto;
+  }
+}
+@media (max-width: 600px) {
+  .order {
+    width: auto;
+    margin: -10px 14px 0;
+  }
+}

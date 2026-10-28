@@ -1,0 +1,105 @@
+/* Services as work orders on clipboards. */
+.section {
+  padding-block: 96px 110px;
+  /* The tilted boards may reach past the container edge; never scroll sideways. */
+  overflow-x: clip;
+}
+.stack {
+  display: grid;
+  gap: 64px;
+  margin-top: 56px;
+}
+.clipboard {
+  --tilt: -0.8deg;
+  position: relative;
+  padding: 34px 18px 18px;
+}
+.tiltOther {
+  --tilt: 0.8deg;
+}
+/* The board itself (behind the paper) is the only tilted part. */
+.clipboard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: linear-gradient(160deg, var(--dark), var(--deep));
+  box-shadow: var(--shadow-lg);
+  rotate: var(--tilt);
+}
+/* Metal clip at the top. */
+.clip {
+  position: absolute;
+  z-index: 2;
+  top: -12px;
+  left: 50%;
+  translate: -50% 0;
+  width: 150px;
+  height: 40px;
+  border-radius: 10px 10px 6px 6px;
+  background: linear-gradient(180deg, var(--line), var(--muted));
+  box-shadow: var(--shadow);
+}
+.clip::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  translate: -50% 0;
+  width: 46px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--deep);
+}
+.paper {
+  position: relative;
+  padding: 28px 32px 32px;
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.orderNo {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 3px 12px;
+  border: 1.5px solid var(--dark);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--dark);
+}
+.body {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .stack {
+    gap: 48px;
+  }
+  .clipboard {
+    padding: 28px 8px 8px;
+  }
+  .clipboard {
+    --tilt: -0.5deg;
+  }
+  .tiltOther {
+    --tilt: 0.5deg;
+  }
+  .clip {
+    width: 110px;
+    height: 34px;
+  }
+  .paper {
+    padding: 22px 14px 18px;
+  }
+}

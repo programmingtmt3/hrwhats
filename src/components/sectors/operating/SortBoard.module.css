@@ -1,0 +1,111 @@
+/* Sortable request board. */
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.sorts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    background-color 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+.sort svg {
+  width: 16px;
+  height: 16px;
+}
+.sort:hover {
+  color: var(--ink);
+}
+.sort[aria-pressed="true"] {
+  color: var(--white);
+  background: var(--dark);
+}
+.sort:focus-visible {
+  outline: 3px solid rgb(var(--wa-rgb) / 0.5);
+  outline-offset: 2px;
+}
+.list {
+  display: grid;
+  gap: 8px;
+}
+.ticket {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.id {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.main {
+  display: grid;
+  min-width: 0;
+  line-height: 1.5;
+}
+.main b {
+  font-size: 0.9rem;
+}
+.main small {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.dept {
+  padding: 6px 4px 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green);
+  border-bottom: 1px dashed rgb(var(--green-rgb) / 0.35);
+}
+
+@media (max-width: 600px) {
+  .sorts {
+    width: 100%;
+  }
+  .sort {
+    flex: 1;
+    justify-content: center;
+    padding-inline: 6px;
+    font-size: 0.78rem;
+  }
+  .ticket {
+    grid-template-columns: 1fr auto;
+    gap: 4px 10px;
+    padding: 10px 12px;
+  }
+  .id {
+    grid-column: 1 / -1;
+  }
+}

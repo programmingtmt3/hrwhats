@@ -1,0 +1,163 @@
+/* Closing control panel. Every step is a transition from the pre-reveal
+   state, so it plays once and shows the end state at once with reduced motion. */
+.section {
+  padding-block: 96px 110px;
+}
+.panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 56px;
+  border-radius: var(--r-lg);
+  color: var(--white);
+  background:
+    repeating-linear-gradient(90deg, rgb(var(--white-rgb) / 0.025) 0 2px, transparent 2px 6px),
+    linear-gradient(160deg, var(--dark), var(--deep));
+  border: 1px solid rgb(var(--white-rgb) / 0.08);
+  box-shadow: var(--shadow-lg);
+}
+.screws i {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--line), var(--muted));
+}
+.screws i:nth-child(1) {
+  top: 16px;
+  inset-inline-start: 16px;
+}
+.screws i:nth-child(2) {
+  top: 16px;
+  inset-inline-end: 16px;
+}
+.screws i:nth-child(3) {
+  bottom: 16px;
+  inset-inline-start: 16px;
+}
+.screws i:nth-child(4) {
+  bottom: 16px;
+  inset-inline-end: 16px;
+}
+
+.controls {
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+}
+/* The big switch: ON at the top, OFF at the bottom; the lever flips up. */
+.switch {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+.switch small {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.onLabel {
+  color: var(--neon);
+}
+.offLabel {
+  color: rgb(var(--white-rgb) / 0.45);
+}
+.slot {
+  position: relative;
+  width: 74px;
+  height: 128px;
+  border-radius: 18px;
+  background: var(--phone-body);
+  box-shadow: inset 0 4px 12px rgb(var(--black-rgb) / 0.6);
+}
+.lever {
+  position: absolute;
+  inset-inline: 9px;
+  top: 9px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--wa), var(--wa-alt));
+  box-shadow:
+    0 6px 14px rgb(var(--black-rgb) / 0.45),
+    0 0 24px rgb(var(--wa-rgb) / 0.5);
+  transition:
+    top 0.6s cubic-bezier(0.5, 1.6, 0.4, 1) 0.4s,
+    background 0.3s var(--ease) 0.6s,
+    box-shadow 0.3s var(--ease) 0.6s;
+}
+:global(.reveal:not(.in-view)) .lever {
+  top: 63px;
+  background: linear-gradient(180deg, var(--muted), var(--menu-ink));
+  box-shadow: 0 6px 14px rgb(var(--black-rgb) / 0.45);
+}
+.lights {
+  display: grid;
+  grid-template-columns: repeat(3, 14px);
+  gap: 10px;
+}
+.lights i {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--wa);
+  box-shadow: 0 0 12px var(--wa);
+  transition:
+    background-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+  transition-delay: calc(1s + var(--i, 0) * 0.12s);
+}
+:global(.reveal:not(.in-view)) .lights i {
+  background: var(--menu-ink);
+  box-shadow: none;
+}
+
+/* Appears after the switch and the lights (a .reveal-child with a later start). */
+.content {
+  transition-delay: 1.7s;
+}
+.content h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.highlight {
+  color: var(--neon);
+}
+.content p {
+  font-size: 1.04rem;
+  color: rgb(var(--white-rgb) / 0.8);
+}
+.content .lead {
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--white);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 48px 28px;
+    text-align: center;
+  }
+  .actions {
+    justify-content: center;
+  }
+}
+@media (max-width: 600px) {
+  .section {
+    padding-block: 72px 88px;
+  }
+  .panel {
+    padding: 40px 18px;
+  }
+}

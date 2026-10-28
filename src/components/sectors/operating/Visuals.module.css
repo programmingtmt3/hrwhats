@@ -1,0 +1,509 @@
+/* Operations mockups. Hidden-before states only apply while the parent
+   .reveal waits for .in-view. */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.headTitle {
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+/* ---------- Chats ---------- */
+.thread {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--wa-chat-bg);
+}
+.bubble {
+  max-width: 86%;
+  padding: 6px 10px;
+  border-radius: 11px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  box-shadow: var(--shadow-sm);
+}
+.bubble time {
+  display: block;
+  text-align: end;
+  font-size: 0.64rem;
+  color: var(--wa-meta);
+}
+.in {
+  justify-self: start;
+  background: var(--white);
+  border-start-start-radius: 3px;
+}
+.out {
+  justify-self: end;
+  background: var(--wa-bubble-out);
+  border-start-end-radius: 3px;
+}
+.bot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--wa-send);
+}
+.bot svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ---------- 02 Sorting belt ---------- */
+.beltTitle {
+  margin-top: 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.belt {
+  --dir: -1;
+  --gap: 12px;
+  position: relative;
+  margin-top: 8px;
+  padding-top: 44px;
+}
+.belt:dir(rtl) {
+  --dir: 1;
+}
+/* The conveyor: a band with rollers running across the top. */
+.rollers {
+  position: absolute;
+  top: 6px;
+  inset-inline: 0;
+  height: 22px;
+  border-radius: 999px;
+  background:
+    repeating-linear-gradient(90deg, rgb(var(--white-rgb) / 0.25) 0 3px, transparent 3px 16px),
+    var(--dark);
+}
+.bins {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+}
+.bins li {
+  position: relative;
+}
+.bin {
+  display: grid;
+  align-content: end;
+  justify-items: center;
+  height: 78px;
+  padding-bottom: 8px;
+  border: 2px solid var(--line);
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, transparent, var(--bg));
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.parcel {
+  position: absolute;
+  top: 10px;
+  inset-inline: 8px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--on-wa);
+  background: var(--wa);
+  box-shadow: var(--shadow-sm);
+}
+:global(.reveal:not(.in-view)) .parcel {
+  opacity: 0;
+}
+/* Ride the belt from its start to the bin, then drop in. */
+:global(.in-view) .parcel {
+  animation: ride 1.7s var(--ease) both;
+  animation-delay: calc(1.6s + var(--i, 0) * 0.55s);
+}
+@keyframes ride {
+  0% {
+    opacity: 0;
+    translate: calc(var(--col) * (100% + 16px + var(--gap)) * var(--dir)) -42px;
+  }
+  12% {
+    opacity: 1;
+  }
+  65% {
+    translate: 0 -42px;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* ---------- 03 Follow-up updates ---------- */
+.update {
+  max-width: 92%;
+}
+.segments {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  margin-top: 6px;
+}
+.segments i {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--line);
+}
+.segments i.filled {
+  background: var(--wa-send);
+}
+.ratings {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.ratings > span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 1.15rem;
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+}
+.ratings > span.picked {
+  border-color: var(--wa-send);
+  background: rgb(var(--wa-rgb) / 0.14);
+}
+
+/* ---------- 04 Field team ---------- */
+.newOrder {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin-bottom: 10px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--dark);
+  transition:
+    translate 0.7s var(--ease) 0.4s,
+    opacity 0.5s var(--ease) 0.4s;
+}
+.newOrder svg {
+  width: 15px;
+  height: 15px;
+  color: var(--neon);
+}
+:global(.reveal:not(.in-view)) .newOrder {
+  opacity: 0;
+  translate: 0 -24px;
+}
+.techs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.tech {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  transition: border-color 0.4s var(--ease) 1.2s;
+}
+.assignee {
+  border-color: var(--wa);
+}
+:global(.reveal:not(.in-view)) .assignee {
+  border-color: var(--line);
+}
+.techAvatar {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--dark);
+  background: rgb(var(--wa-rgb) / 0.18);
+}
+.techInfo {
+  display: grid;
+  line-height: 1.4;
+}
+.techInfo b {
+  font-size: 0.86rem;
+}
+.techInfo small {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.status,
+.before,
+.after {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+.status,
+.statusSwap {
+  grid-column: 1 / -1;
+}
+/* The two states share one cell; the "after" one wins on reveal. */
+.statusSwap {
+  display: grid;
+}
+.before,
+.after {
+  grid-area: 1 / 1;
+  transition: opacity 0.4s var(--ease) 1.2s;
+}
+.before {
+  opacity: 0;
+}
+:global(.reveal:not(.in-view)) .before {
+  opacity: 1;
+}
+:global(.reveal:not(.in-view)) .after {
+  opacity: 0;
+}
+.assigned {
+  position: absolute;
+  top: -9px;
+  inset-inline-end: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--on-wa);
+  background: var(--wa);
+  transition:
+    opacity 0.4s var(--ease) 1.2s,
+    scale 0.4s var(--ease) 1.2s;
+}
+.assigned svg {
+  width: 11px;
+  height: 11px;
+}
+:global(.reveal:not(.in-view)) .assigned {
+  opacity: 0;
+  scale: 0.6;
+}
+
+/* ---------- 05 Contract ---------- */
+.contract {
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.contractHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--line);
+}
+.contractHead > svg {
+  width: 34px;
+  height: 34px;
+  padding: 7px;
+  border-radius: 10px;
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.14);
+}
+.contractHead > span {
+  display: grid;
+  line-height: 1.4;
+}
+.contractHead small {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.visitsTitle {
+  margin-block: 10px 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.visits {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  text-align: center;
+}
+/* The line joining the visits. */
+.visits::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  inset-inline: 12.5%;
+  border-top: 2px dashed var(--line);
+}
+.visits li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  font-size: 0.74rem;
+}
+.visits i {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+.visits i svg {
+  width: 15px;
+  height: 15px;
+}
+.done i {
+  color: var(--white);
+  background: var(--wa-send);
+}
+.next i {
+  color: var(--amber);
+  background: rgb(var(--amber-rgb) / 0.12);
+  box-shadow: 0 0 0 2px var(--sun);
+}
+.next {
+  font-weight: 700;
+  color: var(--amber);
+}
+.reminder {
+  margin-top: 12px;
+  padding: 8px 10px;
+  border-radius: 11px;
+  border-start-start-radius: 3px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  background: var(--wa-bubble-out);
+}
+.renew {
+  display: block;
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--dark);
+}
+.offer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1.5px dashed rgb(var(--green-rgb) / 0.45);
+  background: rgb(var(--wa-rgb) / 0.06);
+}
+.offer > svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: var(--green);
+}
+.offer > span {
+  flex: 1;
+  display: grid;
+  line-height: 1.45;
+  font-size: 0.84rem;
+}
+.offer small {
+  font-size: 0.7rem;
+  color: var(--green);
+  font-weight: 700;
+}
+.offer em {
+  font-style: normal;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--wa-link);
+  white-space: nowrap;
+}
+
+/* ---------- 06 Control room ---------- */
+.panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--dark), var(--deep));
+}
+.panels li {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgb(var(--white-rgb) / 0.05);
+  border: 1px solid rgb(var(--white-rgb) / 0.1);
+}
+.panels b {
+  font-size: 0.78rem;
+  color: var(--white);
+}
+.lights {
+  display: flex;
+  gap: 6px;
+}
+.screen {
+  /* The double-width wave starts at the left edge and scrolls left in both directions. */
+  direction: ltr;
+  height: 40px;
+  border-radius: 6px;
+  background: var(--phone-body);
+  overflow: hidden;
+}
+.screen svg {
+  width: 200%;
+  height: 100%;
+}
+.screen path {
+  fill: none;
+  stroke: var(--neon);
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+  animation: wave 4s linear infinite;
+  animation-delay: calc(var(--i, 0) * -1s);
+}
+@keyframes wave {
+  to {
+    translate: -100px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .head {
+    flex-wrap: wrap;
+  }
+  .techs {
+    grid-template-columns: 1fr;
+  }
+  .panels {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,63 @@
+/* Priority badges, status lights and the section tape. */
+.priority {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.priority::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.urgent {
+  color: var(--alert);
+  background: rgb(var(--alert-rgb) / 0.12);
+}
+.medium {
+  color: var(--amber);
+  background: rgb(var(--amber-rgb) / 0.12);
+}
+.normal {
+  color: var(--green);
+  background: rgb(var(--green-rgb) / 0.1);
+}
+
+.led {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition:
+    background-color 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+.green {
+  background: var(--wa);
+  box-shadow: 0 0 8px rgb(var(--wa-rgb) / 0.8);
+}
+.amber {
+  background: var(--sun);
+  box-shadow: 0 0 8px var(--sun);
+}
+.red {
+  background: var(--alert);
+  box-shadow: 0 0 8px rgb(var(--alert-rgb) / 0.8);
+}
+.off {
+  background: var(--line);
+  box-shadow: inset 0 1px 2px rgb(var(--black-rgb) / 0.2);
+}
+
+.tape {
+  height: 14px;
+  background: repeating-linear-gradient(-45deg, var(--dark) 0 14px, var(--wa) 14px 28px);
+  opacity: 0.9;
+}

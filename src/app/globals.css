@@ -57,6 +57,11 @@
   --client-clinic-rgb: 35 99 163;
   --client-shop: #7048a8;
   --client-shop-rgb: 112 72 168;
+  /* Priority + status lights (operating page mockups only); readable on white and on a 12% tint. */
+  --alert: #b4372b;
+  --alert-rgb: 180 55 43;
+  --amber: #8f5a00;
+  --amber-rgb: 143 90 0;
 
   /* WhatsApp phone mockup */
   --phone-body: #0c1512;
