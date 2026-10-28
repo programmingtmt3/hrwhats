@@ -1,5 +1,5 @@
 /* Meta verification panel under the Why cards (replaces bnr-1.png): copy on
-   the inline-start side, four connected stages on the inline-end side. */
+   the inline-start side, five connected stages on the inline-end side. */
 .panel {
   position: relative;
   overflow: hidden;
@@ -44,23 +44,44 @@
   font-weight: 600;
   color: var(--ink);
 }
-.line {
-  display: inline-block;
+/* The highlighted line and a compact button of about the same height, side
+   by side; the button wraps under the line when space runs out. */
+.action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
   margin-top: 10px;
+}
+.line {
   padding: 8px 14px;
   border-radius: 10px;
   background: rgb(var(--wa-rgb) / 0.12);
   color: var(--dark);
   font-weight: 600;
 }
-.copy :global(.btn) {
-  margin-top: 24px;
+.cta {
+  gap: 8px;
+  padding: 9px 18px;
+  font-size: 0.9rem;
+  box-shadow:
+    0 6px 16px -8px rgb(var(--wa-rgb) / 0.7),
+    inset 0 1px 0 rgb(var(--white-rgb) / 0.35);
+}
+.cta:hover {
+  box-shadow:
+    0 10px 22px -8px rgb(var(--wa-rgb) / 0.8),
+    inset 0 1px 0 rgb(var(--white-rgb) / 0.35);
+}
+.cta svg {
+  width: 16px;
+  height: 16px;
 }
 
 .stages {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: 28px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 16px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -70,16 +91,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   text-align: center;
 }
 
 /* Icon: a dim base, with the lit layer fading in over it. */
 .ic {
   position: relative;
-  width: 72px;
-  height: 72px;
-  border-radius: 20px;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
   display: grid;
   place-items: center;
   background: rgb(var(--dark-rgb) / 0.04);
@@ -87,8 +108,8 @@
   color: rgb(var(--dark-rgb) / 0.3);
 }
 .ic svg {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
 }
 .lit {
   position: absolute;
@@ -100,8 +121,19 @@
   border: 1px solid rgb(var(--wa-rgb) / 0.35);
   color: var(--green);
 }
-/* The last stage: a green shield with a check. */
-.final .lit {
+/* "Verified": a milestone — green outline, so it stands out without
+   competing with the goal. */
+.milestone .lit {
+  background: rgb(var(--wa-rgb) / 0.12);
+  border: 2px solid var(--green);
+  color: var(--green);
+}
+/* The last stage, the goal: filled green with a glow. */
+.goal .label {
+  background: rgb(var(--wa-rgb) / 0.22);
+  font-weight: 700;
+}
+.goal .lit {
   background: linear-gradient(135deg, var(--wa), var(--green));
   border-color: transparent;
   color: var(--white);
@@ -111,11 +143,11 @@
 }
 
 .label {
-  padding: 6px 12px;
-  border-radius: 999px;
+  padding: 5px 10px;
+  border-radius: 10px;
   background: rgb(var(--wa-rgb) / 0.1);
   color: var(--dark);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   line-height: 1.5;
 }
@@ -123,8 +155,8 @@
 /* Arrow centered in the gap after each stage, at icon height. */
 .arrow {
   position: absolute;
-  top: 26px;
-  inset-inline-end: -24px;
+  top: 22px;
+  inset-inline-end: -18px;
   width: 20px;
   height: 20px;
   display: grid;
@@ -149,9 +181,6 @@
 @media (max-width: 600px) {
   .panel {
     padding: 28px 20px;
-  }
-  .copy :global(.btn) {
-    width: 100%;
   }
   .stages {
     grid-template-columns: 1fr;

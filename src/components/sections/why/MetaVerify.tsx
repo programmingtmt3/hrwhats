@@ -1,4 +1,4 @@
-import { BriefcaseBusiness, FileBadge, ShieldCheck, Store, type LucideIcon } from "lucide-react";
+import { BriefcaseBusiness, FileBadge, Megaphone, ShieldCheck, Store, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
@@ -16,11 +16,18 @@ const stages: { key: StageKey; icon: LucideIcon }[] = [
   { key: "certificate", icon: FileBadge },
   { key: "portfolio", icon: BriefcaseBusiness },
   { key: "verified", icon: ShieldCheck },
+  { key: "campaigns", icon: Megaphone },
 ];
+
+/** "Verified" is a milestone (green outline); the last stage is the goal (filled). */
+const stageClass: Partial<Record<StageKey, string>> = {
+  verified: styles.milestone,
+  campaigns: styles.goal,
+};
 
 /**
  * "Meta portfolio verification with a freelance certificate" panel under the
- * Why cards (replaces the old bnr-1.png banner). The four stages light up one
+ * Why cards (replaces the old bnr-1.png banner). The five stages light up one
  * after another, once: each lit layer is a `.reveal-child`, so it shows at
  * once with reduced motion or JS off.
  */
@@ -36,19 +43,24 @@ export function MetaVerify({ locale }: { locale: Locale }) {
           {verify.title.after}
         </h3>
         <p className={styles.question}>{verify.question}</p>
-        <p className={styles.line}>{verify.line}</p>
-        <Link href={localePath(locale, "/documentation-requirements-for-meta/")} className="btn btn-primary">
-          {verify.cta}
-          <ArrowIcon className="icon-forward" />
-        </Link>
+        <div className={styles.action}>
+          <p className={styles.line}>{verify.line}</p>
+          <Link
+            href={localePath(locale, "/documentation-requirements-for-meta/")}
+            className={cn("btn btn-primary", styles.cta)}
+          >
+            {verify.cta}
+            <ArrowIcon className="icon-forward" />
+          </Link>
+        </div>
       </div>
 
       <ol className={styles.stages} aria-label={verify.stagesLabel}>
         {stages.map(({ key, icon: Icon }, i) => (
           <li
             key={key}
-            className={cn(styles.stage, key === "verified" && styles.final)}
-            // Stages at --i 0, 2, 4, 6; the arrow after each one at the odd step.
+            className={cn(styles.stage, stageClass[key])}
+            // Stages at --i 0, 2, 4, …; the arrow after each one at the odd step.
             style={{ "--i": i * 2 } as CSSProperties}
           >
             <span className={styles.ic} aria-hidden="true">
