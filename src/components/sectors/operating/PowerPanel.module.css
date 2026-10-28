@@ -1,15 +1,18 @@
 /* Closing control panel. Every step is a transition from the pre-reveal
    state, so it plays once and shows the end state at once with reduced motion. */
 .section {
-  padding-block: 96px 110px;
+  padding-block: 80px 96px;
 }
+/* A compact panel: the words, then the controls behind a divider. */
 .panel {
   position: relative;
+  max-width: 920px;
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 56px;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
   align-items: center;
-  padding: 56px;
+  padding: 44px 48px;
   border-radius: var(--r-lg);
   color: var(--white);
   background:
@@ -17,6 +20,13 @@
     linear-gradient(160deg, var(--dark), var(--deep));
   border: 1px solid rgb(var(--white-rgb) / 0.08);
   box-shadow: var(--shadow-lg);
+}
+/* Out of the grid flow (otherwise it takes a cell and pushes the controls
+   to a second row). */
+.screws {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 .screws i {
   position: absolute;
@@ -45,7 +55,9 @@
 .controls {
   display: grid;
   justify-items: center;
-  gap: 22px;
+  gap: 20px;
+  padding-inline-start: 48px;
+  border-inline-start: 1px solid rgb(var(--white-rgb) / 0.1);
 }
 /* The big switch: ON at the top, OFF at the bottom; the lever flips up. */
 .switch {
@@ -118,16 +130,16 @@
   transition-delay: 1.7s;
 }
 .content h2 {
-  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   line-height: 1.4;
   font-weight: 700;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .highlight {
   color: var(--neon);
 }
 .content p {
-  font-size: 1.04rem;
+  font-size: 1rem;
   color: rgb(var(--white-rgb) / 0.8);
 }
 .content .lead {
@@ -139,15 +151,48 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
+/* Tablets and phones: the controls above the words, side by side and
+   smaller; no divider. */
 @media (max-width: 900px) {
   .panel {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 48px 28px;
+    gap: 28px;
+    padding: 40px 28px;
     text-align: center;
+  }
+  .controls {
+    order: -1;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+  .slot {
+    width: 56px;
+    height: 96px;
+    border-radius: 14px;
+  }
+  .lever {
+    inset-inline: 7px;
+    top: 7px;
+    height: 42px;
+    border-radius: 10px;
+  }
+  :global(.reveal:not(.in-view)) .lever {
+    top: 47px;
+  }
+  .lights {
+    grid-template-columns: repeat(3, 12px);
+    gap: 8px;
+  }
+  .lights i {
+    width: 12px;
+    height: 12px;
   }
   .actions {
     justify-content: center;
@@ -155,9 +200,9 @@
 }
 @media (max-width: 600px) {
   .section {
-    padding-block: 72px 88px;
+    padding-block: 64px 80px;
   }
   .panel {
-    padding: 40px 18px;
+    padding: 32px 18px;
   }
 }

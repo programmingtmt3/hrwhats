@@ -3,7 +3,9 @@
 import { ArrowDownWideNarrow, Clock, Layers } from "lucide-react";
 import { Fragment, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
+import { useReveal } from "@/components/motion/Reveal";
 import { format } from "@/lib/format";
+import { cn } from "@/lib/utils";
 
 import styles from "./SortBoard.module.css";
 import { PriorityBadge } from "./Status";
@@ -22,6 +24,8 @@ type Ticket = {
 type Data = {
   label: string;
   sortLabel: string;
+  /** Visual hint next to the example tag; fades after the first click. */
+  hint: string;
   sorts: string[];
   announce: string;
   tickets: Ticket[];
@@ -41,6 +45,9 @@ const sorters: ((a: Ticket, b: Ticket) => number)[] = [
  * Rows glide to their new places (FLIP: measure → reorder → invert → play);
  * "by department" adds a heading per department. The new order is announced.
  * With reduced motion the rows simply jump to their new places.
+ * A hint ("tap to sort") and one soft pulse on the buttons when the board is
+ * first seen show they are clickable; both stop after the first click (the
+ * pulse is a CSS animation, so reduced motion keeps only the text).
  */
 export function SortBoard({
   data,
@@ -55,12 +62,15 @@ export function SortBoard({
 }) {
   const [mode, setMode] = useState(1);
   const [announcement, setAnnouncement] = useState("");
+  const [touched, setTouched] = useState(false);
+  const [boardRef, inView] = useReveal<HTMLElement>();
   const rows = useRef(new Map<string, HTMLElement>());
   const before = useRef(new Map<string, DOMRect>());
 
   const sorted = [...data.tickets].sort(sorters[mode]);
 
   const choose = (next: number) => {
+    setTouched(true);
     if (next === mode) return;
     // First: remember where every row is now.
     before.current = new Map([...rows.current].map(([key, el]) => [key, el.getBoundingClientRect()]));
@@ -97,9 +107,13 @@ export function SortBoard({
   };
 
   return (
-    <figure className={styles.board} aria-label={data.label}>
+    <figure ref={boardRef} className={styles.board} aria-label={data.label}>
       <div className={styles.head}>
-        <div role="group" aria-label={data.sortLabel} className={styles.sorts}>
+        <div
+          role="group"
+          aria-label={data.sortLabel}
+          className={cn(styles.sorts, inView && !touched && styles.pulse)}
+        >
           {data.sorts.map((sort, i) => {
             const Icon = sortIcons[i];
             return (
@@ -110,7 +124,13 @@ export function SortBoard({
             );
           })}
         </div>
-        {exampleTag}
+        <span className={styles.meta}>
+          {/* Visual hint only: the buttons are announced as toggle buttons. */}
+          <span className={cn(styles.hint, touched && styles.hintGone)} aria-hidden="true">
+            {data.hint}
+          </span>
+          {exampleTag}
+        </span>
       </div>
 
       <ul className={styles.list}>

@@ -11,9 +11,10 @@ import styles from "./PowerPanel.module.css";
 const LIGHTS = 6;
 
 /**
- * Closing + CTA as a control panel: the big switch flips on once when first
- * seen, the lights turn green one by one, then the words and buttons appear.
- * Replaces the site-wide <Cta>.
+ * Closing + CTA as a control panel: the words on the inline-start side, the
+ * switch and lights on the inline-end side (above the words on phones). The
+ * switch flips on once when first seen, the lights turn green one by one, then
+ * the words and buttons appear. Replaces the site-wide <Cta>.
  */
 export function PowerPanel({ locale }: { locale: Locale }) {
   const { closing } = getDictionary(locale).sectors.operating;
@@ -29,21 +30,6 @@ export function PowerPanel({ locale }: { locale: Locale }) {
             <i />
             <i />
           </span>
-
-          <div className={styles.controls} aria-hidden="true">
-            <span className={styles.switch}>
-              <small className={styles.onLabel}>{closing.on}</small>
-              <span className={styles.slot}>
-                <i className={styles.lever} />
-              </span>
-              <small className={styles.offLabel}>{closing.off}</small>
-            </span>
-            <span className={styles.lights}>
-              {Array.from({ length: LIGHTS }, (_, i) => (
-                <i key={i} style={{ "--i": i } as CSSProperties} />
-              ))}
-            </span>
-          </div>
 
           {/* reveal-child: hidden only while waiting, so it still shows with JS off. */}
           <div className={cn("reveal-child", styles.content)}>
@@ -64,6 +50,21 @@ export function PowerPanel({ locale }: { locale: Locale }) {
                 {closing.salesCta}
               </a>
             </div>
+          </div>
+
+          <div className={styles.controls} aria-hidden="true">
+            <span className={styles.switch}>
+              <small className={styles.onLabel}>{closing.on}</small>
+              <span className={styles.slot}>
+                <i className={styles.lever} />
+              </span>
+              <small className={styles.offLabel}>{closing.off}</small>
+            </span>
+            <span className={styles.lights}>
+              {Array.from({ length: LIGHTS }, (_, i) => (
+                <i key={i} style={{ "--i": i } as CSSProperties} />
+              ))}
+            </span>
           </div>
         </Reveal>
       </div>

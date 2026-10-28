@@ -16,6 +16,46 @@
   background: var(--bg);
   border: 1px solid var(--line);
 }
+/* First view: one soft pulse around the buttons (none with reduced motion). */
+.pulse {
+  animation: sortPulse 1.2s var(--ease) 0.6s 1;
+}
+@keyframes sortPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(var(--wa-rgb) / 0.45);
+    scale: 1;
+  }
+  35% {
+    scale: 1.03;
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgb(var(--wa-rgb) / 0);
+    scale: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(var(--wa-rgb) / 0);
+  }
+}
+.meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+  transition:
+    opacity 0.5s var(--ease),
+    visibility 0s;
+}
+.hintGone {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s var(--ease),
+    visibility 0s 0.5s;
+}
 .sort {
   display: inline-flex;
   align-items: center;
