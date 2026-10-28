@@ -1,8 +1,9 @@
 import { ArrowDown, Clock, HandHeart, TrendingUp } from "lucide-react";
 import type { ComponentType, CSSProperties, ReactNode, SVGProps } from "react";
 
-import { CalendarCheckIcon, ChatBubbleIcon } from "@/components/icons";
+import { ArrowIcon, CalendarCheckIcon, ChatBubbleIcon, WhatsAppIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
+import { getSite } from "@/lib/content";
 import { getDictionary, type Dictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -16,10 +17,15 @@ const CAMPAIGN_ROWS = [92, 74, 58];
 
 const delay = (i: number) => ({ "--i": i }) as CSSProperties;
 
-/** The result sentence as four animated cards (relative motion only, no figures). */
+/**
+ * The result sentence as four animated cards (relative motion only, no
+ * figures), then the two closing buttons: the page's closing section, in place
+ * of the site-wide <Cta>.
+ */
 export function Result({ locale }: { locale: Locale }) {
   const { result } = getDictionary(locale).sectors.charity;
   const { cards } = result;
+  const site = getSite();
 
   const visuals: Record<CardKey, { icon: ComponentType<SVGProps<SVGSVGElement>>; visual: ReactNode }> = {
     organized: {
@@ -107,6 +113,17 @@ export function Result({ locale }: { locale: Locale }) {
             );
           })}
         </div>
+
+        <Reveal className={styles.actions}>
+          <a href={site.appUrls.signup} className="btn btn-primary">
+            {result.primaryCta}
+            <ArrowIcon className="icon-forward" />
+          </a>
+          <a href={site.contact.whatsapp.url} className="btn btn-outline-light" target="_blank" rel="noopener">
+            <WhatsAppIcon />
+            {result.salesCta}
+          </a>
+        </Reveal>
       </div>
     </section>
   );

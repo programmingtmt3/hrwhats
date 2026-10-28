@@ -7,6 +7,11 @@
   background:
     radial-gradient(50% 60% at 50% 0%, rgb(var(--wa-rgb) / 0.18), transparent 70%),
     var(--deep);
+  /* The page's closing section: it meets the (equally dark) footer directly.
+     The negative margin cancels the footer's 110px top margin (the two
+     margins collapse to 0); a line in the primary button's green separates them. */
+  margin-bottom: -110px;
+  border-block-end: 1px solid var(--wa);
 }
 .copy {
   max-width: 880px;
@@ -246,6 +251,15 @@
   }
 }
 
+/* ---------- Closing buttons ---------- */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 48px;
+}
+
 @media (max-width: 1080px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
@@ -257,5 +271,12 @@
   }
   .card {
     padding: 22px;
+  }
+  .actions {
+    flex-direction: column;
+    margin-top: 36px;
+  }
+  .actions :global(.btn) {
+    width: 100%;
   }
 }

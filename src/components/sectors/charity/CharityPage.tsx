@@ -1,5 +1,4 @@
 import { JsonLd } from "@/components/seo/JsonLd";
-import { Cta } from "@/components/sections/cta/Cta";
 import { getSector, t } from "@/lib/content";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { breadcrumbJsonLd, getPageMetadata, serviceJsonLd } from "@/lib/seo";
@@ -47,7 +46,6 @@ export function CharityPage({ locale }: { locale: Locale }) {
       <DonorJourney locale={locale} />
       <Impact locale={locale} />
       <Result locale={locale} />
-      <Cta locale={locale} />
     </>
   );
 }
