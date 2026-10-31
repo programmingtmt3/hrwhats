@@ -21,8 +21,8 @@ Rebuild of **hrwhats.com**, the marketing site for HRwhats (a WhatsApp Business 
 | Content | JSON validated with Zod in `lib/content.ts`; MDX via **Velite** from phase 4 (usage guide + legal pages) |
 | Images | `next-image-export-optimizer` (build-time optimization) |
 | Forms | React Hook Form + Zod (client-side only) |
-| Fonts | `next/font/google` — IBM Plex Sans Arabic (Arabic) + IBM Plex Sans (English), weights 300–700 |
-| Package manager | npm. Node 24 LTS |
+| Fonts | `next/font/local`, self-hosted woff2 in `src/fonts/` (OFL) — IBM Plex Sans Arabic (Arabic) + IBM Plex Sans (English), weights 400–700. No Google Fonts requests in dev or build |
+| Package manager | npm. Node 24 LTS (npm 11). Install with `npm ci`; change `package-lock.json` only through `npm install <pkg>` on Node 24 — a lockfile rewritten by an older npm drops the `libc` fields (glibc/musl binaries for `sharp`, `lightningcss`) and optional packages |
 
 Do not add dependencies outside this list without asking first. (`cn`, `class-variance-authority`, `radix-ui`, `tw-animate-css` and `shadcn` come with shadcn/ui and are part of it.)
 
@@ -44,7 +44,7 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 
 `SITE_ENV` (read in `src/lib/env.ts`) selects the build target: `staging` (default when unset — the safe choice) or `production`; any other value fails the build. `next.config.ts` prints the target at the top of every build log.
 
-- **staging** (Hostinger preview: build locally, upload `out/` to a regular Website — **not** a Node.js Web App, which forces Next.js into standalone server mode and rejects static export; see `docs/deploy-hostinger.md`): `robots.txt` = `Disallow: /`, `noindex, nofollow` on every page (via `getRootMetadata`), **no sitemap**. `ALLOW_TURNSTILE_TEST_KEY=1` is allowed here.
+- **staging** (Hostinger preview, built **from GitHub on Hostinger**: the app is connected to the `hostinger` remote (`programmingtmt3/hrwhats`), Build command `npm run build`, Output directory `out`, env `SITE_ENV=staging`; every `git push hostinger main` rebuilds it. Fallback: build locally and upload `out/` to a regular Website. See `docs/deploy-hostinger.md`): `robots.txt` = `Disallow: /`, `noindex, nofollow` on every page (via `getRootMetadata`), **no sitemap**. `ALLOW_TURNSTILE_TEST_KEY=1` is allowed here.
 - **production** (the real launch on cPanel): normal indexing. `ALLOW_TURNSTILE_TEST_KEY=1` always fails the build.
 - New SEO outputs must respect this: `app/sitemap.ts` (launch phase) must produce nothing in staging, and no page may override `robots` to make staging indexable.
 - `npm run build` alone must produce the complete `out/` (hosts run nothing else). Node 24 (`engines` + `.nvmrc`).
@@ -243,7 +243,7 @@ public/api/
 └── _lib/                     ← PHPMailer 7.1.1 (+ .htaccess deny all)
 config/hrwhats-config.example.php ← template for ~/hrwhats-config.php (no secrets)
 docs/contact-form-setup.md    ← server setup guide (Arabic)
-docs/deploy-hostinger.md      ← staging deploy on Hostinger (Arabic)
+docs/deploy-hostinger.md      ← staging deploy on Hostinger: GitHub build + why next.base.ts/build.mjs (Arabic)
 scripts/
 ├── build.mjs                 ← `npm run build` (restores next.config.ts, see Build environments)
 ├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX
