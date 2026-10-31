@@ -15,8 +15,15 @@
 | إصدار Node | 24 (محدّد أيضاً في `package.json` → `engines` وفي `.nvmrc`) |
 | متغير البيئة `SITE_ENV` | `staging` |
 
+**الدفع إلى المستودعين معاً:** `origin` مضبوط محلياً ليرفع كل `git push` إلى `MDMDcode/hrwhats` (المستودع الأساسي) وإلى `programmingtmt3/hrwhats` (مستودع Hostinger) في نفس الأمر، حتى لا يفترقا مرة أخرى كما حدث سابقاً. هذا الإعداد في `.git/config` على الجهاز وليس داخل المستودع، فاضبطه مرة واحدة في كل نسخة جديدة:
+```bash
+git remote set-url --add --push origin https://github.com/MDMDcode/hrwhats.git
+git remote set-url --add --push origin https://github.com/programmingtmt3/hrwhats.git
+git remote -v   # يجب أن يظهر لـ origin سطر fetch واحد وسطرا push
+```
+
 **خطوات النشر:**
-1. بعد اعتماد التعديلات ودفعها إلى `origin`، ادفعها إلى Hostinger: `git push hostinger main`.
+1. بعد اعتماد التعديلات: `git push`. يرفعها إلى المستودعين، فيبدأ Hostinger البناء. راجع مخرجات الأمر: إذا رفض أحد المستودعين الدفع، فقد يكون الآخر استلمه. للتأكد أن الاثنين متطابقان: `git fetch hostinger` ثم `git rev-parse main hostinger/main` (يجب أن يظهر نفس الرقم مرتين).
 2. انتظر انتهاء البناء في hPanel، ثم افتح سجل البناء وتأكد من:
    - سطر `▶ SITE_ENV=staging — NOT indexable ...`
    - وسطر النهاية `✓ Static site written to out/`

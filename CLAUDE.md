@@ -44,7 +44,7 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 
 `SITE_ENV` (read in `src/lib/env.ts`) selects the build target: `staging` (default when unset — the safe choice) or `production`; any other value fails the build. `next.config.ts` prints the target at the top of every build log.
 
-- **staging** (Hostinger preview, built **from GitHub on Hostinger**: the app is connected to the `hostinger` remote (`programmingtmt3/hrwhats`), Build command `npm run build`, Output directory `out`, env `SITE_ENV=staging`; every `git push hostinger main` rebuilds it. Fallback: build locally and upload `out/` to a regular Website. See `docs/deploy-hostinger.md`): `robots.txt` = `Disallow: /`, `noindex, nofollow` on every page (via `getRootMetadata`), **no sitemap**. `ALLOW_TURNSTILE_TEST_KEY=1` is allowed here.
+- **staging** (Hostinger preview, built **from GitHub on Hostinger**: the app is connected to the `hostinger` remote (`programmingtmt3/hrwhats`), Build command `npm run build`, Output directory `out`, env `SITE_ENV=staging`; every push to `main` there rebuilds it (`git push` updates both repos, see Working rules). Fallback: build locally and upload `out/` to a regular Website. See `docs/deploy-hostinger.md`): `robots.txt` = `Disallow: /`, `noindex, nofollow` on every page (via `getRootMetadata`), **no sitemap**. `ALLOW_TURNSTILE_TEST_KEY=1` is allowed here.
 - **production** (the real launch on cPanel): normal indexing. `ALLOW_TURNSTILE_TEST_KEY=1` always fails the build.
 - New SEO outputs must respect this: `app/sitemap.ts` (launch phase) must produce nothing in staging, and no page may override `robots` to make staging indexable.
 - `npm run build` alone must produce the complete `out/` (hosts run nothing else). Node 24 (`engines` + `.nvmrc`).
@@ -305,5 +305,12 @@ npm run lint
 - After changes, run `npm run build` to confirm the static export still succeeds.
 - **Secrets never enter the repository** — no API keys, SMTP passwords or Turnstile secret keys in code, JSON, docs or examples. Server secrets live only in `~/hrwhats-config.php` on the host (outside `public_html`); the repo holds an empty example. `.env*`, `hrwhats-config.php`, `node_modules/`, `.next/`, `out/`, `.velite/` must be in `.gitignore`.
 - Commit messages: Conventional Commits in English (`feat:`, `fix:`, `chore:`, `content:`).
-- After every **approved** commit, `git push` to `origin` immediately, then confirm `git status` shows the branch up to date with `origin/main`.
+- After every **approved** commit, `git push` immediately, then confirm `git status` shows the branch up to date with `origin/main` and `git fetch hostinger && git rev-parse main hostinger/main` prints the same hash twice. Check the push output: if one repo rejects the push, the other may still have received it.
+- **`origin` pushes to two repos:** `MDMDcode/hrwhats` (main repo) and `programmingtmt3/hrwhats` (the repo Hostinger builds staging from), so a plain `git push` updates both and they never drift apart again (they did once: Hostinger-side commits had to be merged back). `origin` still fetches from `MDMDcode` only; `hostinger` stays as a separate remote for fetching. This lives in the local `.git/config`, not in the repo — set it once in every new clone:
+  ```bash
+  git remote set-url --add --push origin https://github.com/MDMDcode/hrwhats.git
+  git remote set-url --add --push origin https://github.com/programmingtmt3/hrwhats.git
+  git remote -v   # origin: 1 fetch line + 2 push lines
+  ```
+- Commits made directly on the Hostinger repo must be merged back (`git fetch hostinger && git merge hostinger/main`) and reviewed before the next push.
 - When unsure about a product detail (features, pricing, wording), ask — don't invent marketing content.
