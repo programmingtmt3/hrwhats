@@ -16,9 +16,33 @@
   top: calc(var(--header-h) + 24px);
 }
 .hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 12px;
-  font-size: 0.86rem;
-  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--green);
+  transition:
+    opacity 0.5s var(--ease),
+    visibility 0s;
+}
+/* A small hotspot-like dot before the text. */
+.hint::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--wa);
+  box-shadow: 0 0 0 3px rgb(var(--wa-rgb) / 0.25);
+}
+.hintGone {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s var(--ease),
+    visibility 0s 0.5s;
 }
 
 /* The plan: outer walls, a tiled floor, rooms as zones. */
@@ -40,6 +64,9 @@
 }
 .zoneActive {
   background: rgb(var(--wa-rgb) / 0.14);
+}
+.zoneLinked:not(.zoneActive) {
+  background: rgb(var(--wa-rgb) / 0.07);
 }
 .zoneName {
   position: absolute;
@@ -149,10 +176,21 @@
   inset: 0;
   border-radius: 50%;
   border: 2px solid var(--wa);
-  animation: pulse 2s ease-out infinite;
+  opacity: 0;
 }
-.spot:hover {
-  scale: 1.1;
+/* First view: one pulse per hotspot, in plan order (none with reduced motion). */
+.pulse .spot::before {
+  animation: pulse 1.4s ease-out calc(0.5s + var(--i) * 0.12s) 1;
+}
+.spot:hover,
+.spotLinked {
+  scale: 1.15;
+}
+.spotLinked:not(.spotActive) {
+  box-shadow:
+    0 0 0 3px var(--surface),
+    0 0 0 6px var(--dark),
+    var(--shadow);
 }
 .spotActive {
   color: var(--white);
@@ -177,6 +215,70 @@
     opacity: 0;
     scale: 1.8;
   }
+}
+
+/* Numbered list of the seven services above the panel (desktop only). */
+.services {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 20px;
+  list-style: none;
+}
+.service {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: start;
+  color: var(--ink);
+  background: var(--surface);
+  cursor: pointer;
+  transition:
+    border-color 0.2s var(--ease),
+    background-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+.serviceNum {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 0.76rem;
+  color: var(--on-wa);
+  background: var(--wa);
+  transition:
+    color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
+}
+.service:hover,
+.serviceLinked {
+  border-color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.08);
+}
+.serviceActive,
+.serviceActive:hover {
+  border-color: var(--dark);
+  color: var(--white);
+  background: var(--dark);
+}
+.serviceActive .serviceNum {
+  color: var(--dark);
+  background: var(--neon);
+}
+.service:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
 }
 
 /* Service panel: only the open one shows on desktop. */
@@ -233,7 +335,8 @@
     margin-inline: auto;
   }
   .hint,
-  .spot {
+  .spot,
+  .services {
     display: none;
   }
   .marker {

@@ -53,6 +53,7 @@ export function FloorPlan({ locale }: { locale: Locale }) {
 
   const spots = SPOTS.map((spot, i) => ({
     place: plan.places[i],
+    service: items[spot.key].title,
     label: format(plan.spotLabel, { place: plan.places[i], service: items[spot.key].title }),
     zone: spot.zone,
   }));
@@ -67,7 +68,13 @@ export function FloorPlan({ locale }: { locale: Locale }) {
     <section className={styles.section}>
       <div className="site-container">
         <SectionHeading eyebrow={plan.eyebrow} title={plan.title} />
-        <PlanExplorer spots={spots} panels={panels} planLabel={plan.label} hint={plan.hint} />
+        <PlanExplorer
+          spots={spots}
+          panels={panels}
+          planLabel={plan.label}
+          listLabel={plan.listLabel}
+          hint={plan.hint}
+        />
       </div>
     </section>
   );
