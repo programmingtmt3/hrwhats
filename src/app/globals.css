@@ -60,6 +60,7 @@
   /* Priority + status lights (operating page), sale decals (shops page) — mockups only; readable on white and on a 12% tint. */
   --alert: #b4372b;
   --alert-rgb: 180 55 43;
+  --alert-light: #ff9d8f; /* warning text on dark panels (home ban-protection phone) */
   --amber: #8f5a00;
   --amber-rgb: 143 90 0;
   /* Restaurants page: chalkboard and its wooden frame. */

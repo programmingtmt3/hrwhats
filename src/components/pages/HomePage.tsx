@@ -1,3 +1,4 @@
+import { BanProtection } from "@/components/sections/banProtection/BanProtection";
 import { Cta } from "@/components/sections/cta/Cta";
 import { Faq } from "@/components/sections/faq/Faq";
 import { Features } from "@/components/sections/features/Features";
@@ -14,6 +15,7 @@ export function HomePage({ locale }: { locale: Locale }) {
     <>
       <Hero locale={locale} />
       <TrustBar locale={locale} />
+      <BanProtection locale={locale} />
       <Features locale={locale} />
       <Why locale={locale} />
       <LeadFinder locale={locale} />
