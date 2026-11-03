@@ -2,9 +2,11 @@
 
 النسخة التجريبية للمراجعة فقط، **وليست نسخة الإطلاق**. الموقع الحالي `hrwhats.com` يبقى على ووردبريس كما هو.
 
+الإطلاق النهائي على **Spaceship Web Hosting (خطة Essential)**: cPanel وLiteSpeed وPHP، بدون Node.js، وهي نفس استضافة موقع ووردبريس الحالي. الفرق بين البيئتين في القسم 6.
+
 ## 1) الطريقة الحالية: البناء من GitHub على Hostinger
 
-تطبيق Hostinger مربوط بالمستودع `programmingtmt3/hrwhats` (الـ remote المسمّى `hostinger` في مستودعنا المحلي)، ويبني الموقع تلقائياً مع كل `push` إلى `main`.
+تطبيق Hostinger مربوط بالمستودع الأساسي `programmingtmt3/hrwhats` (الـ remote المسمّى `origin`)، ويبني الموقع تلقائياً مع كل `push` إلى `main`.
 
 **إعدادات التطبيق في hPanel:**
 
@@ -15,15 +17,10 @@
 | إصدار Node | 24 (محدّد أيضاً في `package.json` → `engines` وفي `.nvmrc`) |
 | متغير البيئة `SITE_ENV` | `staging` |
 
-**الدفع إلى المستودعين معاً:** `origin` مضبوط محلياً ليرفع كل `git push` إلى `MDMDcode/hrwhats` (المستودع الأساسي) وإلى `programmingtmt3/hrwhats` (مستودع Hostinger) في نفس الأمر، حتى لا يفترقا مرة أخرى كما حدث سابقاً. هذا الإعداد في `.git/config` على الجهاز وليس داخل المستودع، فاضبطه مرة واحدة في كل نسخة جديدة:
-```bash
-git remote set-url --add --push origin https://github.com/MDMDcode/hrwhats.git
-git remote set-url --add --push origin https://github.com/programmingtmt3/hrwhats.git
-git remote -v   # يجب أن يظهر لـ origin سطر fetch واحد وسطرا push
-```
+**المستودعات:** `origin` = `programmingtmt3/hrwhats` (الأساسي، ومنه يبني Hostinger). `backup` = `MDMDcode/hrwhats` نسخة احتياطية فقط، ولا يُرفع لها تلقائياً.
 
 **خطوات النشر:**
-1. بعد اعتماد التعديلات: `git push`. يرفعها إلى المستودعين، فيبدأ Hostinger البناء. راجع مخرجات الأمر: إذا رفض أحد المستودعين الدفع، فقد يكون الآخر استلمه. للتأكد أن الاثنين متطابقان: `git fetch hostinger` ثم `git rev-parse main hostinger/main` (يجب أن يظهر نفس الرقم مرتين).
+1. بعد اعتماد التعديلات: `git push`. يرفعها إلى `origin`، فيبدأ Hostinger البناء. تأكد أن `git status` يُظهر أن الفرع مطابق لـ `origin/main`.
 2. انتظر انتهاء البناء في hPanel، ثم افتح سجل البناء وتأكد من:
    - سطر `▶ SITE_ENV=staging — NOT indexable ...`
    - وسطر النهاية `✓ Static site written to out/`
@@ -95,3 +92,30 @@ git remote -v   # يجب أن يظهر لـ origin سطر fetch واحد وسط�
 
 - **مربع التحقق (Turnstile):** المفتاح الحقيقي يعمل فقط على النطاقات المضافة له في لوحة Cloudflare Turnstile. لكي يظهر على النسخة التجريبية، أضف نطاقها الفرعي إلى قائمة النطاقات (Hostname Management) للمفتاح، وإلا يظهر المربع بخطأ.
 - **الإرسال:** `contact.php` يقبل فقط الطلبات القادمة من `https://hrwhats.com` (Origin check). لذلك الضغط على "إرسال" في النسخة التجريبية يُظهر رسالة الخطأ، وهذا **متوقع**. يُختبر الإرسال الفعلي عند الإطلاق.
+
+## 6) الفرق بين Hostinger (التجريبية) وSpaceship (النهائية)
+
+| | Hostinger — تجريبية | Spaceship — نهائية |
+|---|---|---|
+| الغرض | مراجعة التصميم والمحتوى فقط | الإطلاق الحقيقي على `hrwhats.com` |
+| البناء | Hostinger يبني من GitHub مع كل `push` | على جهازك: `$env:SITE_ENV="production"; npm run build`، ثم رفع **محتوى** `out/` إلى `public_html` |
+| السيرفر | غير مهم للاختبار | LiteSpeed (يقرأ `.htaccess` مثل Apache)، وPHP |
+| التحويلات (`.htaccess`) | لا تُختبر هنا | تعمل هنا |
+| نموذج التواصل | الصفحة تعمل، والإرسال يفشل عمداً (Origin) | `api/contact.php` + `~/hrwhats-config.php` خارج `public_html` |
+| الفهرسة | ممنوعة | طبيعية |
+
+**ما لا يمكن اختباره إلا على Spaceship** (على نطاق فرعي هناك قبل الإطلاق، دون لمس موقع ووردبريس الحالي):
+1. **التحويلات:** قواعد `.htaccess` (`/index.php/…`، `ErrorDocument 404`، وأي 301 لاحقاً).
+2. **PHP ونموذج التواصل:** إصدار PHP (8.0 أو أحدث)، وSMTP، وموقع ملف الإعداد، وفحص Origin بالنطاق الحقيقي.
+3. **الروابط العربية:** أن مجلدات المقالات (عربية وفيها إيموجي و`؟`) وصلت للسيرفر بأسمائها الصحيحة بعد الرفع، وأن كل رابط يفتح.
+
+### رفع المجلدات ذات الأسماء العربية
+
+`out/` يحتوي مجلدات بأسماء عربية مقروءة (مثل `📌-فوائد-…`). إذا تغيّر ترميز الأسماء أثناء الرفع، تعطي الصفحة 404:
+- **FTP:** في FileZilla: Site Manager → Charset → **Force UTF-8**.
+- **zip عبر File Manager:** أنشئ الملف بـ 7-Zip مع خيار UTF-8:
+  ```powershell
+  7z a -tzip -mcu=on site.zip .\out\*
+  ```
+  ملف zip بدون علامة UTF-8 قد تظهر أسماؤه مشوّهة بعد فك الضغط في cPanel.
+- بعد كل رفع: افتح عدة روابط مقالات عربية (منها رابط فيه إيموجي ورابط فيه `؟`) وتأكد أنها تفتح.

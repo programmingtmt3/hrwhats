@@ -2,7 +2,7 @@
 
 ## Project overview
 
-Rebuild of **hrwhats.com**, the marketing site for HRwhats (a WhatsApp Business API + CRM platform), currently on WordPress. The new site is a **Next.js static site** (static export) deployed to shared cPanel hosting (Spaceship, LiteSpeed).
+Rebuild of **hrwhats.com**, the marketing site for HRwhats (a WhatsApp Business API + CRM platform), currently on WordPress. The new site is a **Next.js static site** (static export) deployed to **Spaceship Web Hosting, Essential plan** (cPanel, LiteSpeed, PHP — no Node.js needed) — the same hosting the current WordPress site runs on. Hostinger is for the staging preview only (see Hosting).
 
 - The product app lives at `app.hrwhats.com` (signup/login). It is **out of scope** — this repo only links to it.
 - Primary language: **Arabic (RTL)**. English will be added in a later phase — the architecture must support it from day one.
@@ -44,11 +44,23 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 
 `SITE_ENV` (read in `src/lib/env.ts`) selects the build target: `staging` (default when unset — the safe choice) or `production`; any other value fails the build. `next.config.ts` prints the target at the top of every build log.
 
-- **staging** (Hostinger preview, built **from GitHub on Hostinger**: the app is connected to the `hostinger` remote (`programmingtmt3/hrwhats`), Build command `npm run build`, Output directory `out`, env `SITE_ENV=staging`; every push to `main` there rebuilds it (`git push` updates both repos, see Working rules). Fallback: build locally and upload `out/` to a regular Website. See `docs/deploy-hostinger.md`): `robots.txt` = `Disallow: /`, `noindex, nofollow` on every page (via `getRootMetadata`), **no sitemap**. `ALLOW_TURNSTILE_TEST_KEY=1` is allowed here.
-- **production** (the real launch on cPanel): normal indexing. `ALLOW_TURNSTILE_TEST_KEY=1` always fails the build.
+- **staging** (Hostinger preview, built **from GitHub on Hostinger**: the app is connected to `origin` (`programmingtmt3/hrwhats`), Build command `npm run build`, Output directory `out`, env `SITE_ENV=staging`; every push to `main` rebuilds it. Fallback: build locally and upload `out/` to a regular Website. See `docs/deploy-hostinger.md`): `robots.txt` = `Disallow: /`, `noindex, nofollow` on every page (via `getRootMetadata`), **no sitemap**. `ALLOW_TURNSTILE_TEST_KEY=1` is allowed here.
+- **production** (the real launch on Spaceship, built locally and uploaded — see Hosting): normal indexing. `ALLOW_TURNSTILE_TEST_KEY=1` always fails the build.
 - New SEO outputs must respect this: `app/sitemap.ts` (launch phase) must produce nothing in staging, and no page may override `robots` to make staging indexable.
 - `npm run build` alone must produce the complete `out/` (hosts run nothing else). Node 24 (`engines` + `.nvmrc`).
 - `npm run build` runs `scripts/build.mjs`. Hostinger's Next.js preset renames `next.config.*` and writes its own config without `output: 'export'` (out/ then holds only images). So the real config lives in **`next.base.ts`** (edit it there); `next.config.ts` only re-exports it, and the script restores it, deletes any other `next.config.*` and drops `NEXT_PRIVATE_STANDALONE/OUTPUT` before building, then fails if `out/index.html` is missing.
+
+## Hosting: staging (Hostinger) vs production (Spaceship)
+
+| | Staging | Production |
+|---|---|---|
+| Host | Hostinger (preview only, never the launch) | **Spaceship Web Hosting, Essential plan** — cPanel, LiteSpeed, PHP, no Node.js. Same hosting as today's WordPress site |
+| Build | Hostinger builds from GitHub (`origin`) on every push | `SITE_ENV=production npm run build` locally, then upload the **contents** of `out/` to `public_html` |
+| Redirects | not tested here | `out/.htaccess` (LiteSpeed reads Apache `.htaccess`) |
+| Contact form | page loads, but sending fails by design (Origin check allows only `https://hrwhats.com`) | `public_html/api/contact.php` + `~/hrwhats-config.php` |
+| Indexing | blocked (robots + noindex) | normal |
+
+**Only testable on Spaceship** (Hostinger differs in server, upload path and domain): the `.htaccess` redirects (`/index.php/…`, `ErrorDocument 404`, later 301s), the PHP contact form end to end (PHP version, SMTP, the config file outside `public_html`, Origin = the real domain), and Arabic/emoji post URLs served from the UTF-8 folder names **after the upload** (FTP/zip can mangle them — see Arabic slugs). Do these on a Spaceship subdomain before launch (approved 2026-11-03; set it up in the launch phase), never by changing the live WordPress site.
 
 ## Internationalization (i18n)
 
@@ -130,7 +142,7 @@ content/
     └── site.json         ← contact info, social links, app URLs
 ```
 
-- **File names are ASCII English** (`whatsapp-blue-tick.mdx`). Never Arabic or emoji file names.
+- **File names are ASCII English** (`whatsapp-blue-tick.mdx`). Never Arabic or emoji file names — even when the post's `slug` (inside the file) is Arabic.
 - **Client/partner logos:** `public/images/{clients,partners}/NN-short-english-name.ext` (two-digit display order, lowercase, hyphens). The JSON lists them in the same order — Zod fails the build otherwise. **Any new logo must be at most 600px wide** (downscale before committing, keep format and transparency, never upscale) and its `width`/`height` in the JSON must match the file.
 - **No image banners.** Promotional panels are built in code from the design tokens (e.g. the Meta verification panel under "لماذا HRwhats": `src/components/sections/why/MetaVerify.tsx`) — never a picture of text.
 - A translation of a post has the **same file name** under the other locale folder.
@@ -164,13 +176,14 @@ Post frontmatter (minimum):
 
 ```yaml
 ---
-title: طريقة الحصول على العلامة الزرقاء في الواتساب
+# file: content/posts/ar/whatsapp-marketing-messages.mdx  (ASCII English file name)
+title: رسائل واتساب تسويقية جاهزة للعملاء مع أمثلة
 description: ...
-slug: whatsapp-blue-tick
-legacySlugs: []          # old WordPress slugs (decoded), used to generate 301s
+slug: رسائل-واتساب-تسويقية-جاهزة-للعملاء-مع   # the WordPress slug, decoded, character for character
+legacySlugs: []          # empty at launch; only for a later rename (decoded old slugs → 301s)
 date: 2026-09-20
 categories: [whatsapp]
-cover: /images/posts/whatsapp-blue-tick.jpg
+cover: /images/posts/whatsapp-marketing-messages.jpg
 ---
 ```
 
@@ -178,15 +191,26 @@ cover: /images/posts/whatsapp-blue-tick.jpg
 
 The current site ranks on Google. **Protecting existing traffic is the top priority.**
 
-- **All new slugs are clean English.** Old Arabic/emoji slugs go into `legacySlugs` and are 301-redirected.
-- Pages, sectors and posts all live at the **site root** (`/slug/`). Posts and MDX pages are served by one `[slug]` route (posts → pages); sectors have their own static route folders. The build must **fail if the same slug exists twice** — the check (blog phase) must cover posts, MDX pages, every slug in `sectors.json` and every static route folder under `app/(ar)/` (`packages`, `contact`, `news`, sector folders, …).
+- **Post URLs stay exactly as they are on WordPress at launch** (decision 2026-11-03): the Arabic slugs — some with emoji (`📌-…`) or `؟` — are kept character for character. No English post slugs and no post 301s now. Renaming them to English with 301s (via `legacySlugs`) may come later, after the site is stable — only on request.
+- New pages (packages, contact, sectors, usage guide, legal) keep their clean English slugs.
+- Pages, sectors and posts all live at the **site root** (`/slug/`). Posts and MDX pages are served by one `[slug]` route (posts → pages); sectors have their own static route folders. The build must **fail if the same slug exists twice** — the check (blog phase) must cover posts, MDX pages, every slug in `sectors.json` and every static route folder under `app/(ar)/` (`packages`, `contact`, `news`, sector folders, …). It must also fail if a slug is not NFC, contains `/ ? # %` or whitespace, or is over 255 bytes in UTF-8 (the Linux folder-name limit).
 - Blog index: `/news/`, pagination: `/news/page/2/`, categories: `/category/{whatsapp|marketing|hrwhats-guide}/`.
 - Old `/index.php/...` URLs redirect to the clean URL.
-- **Redirects:** a build script generates `out/.htaccess` from all `legacySlugs` (+ the `/index.php/` rule + `ErrorDocument 404 /404.html`). Arabic legacy slugs must be matched correctly in their percent-encoded form — this must be verified by the redirect test script, not assumed.
-- **Redirect test script** (`scripts/test-redirects.ts`): takes every URL from the old WordPress sitemap and checks it returns 301 to a working page. Must pass 100% before launch.
+- **Redirects:** a build script generates `out/.htaccess` (the `/index.php/` rule + `ErrorDocument 404 /404.html`, plus 301s from `legacySlugs` once any exist). Arabic slugs in rules must be matched correctly in their percent-encoded form — verified by the test script, not assumed.
+- **URL test script** (`scripts/test-redirects.ts`): takes every URL from the old WordPress sitemap and checks it on the new site: **200 at the same URL** (posts, kept pages) or **301 to a working page** (anything that moved). Must pass 100% **on Spaceship** before launch.
 - Every page: unique `title` + `description` via the Metadata API, canonical URL with trailing slash, Open Graph image.
 - JSON-LD: `Organization` (site-wide), `FAQPage` (FAQ sections), `Article` (posts), `BreadcrumbList`.
-- Internal links between posts must point to the **new** URLs directly (no redirect hops).
+- Internal links between posts point to the final URL directly (no redirect hops): at launch that is the same Arabic URL, written relative (`/slug/`).
+
+### Arabic slugs in the static export (tested 2026-11-03, Next 16.4.0)
+
+A temporary `[slug]` route with real WordPress slugs (plain Arabic, `📌-…`, `…؟`) showed:
+- `out/` folder names are **readable UTF-8** (`out/📌-فوائد-…/index.html`), not percent-encoded. `؟` (U+061F) is not the ASCII `?`, so it is a safe path character.
+- The page component receives `params.slug` **percent-encoded** (`%D8%B1…`), while `generateMetadata` receives it decoded. Always `decodeURIComponent` before looking a post up (in `getPostBySlug`).
+- **`npm run dev` returns 500 for every non-ASCII slug** while `output: "export"` is on (the dev server compares the decoded `generateStaticParams` path with the encoded request path). The build is not affected. Fix for the blog phase: in `next.base.ts`, `output: process.env.NODE_ENV === "development" ? undefined : "export"` — tested: dev serves both `%d8…` and `%D8…` with 200, unknown slugs 404.
+- Next writes the canonical/`og:url` percent-encoded in upper case (`https://hrwhats.com/%D8%B1…/`); WordPress writes raw Arabic (`https://hrwhats.com/رسائل-…/`). **Decision (2026-11-03): post canonicals are written in raw Arabic, exactly as WordPress writes them** (`https://hrwhats.com/رسائل-واتساب-تسويقية-جاهزة-للعملاء-مع/`). Implement in the blog phase: the post page renders `<link rel="canonical" href={rawUrl} />` (React hoists it into `<head>` — tested) and its metadata sets **no** `alternates.canonical` — never both.
+- Browsers always send the path percent-encoded (typing Arabic in the address bar is encoded by the browser); servers may reject raw UTF-8 bytes on the wire, which is not a real-world case.
+- **Upload risk:** the folder names must reach the server as UTF-8. FTP: use a client in UTF-8 mode (FileZilla: Site Manager → Charset → Force UTF-8). Zip: create it with 7-Zip (`7z a -tzip -mcu=on site.zip .\out\*`) so names are stored as UTF-8 — a zip without the UTF-8 flag gets mangled names when cPanel extracts it. After every upload, open each test post URL on the server.
 
 ## Page inventory (Arabic, phase 1)
 
@@ -246,16 +270,16 @@ docs/contact-form-setup.md    ← server setup guide (Arabic)
 docs/deploy-hostinger.md      ← staging deploy on Hostinger: GitHub build + why next.base.ts/build.mjs (Arabic)
 scripts/
 ├── build.mjs                 ← `npm run build` (restores next.config.ts, see Build environments)
-├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX
+├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX (Arabic slugs kept)
 ├── generate-htaccess.ts
-└── test-redirects.ts
+└── test-redirects.ts         ← every old URL: 200 in place or 301 to a working page
 ```
 
 ## WordPress migration
 
 - **Do not modify the live WordPress site.** It stays untouched until launch day.
-- `scripts/migrate-wordpress.ts` reads `https://hrwhats.com/wp-json/wp/v2/posts` (with categories and featured images), decodes slugs, and produces `scripts/slug-map.json` (`title`, `oldSlug`, `newSlug`) for **human review** before any MDX is written.
-- After review, the script writes MDX files with `slug` = new slug and `legacySlugs` = old slug, downloads images to `public/images/posts/`, and rewrites internal links to new URLs.
+- `scripts/migrate-wordpress.ts` reads `https://hrwhats.com/wp-json/wp/v2/posts` (with categories and featured images), decodes slugs (`decodeURIComponent`, NFC), and produces `scripts/slug-map.json` (`title`, `slug` = the decoded WordPress slug, `fileName` = proposed ASCII English MDX file name) for **human review of the file names** before any MDX is written. The slug itself is not edited.
+- After review, the script writes `content/posts/ar/<fileName>.mdx` with `slug` = the WordPress slug verbatim and `legacySlugs: []`, downloads images to `public/images/posts/` (ASCII names), and rewrites internal links from absolute `https://hrwhats.com/…` to the same relative path.
 
 ## Contact form
 
@@ -274,7 +298,7 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 3. **Packages + Contact.**
 4. **Sectors, usage guide, legal pages** — sectors are custom pages, one at a time (see Content architecture). Velite + MDX setup (usage guide + legal) happens here, not earlier.
 5. **Blog** — listing, pagination, categories, post page, WordPress migration.
-6. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, redirect tests, deploy.
+6. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, URL tests on a Spaceship subdomain, deploy to Spaceship.
    - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.
 7. **English** — `messages/en.json`, translated pages, then posts gradually.
 
@@ -305,12 +329,6 @@ npm run lint
 - After changes, run `npm run build` to confirm the static export still succeeds.
 - **Secrets never enter the repository** — no API keys, SMTP passwords or Turnstile secret keys in code, JSON, docs or examples. Server secrets live only in `~/hrwhats-config.php` on the host (outside `public_html`); the repo holds an empty example. `.env*`, `hrwhats-config.php`, `node_modules/`, `.next/`, `out/`, `.velite/` must be in `.gitignore`.
 - Commit messages: Conventional Commits in English (`feat:`, `fix:`, `chore:`, `content:`).
-- After every **approved** commit, `git push` immediately, then confirm `git status` shows the branch up to date with `origin/main` and `git fetch hostinger && git rev-parse main hostinger/main` prints the same hash twice. Check the push output: if one repo rejects the push, the other may still have received it.
-- **`origin` pushes to two repos:** `MDMDcode/hrwhats` (main repo) and `programmingtmt3/hrwhats` (the repo Hostinger builds staging from), so a plain `git push` updates both and they never drift apart again (they did once: Hostinger-side commits had to be merged back). `origin` still fetches from `MDMDcode` only; `hostinger` stays as a separate remote for fetching. This lives in the local `.git/config`, not in the repo — set it once in every new clone:
-  ```bash
-  git remote set-url --add --push origin https://github.com/MDMDcode/hrwhats.git
-  git remote set-url --add --push origin https://github.com/programmingtmt3/hrwhats.git
-  git remote -v   # origin: 1 fetch line + 2 push lines
-  ```
-- Commits made directly on the Hostinger repo must be merged back (`git fetch hostinger && git merge hostinger/main`) and reviewed before the next push.
+- **Repositories:** `origin` = `github.com/programmingtmt3/hrwhats` — the main repo, connected to the Hostinger staging build. `backup` = `github.com/MDMDcode/hrwhats` — a backup copy, **never pushed to automatically**; push to it only when the developer asks.
+- After every **approved** commit, `git push` (to `origin`) immediately, then confirm `git status` shows the branch up to date with `origin/main`.
 - When unsure about a product detail (features, pricing, wording), ask — don't invent marketing content.
