@@ -198,6 +198,7 @@ The current site ranks on Google. **Protecting existing traffic is the top prior
 - Old `/index.php/...` URLs redirect to the clean URL.
 - **Redirects:** a build script generates `out/.htaccess` (the `/index.php/` rule + `ErrorDocument 404 /404.html`, plus 301s from `legacySlugs` once any exist). Arabic slugs in rules must be matched correctly in their percent-encoded form — verified by the test script, not assumed.
 - **URL test script** (`scripts/test-redirects.ts`): takes every URL from the old WordPress sitemap and checks it on the new site: **200 at the same URL** (posts, kept pages) or **301 to a working page** (anything that moved). Must pass 100% **on Spaceship** before launch.
+- **Titles of pages indexed on the current site keep the phrase "حلول واتس اب اعمال"** (the search phrase they rank for): inner pages `[name] - حلول واتس اب اعمال | HRwhats`, home `حلول واتس اب اعمال | HRwhats — منظومة واتساب API للأعمال` (`meta.homeTitle`; title, Open Graph and Twitter all come from it). **Do not change the title of an important page before its Search Console data has been reviewed with the developer.**
 - Every page: unique `title` + `description` via the Metadata API, canonical URL with trailing slash, Open Graph image.
 - JSON-LD: `Organization` (site-wide), `FAQPage` (FAQ sections), `Article` (posts), `BreadcrumbList`.
 - Internal links between posts point to the final URL directly (no redirect hops): at launch that is the same Arabic URL, written relative (`/slug/`).
