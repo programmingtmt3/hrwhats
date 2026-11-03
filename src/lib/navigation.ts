@@ -15,11 +15,14 @@ const guideSlugs = [
   "whatsapp-ban",
 ] as const satisfies readonly (keyof Dictionary["footer"]["guideLinks"])[];
 
-const legalSlugs = [
+/** Legal pages, in display order (footer + "other policies" on each legal page). */
+export const legalSlugs = [
   "privacy-policy",
   "terms-of-use",
   "refund-policy",
-] as const satisfies readonly (keyof Dictionary["footer"]["legalLinks"])[];
+] as const satisfies readonly (keyof Dictionary["legal"]["pages"])[];
+
+export type LegalSlug = (typeof legalSlugs)[number];
 
 /** Header menu, in display order. */
 export function getMainNav(dict: Dictionary): NavLink[] {
@@ -47,5 +50,5 @@ export function getFooterGuideLinks(dict: Dictionary): NavLink[] {
 }
 
 export function getLegalLinks(dict: Dictionary): NavLink[] {
-  return legalSlugs.map((slug) => ({ label: dict.footer.legalLinks[slug], href: `/${slug}/` }));
+  return legalSlugs.map((slug) => ({ label: dict.legal.pages[slug].name, href: `/${slug}/` }));
 }

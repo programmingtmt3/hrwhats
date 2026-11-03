@@ -18,7 +18,7 @@ Rebuild of **hrwhats.com**, the marketing site for HRwhats (a WhatsApp Business 
 | UI components | shadcn/ui (Radix) |
 | Icons | Design SVGs in `src/components/icons/`; lucide-react for anything new |
 | Animation | CSS + IntersectionObserver (as in the design). Motion only if a later page needs it — subtle only |
-| Content | JSON validated with Zod in `lib/content.ts`; MDX via **Velite** from phase 4 (usage guide + legal pages) |
+| Content | JSON validated with Zod in `lib/content.ts`; MDX via **Velite** from phase 5 (blog posts) |
 | Images | `next-image-export-optimizer` (build-time optimization) |
 | Forms | React Hook Form + Zod (client-side only) |
 | Fonts | `next/font/local`, self-hosted woff2 in `src/fonts/` (OFL) — IBM Plex Sans Arabic (Arabic) + IBM Plex Sans (English), weights 400–700. No Google Fonts requests in dev or build |
@@ -118,7 +118,7 @@ Supporting colors used by the design (WhatsApp mockup, gradients) are also varia
 
 **Logo:** `public/images/brand/hrwhats-logo-trimmed.png` (transparent margins trimmed), path defined once in `src/lib/brand.ts` (`LOGO`), rendered through `BrandLogo` — an SVG version will replace it there. Heights: header 54px (44px ≤600px), footer 36px. The original padded file stays as `LOGO_SQUARE` (`BrandLogo square`) for the hero chat avatar and as the favicon source. Always `alt="HRwhats"`. `src/app/favicon.ico`, `icon.png` and `apple-icon.png` are generated from it (regenerate when the SVG arrives).
 
-**Header** — exactly as the design: الرئيسية، الباقات، المدونة، دليل الاستخدام (`/hrwhats-guide/`)، تواصل معنا، a "لوحة التحكم" ghost button → `app.hrwhats.com/login` and a "جرب مجاناً" primary button → `app.hrwhats.com/signup`. No dropdowns. Fixed; gets a blurred white background after 10px of scroll. Below 1080px a burger opens the menu as a panel under the header; the "لوحة التحكم" link appears inside that menu (fixed vs. the design, where a rule-order bug hid it). Server part `Header.tsx`, client part `HeaderBar.tsx`, links in `src/lib/navigation.ts`.
+**Header** — exactly as the design: الرئيسية، الباقات، المدونة، دليل الاستخدام (`/hrwhats-guide/` for now — moves to docs.hrwhats.com, see Usage guide)، تواصل معنا، a "لوحة التحكم" ghost button → `app.hrwhats.com/login` and a "جرب مجاناً" primary button → `app.hrwhats.com/signup`. No dropdowns. Fixed; gets a blurred white background after 10px of scroll. Below 1080px a burger opens the menu as a panel under the header; the "لوحة التحكم" link appears inside that menu (fixed vs. the design, where a rule-order bug hid it). Server part `Header.tsx`, client part `HeaderBar.tsx`, links in `src/lib/navigation.ts`.
 - The header is `position: fixed` (`--header-h: 76px`): every page's first section needs its own top padding (the hero uses 160px).
 
 **Footer** and **floating WhatsApp button** — exactly as the design; contact and social data come from `content/data/site.json`.
@@ -132,7 +132,6 @@ Supporting colors used by the design (WhatsApp mockup, gradients) are also varia
 ```
 content/
 ├── posts/ar/*.mdx        ← blog posts (later posts/en/)
-├── pages/ar/*.mdx        ← usage guide + legal pages
 └── data/
     ├── clients.json      ← client names + logos (+ intrinsic width/height)
     ├── partners.json     ← success partners (same shape)
@@ -147,6 +146,7 @@ content/
 - **No image banners.** Promotional panels are built in code from the design tokens (e.g. the Meta verification panel under "لماذا HRwhats": `src/components/sections/why/MetaVerify.tsx`) — never a picture of text.
 - A translation of a post has the **same file name** under the other locale folder.
 - Text fields in JSON data are bilingual objects: `{ "ar": "...", "en": "..." }` (`en` may be empty until the English phase).
+- **Legal pages** (`privacy-policy`, `terms-of-use`, `refund-policy`) share **one template**, `LegalPage` (`src/components/pages/LegalPage.tsx` + `src/components/legal/`): `PageHero` (eyebrow "السياسات"), a sticky side table of contents marking the current section (phones: a collapsible list above the text), sections with English anchor ids and a direct-link button, and a closing help box (contact channels from `site.json` + the other two policies). No marketing CTA. Their text lives in `messages/ar.json` under `legal.pages.<slug>` (`name`, `title`, `meta`, `sections[]` of `id`, `title`, `text[]`, optional `list[]`) — copied verbatim from WordPress (only HRWhats → HRwhats and small punctuation fixes); never add or reword legal text without the developer. `legal.pages.<slug>.name` is the only source of each page's name (footer included); the second page is "شروط الاستخدام" (never "سياسة الاستخدام"). Static routes `src/app/(ar)/<slug>/page.tsx`, no MDX.
 - Every content type has a Zod schema in `velite.config.ts`. A missing required field must fail the build.
 - **Sector pages are custom, one design per sector** — no shared sector template and no sector MDX. Each sector has a static route folder `src/app/(ar)/<slug>/page.tsx` (thin wrapper) and its own sections in `src/components/sectors/<slug>/` (e.g. `charity/`). Shared: tokens, fonts, buttons, `SectionHeading`, header, footer, `Reveal`. The slug and name come from `sectors.json` via `getSector(slug)` (throws if missing); all page text lives in `messages/ar.json` under `sectors.<slug>`. Page-only assets go in `public/images/sectors/<slug>/`. **Sector pages use no images from the old WordPress site — not on the page and not as Open Graph images.** Every visual is built in code (or generated, like the tourism world map). Sector pages set no page OG image: they inherit the site-wide one (1200×630, launch phase). The home sector cards use no images either: each card (`src/components/sections/sectors/`) has a small code-drawn motif from its page's theme (`SectorMotif`) and a short line from `home.sectors.cards.<slug>` in `ar.json` (a missing line fails the build). **A new sector page needs its card motif and line too.**
 - **Illustrative data — rule for every sector page.** Mockups built in code (chats, cards, boards, dashboards) use generic example data from `ar.json` and carry a visible "مثال توضيحي" tag (`ExampleTag`). Allowed: generic campaign names, common first names for customers and staff, reasonable prices/areas/amounts, and places described by type + area ("شقة 3 غرف — شمال الرياض"). Never: real company, association or project names, invented project names (they may match real ones), or numbers that look like statistics about the platform. Relative visuals (bars, dots, funnels) carry no figures.
@@ -192,8 +192,8 @@ cover: /images/posts/whatsapp-marketing-messages.jpg
 The current site ranks on Google. **Protecting existing traffic is the top priority.**
 
 - **Post URLs stay exactly as they are on WordPress at launch** (decision 2026-11-03): the Arabic slugs — some with emoji (`📌-…`) or `؟` — are kept character for character. No English post slugs and no post 301s now. Renaming them to English with 301s (via `legacySlugs`) may come later, after the site is stable — only on request.
-- New pages (packages, contact, sectors, usage guide, legal) keep their clean English slugs.
-- Pages, sectors and posts all live at the **site root** (`/slug/`). Posts and MDX pages are served by one `[slug]` route (posts → pages); sectors have their own static route folders. The build must **fail if the same slug exists twice** — the check (blog phase) must cover posts, MDX pages, every slug in `sectors.json` and every static route folder under `app/(ar)/` (`packages`, `contact`, `news`, sector folders, …). It must also fail if a slug is not NFC, contains `/ ? # %` or whitespace, or is over 255 bytes in UTF-8 (the Linux folder-name limit).
+- New pages (packages, contact, sectors, legal) keep their clean English slugs.
+- Pages, sectors and posts all live at the **site root** (`/slug/`). Posts are served by one `[slug]` route; sectors have their own static route folders. The build must **fail if the same slug exists twice** — the check (blog phase) must cover posts, every slug in `sectors.json` and every static route folder under `app/(ar)/` (`packages`, `contact`, `news`, sector folders, …). It must also fail if a slug is not NFC, contains `/ ? # %` or whitespace, or is over 255 bytes in UTF-8 (the Linux folder-name limit).
 - Blog index: `/news/`, pagination: `/news/page/2/`, categories: `/category/{whatsapp|marketing|hrwhats-guide}/`.
 - Old `/index.php/...` URLs redirect to the clean URL.
 - **Redirects:** a build script generates `out/.htaccess` (the `/index.php/` rule + `ErrorDocument 404 /404.html`, plus 301s from `legacySlugs` once any exist). Arabic slugs in rules must be matched correctly in their percent-encoded form — verified by the test script, not assumed.
@@ -218,9 +218,12 @@ A temporary `[slug]` route with real WordPress slugs (plain Arabic, `📌-…`, 
 |---|---|
 | Main | `/`, `/packages/`, `/contact/`, `/news/` |
 | Sectors | `charity`, `real-estate-contracting`, `education-training`, `tourism-hospitality`, `online-stores-systems`, `advertising`, `hr`, `operating-service`, `restaurants-cafes`, `shops` |
-| Usage guide | `documentation-requirements-for-meta`, `link-account`, `hrwhats-guide`, `whatsapp-ban` |
 | Legal | `privacy-policy`, `terms-of-use`, `refund-policy` |
 | Blog | ~50 posts migrated from WordPress |
+
+### Usage guide: not in this project (decision 2026-11-03)
+
+The usage guide (`documentation-requirements-for-meta`, `link-account`, `hrwhats-guide`, `whatsapp-ban`) is built by another team on **docs.hrwhats.com**. Do not build these pages here. Until the developer sends the new URLs, the site's links to them stay as they are (header "دليل الاستخدام", footer "دليل الاستخدام" column, the "ابدأ التوثيق معنا" button in `MetaVerify.tsx`, the FAQ answer in `faq.json`); then they change to the docs.hrwhats.com URLs, and the old paths get 301s (launch phase). The blog category `/category/hrwhats-guide/` is a blog category, not part of this move.
 
 External links: signup `https://app.hrwhats.com/signup`, login `https://app.hrwhats.com/login`.
 
@@ -248,8 +251,9 @@ src/
 │   ├── icons/                ← design SVG icons
 │   ├── seo/                  ← JsonLd
 │   ├── sectors/<slug>/       ← one folder per sector page (custom design); shared/ for common blocks
+│   ├── legal/                ← LegalPage parts: table of contents, help box
 │   ├── sections/             ← Hero, Features, Sectors, Clients, Partners, FAQ, CTA
-│   ├── pages/                ← shared page components (HomePage, PostPage, …)
+│   ├── pages/                ← shared page components (HomePage, LegalPage, PostPage, …)
 │   └── mdx/                  ← components usable inside MDX
 ├── lib/
 │   ├── content.ts            ← the only content access layer (Zod-validated)
@@ -296,9 +300,10 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 1. **Foundation** — project setup, Tailwind + shadcn, RTL, fonts, i18n skeleton, Header/Footer.
 2. **Home page** — all sections, built section by section. Create only the data files it needs (`clients`, `partners`, `faq`, `site` JSON) and `lib/content.ts` reading them.
 3. **Packages + Contact.**
-4. **Sectors, usage guide, legal pages** — sectors are custom pages, one at a time (see Content architecture). Velite + MDX setup (usage guide + legal) happens here, not earlier.
-5. **Blog** — listing, pagination, categories, post page, WordPress migration.
+4. **Sectors + legal pages** — sectors are custom pages, one at a time (see Content architecture); legal pages share the `LegalPage` template (JSON text, no MDX). The usage guide is not built here (docs.hrwhats.com).
+5. **Blog** — Velite + MDX setup, listing, pagination, categories, post page, WordPress migration.
 6. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, URL tests on a Spaceship subdomain, deploy to Spaceship.
+   - 301s from the old usage-guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/`, `/whatsapp-ban/`) to their pages on docs.hrwhats.com, in the generated `.htaccess` — **only after the developer sends the new URLs**; the URL test must then expect these 301s. Update the site's links to the guide at the same time (see Usage guide).
    - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.
 7. **English** — `messages/en.json`, translated pages, then posts gradually.
 
