@@ -5,6 +5,7 @@
     "login": "https://app.hrwhats.com/login",
     "signup": "https://app.hrwhats.com/signup"
   },
+  "docsUrl": "https://docs.hrwhats.com/",
   "contactEndpoint": "/api/contact.php",
   "turnstileSiteKey": "0x4AAAAAACQAB6_RbCtrj5L9",
   "contact": {

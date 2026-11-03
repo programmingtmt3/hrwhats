@@ -118,7 +118,7 @@ Supporting colors used by the design (WhatsApp mockup, gradients) are also varia
 
 **Logo:** `public/images/brand/hrwhats-logo-trimmed.png` (transparent margins trimmed), path defined once in `src/lib/brand.ts` (`LOGO`), rendered through `BrandLogo` — an SVG version will replace it there. Heights: header 54px (44px ≤600px), footer 36px. The original padded file stays as `LOGO_SQUARE` (`BrandLogo square`) for the hero chat avatar and as the favicon source. Always `alt="HRwhats"`. `src/app/favicon.ico`, `icon.png` and `apple-icon.png` are generated from it (regenerate when the SVG arrives).
 
-**Header** — exactly as the design: الرئيسية، الباقات، المدونة، دليل الاستخدام (`/hrwhats-guide/` for now — moves to docs.hrwhats.com, see Usage guide)، تواصل معنا، a "لوحة التحكم" ghost button → `app.hrwhats.com/login` and a "جرب مجاناً" primary button → `app.hrwhats.com/signup`. No dropdowns. Fixed; gets a blurred white background after 10px of scroll. Below 1080px a burger opens the menu as a panel under the header; the "لوحة التحكم" link appears inside that menu (fixed vs. the design, where a rule-order bug hid it). Server part `Header.tsx`, client part `HeaderBar.tsx`, links in `src/lib/navigation.ts`.
+**Header** — exactly as the design: الرئيسية، الباقات، المدونة، تواصل معنا، دليل الاستخدام (last because it is external: `docsUrl`, new tab, small `ArrowUpLeft` icon on the same line, never marked as the current page — see Usage guide)، a "لوحة التحكم" ghost button → `app.hrwhats.com/login` and a "جرب مجاناً" primary button → `app.hrwhats.com/signup`. No dropdowns. Fixed; gets a blurred white background after 10px of scroll. Below 1080px a burger opens the menu as a panel under the header; the "لوحة التحكم" link appears inside that menu (fixed vs. the design, where a rule-order bug hid it). Server part `Header.tsx`, client part `HeaderBar.tsx`, links in `src/lib/navigation.ts`.
 - The header is `position: fixed` (`--header-h: 76px`): every page's first section needs its own top padding (the hero uses 160px).
 
 **Footer** and **floating WhatsApp button** — exactly as the design; contact and social data come from `content/data/site.json`.
@@ -138,7 +138,7 @@ content/
     ├── packages.json     ← pricing packages (the home trust bar's "من N ر.س" = lowest monthly WhatsApp plan, via `getStartingMonthlyPrice()` — never typed by hand)
     ├── sectors.json      ← slug + name — the ONLY source of sector names site-wide (home grid, navigation, sector pages)
     ├── faq.json          ← FAQ items
-    └── site.json         ← contact info, social links, app URLs
+    └── site.json         ← contact info, social links, app URLs, `docsUrl` (usage guide)
 ```
 
 - **File names are ASCII English** (`whatsapp-blue-tick.mdx`). Never Arabic or emoji file names — even when the post's `slug` (inside the file) is Arabic.
@@ -221,9 +221,13 @@ A temporary `[slug]` route with real WordPress slugs (plain Arabic, `📌-…`, 
 | Legal | `privacy-policy`, `terms-of-use`, `refund-policy` |
 | Blog | ~50 posts migrated from WordPress |
 
-### Usage guide: not in this project (decision 2026-11-03)
+### Usage guide: docs.hrwhats.com (decision 2026-11-03)
 
-The usage guide (`documentation-requirements-for-meta`, `link-account`, `hrwhats-guide`, `whatsapp-ban`) is built by another team on **docs.hrwhats.com**. Do not build these pages here. Until the developer sends the new URLs, the site's links to them stay as they are (header "دليل الاستخدام", footer "دليل الاستخدام" column, the "ابدأ التوثيق معنا" button in `MetaVerify.tsx`, the FAQ answer in `faq.json`); then they change to the docs.hrwhats.com URLs, and the old paths get 301s (launch phase). The blog category `/category/hrwhats-guide/` is a blog category, not part of this move.
+The usage guide is a separate site built by another team: **https://docs.hrwhats.com/**. Its URL lives **only** in `site.json` → `docsUrl`; never write the domain in components or content. Do not build guide pages in this project.
+- Every link to the guide opens in a new tab through `NewTabLink` (`src/components/ui/NewTabLink.tsx`: `target="_blank"`, `rel="noopener noreferrer"`, accessible name from `nav.newTab` = "{label} (يفتح في تبويب جديد)").
+- Links today: header "دليل الاستخدام" (desktop + mobile menu, with an `ArrowUpLeft` `.icon-forward` icon), the footer "دليل الاستخدام" column (the four page names kept: `footer.guideLinks`), the "ابدأ التوثيق معنا" button (`MetaVerify.tsx`) and the FAQ answer's `[متطلبات التوثيق](docs:/)` link (`faq.json`). Data files link to the guide with `docs:/path/`, resolved against `docsUrl` (`docsPath()` in `inline-links.ts`).
+- **Temporary:** they all point to the guide's home until the developer sends the exact page URLs; then each gets its own path (`navigation.ts` `getFooterGuideLinks`, `MetaVerify.tsx`, the FAQ's `docs:/…/`).
+- The old WordPress guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/`, `/whatsapp-ban/`) get 301s in the launch phase (see Phases). The blog category `/category/hrwhats-guide/` is a blog category, not part of this.
 
 External links: signup `https://app.hrwhats.com/signup`, login `https://app.hrwhats.com/login`.
 
@@ -300,10 +304,10 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 1. **Foundation** — project setup, Tailwind + shadcn, RTL, fonts, i18n skeleton, Header/Footer.
 2. **Home page** — all sections, built section by section. Create only the data files it needs (`clients`, `partners`, `faq`, `site` JSON) and `lib/content.ts` reading them.
 3. **Packages + Contact.**
-4. **Sectors + legal pages** — sectors are custom pages, one at a time (see Content architecture); legal pages share the `LegalPage` template (JSON text, no MDX). The usage guide is not built here (docs.hrwhats.com).
+4. **Sectors + legal pages** — sectors are custom pages, one at a time (see Content architecture); legal pages share the `LegalPage` template (JSON text, no MDX). The usage guide is not built here (docs.hrwhats.com, see Usage guide).
 5. **Blog** — Velite + MDX setup, listing, pagination, categories, post page, WordPress migration.
 6. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, URL tests on a Spaceship subdomain, deploy to Spaceship.
-   - 301s from the old usage-guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/`, `/whatsapp-ban/`) to their pages on docs.hrwhats.com, in the generated `.htaccess` — **only after the developer sends the new URLs**; the URL test must then expect these 301s. Update the site's links to the guide at the same time (see Usage guide).
+   - 301s from the old usage-guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/`, `/whatsapp-ban/`) to their pages on docs.hrwhats.com, in the generated `.htaccess` — **only after the developer sends the exact page URLs** (until then they would all go to the guide's home); the URL test must then expect these 301s. Update the site's guide links to the exact URLs at the same time (see Usage guide).
    - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.
 7. **English** — `messages/en.json`, translated pages, then posts gradually.
 

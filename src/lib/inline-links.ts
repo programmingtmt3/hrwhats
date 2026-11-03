@@ -1,6 +1,8 @@
 /**
- * Minimal inline-link markup for data files: `[label](/internal/path/)`.
- * Keeps raw HTML out of content. Paths are locale-neutral and internal only.
+ * Minimal inline-link markup for data files: `[label](/internal/path/)`, or
+ * `[label](docs:/path/)` for the usage guide (resolved against `docsUrl` in
+ * site.json, so the domain is never written in content). Keeps raw HTML out of
+ * content. Internal paths are locale-neutral.
  */
 export type InlinePart = string | { label: string; href: string };
 
@@ -24,8 +26,15 @@ export function toPlainText(text: string): string {
   return text.replace(LINK, "$1");
 }
 
-/** Validation: every link is an internal path like `/slug/`, and there is no raw HTML. */
-export function hasOnlyInternalLinks(text: string): boolean {
+const DOCS = "docs:";
+
+/** The usage-guide path of a `docs:/path/` link, or null for an internal link. */
+export function docsPath(href: string): string | null {
+  return href.startsWith(DOCS) ? href.slice(DOCS.length) : null;
+}
+
+/** Validation: every link is an internal path like `/slug/` or `docs:/slug/`, and there is no raw HTML. */
+export function hasOnlyAllowedLinks(text: string): boolean {
   if (/[<>]/.test(text)) return false;
-  return [...text.matchAll(LINK)].every(([, , href]) => /^\/([a-z0-9-]+\/)*$/.test(href));
+  return [...text.matchAll(LINK)].every(([, , href]) => /^\/([a-z0-9-]+\/)*$/.test(docsPath(href) ?? href));
 }

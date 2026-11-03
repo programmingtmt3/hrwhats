@@ -9,7 +9,9 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 export function Header({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const site = getSite();
-  const items = getMainNav(dict).map((item) => ({ ...item, href: localePath(locale, item.href) }));
+  const items = getMainNav(dict, site).map((item) =>
+    item.external ? item : { ...item, href: localePath(locale, item.href) },
+  );
   // Hidden until the English phase; per-page alternates are wired in then.
   const otherLocale: Locale = locale === "ar" ? "en" : "ar";
 
@@ -23,6 +25,7 @@ export function Header({ locale }: { locale: Locale }) {
         dashboard: dict.nav.dashboard,
         signup: dict.nav.signup,
         menu: dict.nav.menu,
+        newTab: dict.nav.newTab,
       }}
       urls={site.appUrls}
       extra={

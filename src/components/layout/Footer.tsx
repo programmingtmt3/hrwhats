@@ -18,6 +18,8 @@ import {
   type NavLink,
 } from "@/lib/navigation";
 
+import { NewTabLink } from "@/components/ui/NewTabLink";
+
 import { BrandLogo } from "./BrandLogo";
 import styles from "./Footer.module.css";
 
@@ -29,6 +31,13 @@ const socialIcons: Record<SocialPlatform, typeof XIcon> = {
 };
 
 function FooterLink({ link, locale }: { link: NavLink; locale: Locale }) {
+  if (link.newTab) {
+    return (
+      <NewTabLink href={link.href} label={format(getDictionary(locale).nav.newTab, { label: link.label })}>
+        {link.label}
+      </NewTabLink>
+    );
+  }
   return link.external ? (
     <a href={link.href}>{link.label}</a>
   ) : (
@@ -76,8 +85,8 @@ export function Footer({ locale }: { locale: Locale }) {
           <div>
             <h4>{dict.footer.guide}</h4>
             <ul>
-              {getFooterGuideLinks(dict).map((link) => (
-                <li key={link.href}>
+              {getFooterGuideLinks(dict, site).map((link) => (
+                <li key={link.label}>
                   <FooterLink link={link} locale={locale} />
                 </li>
               ))}

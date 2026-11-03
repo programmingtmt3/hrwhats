@@ -13,7 +13,7 @@ import sectorsJson from "../../content/data/sectors.json";
 import siteJson from "../../content/data/site.json";
 import { isProduction } from "./env";
 import type { Locale } from "./i18n";
-import { hasOnlyInternalLinks } from "./inline-links";
+import { hasOnlyAllowedLinks } from "./inline-links";
 
 /** Bilingual text field. `en` may be empty until the English phase. */
 const localized = z.object({ ar: z.string().min(1), en: z.string() });
@@ -28,6 +28,8 @@ const siteSchema = z.object({
   siteUrl: z.url(),
   name: z.string().min(1),
   appUrls: z.object({ login: z.url(), signup: z.url() }),
+  /** Usage guide (another site, built by another team). */
+  docsUrl: z.url(),
   /** Contact form endpoint (PHP on the same host). */
   contactEndpoint: z.string().startsWith("/"),
   /** Cloudflare Turnstile site key (public). Empty → see getTurnstileSiteKey(). */
@@ -150,7 +152,7 @@ export function getSector(slug: string): Sector {
 }
 
 // FAQ: answers may contain `[label](/path/)` links (see lib/inline-links.ts), never raw HTML.
-const answerText = z.string().refine(hasOnlyInternalLinks, "answer: only [label](/internal-path/) links, no HTML");
+const answerText = z.string().refine(hasOnlyAllowedLinks, "answer: only [label](/internal-path/) or [label](docs:/path/) links, no HTML");
 const faqSchema = z.object({
   question: localized,
   answer: z.object({ ar: answerText.pipe(z.string().min(1)), en: answerText }),

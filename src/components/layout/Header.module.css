@@ -46,10 +46,31 @@
     background 0.2s,
     color 0.2s;
 }
-.menu a:hover,
+/* External link (usage guide): same inline box as the other links (same pill),
+   label and arrow kept on one line. */
+.ext {
+  white-space: nowrap;
+}
+.extIcon {
+  /* Preflight makes every svg display: block, which pushed it under the label. */
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-inline-start: 4px;
+  vertical-align: -1px;
+}
+.menu a:hover:not(.noHover),
 .menu a[aria-current="page"] {
   background: rgb(var(--wa-rgb) / 0.1);
   color: var(--green);
+}
+/* Focus ring for keyboard navigation only. */
+.menu a:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+}
+.menu a:focus:not(:focus-visible) {
+  outline: none;
 }
 .navCta {
   display: flex;

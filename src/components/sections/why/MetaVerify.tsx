@@ -1,10 +1,11 @@
 import { BriefcaseBusiness, FileBadge, Megaphone, ShieldCheck, Store, type LucideIcon } from "lucide-react";
-import Link from "next/link";
 import type { CSSProperties } from "react";
 
 import { ArrowIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
-import { getDictionary, localePath, type Dictionary, type Locale } from "@/lib/i18n";
+import { NewTabLink } from "@/components/ui/NewTabLink";
+import { getSite } from "@/lib/content";
+import { format, getDictionary, type Dictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 import styles from "./MetaVerify.module.css";
@@ -32,7 +33,8 @@ const stageClass: Partial<Record<StageKey, string>> = {
  * once with reduced motion or JS off.
  */
 export function MetaVerify({ locale }: { locale: Locale }) {
-  const { verify } = getDictionary(locale).home.why;
+  const dict = getDictionary(locale);
+  const { verify } = dict.home.why;
 
   return (
     <Reveal className={styles.panel}>
@@ -45,13 +47,15 @@ export function MetaVerify({ locale }: { locale: Locale }) {
         <p className={styles.question}>{verify.question}</p>
         <div className={styles.action}>
           <p className={styles.line}>{verify.line}</p>
-          <Link
-            href={localePath(locale, "/documentation-requirements-for-meta/")}
+          {/* The usage guide's home until its exact verification-requirements URL is known. */}
+          <NewTabLink
+            href={getSite().docsUrl}
+            label={format(dict.nav.newTab, { label: verify.cta })}
             className={cn("btn btn-primary", styles.cta)}
           >
             {verify.cta}
             <ArrowIcon className="icon-forward" />
-          </Link>
+          </NewTabLink>
         </div>
       </div>
 

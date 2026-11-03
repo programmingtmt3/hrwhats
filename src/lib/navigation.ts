@@ -6,8 +6,15 @@ export type NavLink = {
   /** Locale-neutral internal path (wrap with localePath) or an absolute external URL. */
   href: string;
   external?: boolean;
+  /** External link that opens in a new tab (the usage guide). */
+  newTab?: boolean;
 };
 
+/**
+ * Usage-guide pages listed in the footer. The guide lives on docs.hrwhats.com
+ * (`docsUrl` in site.json); until its exact page URLs are known, every entry
+ * links to the guide's home.
+ */
 const guideSlugs = [
   "hrwhats-guide",
   "link-account",
@@ -25,13 +32,14 @@ export const legalSlugs = [
 export type LegalSlug = (typeof legalSlugs)[number];
 
 /** Header menu, in display order. */
-export function getMainNav(dict: Dictionary): NavLink[] {
+export function getMainNav(dict: Dictionary, site: Site): NavLink[] {
   return [
     { label: dict.nav.home, href: "/" },
     { label: dict.nav.packages, href: "/packages/" },
     { label: dict.nav.blog, href: "/news/" },
-    { label: dict.nav.guide, href: "/hrwhats-guide/" },
     { label: dict.nav.contact, href: "/contact/" },
+    // External (docs.hrwhats.com), so it comes last.
+    { label: dict.nav.guide, href: site.docsUrl, external: true, newTab: true },
   ];
 }
 
@@ -45,8 +53,13 @@ export function getFooterQuickLinks(dict: Dictionary, site: Site): NavLink[] {
   ];
 }
 
-export function getFooterGuideLinks(dict: Dictionary): NavLink[] {
-  return guideSlugs.map((slug) => ({ label: dict.footer.guideLinks[slug], href: `/${slug}/` }));
+export function getFooterGuideLinks(dict: Dictionary, site: Site): NavLink[] {
+  return guideSlugs.map((slug) => ({
+    label: dict.footer.guideLinks[slug],
+    href: site.docsUrl,
+    external: true,
+    newTab: true,
+  }));
 }
 
 export function getLegalLinks(dict: Dictionary): NavLink[] {
