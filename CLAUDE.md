@@ -197,12 +197,26 @@ The current site ranks on Google. **Protecting existing traffic is the top prior
 - Pages, sectors and posts all live at the **site root** (`/slug/`). Posts are served by one `[slug]` route; sectors have their own static route folders. The build must **fail if the same slug exists twice** — the check (blog phase) must cover posts, every slug in `sectors.json` and every static route folder under `app/(ar)/` (`packages`, `contact`, `news`, sector folders, …). It must also fail if a slug is not NFC, contains `/ ? # %` or whitespace, or is over 255 bytes in UTF-8 (the Linux folder-name limit).
 - Blog index: `/news/`, pagination: `/news/page/2/`, categories: `/category/{whatsapp|marketing|hrwhats-guide}/`.
 - Old `/index.php/...` URLs redirect to the clean URL.
-- **Redirects:** a build script generates `out/.htaccess` (the `/index.php/` rule + `ErrorDocument 404 /404.html`, plus 301s from `legacySlugs` once any exist). Arabic slugs in rules must be matched correctly in their percent-encoded form — verified by the test script, not assumed.
-- **URL test script** (`scripts/test-redirects.ts`): takes every URL from the old WordPress sitemap and checks it on the new site: **200 at the same URL** (posts, kept pages) or **301 to a working page** (anything that moved). Must pass 100% **on Spaceship** before launch.
+- **Redirects:** a build script generates `out/.htaccess` (`ErrorDocument 404 /404.html`, the URL forms below, plus 301s from `legacySlugs` once any exist). Arabic slugs in rules must be matched correctly in their percent-encoded form — verified by the test script, not assumed.
+- **URL forms the `.htaccess` must handle and the test script must check:**
+  - `www` → no `www` and `http` → `https`, so there is one final URL: `https://hrwhats.com/…/`.
+  - A URL without the trailing `/` → the same URL with it.
+  - `/index.php/…` → the clean URL.
+  - WordPress side pages: `/feed/`, `/tag/…`, `/author/…`, `?p=ID`, attachment pages.
+  - `/wp-content/uploads/…` images that external links target or that appear in image search (decided in the launch phase, from the data).
+- **URL test script** (`scripts/test-redirects.ts`): takes every URL from **three sources** — the current sitemap, the Search Console export of indexed pages, and the list of backlink targets (see Search Console and backlinks) — and checks it on the new site: **200 at the same URL** (posts, kept pages) or **301 to a working page** (anything that moved). Must pass 100% **on Spaceship** before launch.
 - **Titles of pages indexed on the current site keep the phrase "حلول واتس اب اعمال"** (the search phrase they rank for): inner pages `[name] - حلول واتس اب اعمال | HRwhats`, home `حلول واتس اب اعمال | HRwhats — منظومة واتساب API للأعمال` (`meta.homeTitle`; title, Open Graph and Twitter all come from it). **Do not change the title of an important page before its Search Console data has been reviewed with the developer.**
 - Every page: unique `title` + `description` via the Metadata API, canonical URL with trailing slash, Open Graph image.
 - JSON-LD: `Organization` (site-wide), `FAQPage` (FAQ sections), `Article` (posts), `BreadcrumbList`.
 - Internal links between posts point to the final URL directly (no redirect hops): at launch that is the same Arabic URL, written relative (`/slug/`).
+
+### Search Console and backlinks
+
+- **Google Search Console** is verified for `hrwhats.com` as a **Domain property** through a DNS TXT record in Spaceship. **Never delete this record.**
+- The current sitemap, `https://hrwhats.com/sitemap_index.xml` (Yoast), has been submitted to it.
+- The current site's ranking rests mainly on **backlinks**. The developer will collect their list (Search Console Links, tools like Ahrefs) before launch.
+- Every URL a backlink targets must return **200 at the same URL or 301 to the closest replacement page**. No mass redirects to the home page.
+- On any targeted page, never remove the content that the links' anchor text refers to.
 
 ### Arabic slugs in the static export (tested 2026-11-03, Next 16.4.0)
 
@@ -234,7 +248,8 @@ The usage guide is a separate site built by another team: **https://docs.hrwhats
 
 ### WhatsApp ban page (`/whatsapp-ban/`)
 
-Indexed on WordPress, so the URL, canonical and title (`حظر الواتساب - حلول واتس اب اعمال | HRwhats`) are kept. Text in `messages/ar.json` → `whatsappBan`, verbatim from the WordPress page (only HRWHATS → HRwhats); components in `src/components/whatsapp-ban/` (`Sections.tsx`, client `Checklist.tsx`, one CSS module), page `src/components/pages/WhatsappBanPage.tsx`. No images. Sections: hero + intro with the key sentence, seven reasons (calm amber badges), the honest answer "no 100% guarantee" (dark panel — the page's key message), comparison table (real table; cards on phones), six help cards, a self-check of real checkboxes with an "n من 6" counter (aria-live; nothing saved or sent), six steps joined by arrows (vertical on phones), "already banned?", and a dark closing with the use chips and two buttons (signup + sales WhatsApp) — no site-wide `<Cta>`. JSON-LD: BreadcrumbList + FAQPage for the two questions (same visible text). The home ban-protection panel links to it ("اعرف أسباب الحظر"). This page says plainly that nothing guarantees 100% — other copy with "بدون حظر" is pending the developer's review.
+Indexed on WordPress, so the URL, canonical and title (`حظر الواتساب - حلول واتس اب اعمال | HRwhats`) are kept. Text in `messages/ar.json` → `whatsappBan`, verbatim from the WordPress page (only HRWHATS → HRwhats); components in `src/components/whatsapp-ban/` (`Sections.tsx`, client `Checklist.tsx`, one CSS module), page `src/components/pages/WhatsappBanPage.tsx`. No images. Sections: hero + intro with the key sentence, seven reasons (calm amber badges), the honest answer "no 100% guarantee" (dark panel — the page's key message), comparison table (real table; cards on phones), six help cards, a self-check of real checkboxes with an "n من 6" counter (aria-live; nothing saved or sent), six steps joined by arrows (vertical on phones), "already banned?", and a dark closing with the use chips and two buttons (signup + sales WhatsApp) — no site-wide `<Cta>`. JSON-LD: BreadcrumbList + FAQPage for the two questions (same visible text). The home ban-protection panel links to it ("اعرف أسباب الحظر"). This page says plainly that nothing guarantees 100%.
+- **Decision (2026-11-04, by the developer):** the existing "بدون حظر" wording elsewhere on the site stays as it is. Do not change it, and do not suggest changing it, unless the developer asks.
 
 External links: signup `https://app.hrwhats.com/signup`, login `https://app.hrwhats.com/login`.
 
@@ -302,7 +317,7 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 
 - **Client:** `src/components/contact/` — `ContactForm` (React Hook Form + Zod, Arabic errors, honeypot `website` field), `Turnstile` (loads Cloudflare's script only when the form scrolls into view; contact page only). Delivery is isolated in `src/lib/contact-submit.ts` (`submitContact`) — the only place to change if the target changes. Endpoint: `contactEndpoint` in `site.json`.
 - **Turnstile site key:** `turnstileSiteKey` in `site.json` (public). Empty → `next dev` uses Cloudflare's always-pass test key; **`next build` fails** with a clear message. `ALLOW_TURNSTILE_TEST_KEY=1` allows a local test build only — never deploy it.
-- **Server (`contact.php`):** POST + JSON only, Origin check (`https://hrwhats.com`), server-side validation (limits shared with `CONTACT_LIMITS`), honeypot → fake success, rate limit 5 / 10 min per IP, Turnstile `siteverify`, SMTP via PHPMailer (`public/api/_lib/`, blocked by its own `.htaccess`). Always answers `{ ok }` JSON; `display_errors` off; errors logged to `~/hrwhats-contact.log` (outside the web root). Needs PHP ≥ 8.0.
+- **Server (`contact.php`):** POST + JSON only, Origin check (`ALLOWED_ORIGINS` in `~/hrwhats-config.php`; default `https://hrwhats.com` only — implemented, so the form can run on the Spaceship test domain before launch), server-side validation (limits shared with `CONTACT_LIMITS`), honeypot → fake success, rate limit 5 / 10 min per IP, Turnstile `siteverify`, SMTP via PHPMailer (`public/api/_lib/`, blocked by its own `.htaccess`). Always answers `{ ok }` JSON; `display_errors` off; errors logged to `~/hrwhats-contact.log` (outside the web root). Needs PHP ≥ 8.0.
 - **Config:** `~/hrwhats-config.php` = `dirname(__DIR__, 2) . '/hrwhats-config.php'`, i.e. the account home directory **next to** `public_html`, never inside it. Template: `config/hrwhats-config.example.php` (not published). Missing file → generic error to the visitor, reason in the log.
 - **The generated `.htaccess` (launch phase) must not rewrite or block `/api/contact.php`.**
 
@@ -314,8 +329,15 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 4. **Sectors + legal pages** — sectors are custom pages, one at a time (see Content architecture); legal pages share the `LegalPage` template (JSON text, no MDX). The usage guide is not built here (docs.hrwhats.com, see Usage guide).
 5. **Blog** — Velite + MDX setup, listing, pagination, categories, post page, WordPress migration.
 6. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, URL tests on a Spaceship subdomain, deploy to Spaceship.
+   - **Before any change:** a full WordPress backup (files + database), kept off the server.
+   - Add the test domain to `ALLOWED_ORIGINS` in the server's `~/hrwhats-config.php` while testing the contact form there (`contact.php` already reads it); remove it afterwards.
+   - Add the test domain and `newhr.tmt3.sa` to the Hostnames list of the Turnstile key in Cloudflare.
+   - Tracking tools: check the old site for Google Analytics, Google Tag Manager and Meta Pixel, and put the same IDs in the new site (after the developer approves).
    - 301s from the old usage-guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/` — not `/whatsapp-ban/`, which stays a page here) to their pages on docs.hrwhats.com, in the generated `.htaccess` — **only after the developer sends the exact page URLs** (until then they would all go to the guide's home); the URL test must then expect these 301s. Update the site's guide links to the exact URLs at the same time (see Usage guide).
    - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.
+   - **After launch:** submit the new sitemap in Search Console and check the most important pages with URL Inspection.
+   - **After launch:** protect the staging copy `newhr.tmt3.sa` (a password, or a redirect to the main site).
+   - **After launch:** weekly Search Console checks for the first two months; new 404 pages get redirects right away.
 7. **English** — `messages/en.json`, translated pages, then posts gradually.
 
 ## Commands
@@ -329,12 +351,11 @@ npm run build      # scripts/build.mjs: next build --webpack + image optimizer �
 npm run lint
 ```
 
-## Next.js security upgrades
+## Next.js version
 
-- **Current: Next.js 16.4.2** (+ `eslint-config-next` 16.4.2), pinned exactly (no `^`). Upgraded from 16.4.0 on 2026-11-03 for GHSA-673q-mjm6-r5xr, GHSA-2464-fhr4-w9xw and GHSA-p3m5-59mp-jv5r; npm reports no advisory for 16.4.2.
-- Upgrade policy: latest patch of the current minor (16.4.x), released at least two weeks ago — never a new major/minor without asking. Upgrade with `npm install --save-exact next@x eslint-config-next@x` on Node 24 / npm 11 (never `next upgrade --agent=…`). Steps: delete `node_modules`, `.next`, `out`; `npm ci`; staging build; check every page in `out/` and in dev; separate `chore:` commit; push.
-- `npm audit` (2026-11-03): the remaining findings are in dev tooling (`shadcn` CLI and its deps, eslint/typescript-eslint/minimatch). The only production-dependency one, `fast-uri` (via `@hookform/resolvers` → `ajv`), is not in the built `out/` (only `zodResolver` is used). Do not run `npm audit fix`.
-- **"Build fails the first time, passes on retry" is intended Next.js behavior, only inside AI agents.** Next.js defaults to `experimental.agentUpgrade: "security"`: each build checks npm advisories, and when the installed version is affected and an AI agent is detected (env such as `CLAUDECODE`, `AI_AGENT`), it stops with a `SecurityFatalError` and writes a retry receipt in `.next/cache/next-agentic-upgrade-retries/` valid for 5 minutes, so the same command passes on retry. In CI (GitHub Actions, Hostinger) or a non-interactive shell it never stops the build; in a human terminal it shows a prompt. **Do not disable `agentUpgrade`** — the warning is useful. Never run the `next upgrade --agent=…` command it suggests without the developer's approval.
+- **Next.js is pinned to 16.4.2** (+ `eslint-config-next` 16.4.2, exact versions). **No upgrade unless the developer explicitly asks. Do not suggest upgrades or remind about them.** Decision by the developer (2026-11-04): the site is a static export and Next.js does not run in production, so server vulnerabilities do not affect it.
+- **The built-in security check is off by the developer's decision:** `experimental.agentUpgrade: false` in `next.base.ts`. Builds no longer stop with `SecurityFatalError` inside AI agents. Never run `next upgrade --agent=…`.
+- Do not run `npm audit fix`.
 
 ## Working rules for Claude
 

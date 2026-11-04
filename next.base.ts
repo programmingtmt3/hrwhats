@@ -37,6 +37,8 @@ const nextConfig: NextConfig = {
     // Multiple root layouts ((ar) and later (en)) have no shared layout to
     // compose a 404 from, so out/404.html comes from app/global-not-found.tsx.
     globalNotFound: true,
+    // Developer's decision: Next.js is pinned and never runs in production (static export).
+    agentUpgrade: false,
   },
 };
 
