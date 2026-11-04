@@ -118,7 +118,7 @@ Supporting colors used by the design (WhatsApp mockup, gradients) are also varia
 
 **Logo:** `public/images/brand/hrwhats-logo-trimmed.png` (transparent margins trimmed), path defined once in `src/lib/brand.ts` (`LOGO`), rendered through `BrandLogo` — an SVG version will replace it there. Heights: header 54px (44px ≤600px), footer 36px. The original padded file stays as `LOGO_SQUARE` (`BrandLogo square`) for the hero chat avatar and as the favicon source. Always `alt="HRwhats"`. `src/app/favicon.ico`, `icon.png` and `apple-icon.png` are generated from it (regenerate when the SVG arrives).
 
-**Header** — exactly as the design: الرئيسية، الباقات، المدونة، تواصل معنا، دليل الاستخدام (last because it is external: `docsUrl`, new tab, small `ArrowUpLeft` icon on the same line, never marked as the current page — see Usage guide)، a "لوحة التحكم" ghost button → `app.hrwhats.com/login` and a "جرب مجاناً" primary button → `app.hrwhats.com/signup`. No dropdowns. Fixed; gets a blurred white background after 10px of scroll. Below 1080px a burger opens the menu as a panel under the header; the "لوحة التحكم" link appears inside that menu (fixed vs. the design, where a rule-order bug hid it). Server part `Header.tsx`, client part `HeaderBar.tsx`, links in `src/lib/navigation.ts`.
+**Header** — exactly as the design: الرئيسية، الباقات، المدونة، تواصل معنا، حظر الواتساب (`/whatsapp-ban/`)، دليل الاستخدام (last because it is external: `docsUrl`, new tab, small `ArrowUpLeft` icon on the same line, never marked as the current page — see Usage guide)، a "لوحة التحكم" ghost button → `app.hrwhats.com/login` and a "جرب مجاناً" primary button → `app.hrwhats.com/signup`. No dropdowns. Fixed; gets a blurred white background after 10px of scroll. Below 1080px a burger opens the menu as a panel under the header; the "لوحة التحكم" link appears inside that menu (fixed vs. the design, where a rule-order bug hid it). Server part `Header.tsx`, client part `HeaderBar.tsx`, links in `src/lib/navigation.ts`.
 - The header is `position: fixed` (`--header-h: 76px`): every page's first section needs its own top padding (the hero uses 160px).
 
 **Footer** and **floating WhatsApp button** — exactly as the design; contact and social data come from `content/data/site.json`.
@@ -218,7 +218,7 @@ A temporary `[slug]` route with real WordPress slugs (plain Arabic, `📌-…`, 
 
 | Type | Slugs |
 |---|---|
-| Main | `/`, `/packages/`, `/contact/`, `/news/` |
+| Main | `/`, `/packages/`, `/contact/`, `/news/`, `/whatsapp-ban/` (indexed on WordPress: URL, canonical and title kept) |
 | Sectors | `charity`, `real-estate-contracting`, `education-training`, `tourism-hospitality`, `online-stores-systems`, `advertising`, `hr`, `operating-service`, `restaurants-cafes`, `shops` |
 | Legal | `privacy-policy`, `terms-of-use`, `refund-policy` |
 | Blog | ~50 posts migrated from WordPress |
@@ -227,9 +227,14 @@ A temporary `[slug]` route with real WordPress slugs (plain Arabic, `📌-…`, 
 
 The usage guide is a separate site built by another team: **https://docs.hrwhats.com/**. Its URL lives **only** in `site.json` → `docsUrl`; never write the domain in components or content. Do not build guide pages in this project.
 - Every link to the guide opens in a new tab through `NewTabLink` (`src/components/ui/NewTabLink.tsx`: `target="_blank"`, `rel="noopener noreferrer"`, accessible name from `nav.newTab` = "{label} (يفتح في تبويب جديد)").
-- Links today: header "دليل الاستخدام" (desktop + mobile menu, with an `ArrowUpLeft` `.icon-forward` icon), the footer "دليل الاستخدام" column (the four page names kept: `footer.guideLinks`), the "ابدأ التوثيق معنا" button (`MetaVerify.tsx`) and the FAQ answer's `[متطلبات التوثيق](docs:/)` link (`faq.json`). Data files link to the guide with `docs:/path/`, resolved against `docsUrl` (`docsPath()` in `inline-links.ts`).
+- Links today: header "دليل الاستخدام" (desktop + mobile menu, with an `ArrowUpLeft` `.icon-forward` icon), the footer "دليل الاستخدام" column (the four page names kept: `footer.guideLinks`; "حظر الواتساب" in it is the internal `/whatsapp-ban/` page, same tab), the "ابدأ التوثيق معنا" button (`MetaVerify.tsx`) and the FAQ answer's `[متطلبات التوثيق](docs:/)` link (`faq.json`). Data files link to the guide with `docs:/path/`, resolved against `docsUrl` (`docsPath()` in `inline-links.ts`).
 - **Temporary:** they all point to the guide's home until the developer sends the exact page URLs; then each gets its own path (`navigation.ts` `getFooterGuideLinks`, `MetaVerify.tsx`, the FAQ's `docs:/…/`).
-- The old WordPress guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/`, `/whatsapp-ban/`) get 301s in the launch phase (see Phases). The blog category `/category/hrwhats-guide/` is a blog category, not part of this.
+- `/whatsapp-ban/` is **not** part of the guide: it is a page of this site (see WhatsApp ban page) and keeps its URL — no 301.
+- The old WordPress guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/`) get 301s in the launch phase (see Phases). The blog category `/category/hrwhats-guide/` is a blog category, not part of this.
+
+### WhatsApp ban page (`/whatsapp-ban/`)
+
+Indexed on WordPress, so the URL, canonical and title (`حظر الواتساب - حلول واتس اب اعمال | HRwhats`) are kept. Text in `messages/ar.json` → `whatsappBan`, verbatim from the WordPress page (only HRWHATS → HRwhats); components in `src/components/whatsapp-ban/` (`Sections.tsx`, client `Checklist.tsx`, one CSS module), page `src/components/pages/WhatsappBanPage.tsx`. No images. Sections: hero + intro with the key sentence, seven reasons (calm amber badges), the honest answer "no 100% guarantee" (dark panel — the page's key message), comparison table (real table; cards on phones), six help cards, a self-check of real checkboxes with an "n من 6" counter (aria-live; nothing saved or sent), six steps joined by arrows (vertical on phones), "already banned?", and a dark closing with the use chips and two buttons (signup + sales WhatsApp) — no site-wide `<Cta>`. JSON-LD: BreadcrumbList + FAQPage for the two questions (same visible text). The home ban-protection panel links to it ("اعرف أسباب الحظر"). This page says plainly that nothing guarantees 100% — other copy with "بدون حظر" is pending the developer's review.
 
 External links: signup `https://app.hrwhats.com/signup`, login `https://app.hrwhats.com/login`.
 
@@ -309,7 +314,7 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 4. **Sectors + legal pages** — sectors are custom pages, one at a time (see Content architecture); legal pages share the `LegalPage` template (JSON text, no MDX). The usage guide is not built here (docs.hrwhats.com, see Usage guide).
 5. **Blog** — Velite + MDX setup, listing, pagination, categories, post page, WordPress migration.
 6. **SEO + launch** — sitemap, JSON-LD, `.htaccess` generation, URL tests on a Spaceship subdomain, deploy to Spaceship.
-   - 301s from the old usage-guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/`, `/whatsapp-ban/`) to their pages on docs.hrwhats.com, in the generated `.htaccess` — **only after the developer sends the exact page URLs** (until then they would all go to the guide's home); the URL test must then expect these 301s. Update the site's guide links to the exact URLs at the same time (see Usage guide).
+   - 301s from the old usage-guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/` — not `/whatsapp-ban/`, which stays a page here) to their pages on docs.hrwhats.com, in the generated `.htaccess` — **only after the developer sends the exact page URLs** (until then they would all go to the guide's home); the URL test must then expect these 301s. Update the site's guide links to the exact URLs at the same time (see Usage guide).
    - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.
 7. **English** — `messages/en.json`, translated pages, then posts gradually.
 
@@ -334,8 +339,8 @@ npm run lint
 ## Working rules for Claude
 
 - For any non-trivial task, **propose a short plan first** and wait for approval.
-- Work on **one page at a time**; a long page is built **one section at a time**.
-- After each part: **stop**, ask the developer to review it in the browser, and do not move to the next part until they approve.
+- Work on **one page at a time**. A new page is built **complete in one go** (all its sections plus its header/footer/home links, SEO and CLAUDE.md updates), then the developer reviews it in the browser (decision 2026-11-03).
+- After each page or change: **stop**, ask the developer to review it in the browser, and do not move on until they approve.
 - **Do not send screenshots for review.** The developer reviews the site in the browser themselves. (Automated checks — builds, measurements, contrast — are still fine; report their results as text.)
 - Keep components small and focused; extract repeated UI into `sections/` or `ui/`.
 - After changes, run `npm run build` to confirm the static export still succeeds.

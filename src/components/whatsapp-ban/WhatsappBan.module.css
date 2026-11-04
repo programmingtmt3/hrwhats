@@ -1,0 +1,617 @@
+/* /whatsapp-ban/: light sections in the site identity, calm amber warnings,
+   one dark "honest answer" panel and a dark closing panel. */
+.section {
+  padding-block: 72px;
+}
+.section :global(.sec-head) {
+  margin-bottom: 40px;
+}
+
+/* 1. Intro under the hero */
+.intro {
+  padding-block: 0 40px;
+}
+.introBody {
+  max-width: 760px;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.introBody p + p {
+  margin-top: 18px;
+}
+/* The key sentence: the page's answer in one line. */
+.keyLine {
+  padding: 18px 24px;
+  border-radius: var(--r);
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--dark);
+  background: rgb(var(--wa-rgb) / 0.12);
+  border: 1px solid rgb(var(--wa-rgb) / 0.35);
+}
+
+/* 2. Reasons: seven practices with calm warning badges */
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 980px;
+  margin-inline: auto;
+  list-style: none;
+}
+.reasons li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+  line-height: 1.6;
+}
+/* An odd last item spans both columns. */
+.reasons li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+.warn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  color: var(--amber);
+  background: rgb(var(--amber-rgb) / 0.1);
+}
+.warn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 3. The honest answer: dark, prominent */
+.honest {
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 56px 48px;
+  border-radius: var(--r-lg);
+  text-align: center;
+  color: rgb(var(--white-rgb) / 0.8);
+  font-size: 1.08rem;
+  line-height: 1.9;
+  background:
+    radial-gradient(80% 100% at 50% 0%, rgb(var(--neon-rgb) / 0.12), transparent 60%),
+    linear-gradient(150deg, var(--dark), var(--deep));
+  box-shadow: var(--shadow-lg);
+}
+.honest h2 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--white);
+}
+.statement {
+  margin-block: 22px;
+  font-size: clamp(1.3rem, 2.8vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--neon);
+}
+.honest p + p {
+  margin-top: 14px;
+}
+.quote {
+  color: var(--white);
+}
+
+/* 4. Comparison table (cards on phones) */
+.compare {
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.compare th,
+.compare td {
+  width: 50%;
+  padding: 16px 22px;
+  text-align: start;
+  line-height: 1.6;
+}
+.compare th {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.compare th:first-child {
+  color: var(--muted);
+  background: var(--bg);
+}
+.compare th:last-child {
+  color: var(--white);
+  background: var(--dark);
+}
+.compare tbody tr + tr td {
+  border-top: 1px solid var(--line);
+}
+.compare td {
+  position: relative;
+}
+.compare td svg {
+  /* Preflight makes svg display: block; keep the mark on the text's line. */
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-inline-end: 10px;
+  vertical-align: -3px;
+}
+.old {
+  color: var(--muted);
+}
+.old svg {
+  color: var(--muted);
+}
+.new {
+  font-weight: 600;
+  color: var(--ink);
+  background: rgb(var(--wa-rgb) / 0.06);
+}
+.new svg {
+  color: var(--green);
+}
+
+/* 5. How HRwhats helps: six cards */
+.help {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  list-style: none;
+}
+.helpCard {
+  padding: 26px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.helpIcon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  color: var(--neon);
+  background: var(--dark);
+}
+.helpIcon svg {
+  width: 24px;
+  height: 24px;
+}
+.helpCard h3 {
+  margin: 16px 0 8px;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+.helpCard p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* 6. Self-check */
+.checklistWrap {
+  max-width: 760px;
+  margin-inline: auto;
+}
+.checklist {
+  padding: 28px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.checklist fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.checks {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+}
+.check {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  font-weight: 600;
+  line-height: 1.6;
+  cursor: pointer;
+  transition:
+    border-color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
+}
+.check:hover {
+  border-color: rgb(var(--green-rgb) / 0.5);
+}
+.checked {
+  border-color: rgb(var(--wa-rgb) / 0.6);
+  background: rgb(var(--wa-rgb) / 0.08);
+}
+/* Native checkbox, restyled (keeps its keyboard and screen-reader behavior). */
+.check input {
+  appearance: none;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border-radius: 7px;
+  border: 2px solid rgb(var(--dark-rgb) / 0.35);
+  background: var(--surface);
+  cursor: pointer;
+  transition:
+    background-color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+.check input::after {
+  content: "";
+  width: 6px;
+  height: 11px;
+  margin-top: -3px;
+  border: solid var(--on-wa);
+  border-width: 0 2.5px 2.5px 0;
+  rotate: 45deg;
+  scale: 0;
+  transition: scale 0.2s var(--ease);
+}
+.check input:checked {
+  border-color: var(--wa);
+  background: var(--wa);
+}
+.check input:checked::after {
+  scale: 1;
+}
+.check input:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+}
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+.bar {
+  flex: 1;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--line);
+}
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--wa), var(--green));
+  transition: inline-size 0.35s var(--ease);
+}
+.progress b {
+  flex: none;
+  min-width: 4.5em;
+  text-align: end;
+}
+.checkNote {
+  margin-top: 18px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+/* 7. Steps joined by arrows (vertical on phones) */
+.stepsWrap {
+  text-align: center;
+}
+.best {
+  margin-bottom: 18px;
+  font-weight: 700;
+  color: var(--green);
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 28px;
+  list-style: none;
+}
+.steps li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 10px;
+  padding: 20px 10px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.stepNum {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--on-wa);
+  background: var(--wa);
+}
+.stepText {
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--dark);
+}
+/* Arrow in the gap after each step, pointing to the next one. */
+.arrow {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: -24px;
+  translate: 0 -50%;
+  display: grid;
+  color: var(--green);
+}
+.arrow svg {
+  width: 20px;
+  height: 20px;
+}
+.arrowDown {
+  display: none;
+}
+.stepsAfter {
+  max-width: 640px;
+  margin: 28px auto 0;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.stepsAfter strong {
+  color: var(--dark);
+}
+
+/* 8. Already banned */
+.banned {
+  display: flex;
+  gap: 22px;
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 32px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-inline-start: 4px solid var(--amber);
+  box-shadow: var(--shadow);
+  line-height: 1.9;
+}
+.bannedIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  color: var(--amber);
+  background: rgb(var(--amber-rgb) / 0.1);
+}
+.bannedIcon svg {
+  width: 26px;
+  height: 26px;
+}
+.banned h2 {
+  margin-bottom: 10px;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--dark);
+}
+.banned p {
+  color: var(--muted);
+}
+.banned p + p {
+  margin-top: 10px;
+}
+
+/* 9. Closing + CTA */
+.closingSection {
+  padding-block: 72px 0;
+}
+.closing {
+  padding: 64px 40px;
+  border-radius: 36px;
+  text-align: center;
+  color: rgb(var(--white-rgb) / 0.78);
+  font-size: 1.08rem;
+  background:
+    radial-gradient(60% 90% at 50% 0%, rgb(var(--neon-rgb) / 0.14), transparent 60%),
+    linear-gradient(150deg, var(--dark), var(--deep));
+}
+.closing h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--white);
+}
+.uses {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-block: 20px;
+  list-style: none;
+}
+.uses li {
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--neon);
+  background: rgb(var(--neon-rgb) / 0.1);
+  border: 1px solid rgb(var(--neon-rgb) / 0.3);
+}
+.start {
+  max-width: 620px;
+  margin: 36px auto 0;
+  padding-top: 32px;
+  border-top: 1px solid rgb(var(--white-rgb) / 0.14);
+}
+.start h3 {
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.start :global(.hero-actions) {
+  justify-content: center;
+}
+
+@media (max-width: 1080px) {
+  .help {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Steps: three per row; arrows only between steps on the same row. */
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .steps li:nth-child(3n) .arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding-block: 56px;
+  }
+  .reasons {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .honest {
+    padding: 40px 24px;
+  }
+  /* Steps: one column, a down arrow under each step. */
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 360px;
+    margin-inline: auto;
+    gap: 30px;
+  }
+  .steps li {
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: center;
+    padding: 14px 18px;
+  }
+  .steps li:nth-child(3n) .arrow {
+    display: grid;
+  }
+  .arrow {
+    top: auto;
+    bottom: -27px;
+    inset-inline: 0;
+    margin-inline: auto;
+    width: max-content;
+    translate: none;
+  }
+  .arrowSide {
+    display: none;
+  }
+  .arrowDown {
+    display: block;
+  }
+  .closingSection {
+    padding-top: 56px;
+  }
+}
+
+/* Phones: every comparison row becomes a card with both column names as labels. */
+@media (max-width: 700px) {
+  .compare,
+  .compare tbody,
+  .compare tr,
+  .compare td {
+    display: block;
+    width: auto;
+  }
+  .compare {
+    overflow: visible;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+  .compare thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .compare tbody tr {
+    overflow: hidden;
+    border-radius: var(--r);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+  }
+  .compare tbody tr + tr {
+    margin-top: 12px;
+  }
+  .compare tbody tr + tr td {
+    border-top: 0;
+  }
+  .compare td {
+    padding: 14px 16px;
+  }
+  .compare td + td {
+    border-top: 1px solid var(--line);
+  }
+  .compare td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .old::before {
+    color: var(--muted);
+  }
+  .new::before {
+    color: var(--green);
+  }
+  .help {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .banned {
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px 20px;
+  }
+  .closing {
+    padding: 48px 20px;
+    border-radius: 26px;
+  }
+}

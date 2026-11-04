@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import styles from "./PageHero.module.css";
 
 type PageHeroProps = {
-  eyebrow: string;
+  eyebrow?: string;
   /** Page title (the page's only h1), split around the gradient words. */
   title: { before: string; highlight: string; after: string };
   lead?: string;
@@ -15,7 +15,7 @@ export function PageHero({ eyebrow, title, lead }: PageHeroProps) {
   return (
     <section className={styles.hero}>
       <Reveal className={cn("site-container", styles.inner)}>
-        <span className="eyebrow">{eyebrow}</span>
+        {eyebrow && <span className="eyebrow">{eyebrow}</span>}
         <h1>
           {title.before}
           <span className="grad">{title.highlight}</span>

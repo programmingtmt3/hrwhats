@@ -1,10 +1,11 @@
 import { Ban, Store } from "lucide-react";
+import Link from "next/link";
 
 import { ArrowIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
 import { NewTabLink } from "@/components/ui/NewTabLink";
 import { getSite } from "@/lib/content";
-import { format, getDictionary, type Dictionary, type Locale } from "@/lib/i18n";
+import { format, getDictionary, localePath, type Dictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 import styles from "./BanProtection.module.css";
@@ -85,14 +86,19 @@ export function BanProtection({ locale }: { locale: Locale }) {
               {text.subtitle.after}
             </p>
             <p className={styles.description}>{text.description}</p>
-            <NewTabLink
-              href={whatsapp.url}
-              label={format(dict.nav.newTab, { label: text.cta })}
-              className={cn("btn btn-primary", styles.cta)}
-            >
-              {text.cta}
-              <ArrowIcon className="icon-forward" />
-            </NewTabLink>
+            <div className={styles.actions}>
+              <NewTabLink
+                href={whatsapp.url}
+                label={format(dict.nav.newTab, { label: text.cta })}
+                className={cn("btn btn-primary", styles.cta)}
+              >
+                {text.cta}
+                <ArrowIcon className="icon-forward" />
+              </NewTabLink>
+              <Link href={localePath(locale, "/whatsapp-ban/")} className={styles.learnMore}>
+                {text.learnMore}
+              </Link>
+            </div>
           </div>
           <StatusPhone text={text.phone} />
         </Reveal>
