@@ -13,7 +13,9 @@ console.log(
 // Do not add redirects/rewrites/headers here: they are ignored by `output: 'export'`.
 // Redirects are generated into out/.htaccess by scripts/generate-htaccess.ts.
 const nextConfig: NextConfig = {
-  output: "export",
+  // The dev server rejects non-ASCII slugs while export is on (it compares the decoded
+  // generateStaticParams path with the encoded request path).
+  output: process.env.NODE_ENV === "development" ? undefined : "export",
   trailingSlash: true,
   images: {
     // next-image-export-optimizer: images are optimized at build time

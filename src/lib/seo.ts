@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { LOGO } from "./brand";
-import { getCurrency, getSite, getWhatsappPlans, t } from "./content";
+import { getCurrency, getSite, getWhatsappPlans, t, type Post } from "./content";
 import { isProduction } from "./env";
 import { getDictionary, localePath, type Locale } from "./i18n";
 import { toPlainText } from "./inline-links";
@@ -194,5 +194,55 @@ export function contactPageJsonLd(locale: Locale, name: string) {
         availableLanguage: ["Arabic"],
       },
     },
+  };
+}
+
+/** A post's final URL in raw Arabic, exactly as WordPress writes it (canonical, og:url, JSON-LD). */
+export function getPostUrl(post: Post): string {
+  return `${getSite().siteUrl}/${post.slug}/`;
+}
+
+/**
+ * Post metadata. No alternates.canonical and no openGraph.url: Next would percent-encode
+ * them, so the post page renders both tags itself with the raw Arabic URL.
+ */
+export function getPostMetadata(locale: Locale, post: Post): Metadata {
+  return {
+    title: { absolute: post.seoTitle },
+    description: post.description,
+    openGraph: {
+      title: post.seoTitle,
+      description: post.description,
+      siteName: getDictionary(locale).meta.siteName,
+      locale: locale === "ar" ? "ar_SA" : "en_US",
+      type: "article",
+      publishedTime: post.date,
+      modifiedTime: post.updated,
+    },
+  };
+}
+
+/** JSON-LD: Article. The organization is both author and publisher. */
+export function articleJsonLd(post: Post) {
+  const site = getSite();
+  const organization = {
+    "@type": "Organization",
+    name: site.name,
+    url: `${site.siteUrl}/`,
+    logo: `${site.siteUrl}${LOGO.src}`,
+  };
+  const url = getPostUrl(post);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    url,
+    mainEntityOfPage: url,
+    datePublished: post.date,
+    dateModified: post.updated,
+    author: organization,
+    publisher: organization,
   };
 }

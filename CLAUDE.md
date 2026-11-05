@@ -18,13 +18,13 @@ Rebuild of **hrwhats.com**, the marketing site for HRwhats (a WhatsApp Business 
 | UI components | shadcn/ui (Radix) |
 | Icons | Design SVGs in `src/components/icons/`; lucide-react for anything new |
 | Animation | CSS + IntersectionObserver (as in the design). Motion only if a later page needs it — subtle only |
-| Content | JSON validated with Zod in `lib/content.ts`; MDX via **Velite** from phase 5 (blog posts) |
+| Content | JSON validated with Zod in `lib/content.ts`; MDX via **Velite** (blog posts, schema in `velite.config.ts`) |
 | Images | `next-image-export-optimizer` (build-time optimization) |
 | Forms | React Hook Form + Zod (client-side only) |
 | Fonts | `next/font/local`, self-hosted woff2 in `src/fonts/` (OFL) — IBM Plex Sans Arabic (Arabic) + IBM Plex Sans (English), weights 400–700. No Google Fonts requests in dev or build |
 | Package manager | npm. Node 24 LTS (npm 11). Install with `npm ci`; change `package-lock.json` only through `npm install <pkg>` on Node 24 — a lockfile rewritten by an older npm drops the `libc` fields (glibc/musl binaries for `sharp`, `lightningcss`) and optional packages |
 
-Do not add dependencies outside this list without asking first. (`cn`, `class-variance-authority`, `radix-ui`, `tw-animate-css` and `shadcn` come with shadcn/ui and are part of it.)
+Do not add dependencies outside this list without asking first. (`cn`, `class-variance-authority`, `radix-ui`, `tw-animate-css` and `shadcn` come with shadcn/ui and are part of it. The post converter's `unified`, `rehype-parse`, `rehype-remark`, `remark-gfm`, `remark-mdx`, `remark-stringify` are dev dependencies for `scripts/migrate-wordpress.ts` only.)
 
 The project runs **Next.js 16** — see `AGENTS.md`: read the bundled docs in `node_modules/next/dist/docs/` before using an API you are unsure about.
 
@@ -137,6 +137,7 @@ content/
     ├── partners.json     ← success partners (same shape)
     ├── packages.json     ← pricing packages (the home trust bar's "من N ر.س" = lowest monthly WhatsApp plan, via `getStartingMonthlyPrice()` — never typed by hand)
     ├── sectors.json      ← slug + name — the ONLY source of sector names site-wide (home grid, navigation, sector pages)
+    ├── categories.json   ← blog categories (slug + name); a post's category must be listed here
     ├── faq.json          ← FAQ items
     └── site.json         ← contact info, social links, app URLs, `docsUrl` (usage guide)
 ```
@@ -147,7 +148,7 @@ content/
 - **Home additions beyond the design:** the ban-protection panel (`src/components/sections/banProtection/`) between the trust bar and the features — dark panel, copy + one sales-WhatsApp button (new tab), and a code-drawn phone whose status plays once: red "banned" warning (`--alert-light` on dark) → green shield lands → "رقم موثّق ✓" (base styles = final state, so reduced motion / no JS show it directly). Keep it distinct from `MetaVerify` (light, horizontal stages) and the hero phone (chat).
 - A translation of a post has the **same file name** under the other locale folder.
 - Text fields in JSON data are bilingual objects: `{ "ar": "...", "en": "..." }` (`en` may be empty until the English phase).
-- **Legal pages** (`privacy-policy`, `terms-of-use`, `refund-policy`) share **one template**, `LegalPage` (`src/components/pages/LegalPage.tsx` + `src/components/legal/`): `PageHero` (eyebrow "السياسات"), a sticky side table of contents marking the current section (phones: a collapsible list above the text), sections with English anchor ids and a direct-link button, and a closing help box (contact channels from `site.json` + the other two policies). No marketing CTA. Their text lives in `messages/ar.json` under `legal.pages.<slug>` (`name`, `title`, `meta`, `sections[]` of `id`, `title`, `text[]`, optional `list[]`) — copied verbatim from WordPress (only HRWhats → HRwhats and small punctuation fixes); never add or reword legal text without the developer. `legal.pages.<slug>.name` is the only source of each page's name (footer included); the second page is "شروط الاستخدام" (never "سياسة الاستخدام"). Static routes `src/app/(ar)/<slug>/page.tsx`, no MDX.
+- **Legal pages** (`privacy-policy`, `terms-of-use`, `refund-policy`) share **one template**, `LegalPage` (`src/components/pages/LegalPage.tsx` + `src/components/legal/`): `PageHero` (eyebrow "السياسات"), a sticky side table of contents marking the current section (`PageToc`, shared with blog posts; phones: a collapsible list above the text), sections with English anchor ids and a direct-link button, and a closing help box (contact channels from `site.json` + the other two policies). No marketing CTA. Their text lives in `messages/ar.json` under `legal.pages.<slug>` (`name`, `title`, `meta`, `sections[]` of `id`, `title`, `text[]`, optional `list[]`) — copied verbatim from WordPress (only HRWhats → HRwhats and small punctuation fixes); never add or reword legal text without the developer. `legal.pages.<slug>.name` is the only source of each page's name (footer included); the second page is "شروط الاستخدام" (never "سياسة الاستخدام"). Static routes `src/app/(ar)/<slug>/page.tsx`, no MDX.
 - Every content type has a Zod schema in `velite.config.ts`. A missing required field must fail the build.
 - **Sector pages are custom, one design per sector** — no shared sector template and no sector MDX. Each sector has a static route folder `src/app/(ar)/<slug>/page.tsx` (thin wrapper) and its own sections in `src/components/sectors/<slug>/` (e.g. `charity/`). Shared: tokens, fonts, buttons, `SectionHeading`, header, footer, `Reveal`. The slug and name come from `sectors.json` via `getSector(slug)` (throws if missing); all page text lives in `messages/ar.json` under `sectors.<slug>`. Page-only assets go in `public/images/sectors/<slug>/`. **Sector pages use no images from the old WordPress site — not on the page and not as Open Graph images.** Every visual is built in code (or generated, like the tourism world map). Sector pages set no page OG image: they inherit the site-wide one (1200×630, launch phase). The home sector cards use no images either: each card (`src/components/sections/sectors/`) has a small code-drawn motif from its page's theme (`SectorMotif`) and a short line from `home.sectors.cards.<slug>` in `ar.json` (a missing line fails the build). **A new sector page needs its card motif and line too.**
 - **Illustrative data — rule for every sector page.** Mockups built in code (chats, cards, boards, dashboards) use generic example data from `ar.json` and carry a visible "مثال توضيحي" tag (`ExampleTag`). Allowed: generic campaign names, common first names for customers and staff, reasonable prices/areas/amounts, and places described by type + area ("شقة 3 غرف — شمال الرياض"). Never: real company, association or project names, invented project names (they may match real ones), or numbers that look like statistics about the platform. Relative visuals (bars, dots, funnels) carry no figures.
@@ -180,13 +181,28 @@ Post frontmatter (minimum):
 # file: content/posts/ar/whatsapp-marketing-messages.mdx  (ASCII English file name)
 title: رسائل واتساب تسويقية جاهزة للعملاء مع أمثلة
 description: ...
+seoTitle: رسائل واتساب تسويقية جاهزة للعملاء مع أمثلة - حلول واتس اب اعمال | HRwhats   # Yoast's title, verbatim except the brand spelling
 slug: رسائل-واتساب-تسويقية-جاهزة-للعملاء-مع   # the WordPress slug, decoded, character for character
 legacySlugs: []          # empty at launch; only for a later rename (decoded old slugs → 301s)
-date: 2026-09-20
-categories: [whatsapp]
-cover: /images/posts/whatsapp-marketing-messages.jpg
+date: "2026-09-20T10:00:00Z"     # WordPress date_gmt
+updated: "2026-09-21T10:00:00Z"  # WordPress modified_gmt
+categories: [whatsapp]   # the first is the primary one (breadcrumb); must be in categories.json
+cover:
+  template: ban-protection   # code-drawn; one of COVER_TEMPLATES in velite.config.ts
+  variant: 1                 # optional
 ---
 ```
+
+### Blog post page
+
+`src/app/(ar)/[slug]/page.tsx` (thin wrapper) → `src/components/pages/PostPage.tsx` + `src/components/blog/`: breadcrumb (home → blog → primary category), title, categories (plain text until the category pages exist), code-drawn cover, table of contents + text, context box, WhatsApp share, related posts, site-wide `<Cta>`. Text in `messages/ar.json` → `blog`.
+- **No dates are shown on a post page, neither published nor updated (decision 2026-11-05).** `date` and `updated` stay in the frontmatter and feed JSON-LD (`datePublished`, `dateModified`) and the order of posts.
+- **No reading time on posts (decision 2026-11-05):** not on the page, not in `ar.json`, and not computed anywhere.
+- **Covers are code-drawn, never images, and carry no text.** One template per kind of post, registered in `src/components/blog/covers/index.tsx` and listed in `COVER_TEMPLATES` (`velite.config.ts`). Built so far: `ban-protection` (a padlock in a ring: red → the shackle lifts and the ring closes green, once; base styles = final state). New templates must differ from the home ban-protection panel and `MetaVerify`.
+- The ban context box (link to `/whatsapp-ban/`) appears on posts with the `ban-protection` cover.
+- Related posts: up to 3 sharing a category, newest first; the section disappears when there are none.
+- Heading anchors are generated from the heading text the way WordPress wrote them (checked: 16 of 16 on the pilot post), so old links to a section keep working. The table of contents lists `h2` only.
+- JSON-LD: `Article` (author and publisher: Organization) + `BreadcrumbList`. No page-specific Open Graph image.
 
 ## URLs and SEO
 
@@ -194,7 +210,7 @@ The current site ranks on Google. **Protecting existing traffic is the top prior
 
 - **Post URLs stay exactly as they are on WordPress at launch** (decision 2026-11-03): the Arabic slugs — some with emoji (`📌-…`) or `؟` — are kept character for character. No English post slugs and no post 301s now. Renaming them to English with 301s (via `legacySlugs`) may come later, after the site is stable — only on request.
 - New pages (packages, contact, sectors, legal) keep their clean English slugs.
-- Pages, sectors and posts all live at the **site root** (`/slug/`). Posts are served by one `[slug]` route; sectors have their own static route folders. The build must **fail if the same slug exists twice** — the check (blog phase) must cover posts, every slug in `sectors.json` and every static route folder under `app/(ar)/` (`packages`, `contact`, `news`, sector folders, …). It must also fail if a slug is not NFC, contains `/ ? # %` or whitespace, or is over 255 bytes in UTF-8 (the Linux folder-name limit).
+- Pages, sectors and posts all live at the **site root** (`/slug/`). Posts are served by one `[slug]` route; sectors have their own static route folders. The build must **fail if the same slug exists twice** — the check (`prepare` in `velite.config.ts`) covers posts, every slug in `sectors.json` and every static route folder under `app/(ar)/` (`packages`, `contact`, sector folders, …), plus `news` and `category` until they have folders. It also fails if a slug is not NFC, contains `/ ? # %` or whitespace, or is over 255 bytes in UTF-8 (the Linux folder-name limit).
 - Blog index: `/news/`, pagination: `/news/page/2/`, categories: `/category/{whatsapp|marketing|hrwhats-guide}/`. The WordPress category `tutorials` (one post) is **not built**: `/category/tutorials/` → 301 to `/category/whatsapp/` in the generated `.htaccess` at launch (review the target against the Search Console data).
 - Old `/index.php/...` URLs redirect to the clean URL.
 - **Redirects:** a build script generates `out/.htaccess` (`ErrorDocument 404 /404.html`, the URL forms below, plus 301s from `legacySlugs` once any exist). Arabic slugs in rules must be matched correctly in their percent-encoded form — verified by the test script, not assumed.
@@ -224,8 +240,8 @@ The current site ranks on Google. **Protecting existing traffic is the top prior
 A temporary `[slug]` route with real WordPress slugs (plain Arabic, `📌-…`, `…؟`) showed:
 - `out/` folder names are **readable UTF-8** (`out/📌-فوائد-…/index.html`), not percent-encoded. `؟` (U+061F) is not the ASCII `?`, so it is a safe path character.
 - The page component receives `params.slug` **percent-encoded** (`%D8%B1…`), while `generateMetadata` receives it decoded. Always `decodeURIComponent` before looking a post up (in `getPostBySlug`).
-- **`npm run dev` returns 500 for every non-ASCII slug** while `output: "export"` is on (the dev server compares the decoded `generateStaticParams` path with the encoded request path). The build is not affected. Fix for the blog phase: in `next.base.ts`, `output: process.env.NODE_ENV === "development" ? undefined : "export"` — tested: dev serves both `%d8…` and `%D8…` with 200, unknown slugs 404.
-- Next writes the canonical/`og:url` percent-encoded in upper case (`https://hrwhats.com/%D8%B1…/`); WordPress writes raw Arabic (`https://hrwhats.com/رسائل-…/`). **Decision (2026-11-03): post canonicals are written in raw Arabic, exactly as WordPress writes them** (`https://hrwhats.com/رسائل-واتساب-تسويقية-جاهزة-للعملاء-مع/`). Implement in the blog phase: the post page renders `<link rel="canonical" href={rawUrl} />` (React hoists it into `<head>` — tested) and its metadata sets **no** `alternates.canonical` — never both.
+- **`npm run dev` returns 500 for every non-ASCII slug** while `output: "export"` is on (the dev server compares the decoded `generateStaticParams` path with the encoded request path). The build is not affected. Fixed in `next.base.ts`: `output: process.env.NODE_ENV === "development" ? undefined : "export"` — dev serves both `%d8…` and `%D8…` with 200, unknown slugs 404.
+- Next writes the canonical/`og:url` percent-encoded in upper case (`https://hrwhats.com/%D8%B1…/`); WordPress writes raw Arabic (`https://hrwhats.com/رسائل-…/`). **Decision (2026-11-03): post canonicals are written in raw Arabic, exactly as WordPress writes them** (`https://hrwhats.com/رسائل-واتساب-تسويقية-جاهزة-للعملاء-مع/`). The post page renders `<link rel="canonical" href={rawUrl} />` and `<meta property="og:url" content={rawUrl} />` (React hoists them into `<head>`), and its metadata sets **no** `alternates.canonical` or `openGraph.url` — never both.
 - Browsers always send the path percent-encoded (typing Arabic in the address bar is encoded by the browser); servers may reject raw UTF-8 bytes on the wire, which is not a real-world case.
 - **Upload risk:** the folder names must reach the server as UTF-8. FTP: use a client in UTF-8 mode (FileZilla: Site Manager → Charset → Force UTF-8). Zip: create it with 7-Zip (`7z a -tzip -mcu=on site.zip .\out\*`) so names are stored as UTF-8 — a zip without the UTF-8 flag gets mangled names when cPanel extracts it. After every upload, open each test post URL on the server.
 
@@ -278,7 +294,9 @@ src/
 │   ├── icons/                ← design SVG icons
 │   ├── seo/                  ← JsonLd
 │   ├── sectors/<slug>/       ← one folder per sector page (custom design); shared/ for common blocks
-│   ├── legal/                ← LegalPage parts: table of contents, help box
+│   ├── blog/                 ← post page parts; covers/ holds the code-drawn cover templates
+│   ├── shared/               ← PageToc (table of contents: legal pages + blog posts)
+│   ├── legal/                ← LegalPage parts: help box
 │   ├── sections/             ← Hero, Features, Sectors, Clients, Partners, FAQ, CTA
 │   ├── pages/                ← shared page components (HomePage, LegalPage, PostPage, …)
 │   └── mdx/                  ← components usable inside MDX
@@ -300,10 +318,13 @@ config/hrwhats-config.example.php ← template for ~/hrwhats-config.php (no secr
 docs/contact-form-setup.md    ← server setup guide (Arabic)
 docs/deploy-hostinger.md      ← staging deploy on Hostinger: GitHub build + why next.base.ts/build.mjs (Arabic)
 scripts/
-├── build.mjs                 ← `npm run build` (restores next.config.ts, see Build environments)
+├── build.mjs                 ← `npm run build` (restores next.config.ts, see Build environments; runs `velite build --strict` first)
+├── dev.mjs                   ← `npm run dev` (Velite watching content/ + next dev)
 ├── inventory-sitemap.ts      ← read-only snapshot of the Yoast sitemap (URLs + image URLs) → data/wp-sitemap-urls.json
 ├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX (Arabic slugs kept)
 ├── data/post-file-names.json ← reviewed MDX file names (post id → name), applied by `migrate-wordpress.ts --apply-names`
+├── data/old-slug-targets.json ← old slug → current URL, used when converting internal links to their final URL
+├── data/machine-note-rules.json ← sentences addressed to machines: removed or flagged when converting a post
 ├── generate-htaccess.ts
 └── test-redirects.ts         ← every old URL: 200 in place or 301 to a working page
 ```
@@ -312,6 +333,12 @@ scripts/
 
 - **Do not modify the live WordPress site.** It stays untouched until launch day.
 - `scripts/migrate-wordpress.ts` reads `https://hrwhats.com/wp-json/wp/v2/posts` (with categories and featured images), decodes slugs (`decodeURIComponent`, NFC), and produces `scripts/slug-map.json` (`title`, `slug` = the decoded WordPress slug, `fileName` = proposed ASCII English MDX file name) for **human review of the file names** before any MDX is written. The slug itself is not edited.
+- **Conversion, one post at a time:** `node scripts/migrate-wordpress.ts --only <id>` (the post needs a cover in `POST_COVERS`). Text stays verbatim, with one exception: **machine-directed sentences are removed (the developer's decision, 2026-11-05)**, such as a note that a table is meant to be quoted by AI engines. Rules live in `scripts/data/machine-note-rules.json`: `remove` drops a paragraph made only of such sentences and the run lists each one with its post, stopping if one sits among other sentences or outside a paragraph; `replace` applies the developer's exact edit to one named post (`💡 نصيحة GEO:` → `💡 نصيحة:` in 3511, decision 2026-11-05) and stops if it no longer matches; `review` only prints matches for a person to judge, including any mention of GEO in other posts, which is never removed automatically. None of these count as a difference when comparing a post with its source. `h1` → `h2`; attributes and empty paragraphs go; tables, code and quotes stay; internal links become relative final URLs. Anything it cannot decide (an image, an unknown tag, an internal link outside the sitemap snapshot) stops it. No image is downloaded.
+- **Post descriptions when converting the remaining posts (decision 2026-11-05).** 36 of the 38 posts share one identical Yoast description, so:
+  - Posts with the shared description and a hand-written excerpt (30): `description` = the excerpt verbatim, cleaned of HTML.
+  - 1648 and 1772 (among those 30, with doubtful excerpts): show them to the developer at conversion, before using them.
+  - The six with only an auto-generated excerpt (1912, 3329, 3336, 3338, 3343, 3346): propose a description from each post's own text; the developer approves it before it is written.
+  - 3356 and 3511: keep the current Yoast description verbatim.
 - After review, the script writes `content/posts/ar/<fileName>.mdx` with `slug` = the WordPress slug verbatim and `legacySlugs: []`, downloads images to `public/images/posts/` (ASCII names), and rewrites internal links from absolute `https://hrwhats.com/…` to the same relative path.
 
 ## Contact form
@@ -347,8 +374,8 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
 ## Commands
 
 ```bash
-npm run dev        # local development
-npm run build      # scripts/build.mjs: next build --webpack + image optimizer → out/ (later: velite, .htaccess)
+npm run dev        # local development: scripts/dev.mjs (Velite watch + next dev)
+npm run build      # scripts/build.mjs: velite build --strict + next build --webpack + image optimizer → out/ (later: .htaccess)
                    # SITE_ENV=staging (default) | production
                    # fails while site.json turnstileSiteKey is empty, unless
                    # ALLOW_TURNSTILE_TEST_KEY=1 (staging only — fails with SITE_ENV=production)

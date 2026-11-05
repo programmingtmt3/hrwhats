@@ -1,9 +1,10 @@
 /**
- * WordPress post inventory for human review. Writes no MDX and downloads no images.
+ * WordPress post inventory for human review, and post conversion. Downloads no images.
  *
  *   node scripts/migrate-wordpress.ts                 fetch posts → scripts/slug-map.json
  *   node scripts/migrate-wordpress.ts --apply-names   no network: apply the reviewed file
  *                                                     names from data/post-file-names.json
+ *   node scripts/migrate-wordpress.ts --only <id>     one post → content/posts/ar/<name>.mdx
  *
  * Polite by design: one request at a time, about a second apart, no retries, no
  * credentials, no redirects followed. slug-map.json is written only after the whole
@@ -15,6 +16,13 @@
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+
+import rehypeParse from "rehype-parse";
+import rehypeRemark from "rehype-remark";
+import remarkGfm from "remark-gfm";
+import remarkMdx from "remark-mdx";
+import remarkStringify from "remark-stringify";
+import { unified } from "unified";
 
 const SITE = "https://hrwhats.com";
 const API = `${SITE}/wp-json/wp/v2`;
@@ -29,6 +37,8 @@ const TITLE_PHRASE = "حلول واتس اب اعمال";
 const SLUG_MAP_FILE = join("scripts", "slug-map.json");
 const NAMES_FILE = join("scripts", "data", "post-file-names.json");
 const SNAPSHOT_FILE = join("scripts", "data", "wp-sitemap-urls.json");
+const OLD_SLUGS_FILE = join("scripts", "data", "old-slug-targets.json");
+const MACHINE_NOTES_FILE = join("scripts", "data", "machine-note-rules.json");
 const SECTORS_FILE = join("content", "data", "sectors.json");
 const AR_ROUTES_DIR = join("src", "app", "(ar)");
 
@@ -749,10 +759,218 @@ async function fetchInventory(): Promise<SlugMap> {
   };
 }
 
+// ---------------------------------------------------------- HTML → MDX (--only)
+
+/** The site's categories, primary first. A WordPress category outside this list is not built. */
+const BUILT_CATEGORIES = ["whatsapp", "marketing", "hrwhats-guide"];
+/** Code-drawn cover template of each converted post. */
+const POST_COVERS: Record<number, string> = { 3511: "ban-protection" };
+const ALLOWED_IN_POSTS = new Set([...USUAL_TAGS, "h1"]);
+
+type HastNode = {
+  type: string;
+  tagName?: string;
+  value?: string;
+  properties?: Record<string, unknown>;
+  children?: HastNode[];
+};
+
+const hastText = (node: HastNode): string =>
+  node.value ?? (node.children ?? []).map(hastText).join("");
+
+/** Relative final URL of an internal link. Anything unknown stops the conversion. */
+function finalHref(href: string, snapshot: Set<string>, oldSlugs: Record<string, string>): string {
+  const link = classifyLink(href, snapshot, new Map());
+  if (!link) throw new StopError(`Unsupported link: ${href}`);
+  if ("external" in link) return href;
+
+  const url = new URL(href, `${SITE}/`);
+  const path = withSlash(link.internal.cleanPath ?? link.internal.path);
+  const target = oldSlugs[path] ?? path;
+  if (link.internal.kind !== "page" || !snapshot.has(target) || link.internal.query) {
+    throw new StopError(`Internal link needs a decision: ${href}`);
+  }
+  return `${target}${decodeNfc(url.hash) ?? url.hash}`;
+}
+
+type TextReplacement = { post: number; from: string; to: string };
+
+type MachineNoteRules = {
+  remove: RegExp[];
+  review: RegExp[];
+  replace: TextReplacement[];
+  removed: string[];
+};
+
+/** The developer's exact edits to one post's text. A rule that no longer applies stops the run. */
+function applyReplacements(tree: HastNode, replacements: TextReplacement[]): void {
+  const textNodes: HastNode[] = [];
+  const collect = (node: HastNode) => {
+    if (node.type === "text") textNodes.push(node);
+    (node.children ?? []).forEach(collect);
+  };
+  collect(tree);
+
+  for (const { from, to } of replacements) {
+    const matching = textNodes.filter((node) => node.value?.includes(from));
+    if (matching.length !== 1) {
+      throw new StopError(`Replacement "${from}" matched ${matching.length} text nodes, expected 1.`);
+    }
+    matching[0].value = matching[0].value?.replace(from, to);
+    console.log(`Replaced: "${from}" → "${to}"`);
+  }
+}
+
+const matchesAny = (text: string, patterns: RegExp[]) => patterns.some((pattern) => pattern.test(text));
+
+/**
+ * The one exception to verbatim text (the developer's decision): a paragraph made only of
+ * sentences addressed to machines, such as a note that a table is meant to be quoted by AI
+ * engines. Inside a paragraph with other sentences it stops: that needs a person.
+ */
+function isMachineNote(text: string, rules: MachineNoteRules): boolean {
+  if (!matchesAny(text, rules.remove)) return false;
+  const others = text
+    .trim()
+    .split(/(?<=[.!؟])\s+/)
+    .filter((sentence) => !matchesAny(sentence, rules.remove));
+  if (others.length > 0) throw new StopError(`A machine-directed sentence needs a decision: ${text}`);
+  return true;
+}
+
+/** h1 → h2, no attributes but link targets, no empty paragraphs, no machine notes. Other text is never touched. */
+function cleanHast(
+  node: HastNode,
+  snapshot: Set<string>,
+  oldSlugs: Record<string, string>,
+  rules: MachineNoteRules,
+): void {
+  node.children = (node.children ?? []).filter((child) => {
+    if (child.type === "comment") return false;
+    if (child.tagName !== "p") return true;
+    const text = hastText(child);
+    if (isMachineNote(text, rules)) {
+      rules.removed.push(text.trim());
+      return false;
+    }
+    return text.replace(/[\s ]/g, "") !== "";
+  });
+  for (const child of node.children) {
+    if (child.type !== "element") continue;
+    if (!child.tagName || !ALLOWED_IN_POSTS.has(child.tagName)) {
+      throw new StopError(`<${child.tagName}> needs a conversion decision (images are not downloaded).`);
+    }
+    if (child.tagName === "h1") child.tagName = "h2";
+    const href = child.tagName === "a" ? child.properties?.href : undefined;
+    child.properties = typeof href === "string" ? { href: finalHref(href, snapshot, oldSlugs) } : {};
+    cleanHast(child, snapshot, oldSlugs, rules);
+  }
+}
+
+/** Removes machine notes, then refuses any left outside a plain paragraph (a list item, a heading). */
+function cleanPost(
+  tree: HastNode,
+  snapshot: Set<string>,
+  oldSlugs: Record<string, string>,
+  rules: MachineNoteRules,
+): void {
+  applyReplacements(tree, rules.replace);
+  cleanHast(tree, snapshot, oldSlugs, rules);
+  const left = hastText(tree);
+  if (matchesAny(left, rules.remove)) {
+    throw new StopError("A machine-directed sentence remains outside a paragraph: it needs a decision.");
+  }
+  for (const pattern of rules.review) {
+    const match = pattern.exec(left);
+    if (match) {
+      console.log(`Review (kept): "${left.slice(Math.max(0, match.index - 60), match.index + 80).trim()}"`);
+    }
+  }
+}
+
+async function writeMdx(id: number): Promise<void> {
+  const reviewed = (JSON.parse(readFileSync(SLUG_MAP_FILE, "utf8")) as SlugMap).posts.find((p) => p.id === id);
+  if (!reviewed?.fileName) throw new StopError(`Post ${id} has no reviewed file name in ${SLUG_MAP_FILE}.`);
+  const cover = POST_COVERS[id];
+  if (!cover) throw new StopError(`Post ${id} has no cover template in POST_COVERS.`);
+
+  const snapshot = new Set(readSnapshot().flatMap((url) => (url.path === null ? [] : [withSlash(url.path)])));
+  const oldSlugs = JSON.parse(readFileSync(OLD_SLUGS_FILE, "utf8")) as Record<string, string>;
+  const ruleSource = JSON.parse(readFileSync(MACHINE_NOTES_FILE, "utf8")) as {
+    remove: string[];
+    review: string[];
+    replace: TextReplacement[];
+  };
+  const rules: MachineNoteRules = {
+    remove: ruleSource.remove.map((pattern) => new RegExp(pattern, "u")),
+    review: ruleSource.review.map((pattern) => new RegExp(pattern, "u")),
+    replace: ruleSource.replace.filter((rule) => rule.post === id),
+    removed: [],
+  };
+
+  const { data } = (await fetchJson(
+    `${API}/posts/${id}?_fields=id,slug,status,date_gmt,modified_gmt,title,content,yoast_head_json`,
+  )) as JsonResponse;
+  const post = data as ApiPost & { date_gmt: string; modified_gmt: string };
+  const slug = decodeNfc(post.slug);
+  if (post.status !== "publish" || slug !== reviewed.slug) {
+    throw new StopError(`Post ${id} changed since the review: status ${post.status}, slug ${slug}.`);
+  }
+  const seoTitle = post.yoast_head_json?.title;
+  const description = post.yoast_head_json?.description;
+  if (!seoTitle || !description) throw new StopError(`Post ${id} has no Yoast title or description.`);
+
+  const categories = BUILT_CATEGORIES.filter((category) =>
+    reviewed.categories.some((term) => term.slug === category),
+  );
+
+  const converted = await unified()
+    .use(rehypeParse, { fragment: true })
+    .use(() => (tree: unknown) => cleanPost(tree as HastNode, snapshot, oldSlugs, rules))
+    .use(rehypeRemark)
+    .use(remarkGfm, { tablePipeAlign: false })
+    .use(remarkMdx)
+    .use(remarkStringify, { bullet: "-", rule: "-", listItemIndent: "one" })
+    .process(post.content.rendered);
+
+  // JSON strings are valid YAML, which keeps ":" and "|" in titles safe.
+  const quote = (value: string) => JSON.stringify(value);
+  const frontmatter = [
+    "---",
+    `title: ${quote(decodeHtml(post.title.rendered))}`,
+    `seoTitle: ${quote(decodeHtml(seoTitle).replace(/hrwhats/gi, "HRwhats"))}`,
+    `description: ${quote(decodeHtml(description))}`,
+    `slug: ${quote(reviewed.slug)}`,
+    "legacySlugs: []",
+    `date: ${quote(`${post.date_gmt}Z`)}`,
+    `updated: ${quote(`${post.modified_gmt}Z`)}`,
+    `categories: [${categories.join(", ")}]`,
+    "cover:",
+    `  template: ${cover}`,
+    "---",
+    "",
+    "",
+  ].join("\n");
+
+  const file = join("content", "posts", "ar", `${reviewed.fileName}.mdx`);
+  mkdirSync(dirname(file), { recursive: true });
+  writeFileSync(`${file}.tmp`, `${frontmatter}${String(converted)}`, "utf8");
+  renameSync(`${file}.tmp`, file);
+  console.log(`Written: ${file.replaceAll("\\", "/")} (requests sent: ${requestCount})`);
+  console.log(`Machine-directed paragraphs removed from post ${id}: ${rules.removed.length}`);
+  for (const text of rules.removed) console.log(`  ${text}`);
+}
+
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
+  if (args[0] === "--only") {
+    const id = Number(args[1]);
+    if (!Number.isInteger(id) || args.length !== 2) throw new StopError("Usage: --only <post id>");
+    await writeMdx(id);
+    return;
+  }
   if (args.length > 1 || (args[0] && args[0] !== "--apply-names")) {
-    throw new StopError("Usage: node scripts/migrate-wordpress.ts [--apply-names]");
+    throw new StopError("Usage: node scripts/migrate-wordpress.ts [--apply-names | --only <post id>]");
   }
   if (!existsSync(AR_ROUTES_DIR)) {
     throw new StopError(`Run from the project root: ${AR_ROUTES_DIR} not found.`);

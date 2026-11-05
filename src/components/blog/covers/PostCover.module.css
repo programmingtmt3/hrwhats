@@ -1,0 +1,16 @@
+/* The panel every cover template draws on. */
+.frame {
+  overflow: hidden;
+  aspect-ratio: 1200 / 430;
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(60% 95% at 50% 50%, rgb(var(--green-rgb) / 0.4), transparent 72%),
+    linear-gradient(160deg, var(--deep), var(--dark));
+}
+
+@media (max-width: 600px) {
+  .frame {
+    aspect-ratio: 16 / 9;
+    border-radius: var(--r);
+  }
+}

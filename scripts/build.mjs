@@ -35,6 +35,10 @@ function run(command) {
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
+// Compiles content/ into .velite/, which the pages import. A schema or slug error stops here;
+// without --strict, Velite only logs a schema error and silently drops that post.
+run("npx velite build --strict");
+
 // Webpack, not Turbopack: Turbopack builds crashed on Hostinger (CSS-loader subprocess).
 run("npx next build --webpack");
 

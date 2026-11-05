@@ -1,11 +1,11 @@
 import { Link2 } from "lucide-react";
 
 import { LegalHelp } from "@/components/legal/LegalHelp";
-import { LegalToc } from "@/components/legal/LegalToc";
 import styles from "@/components/legal/Legal.module.css";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageGlow } from "@/components/sections/PageGlow";
 import { PageHero } from "@/components/sections/PageHero";
+import { PageToc } from "@/components/shared/PageToc";
 import { format, getDictionary, type Locale } from "@/lib/i18n";
 import type { LegalSlug } from "@/lib/navigation";
 import { breadcrumbJsonLd } from "@/lib/seo";
@@ -28,7 +28,7 @@ export function LegalPage({ locale, slug }: { locale: Locale; slug: LegalSlug })
       <PageGlow>
         <PageHero eyebrow={legal.eyebrow} title={page.title} />
         <div className={`site-container ${styles.layout}`}>
-          <LegalToc items={toc} title={legal.toc.title} label={format(legal.toc.label, { page: page.name })} />
+          <PageToc items={toc} title={legal.toc.title} label={format(legal.toc.label, { page: page.name })} />
           <div className={styles.body}>
             {page.sections.map((section) => (
               <section key={section.id} id={section.id} className={styles.section}>

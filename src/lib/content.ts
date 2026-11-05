@@ -5,6 +5,9 @@
  */
 import { z } from "zod";
 
+import { posts, type Post } from "#site/content";
+
+import categoriesJson from "../../content/data/categories.json";
 import clientsJson from "../../content/data/clients.json";
 import faqJson from "../../content/data/faq.json";
 import packagesJson from "../../content/data/packages.json";
@@ -228,4 +231,39 @@ export function getStartingMonthlyPrice(): number {
 
 export function getCurrency() {
   return packages.currency;
+}
+
+const categorySchema = z.object({ slug: z.string().min(1), name: localized });
+export type Category = z.infer<typeof categorySchema>;
+
+const categories = z.array(categorySchema).parse(categoriesJson);
+
+/** Throws on an unknown slug, so a typo fails the build. */
+export function getCategory(slug: string): Category {
+  const category = categories.find((item) => item.slug === slug);
+  if (!category) throw new Error(`Unknown category "${slug}" in content/data/categories.json`);
+  return category;
+}
+
+export type { Post };
+
+/** Posts of a locale, newest first. Frontmatter is validated in velite.config.ts. */
+export function getPosts(locale: Locale): Post[] {
+  return posts
+    .filter((post) => post.locale === locale)
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
+/** The page receives the slug percent-encoded and generateMetadata receives it decoded. */
+export function getPostBySlug(locale: Locale, slug: string): Post | undefined {
+  const decoded = decodeURIComponent(slug).normalize("NFC");
+  return getPosts(locale).find((post) => post.slug === decoded);
+}
+
+/** Newest posts sharing a category with this one. */
+export function getRelatedPosts(locale: Locale, post: Post, limit = 3): Post[] {
+  return getPosts(locale)
+    .filter((other) => other.slug !== post.slug)
+    .filter((other) => other.categories.some((slug) => post.categories.includes(slug)))
+    .slice(0, limit);
 }

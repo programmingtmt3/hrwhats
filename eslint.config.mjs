@@ -12,6 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    ".velite/**",
     // Design reference only — not part of the app.
     "design/**",
   ]),
