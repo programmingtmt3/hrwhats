@@ -1,0 +1,2861 @@
+{
+  "source": "https://hrwhats.com/wp-json/wp/v2/posts",
+  "fetchedAt": "2026-11-05T12:27:34.848Z",
+  "total": 38,
+  "newsCheck": {
+    "isPost": false,
+    "pageId": 14,
+    "pageStatus": "publish",
+    "pageForPosts": 14,
+    "pageForPostsNote": "14",
+    "conclusion": "archive-page",
+    "evidence": [
+      "Among the published posts: no",
+      "Page with the slug \"news\": id 14, status publish",
+      "page_for_posts equals that page's id"
+    ]
+  },
+  "posts": [
+    {
+      "id": 1591,
+      "title": "دليل التسويق عبر واتساب 2026: أفضل طريقة لجذب العملاء وزيادة المبيعات بسرعة",
+      "slug": "دليل-التسويق-عبر-واتساب-2026-أفضل-طريقة-لج",
+      "link": "https://hrwhats.com/%d8%af%d9%84%d9%8a%d9%84-%d8%a7%d9%84%d8%aa%d8%b3%d9%88%d9%8a%d9%82-%d8%b9%d8%a8%d8%b1-%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-2026-%d8%a3%d9%81%d8%b6%d9%84-%d8%b7%d8%b1%d9%8a%d9%82%d8%a9-%d9%84%d8%ac/",
+      "date": "2026-04-23T13:56:01",
+      "modified": "2026-04-24T08:09:07",
+      "fileName": "whatsapp-marketing-guide",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1477,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260422_232435_Chrome-1.jpg",
+        "width": 1080,
+        "height": 944,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "دليل التسويق عبر واتساب 2026: أفضل طريقة لجذب العملاء وزيادة المبيعات بسرعة - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/دليل-التسويق-عبر-واتساب-2026-أفضل-طريقة-لج/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260422_232435_Chrome-1.jpg"
+      },
+      "content": {
+        "words": 602,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 70,
+            "strong": 10,
+            "h2": 1,
+            "h3": 2,
+            "h4": 1,
+            "h5": 1,
+            "h6": 6
+          }
+        }
+      }
+    },
+    {
+      "id": 1613,
+      "title": "👉 أسرار التسويق وبناء العملاء 2026: دليل احترافي لزيادة المبيعات وبناء قاعدة عملاء قوية",
+      "slug": "👉-أسرار-التسويق-وبناء-العملاء-2026-دليل-ا",
+      "link": "https://hrwhats.com/%f0%9f%91%89-%d8%a3%d8%b3%d8%b1%d8%a7%d8%b1-%d8%a7%d9%84%d8%aa%d8%b3%d9%88%d9%8a%d9%82-%d9%88%d8%a8%d9%86%d8%a7%d8%a1-%d8%a7%d9%84%d8%b9%d9%85%d9%84%d8%a7%d8%a1-2026-%d8%af%d9%84%d9%8a%d9%84-%d8%a7/",
+      "date": "2026-04-23T14:42:35",
+      "modified": "2026-04-25T09:51:52",
+      "fileName": "marketing-and-customer-building-secrets",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1616,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_000000005360720a9ba4c0745546a336.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "👉 أسرار التسويق وبناء العملاء 2026: دليل احترافي لزيادة المبيعات وبناء قاعدة عملاء قوية - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/👉-أسرار-التسويق-وبناء-العملاء-2026-دليل-ا/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_000000005360720a9ba4c0745546a336.png"
+      },
+      "content": {
+        "words": 622,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 68,
+            "strong": 12,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 4
+          }
+        }
+      }
+    },
+    {
+      "id": 1623,
+      "title": "👉 بناء العلامة التجارية 2026: كيف تصنع براند قوي يجذب العملاء تلقائيًا",
+      "slug": "👉-بناء-العلامة-التجارية-2026-كيف-تصنع-برا",
+      "link": "https://hrwhats.com/%f0%9f%91%89-%d8%a8%d9%86%d8%a7%d8%a1-%d8%a7%d9%84%d8%b9%d9%84%d8%a7%d9%85%d8%a9-%d8%a7%d9%84%d8%aa%d8%ac%d8%a7%d8%b1%d9%8a%d8%a9-2026-%d9%83%d9%8a%d9%81-%d8%aa%d8%b5%d9%86%d8%b9-%d8%a8%d8%b1%d8%a7/",
+      "date": "2026-04-23T17:13:55",
+      "modified": "2026-04-23T17:58:48",
+      "fileName": "brand-building-guide",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1627,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260423_171034_Canva-1.jpg",
+        "width": 787,
+        "height": 419,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "👉 بناء العلامة التجارية 2026: كيف تصنع براند قوي يجذب العملاء تلقائيًا - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/👉-بناء-العلامة-التجارية-2026-كيف-تصنع-برا/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260423_171034_Canva-1.jpg"
+      },
+      "content": {
+        "words": 731,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 118,
+            "strong": 25,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 7,
+            "br": 19
+          }
+        }
+      }
+    },
+    {
+      "id": 1640,
+      "title": "👉 التسويق بالمحتوى 2026: كيف تجذب العملاء بمحتوى احترافي",
+      "slug": "👉-التسويق-بالمحتوى-2026-كيف-تجذب-العملاء",
+      "link": "https://hrwhats.com/%f0%9f%91%89-%d8%a7%d9%84%d8%aa%d8%b3%d9%88%d9%8a%d9%82-%d8%a8%d8%a7%d9%84%d9%85%d8%ad%d8%aa%d9%88%d9%89-2026-%d9%83%d9%8a%d9%81-%d8%aa%d8%ac%d8%b0%d8%a8-%d8%a7%d9%84%d8%b9%d9%85%d9%84%d8%a7%d8%a1/",
+      "date": "2026-04-23T20:18:49",
+      "modified": "2026-04-23T20:18:50",
+      "fileName": "content-marketing-guide",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1641,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/شعار-أزرق-عصري-عن-التسويق-الرقمي_20260423_202122_٠٠٠٠.png",
+        "width": 2000,
+        "height": 2000,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "👉 التسويق بالمحتوى 2026: كيف تجذب العملاء بمحتوى احترافي - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/👉-التسويق-بالمحتوى-2026-كيف-تجذب-العملاء/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/شعار-أزرق-عصري-عن-التسويق-الرقمي_20260423_202122_٠٠٠٠.png"
+      },
+      "content": {
+        "words": 587,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 1,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph",
+            "wp-block-table"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 99,
+            "strong": 31,
+            "br": 2,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 6,
+            "figure": 1,
+            "table": 1,
+            "tbody": 1,
+            "tr": 5,
+            "td": 10
+          }
+        }
+      }
+    },
+    {
+      "id": 1648,
+      "title": "👉 الفرق بين التسويق عبر واتساب والسوشيال ميديا: أيهما أفضل؟",
+      "slug": "👉-الفرق-بين-التسويق-عبر-واتساب-والسوش",
+      "link": "https://hrwhats.com/%f0%9f%91%89-%d8%a7%d9%84%d9%81%d8%b1%d9%82-%d8%a8%d9%8a%d9%86-%d8%a7%d9%84%d8%aa%d8%b3%d9%88%d9%8a%d9%82-%d8%b9%d8%a8%d8%b1-%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-%d9%88%d8%a7%d9%84%d8%b3%d9%88%d8%b4/",
+      "date": "2026-04-24T00:02:18",
+      "modified": "2026-04-24T00:04:03",
+      "fileName": "whatsapp-vs-social-media-marketing",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1649,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260423_223615_Canva.jpg",
+        "width": 993,
+        "height": 551,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "👉 الفرق بين التسويق عبر واتساب والسوشيال ميديا: أيهما أفضل؟ - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/👉-الفرق-بين-التسويق-عبر-واتساب-والسوش/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260423_223615_Canva.jpg"
+      },
+      "content": {
+        "words": 485,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 1,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph",
+            "wp-block-table"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 66,
+            "strong": 17,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "figure": 1,
+            "table": 1,
+            "tbody": 1,
+            "tr": 6,
+            "td": 18,
+            "h5": 1,
+            "h6": 4,
+            "br": 6
+          }
+        }
+      }
+    },
+    {
+      "id": 1655,
+      "title": "قوالب رسائل واتساب جاهزة تزيد معدل الرد والشراء (دليل عملي 2026)",
+      "slug": "قوالب-رسائل-واتساب-جاهزة-تزيد-معدل-الر",
+      "link": "https://hrwhats.com/%d9%82%d9%88%d8%a7%d9%84%d8%a8-%d8%b1%d8%b3%d8%a7%d8%a6%d9%84-%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-%d8%ac%d8%a7%d9%87%d8%b2%d8%a9-%d8%aa%d8%b2%d9%8a%d8%af-%d9%85%d8%b9%d8%af%d9%84-%d8%a7%d9%84%d8%b1/",
+      "date": "2026-04-24T11:55:53",
+      "modified": "2026-04-24T12:04:15",
+      "fileName": "whatsapp-message-templates",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1658,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/أزرق-وأبيض-بسيط-إدارة-أعمال-رسم-بياني_20260424_120702_٠٠٠٠.png",
+        "width": 1024,
+        "height": 768,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "قوالب رسائل واتساب جاهزة تزيد معدل الرد والشراء (دليل عملي 2026) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/قوالب-رسائل-واتساب-جاهزة-تزيد-معدل-الر/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/أزرق-وأبيض-بسيط-إدارة-أعمال-رسم-بياني_20260424_120702_٠٠٠٠.png"
+      },
+      "content": {
+        "words": 563,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [
+            "text:curly-braces"
+          ],
+          "tags": {
+            "p": 72,
+            "strong": 34,
+            "h2": 1,
+            "br": 26,
+            "h3": 2,
+            "h4": 1,
+            "h5": 1,
+            "h6": 6,
+            "ol": 1,
+            "li": 4
+          }
+        }
+      }
+    },
+    {
+      "id": 1665,
+      "title": "استراتيجيات التسويق الرقمي 2026: دليل شامل لزيادة المبيعات عبر الإنترنت وتحسين SEO وجذب العملاء",
+      "slug": "استراتيجيات-التسويق-الرقمي-2026-دليل-شام",
+      "link": "https://hrwhats.com/%d8%a7%d8%b3%d8%aa%d8%b1%d8%a7%d8%aa%d9%8a%d8%ac%d9%8a%d8%a7%d8%aa-%d8%a7%d9%84%d8%aa%d8%b3%d9%88%d9%8a%d9%82-%d8%a7%d9%84%d8%b1%d9%82%d9%85%d9%8a-2026-%d8%af%d9%84%d9%8a%d9%84-%d8%b4%d8%a7%d9%85/",
+      "date": "2026-04-24T16:47:46",
+      "modified": "2026-04-24T16:47:47",
+      "fileName": "digital-marketing-strategies",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1675,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Professional-Digital-Marketing-Presentation_20260424_180445_٠٠٠٠-3.jpg",
+        "width": 698,
+        "height": 374,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "استراتيجيات التسويق الرقمي 2026: دليل شامل لزيادة المبيعات عبر الإنترنت وتحسين SEO وجذب العملاء - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/استراتيجيات-التسويق-الرقمي-2026-دليل-شام/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Professional-Digital-Marketing-Presentation_20260424_180445_٠٠٠٠-3.jpg"
+      },
+      "content": {
+        "words": 590,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 93,
+            "strong": 28,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 11,
+            "br": 11,
+            "ol": 1,
+            "li": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 1680,
+      "title": "👉 كيف تبدأ مشروع تسويق ناجح من الصفر خطوة بخطوة",
+      "slug": "👉-كيف-تبدأ-مشروع-تسويق-ناجح-من-الصفر-خط",
+      "link": "https://hrwhats.com/%f0%9f%91%89-%d9%83%d9%8a%d9%81-%d8%aa%d8%a8%d8%af%d8%a3-%d9%85%d8%b4%d8%b1%d9%88%d8%b9-%d8%aa%d8%b3%d9%88%d9%8a%d9%82-%d9%86%d8%a7%d8%ac%d8%ad-%d9%85%d9%86-%d8%a7%d9%84%d8%b5%d9%81%d8%b1-%d8%ae%d8%b7/",
+      "date": "2026-04-24T19:11:06",
+      "modified": "2026-04-24T19:27:25",
+      "fileName": "start-marketing-project-from-scratch",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1681,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000003887243968ca1068d7cb9f5.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "👉 كيف تبدأ مشروع تسويق ناجح من الصفر خطوة بخطوة - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/👉-كيف-تبدأ-مشروع-تسويق-ناجح-من-الصفر-خط/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000003887243968ca1068d7cb9f5.png"
+      },
+      "content": {
+        "words": 520,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 93,
+            "strong": 16,
+            "h2": 1,
+            "br": 39,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 14
+          }
+        }
+      }
+    },
+    {
+      "id": 1690,
+      "title": "أخطاء التسويق الشائعة التي تدمر حملاتك التسويقية (2026)",
+      "slug": "أخطاء-التسويق-الشائعة-التي-تدمر-حملات",
+      "link": "https://hrwhats.com/%d8%a3%d8%ae%d8%b7%d8%a7%d8%a1-%d8%a7%d9%84%d8%aa%d8%b3%d9%88%d9%8a%d9%82-%d8%a7%d9%84%d8%b4%d8%a7%d8%a6%d8%b9%d8%a9-%d8%a7%d9%84%d8%aa%d9%8a-%d8%aa%d8%af%d9%85%d8%b1-%d8%ad%d9%85%d9%84%d8%a7%d8%aa/",
+      "date": "2026-04-24T23:36:46",
+      "modified": "2026-04-24T23:41:41",
+      "fileName": "common-marketing-mistakes",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1691,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000027a471f49883b8d84db1babd.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "أخطاء التسويق الشائعة التي تدمر حملاتك التسويقية (2026) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/أخطاء-التسويق-الشائعة-التي-تدمر-حملات/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000027a471f49883b8d84db1babd.png"
+      },
+      "content": {
+        "words": 755,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 124,
+            "strong": 29,
+            "br": 32,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "ol": 2,
+            "li": 2,
+            "h6": 7
+          }
+        }
+      }
+    },
+    {
+      "id": 1772,
+      "title": "🟢 جذب العملاء أونلاين 2026 | دليل شامل لزيادة العملاء عبر الإنترنت وبناء مشروع ناجح",
+      "slug": "🟢-جذب-العملاء-أونلاين-2026-دليل-شامل-لزيا",
+      "link": "https://hrwhats.com/%f0%9f%9f%a2-%d8%ac%d8%b0%d8%a8-%d8%a7%d9%84%d8%b9%d9%85%d9%84%d8%a7%d8%a1-%d8%a3%d9%88%d9%86%d9%84%d8%a7%d9%8a%d9%86-2026-%d8%af%d9%84%d9%8a%d9%84-%d8%b4%d8%a7%d9%85%d9%84-%d9%84%d8%b2%d9%8a%d8%a7/",
+      "date": "2026-04-25T13:45:26",
+      "modified": "2026-04-25T15:20:55",
+      "fileName": "attract-customers-online",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1773,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/YouTube-thumbnail-ازرق-عن-التسويق-الالكتروني_20260425_164347_٠٠٠٠.png",
+        "width": 1280,
+        "height": 720,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "🟢 جذب العملاء أونلاين 2026 | دليل شامل لزيادة العملاء عبر الإنترنت وبناء مشروع ناجح - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/🟢-جذب-العملاء-أونلاين-2026-دليل-شامل-لزيا/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/YouTube-thumbnail-ازرق-عن-التسويق-الالكتروني_20260425_164347_٠٠٠٠.png"
+      },
+      "content": {
+        "words": 586,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 111,
+            "strong": 28,
+            "br": 7,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 4
+          }
+        }
+      }
+    },
+    {
+      "id": 1849,
+      "title": "أسرار نجاح المشاريع الصغيرة 2026 | كيف تحقق أرباح مستمرة وتبني مشروع ناجح من الصفر",
+      "slug": "أسرار-نجاح-المشاريع-الصغيرة-2026-كيف-تحقق",
+      "link": "https://hrwhats.com/%d8%a3%d8%b3%d8%b1%d8%a7%d8%b1-%d9%86%d8%ac%d8%a7%d8%ad-%d8%a7%d9%84%d9%85%d8%b4%d8%a7%d8%b1%d9%8a%d8%b9-%d8%a7%d9%84%d8%b5%d8%ba%d9%8a%d8%b1%d8%a9-2026-%d9%83%d9%8a%d9%81-%d8%aa%d8%ad%d9%82%d9%82/",
+      "date": "2026-04-25T19:34:54",
+      "modified": "2026-04-25T20:12:55",
+      "fileName": "small-business-success-secrets",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1853,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000058847246a8f12c5572c4b7fb-1.png",
+        "width": 1536,
+        "height": 798,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "أسرار نجاح المشاريع الصغيرة 2026 | كيف تحقق أرباح مستمرة وتبني مشروع ناجح من الصفر - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/أسرار-نجاح-المشاريع-الصغيرة-2026-كيف-تحقق/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000058847246a8f12c5572c4b7fb-1.png"
+      },
+      "content": {
+        "words": 528,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 105,
+            "br": 13,
+            "strong": 18,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 3
+          }
+        }
+      }
+    },
+    {
+      "id": 1886,
+      "title": "الاستفادة من خدمات الواتساب شات بوت لزيادة المبيعات (دليل شامل لتحسين نتائجك)",
+      "slug": "الاستفادة-من-خدمات-الواتساب-شات-بوت-لز",
+      "link": "https://hrwhats.com/%d8%a7%d9%84%d8%a7%d8%b3%d8%aa%d9%81%d8%a7%d8%af%d8%a9-%d9%85%d9%86-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a7%d9%84%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-%d8%b4%d8%a7%d8%aa-%d8%a8%d9%88%d8%aa-%d9%84%d8%b2/",
+      "date": "2026-04-26T10:44:04",
+      "modified": "2026-04-26T10:50:24",
+      "fileName": "whatsapp-chatbot-increase-sales",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1898,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000012c4724683e4b26f77965816-3.png",
+        "width": 731,
+        "height": 668,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "الاستفادة من خدمات الواتساب شات بوت لزيادة المبيعات (دليل شامل لتحسين نتائجك) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/الاستفادة-من-خدمات-الواتساب-شات-بوت-لز/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000012c4724683e4b26f77965816-3.png"
+      },
+      "content": {
+        "words": 685,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 81,
+            "strong": 14,
+            "br": 1,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 1901,
+      "title": "الطرق التي يمكن أن تعزز بها خدمات الشات بوت إنتاجية عملك (دليل شامل 2026)",
+      "slug": "الطرق-التي-يمكن-أن-تعزز-بها-خدمات-الشات",
+      "link": "https://hrwhats.com/%d8%a7%d9%84%d8%b7%d8%b1%d9%82-%d8%a7%d9%84%d8%aa%d9%8a-%d9%8a%d9%85%d9%83%d9%86-%d8%a3%d9%86-%d8%aa%d8%b9%d8%b2%d8%b2-%d8%a8%d9%87%d8%a7-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a7%d9%84%d8%b4%d8%a7%d8%aa/",
+      "date": "2026-04-26T12:28:05",
+      "modified": "2026-04-26T12:29:56",
+      "fileName": "chatbot-business-productivity",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1903,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_00000000228872438f6acac942ff187e.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "الطرق التي يمكن أن تعزز بها خدمات الشات بوت إنتاجية عملك (دليل شامل 2026) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/الطرق-التي-يمكن-أن-تعزز-بها-خدمات-الشات/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_00000000228872438f6acac942ff187e.png"
+      },
+      "content": {
+        "words": 631,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 88,
+            "strong": 25,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 1905,
+      "title": "كيفية استخدام حساب WhatsApp عبر هواتف متعددة: الإعلان عن ميزة جديدة في WhatsApp (دليل شامل 2026)",
+      "slug": "كيفية-استخدام-حساب-whatsapp-عبر-هواتف-متعددة",
+      "link": "https://hrwhats.com/%d9%83%d9%8a%d9%81%d9%8a%d8%a9-%d8%a7%d8%b3%d8%aa%d8%ae%d8%af%d8%a7%d9%85-%d8%ad%d8%b3%d8%a7%d8%a8-whatsapp-%d8%b9%d8%a8%d8%b1-%d9%87%d9%88%d8%a7%d8%aa%d9%81-%d9%85%d8%aa%d8%b9%d8%af%d8%af%d8%a9/",
+      "date": "2026-04-26T13:18:40",
+      "modified": "2026-04-26T13:18:40",
+      "fileName": "whatsapp-account-multiple-phones",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1906,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000041fc72438fce8e515312a19d.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "كيفية استخدام حساب WhatsApp عبر هواتف متعددة: الإعلان عن ميزة جديدة في WhatsApp (دليل شامل 2026) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/كيفية-استخدام-حساب-whatsapp-عبر-هواتف-متعددة/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000041fc72438fce8e515312a19d.png"
+      },
+      "content": {
+        "words": 575,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 59,
+            "strong": 21,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 3
+          }
+        }
+      }
+    },
+    {
+      "id": 1908,
+      "title": "إمكانيات الواتساب شات بوت للرعاية الصحية والخدمات الطبية",
+      "slug": "إمكانيات-الواتساب-شات-بوت-للرعاية-الص",
+      "link": "https://hrwhats.com/%d8%a5%d9%85%d9%83%d8%a7%d9%86%d9%8a%d8%a7%d8%aa-%d8%a7%d9%84%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-%d8%b4%d8%a7%d8%aa-%d8%a8%d9%88%d8%aa-%d9%84%d9%84%d8%b1%d8%b9%d8%a7%d9%8a%d8%a9-%d8%a7%d9%84%d8%b5/",
+      "date": "2026-04-26T14:21:43",
+      "modified": "2026-04-26T14:21:43",
+      "fileName": "whatsapp-chatbot-healthcare",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1910,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260426_172027_Chrome.jpg",
+        "width": 986,
+        "height": 800,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "إمكانيات الواتساب شات بوت للرعاية الصحية والخدمات الطبية - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/إمكانيات-الواتساب-شات-بوت-للرعاية-الص/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260426_172027_Chrome.jpg"
+      },
+      "content": {
+        "words": 585,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 62,
+            "strong": 23,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 3
+          }
+        }
+      }
+    },
+    {
+      "id": 1912,
+      "title": "تأثير الذكاء الاصطناعي وخدمات الشات بوت على سوق العمل 2026 | التحول الرقمي وفرص المستقبل",
+      "slug": "تأثير-الذكاء-الاصطناعي-وخدمات-الشات-ب",
+      "link": "https://hrwhats.com/%d8%aa%d8%a3%d8%ab%d9%8a%d8%b1-%d8%a7%d9%84%d8%b0%d9%83%d8%a7%d8%a1-%d8%a7%d9%84%d8%a7%d8%b5%d8%b7%d9%86%d8%a7%d8%b9%d9%8a-%d9%88%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a7%d9%84%d8%b4%d8%a7%d8%aa-%d8%a8/",
+      "date": "2026-04-26T14:43:51",
+      "modified": "2026-04-26T21:34:29",
+      "fileName": "ai-chatbots-job-market",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1913,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260426_172214_Chrome.jpg",
+        "width": 985,
+        "height": 497,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "تأثير الذكاء الاصطناعي وخدمات الشات بوت على سوق العمل 2026 | التحول الرقمي وفرص المستقبل - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/تأثير-الذكاء-الاصطناعي-وخدمات-الشات-ب/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260426_172214_Chrome.jpg"
+      },
+      "content": {
+        "words": 599,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 74,
+            "strong": 21,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 3
+          }
+        }
+      }
+    },
+    {
+      "id": 1916,
+      "title": "مميزات وفوائد الإعلان عبر الإنترنت 2026 | دليل شامل للتسويق الرقمي وزيادة المبيعات",
+      "slug": "مميزات-وفوائد-الإعلان-عبر-الإنترنت-2026-د",
+      "link": "https://hrwhats.com/%d9%85%d9%85%d9%8a%d8%b2%d8%a7%d8%aa-%d9%88%d9%81%d9%88%d8%a7%d8%a6%d8%af-%d8%a7%d9%84%d8%a5%d8%b9%d9%84%d8%a7%d9%86-%d8%b9%d8%a8%d8%b1-%d8%a7%d9%84%d8%a5%d9%86%d8%aa%d8%b1%d9%86%d8%aa-2026-%d8%af/",
+      "date": "2026-04-26T21:33:41",
+      "modified": "2026-04-26T21:37:10",
+      "fileName": "online-advertising-benefits",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1918,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_000000000740720aa715f9efe14bf770.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "مميزات وفوائد الإعلان عبر الإنترنت 2026 | دليل شامل للتسويق الرقمي وزيادة المبيعات - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/مميزات-وفوائد-الإعلان-عبر-الإنترنت-2026-د/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_000000000740720aa715f9efe14bf770.png"
+      },
+      "content": {
+        "words": 568,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 78,
+            "strong": 19,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 1920,
+      "title": "أهمية الاستثمار في موقعك الإلكتروني 2026 | لماذا يعد موقعك أصلًا رقميًا لا غنى عنه؟",
+      "slug": "أهمية-الاستثمار-في-موقعك-الإلكتروني-2026",
+      "link": "https://hrwhats.com/%d8%a3%d9%87%d9%85%d9%8a%d8%a9-%d8%a7%d9%84%d8%a7%d8%b3%d8%aa%d8%ab%d9%85%d8%a7%d8%b1-%d9%81%d9%8a-%d9%85%d9%88%d9%82%d8%b9%d9%83-%d8%a7%d9%84%d8%a5%d9%84%d9%83%d8%aa%d8%b1%d9%88%d9%86%d9%8a-2026/",
+      "date": "2026-04-26T22:16:11",
+      "modified": "2026-04-27T16:00:22",
+      "fileName": "website-investment-importance",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1921,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_004236_Chrome.jpg",
+        "width": 1002,
+        "height": 567,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "أهمية الاستثمار في موقعك الإلكتروني 2026 | لماذا يعد موقعك أصلًا رقميًا لا غنى عنه؟ - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/أهمية-الاستثمار-في-موقعك-الإلكتروني-2026/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_004236_Chrome.jpg"
+      },
+      "content": {
+        "words": 579,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 79,
+            "br": 11,
+            "strong": 4,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 8
+          }
+        }
+      }
+    },
+    {
+      "id": 1923,
+      "title": "كيفية زيادة المبيعات في مجال العقارات بواسطة الواتساب شات بوت 2026 | دليل شامل لنجاح التسويق العقاري",
+      "slug": "كيفية-زيادة-المبيعات-في-مجال-العقارات",
+      "link": "https://hrwhats.com/%d9%83%d9%8a%d9%81%d9%8a%d8%a9-%d8%b2%d9%8a%d8%a7%d8%af%d8%a9-%d8%a7%d9%84%d9%85%d8%a8%d9%8a%d8%b9%d8%a7%d8%aa-%d9%81%d9%8a-%d9%85%d8%ac%d8%a7%d9%84-%d8%a7%d9%84%d8%b9%d9%82%d8%a7%d8%b1%d8%a7%d8%aa/",
+      "date": "2026-04-26T22:43:26",
+      "modified": "2026-04-26T22:43:27",
+      "fileName": "whatsapp-chatbot-real-estate-sales",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1924,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_000000008d1c720a8eabb7e5aefcc830.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "كيفية زيادة المبيعات في مجال العقارات بواسطة الواتساب شات بوت 2026 | دليل شامل لنجاح التسويق العقاري - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/كيفية-زيادة-المبيعات-في-مجال-العقارات/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_000000008d1c720a8eabb7e5aefcc830.png"
+      },
+      "content": {
+        "words": 465,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 82,
+            "strong": 17,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 4,
+            "br": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 1926,
+      "title": "استخدام WhatsApp لتقوية علاقات العملاء في التجارة الإلكترونية 2026 | دليل شامل لبناء ولاء العملاء وزيادة المبيعات",
+      "slug": "استخدام-whatsapp-لتقوية-علاقات-العملاء-في-الت",
+      "link": "https://hrwhats.com/%d8%a7%d8%b3%d8%aa%d8%ae%d8%af%d8%a7%d9%85-whatsapp-%d9%84%d8%aa%d9%82%d9%88%d9%8a%d8%a9-%d8%b9%d9%84%d8%a7%d9%82%d8%a7%d8%aa-%d8%a7%d9%84%d8%b9%d9%85%d9%84%d8%a7%d8%a1-%d9%81%d9%8a-%d8%a7%d9%84%d8%aa/",
+      "date": "2026-04-26T23:12:55",
+      "modified": "2026-04-26T23:12:56",
+      "fileName": "whatsapp-ecommerce-customer-relationships",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1927,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_014446_Chrome.jpg",
+        "width": 990,
+        "height": 610,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "استخدام WhatsApp لتقوية علاقات العملاء في التجارة الإلكترونية 2026 | دليل شامل لبناء ولاء العملاء وزيادة المبيعات - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/استخدام-whatsapp-لتقوية-علاقات-العملاء-في-الت/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_014446_Chrome.jpg"
+      },
+      "content": {
+        "words": 495,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 86,
+            "strong": 20,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 6,
+            "br": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 1929,
+      "title": "مزايا WhatsApp Business API لتبسيط التواصل مع العملاء وتعزيز المبيعات 2026 | دليل شامل للشركات",
+      "slug": "مزايا-whatsapp-business-api-لتبسيط-التواصل-مع-العملاء-و",
+      "link": "https://hrwhats.com/%d9%85%d8%b2%d8%a7%d9%8a%d8%a7-whatsapp-business-api-%d9%84%d8%aa%d8%a8%d8%b3%d9%8a%d8%b7-%d8%a7%d9%84%d8%aa%d9%88%d8%a7%d8%b5%d9%84-%d9%85%d8%b9-%d8%a7%d9%84%d8%b9%d9%85%d9%84%d8%a7%d8%a1-%d9%88/",
+      "date": "2026-04-27T00:22:01",
+      "modified": "2026-04-27T00:22:02",
+      "fileName": "whatsapp-business-api-benefits",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1934,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_024236_Chrome-1.jpg",
+        "width": 908,
+        "height": 887,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "مزايا WhatsApp Business API لتبسيط التواصل مع العملاء وتعزيز المبيعات 2026 | دليل شامل للشركات - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/مزايا-whatsapp-business-api-لتبسيط-التواصل-مع-العملاء-و/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_024236_Chrome-1.jpg"
+      },
+      "content": {
+        "words": 540,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 92,
+            "strong": 22,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "br": 6,
+            "h5": 1,
+            "h6": 3
+          }
+        }
+      }
+    },
+    {
+      "id": 1936,
+      "title": "إعادة بناء دعم العملاء باستخدام حلول الذكاء الاصطناعي 2026 | دليل شامل لتحسين تجربة العملاء وزيادة الكفاءة",
+      "slug": "إعادة-بناء-دعم-العملاء-باستخدام-حلول-ا",
+      "link": "https://hrwhats.com/%d8%a5%d8%b9%d8%a7%d8%af%d8%a9-%d8%a8%d9%86%d8%a7%d8%a1-%d8%af%d8%b9%d9%85-%d8%a7%d9%84%d8%b9%d9%85%d9%84%d8%a7%d8%a1-%d8%a8%d8%a7%d8%b3%d8%aa%d8%ae%d8%af%d8%a7%d9%85-%d8%ad%d9%84%d9%88%d9%84-%d8%a7/",
+      "date": "2026-04-27T01:00:03",
+      "modified": "2026-04-27T01:00:03",
+      "fileName": "ai-customer-support",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 1937,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000033407246bee3e84ef51b9560-1.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "إعادة بناء دعم العملاء باستخدام حلول الذكاء الاصطناعي 2026 | دليل شامل لتحسين تجربة العملاء وزيادة الكفاءة - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/إعادة-بناء-دعم-العملاء-باستخدام-حلول-ا/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_0000000033407246bee3e84ef51b9560-1.png"
+      },
+      "content": {
+        "words": 570,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 71,
+            "strong": 21,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 3,
+            "br": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 1998,
+      "title": "كيف يمكن أن تساعد خدمات الواتساب شات بوت في تحسين الاحتفاظ بالعملاء؟ (دليل شامل 2026)",
+      "slug": "كيف-يمكن-أن-تساعد-خدمات-الواتساب-شات-بو",
+      "link": "https://hrwhats.com/%d9%83%d9%8a%d9%81-%d9%8a%d9%85%d9%83%d9%86-%d8%a3%d9%86-%d8%aa%d8%b3%d8%a7%d8%b9%d8%af-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a7%d9%84%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-%d8%b4%d8%a7%d8%aa-%d8%a8%d9%88/",
+      "date": "2026-04-27T10:12:15",
+      "modified": "2026-04-27T10:12:16",
+      "fileName": "whatsapp-chatbot-customer-retention",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 2000,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/file_00000000ef387246ad702dd59591856e.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "كيف يمكن أن تساعد خدمات الواتساب شات بوت في تحسين الاحتفاظ بالعملاء؟ (دليل شامل 2026) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/كيف-يمكن-أن-تساعد-خدمات-الواتساب-شات-بو/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/file_00000000ef387246ad702dd59591856e.png"
+      },
+      "content": {
+        "words": 625,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 87,
+            "strong": 15,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 2010,
+      "title": "WhatsApp يضيف ميزة مهمة “قفل الدردشة – Chat Lock” الجديدة لتعزيز خصوصية المستخدم (دليل شامل 2026)",
+      "slug": "whatsapp-يضيف-ميزة-مهمة-قفل-الدردشة-chat-lock-ال",
+      "link": "https://hrwhats.com/whatsapp-%d9%8a%d8%b6%d9%8a%d9%81-%d9%85%d9%8a%d8%b2%d8%a9-%d9%85%d9%87%d9%85%d8%a9-%d9%82%d9%81%d9%84-%d8%a7%d9%84%d8%af%d8%b1%d8%af%d8%b4%d8%a9-chat-lock-%d8%a7%d9%84/",
+      "date": "2026-04-27T10:44:08",
+      "modified": "2026-04-27T10:44:09",
+      "fileName": "whatsapp-chat-lock-feature",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 2025,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_131615_Chrome.jpg",
+        "width": 987,
+        "height": 562,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "WhatsApp يضيف ميزة مهمة “قفل الدردشة – Chat Lock” الجديدة لتعزيز خصوصية المستخدم (دليل شامل 2026) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/whatsapp-يضيف-ميزة-مهمة-قفل-الدردشة-chat-lock-ال/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_131615_Chrome.jpg"
+      },
+      "content": {
+        "words": 586,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 15,
+            "br": 89,
+            "strong": 24,
+            "h6": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 2030,
+      "title": "فوائد استخدام خدمات الشات بوت في التوظيف والموارد البشرية (دليل شامل 2026)",
+      "slug": "فوائد-استخدام-خدمات-الشات-بوت-في-التوظ",
+      "link": "https://hrwhats.com/%d9%81%d9%88%d8%a7%d8%a6%d8%af-%d8%a7%d8%b3%d8%aa%d8%ae%d8%af%d8%a7%d9%85-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a7%d9%84%d8%b4%d8%a7%d8%aa-%d8%a8%d9%88%d8%aa-%d9%81%d9%8a-%d8%a7%d9%84%d8%aa%d9%88%d8%b8/",
+      "date": "2026-04-27T11:01:18",
+      "modified": "2026-04-27T11:01:19",
+      "fileName": "chatbot-recruitment-hr",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 2038,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_134551_Chrome.jpg",
+        "width": 984,
+        "height": 694,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "فوائد استخدام خدمات الشات بوت في التوظيف والموارد البشرية (دليل شامل 2026) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/فوائد-استخدام-خدمات-الشات-بوت-في-التوظ/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_134551_Chrome.jpg"
+      },
+      "content": {
+        "words": 579,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 9,
+            "br": 118,
+            "strong": 20
+          }
+        }
+      }
+    },
+    {
+      "id": 2041,
+      "title": "دليل المبتدئين لتكامل واستخدام WhatsApp Business API (شرح شامل 2026)",
+      "slug": "دليل-المبتدئين-لتكامل-واستخدام-whatsapp-business-api-ش",
+      "link": "https://hrwhats.com/%d8%af%d9%84%d9%8a%d9%84-%d8%a7%d9%84%d9%85%d8%a8%d8%aa%d8%af%d8%a6%d9%8a%d9%86-%d9%84%d8%aa%d9%83%d8%a7%d9%85%d9%84-%d9%88%d8%a7%d8%b3%d8%aa%d8%ae%d8%af%d8%a7%d9%85-whatsapp-business-api-%d8%b4/",
+      "date": "2026-04-27T13:33:35",
+      "modified": "2026-04-27T15:53:37",
+      "fileName": "whatsapp-business-api-beginners-guide",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 2054,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_140703_Chrome-1.jpg",
+        "width": 1017,
+        "height": 497,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "دليل المبتدئين لتكامل واستخدام WhatsApp Business API (شرح شامل 2026) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/دليل-المبتدئين-لتكامل-واستخدام-whatsapp-business-api-ش/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_140703_Chrome-1.jpg"
+      },
+      "content": {
+        "words": 605,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 20,
+            "br": 119,
+            "strong": 34
+          }
+        }
+      }
+    },
+    {
+      "id": 2055,
+      "title": "كيف سيغير الذكاء الاصطناعي والأتمتة الطريقة التي نعمل بها؟ | مستقبل العمل 2026",
+      "slug": "كيف-سيغير-الذكاء-الاصطناعي-والأتمتة-ا",
+      "link": "https://hrwhats.com/%d9%83%d9%8a%d9%81-%d8%b3%d9%8a%d8%ba%d9%8a%d8%b1-%d8%a7%d9%84%d8%b0%d9%83%d8%a7%d8%a1-%d8%a7%d9%84%d8%a7%d8%b5%d8%b7%d9%86%d8%a7%d8%b9%d9%8a-%d9%88%d8%a7%d9%84%d8%a3%d8%aa%d9%85%d8%aa%d8%a9-%d8%a7/",
+      "date": "2026-04-27T14:32:21",
+      "modified": "2026-04-27T14:32:21",
+      "fileName": "ai-automation-future-of-work",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 2058,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_163519_Chrome.jpg",
+        "width": 1080,
+        "height": 533,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "كيف سيغير الذكاء الاصطناعي والأتمتة الطريقة التي نعمل بها؟ | مستقبل العمل 2026 - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/كيف-سيغير-الذكاء-الاصطناعي-والأتمتة-ا/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_163519_Chrome.jpg"
+      },
+      "content": {
+        "words": 480,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 70,
+            "strong": 18,
+            "h2": 1,
+            "br": 3,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 3
+          }
+        }
+      }
+    },
+    {
+      "id": 2060,
+      "title": "📌 دور خدمات الشات بوت في التعليم | الفوائد والتحديات (دليل شامل 2026)",
+      "slug": "📌-دور-خدمات-الشات-بوت-في-التعليم-الفو",
+      "link": "https://hrwhats.com/%f0%9f%93%8c-%d8%af%d9%88%d8%b1-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a7%d9%84%d8%b4%d8%a7%d8%aa-%d8%a8%d9%88%d8%aa-%d9%81%d9%8a-%d8%a7%d9%84%d8%aa%d8%b9%d9%84%d9%8a%d9%85-%d8%a7%d9%84%d9%81%d9%88/",
+      "date": "2026-04-27T14:56:29",
+      "modified": "2026-04-27T14:56:29",
+      "fileName": "chatbot-in-education",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 2061,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_173308_Chrome.jpg",
+        "width": 1080,
+        "height": 678,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "📌 دور خدمات الشات بوت في التعليم | الفوائد والتحديات (دليل شامل 2026) - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/📌-دور-خدمات-الشات-بوت-في-التعليم-الفو/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_173308_Chrome.jpg"
+      },
+      "content": {
+        "words": 563,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 60,
+            "strong": 20,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 2063,
+      "title": "📌 كيف يمكن أن تساعد خدمات الواتساب شات بوت المنظمات غير الربحية | دليل شامل 2026",
+      "slug": "📌-كيف-يمكن-أن-تساعد-خدمات-الواتساب-شات",
+      "link": "https://hrwhats.com/%f0%9f%93%8c-%d9%83%d9%8a%d9%81-%d9%8a%d9%85%d9%83%d9%86-%d8%a3%d9%86-%d8%aa%d8%b3%d8%a7%d8%b9%d8%af-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a7%d9%84%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-%d8%b4%d8%a7%d8%aa/",
+      "date": "2026-04-27T15:30:16",
+      "modified": "2026-04-27T15:30:17",
+      "fileName": "whatsapp-chatbot-nonprofits",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 2065,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_181030_Chrome.jpg",
+        "width": 1080,
+        "height": 564,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "📌 كيف يمكن أن تساعد خدمات الواتساب شات بوت المنظمات غير الربحية | دليل شامل 2026 - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/📌-كيف-يمكن-أن-تساعد-خدمات-الواتساب-شات/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_181030_Chrome.jpg"
+      },
+      "content": {
+        "words": 533,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 83,
+            "strong": 18,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 6,
+            "ol": 1,
+            "li": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 2068,
+      "title": "📌 فوائد استخدام خدمات الشات بوت للخدمات القانونية وشركات المحاماة | دليل شامل 2026",
+      "slug": "📌-فوائد-استخدام-خدمات-الشات-بوت-للخدم",
+      "link": "https://hrwhats.com/%f0%9f%93%8c-%d9%81%d9%88%d8%a7%d8%a6%d8%af-%d8%a7%d8%b3%d8%aa%d8%ae%d8%af%d8%a7%d9%85-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a7%d9%84%d8%b4%d8%a7%d8%aa-%d8%a8%d9%88%d8%aa-%d9%84%d9%84%d8%ae%d8%af%d9%85/",
+      "date": "2026-04-27T15:50:14",
+      "modified": "2026-04-27T15:51:57",
+      "fileName": "chatbot-legal-services",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 2069,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_183053_Chrome.jpg",
+        "width": 985,
+        "height": 565,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "📌 فوائد استخدام خدمات الشات بوت للخدمات القانونية وشركات المحاماة | دليل شامل 2026 - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/📌-فوائد-استخدام-خدمات-الشات-بوت-للخدم/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/04/Screenshot_20260427_183053_Chrome.jpg"
+      },
+      "content": {
+        "words": 569,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 84,
+            "strong": 22,
+            "h2": 1,
+            "h3": 1,
+            "h4": 1,
+            "h5": 1,
+            "h6": 7,
+            "ol": 1,
+            "li": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 3329,
+      "title": "كيفية زيادة مبيعات متجرك باستخدام واتساب",
+      "slug": "كيفية-زيادة-مبيعات-متجرك-باستخدام-وات",
+      "link": "https://hrwhats.com/%d9%83%d9%8a%d9%81%d9%8a%d8%a9-%d8%b2%d9%8a%d8%a7%d8%af%d8%a9-%d9%85%d8%a8%d9%8a%d8%b9%d8%a7%d8%aa-%d9%85%d8%aa%d8%ac%d8%b1%d9%83-%d8%a8%d8%a7%d8%b3%d8%aa%d8%ae%d8%af%d8%a7%d9%85-%d9%88%d8%a7%d8%aa/",
+      "date": "2026-09-08T09:00:38",
+      "modified": "2026-09-08T09:08:03",
+      "fileName": "increase-store-sales-with-whatsapp",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        },
+        {
+          "slug": "whatsapp",
+          "name": "واتساب"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 3330,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/09/8C9E1DF7-D7D7-4225-B178-AAF7E9D81600.png",
+        "width": 1670,
+        "height": 941,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "كيفية زيادة مبيعات متجرك باستخدام واتساب - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/كيفية-زيادة-مبيعات-متجرك-باستخدام-وات/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/09/8C9E1DF7-D7D7-4225-B178-AAF7E9D81600.png"
+      },
+      "content": {
+        "words": 1071,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph",
+            "wp-block-quote",
+            "wp-block-quote-is-layout-flow"
+          ],
+          "blockComments": [],
+          "unusualHtml": [
+            "attr:style"
+          ],
+          "tags": {
+            "p": 63,
+            "strong": 14,
+            "h4": 12,
+            "ul": 7,
+            "li": 45,
+            "blockquote": 7,
+            "br": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 3336,
+      "title": "ما هو WhatsApp Business API وما الفرق بينه وبين WhatsApp Business؟",
+      "slug": "ما-هو-whatsapp-business-api-وما-الفرق-بينه-وبين-whatsapp-business؟",
+      "link": "https://hrwhats.com/%d9%85%d8%a7-%d9%87%d9%88-whatsapp-business-api-%d9%88%d9%85%d8%a7-%d8%a7%d9%84%d9%81%d8%b1%d9%82-%d8%a8%d9%8a%d9%86%d9%87-%d9%88%d8%a8%d9%8a%d9%86-whatsapp-business%d8%9f/",
+      "date": "2026-09-08T09:22:53",
+      "modified": "2026-09-08T09:23:20",
+      "fileName": "whatsapp-business-api-vs-whatsapp-business",
+      "categories": [
+        {
+          "slug": "whatsapp",
+          "name": "واتساب"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 3321,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/09/tujkt.jpeg",
+        "width": 1376,
+        "height": 768,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "ما هو WhatsApp Business API وما الفرق بينه وبين WhatsApp Business؟ - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/ما-هو-whatsapp-business-api-وما-الفرق-بينه-وبين-whatsapp-business؟/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/09/tujkt.jpeg"
+      },
+      "content": {
+        "words": 1063,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 1,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph",
+            "wp-block-table"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 46,
+            "strong": 20,
+            "h4": 12,
+            "ul": 5,
+            "li": 40,
+            "ol": 1,
+            "figure": 1,
+            "table": 1,
+            "thead": 1,
+            "tr": 11,
+            "th": 3,
+            "tbody": 1,
+            "td": 30,
+            "h5": 6
+          }
+        }
+      }
+    },
+    {
+      "id": 3338,
+      "title": "كيفية تجنب حظر واتساب عند إرسال الرسائل الجماعية",
+      "slug": "كيفية-تجنب-حظر-واتساب-عند-إرسال-الرسائ",
+      "link": "https://hrwhats.com/%d9%83%d9%8a%d9%81%d9%8a%d8%a9-%d8%aa%d8%ac%d9%86%d8%a8-%d8%ad%d8%b8%d8%b1-%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-%d8%b9%d9%86%d8%af-%d8%a5%d8%b1%d8%b3%d8%a7%d9%84-%d8%a7%d9%84%d8%b1%d8%b3%d8%a7%d8%a6/",
+      "date": "2026-09-08T09:28:25",
+      "modified": "2026-09-08T09:28:26",
+      "fileName": "avoid-whatsapp-ban-bulk-messaging",
+      "categories": [
+        {
+          "slug": "whatsapp",
+          "name": "واتساب"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 3323,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/09/ykyjy.jpeg",
+        "width": 1376,
+        "height": 768,
+        "alt": "طرق فك حظر الواتساب"
+      },
+      "yoast": {
+        "title": "كيفية تجنب حظر واتساب عند إرسال الرسائل الجماعية - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/كيفية-تجنب-حظر-واتساب-عند-إرسال-الرسائ/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/09/ykyjy.jpeg"
+      },
+      "content": {
+        "words": 1030,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph",
+            "wp-block-quote",
+            "wp-block-quote-is-layout-flow"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 52,
+            "strong": 16,
+            "h2": 13,
+            "ul": 5,
+            "li": 38,
+            "blockquote": 3,
+            "br": 4,
+            "ol": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 3343,
+      "title": "كيفية استخدام واتساب لإدارة مواعيد العيادات والمرضى",
+      "slug": "كيفية-استخدام-واتساب-لإدارة-مواعيد-ال",
+      "link": "https://hrwhats.com/%d9%83%d9%8a%d9%81%d9%8a%d8%a9-%d8%a7%d8%b3%d8%aa%d8%ae%d8%af%d8%a7%d9%85-%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-%d9%84%d8%a5%d8%af%d8%a7%d8%b1%d8%a9-%d9%85%d9%88%d8%a7%d8%b9%d9%8a%d8%af-%d8%a7%d9%84/",
+      "date": "2026-09-10T12:13:36",
+      "modified": "2026-09-10T12:13:38",
+      "fileName": "whatsapp-clinic-appointments",
+      "categories": [
+        {
+          "slug": "whatsapp",
+          "name": "واتساب"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 3344,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/09/6D0354A3-9FC7-456A-B375-FF3E2E9BBDFF.jpeg",
+        "width": 1504,
+        "height": 704,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "كيفية استخدام واتساب لإدارة مواعيد العيادات والمرضى - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/كيفية-استخدام-واتساب-لإدارة-مواعيد-ال/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/09/6D0354A3-9FC7-456A-B375-FF3E2E9BBDFF.jpeg"
+      },
+      "content": {
+        "words": 1306,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph",
+            "wp-block-quote",
+            "wp-block-quote-is-layout-flow"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 80,
+            "strong": 23,
+            "h4": 19,
+            "ul": 7,
+            "li": 60,
+            "blockquote": 6,
+            "ol": 2,
+            "br": 11,
+            "h5": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 3346,
+      "title": "رسائل واتساب تسويقية جاهزة للعملاء مع أمثلة",
+      "slug": "رسائل-واتساب-تسويقية-جاهزة-للعملاء-مع",
+      "link": "https://hrwhats.com/%d8%b1%d8%b3%d8%a7%d8%a6%d9%84-%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8-%d8%aa%d8%b3%d9%88%d9%8a%d9%82%d9%8a%d8%a9-%d8%ac%d8%a7%d9%87%d8%b2%d8%a9-%d9%84%d9%84%d8%b9%d9%85%d9%84%d8%a7%d8%a1-%d9%85%d8%b9/",
+      "date": "2026-09-10T13:36:10",
+      "modified": "2026-09-12T07:58:53",
+      "fileName": "whatsapp-marketing-messages",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        },
+        {
+          "slug": "whatsapp",
+          "name": "واتساب"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 3353,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/09/A5B5BC3B-9C88-4B13-9027-9B8BDE8D84F8.jpeg",
+        "width": 1504,
+        "height": 704,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "رسائل واتساب تسويقية جاهزة للعملاء مع أمثلة - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/رسائل-واتساب-تسويقية-جاهزة-للعملاء-مع/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/09/A5B5BC3B-9C88-4B13-9027-9B8BDE8D84F8.jpeg"
+      },
+      "content": {
+        "words": 1446,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph",
+            "wp-block-quote",
+            "wp-block-quote-is-layout-flow"
+          ],
+          "blockComments": [],
+          "unusualHtml": [],
+          "tags": {
+            "p": 82,
+            "strong": 31,
+            "h4": 21,
+            "ul": 3,
+            "li": 21,
+            "br": 68,
+            "blockquote": 27,
+            "h5": 23,
+            "h3": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 3356,
+      "title": "كيفية فك حظر الواتساب",
+      "slug": "unblocking-whatsapp",
+      "link": "https://hrwhats.com/unblocking-whatsapp/",
+      "date": "2026-09-13T04:14:15",
+      "modified": "2026-09-13T04:19:33",
+      "fileName": "unblocking-whatsapp",
+      "categories": [
+        {
+          "slug": "marketing",
+          "name": "تسويق"
+        },
+        {
+          "slug": "hrwhats-guide",
+          "name": "دليل الاستخدام"
+        },
+        {
+          "slug": "whatsapp",
+          "name": "واتساب"
+        }
+      ],
+      "tags": [
+        {
+          "slug": "استرجاع-حساب-الواتساب",
+          "name": "استرجاع حساب الواتساب"
+        },
+        {
+          "slug": "حظر-الواتساب",
+          "name": "حظر الواتساب"
+        },
+        {
+          "slug": "فك-حظر-الواتساب",
+          "name": "فك حظر الواتساب"
+        },
+        {
+          "slug": "كيفية-فك-حظر-الواتساب",
+          "name": "كيفية فك حظر الواتساب"
+        }
+      ],
+      "featuredMediaId": 3357,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/09/a44c518ba6b200cd1acd138bee39855b.png",
+        "width": 940,
+        "height": 788,
+        "alt": "فك حظر الواتساب"
+      },
+      "yoast": {
+        "title": "كيفية فك حظر الواتساب - حلول واتس اب اعمال | hrwhats",
+        "description": "كيفية فك حظر الواتساب, تعرف على الخطوات الرسمية والسريعة لكيفية فك حظر الواتساب، استرجاع حساب واتساب محظور، وحل مشكلة الحظر المؤقت والدائم في هذا الدليل المحدث لعام 2026.",
+        "canonical": "https://hrwhats.com/unblocking-whatsapp/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/09/a44c518ba6b200cd1acd138bee39855b.png"
+      },
+      "content": {
+        "words": 784,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [
+          {
+            "path": "/فك-حظر-الواتساب/",
+            "cleanPath": "/فك-حظر-الواتساب/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": false,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/فك-حظر-الواتساب/",
+            "cleanPath": "/فك-حظر-الواتساب/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": false,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/whatsapp-ban/",
+            "cleanPath": "/whatsapp-ban/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": true,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/كيفية-زيادة-مبيعات-متجرك-باستخدام-وات/",
+            "cleanPath": "/كيفية-زيادة-مبيعات-متجرك-باستخدام-وات/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": true,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/كيفية-تجنب-حظر-واتساب-عند-إرسال-الرسائ/",
+            "cleanPath": "/كيفية-تجنب-حظر-واتساب-عند-إرسال-الرسائ/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": true,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/فك-حظر-الواتساب/",
+            "cleanPath": "/فك-حظر-الواتساب/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": false,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          }
+        ],
+        "externalLinkCount": 1,
+        "elements": {
+          "tables": 0,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph",
+            "wp-block-quote",
+            "wp-block-quote-is-layout-flow",
+            "wp-block-separator"
+          ],
+          "blockComments": [],
+          "unusualHtml": [
+            "tag:h1"
+          ],
+          "tags": {
+            "p": 18,
+            "h1": 1,
+            "a": 8,
+            "hr": 8,
+            "strong": 33,
+            "h2": 5,
+            "ol": 4,
+            "li": 25,
+            "ul": 3,
+            "h3": 6,
+            "blockquote": 1,
+            "br": 3,
+            "em": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 3420,
+      "title": "طريقة الحصول على العلامة الزرقاء في الواتساب",
+      "slug": "whatsapp-blue-tick",
+      "link": "https://hrwhats.com/whatsapp-blue-tick/",
+      "date": "2026-09-19T10:45:02",
+      "modified": "2026-09-19T10:56:31",
+      "fileName": "whatsapp-blue-tick",
+      "categories": [
+        {
+          "slug": "whatsapp",
+          "name": "واتساب"
+        }
+      ],
+      "tags": [],
+      "featuredMediaId": 3427,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/09/B6C17782-D836-49CC-BBF5-1D50A4DF2501.jpeg",
+        "width": 1536,
+        "height": 864,
+        "alt": ""
+      },
+      "yoast": {
+        "title": "طريقة الحصول على العلامة الزرقاء في الواتساب - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, رسائل واتس اب, رسائل جماعية واتساب أعمال, رسائل دعائية واتس اب, التسويق عبر الواتس اب, إرسال رسائل واتساب بدون حظر, حملة إعلانية واتساب,خدمات واتس اب,",
+        "canonical": "https://hrwhats.com/whatsapp-blue-tick/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/09/B6C17782-D836-49CC-BBF5-1D50A4DF2501.jpeg"
+      },
+      "content": {
+        "words": 2675,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 1,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph",
+            "wp-block-quote",
+            "wp-block-quote-is-layout-flow",
+            "wp-block-table"
+          ],
+          "blockComments": [],
+          "unusualHtml": [
+            "attr:style",
+            "tag:h1"
+          ],
+          "tags": {
+            "p": 154,
+            "strong": 67,
+            "h4": 29,
+            "mark": 19,
+            "ol": 1,
+            "li": 65,
+            "h3": 14,
+            "ul": 11,
+            "h5": 10,
+            "h1": 1,
+            "figure": 1,
+            "table": 1,
+            "thead": 1,
+            "tr": 12,
+            "th": 3,
+            "tbody": 1,
+            "td": 33,
+            "blockquote": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 3511,
+      "title": "طرق فك حظر الواتساب 2026",
+      "slug": "طرق-فك-حظر-الواتساب",
+      "link": "https://hrwhats.com/%d8%b7%d8%b1%d9%82-%d9%81%d9%83-%d8%ad%d8%b8%d8%b1-%d8%a7%d9%84%d9%88%d8%a7%d8%aa%d8%b3%d8%a7%d8%a8/",
+      "date": "2026-10-14T14:28:47",
+      "modified": "2026-10-14T14:29:56",
+      "fileName": "ways-to-unblock-whatsapp",
+      "categories": [
+        {
+          "slug": "hrwhats-guide",
+          "name": "دليل الاستخدام"
+        },
+        {
+          "slug": "tutorials",
+          "name": "شروحات"
+        },
+        {
+          "slug": "whatsapp",
+          "name": "واتساب"
+        }
+      ],
+      "tags": [
+        {
+          "slug": "استرجاع-حساب-واتساب-محظور،",
+          "name": "استرجاع حساب واتساب محظور،"
+        },
+        {
+          "slug": "اسهل-طريقة-لفك-حظر-الواتساب",
+          "name": "اسهل طريقة لفك حظر الواتساب"
+        },
+        {
+          "slug": "حظر-الواتساب",
+          "name": "حظر الواتساب"
+        },
+        {
+          "slug": "دعم-واتساب",
+          "name": "دعم واتساب"
+        },
+        {
+          "slug": "طرق-فك-حظر-الواتساب",
+          "name": "طرق فك حظر الواتساب"
+        },
+        {
+          "slug": "فك-حظر-الواتساب",
+          "name": "فك حظر الواتساب"
+        },
+        {
+          "slug": "كيفية-فك-الحظر-فى-الواتساب",
+          "name": "كيفية فك الحظر فى الواتساب"
+        },
+        {
+          "slug": "كيفية-فك-حظر-الواتساب",
+          "name": "كيفية فك حظر الواتساب"
+        },
+        {
+          "slug": "واتساب-محظور",
+          "name": "واتساب محظور"
+        }
+      ],
+      "featuredMediaId": 3323,
+      "cover": {
+        "url": "https://hrwhats.com/wp-content/uploads/2026/09/ykyjy.jpeg",
+        "width": 1376,
+        "height": 768,
+        "alt": "طرق فك حظر الواتساب"
+      },
+      "yoast": {
+        "title": "طرق فك حظر الواتساب 2026 - حلول واتس اب اعمال | hrwhats",
+        "description": "منصة حلول واتس اب اعمال, باقات واتس اب, حملات اعلانية واتس اب, فك حظر الواتساب، استرجاع حساب واتساب محظور، طرق فك حظر الواتساب، واتساب محظور، دعم واتساب.",
+        "canonical": "https://hrwhats.com/طرق-فك-حظر-الواتساب/",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "ogImage": "https://hrwhats.com/wp-content/uploads/2026/09/ykyjy.jpeg"
+      },
+      "content": {
+        "words": 804,
+        "images": {
+          "count": 0,
+          "urls": []
+        },
+        "internalLinks": [
+          {
+            "path": "/unblocking-whatsapp/",
+            "cleanPath": "/unblocking-whatsapp/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": true,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/unblocking-whatsapp/",
+            "cleanPath": "/unblocking-whatsapp/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": true,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/whatsapp-ban/",
+            "cleanPath": "/whatsapp-ban/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": true,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/unblocking-whatsapp/",
+            "cleanPath": "/unblocking-whatsapp/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": true,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/كيفية-تجنب-حظر-واتساب-عند-إرسال-الرسائ/",
+            "cleanPath": "/كيفية-تجنب-حظر-واتساب-عند-إرسال-الرسائ/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": true,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          },
+          {
+            "path": "/whatsapp-ban/",
+            "cleanPath": "/whatsapp-ban/",
+            "query": null,
+            "kind": "page",
+            "inSnapshot": true,
+            "legacyForms": [],
+            "noTrailingSlash": false
+          }
+        ],
+        "externalLinkCount": 0,
+        "elements": {
+          "tables": 1,
+          "iframes": 0,
+          "iframeHosts": [],
+          "videos": 0,
+          "shortcodes": [],
+          "blockClasses": [
+            "wp-block-heading",
+            "wp-block-list",
+            "wp-block-paragraph",
+            "wp-block-quote",
+            "wp-block-quote-is-layout-flow",
+            "wp-block-separator",
+            "wp-block-table"
+          ],
+          "blockComments": [],
+          "unusualHtml": [
+            "tag:h1"
+          ],
+          "tags": {
+            "h1": 1,
+            "a": 6,
+            "p": 23,
+            "hr": 9,
+            "strong": 37,
+            "h2": 7,
+            "em": 1,
+            "figure": 1,
+            "table": 1,
+            "thead": 1,
+            "tr": 4,
+            "th": 4,
+            "tbody": 1,
+            "td": 12,
+            "h3": 8,
+            "ol": 4,
+            "li": 25,
+            "ul": 2,
+            "code": 4,
+            "blockquote": 2
+          }
+        }
+      }
+    }
+  ]
+}

@@ -195,20 +195,21 @@ The current site ranks on Google. **Protecting existing traffic is the top prior
 - **Post URLs stay exactly as they are on WordPress at launch** (decision 2026-11-03): the Arabic slugs — some with emoji (`📌-…`) or `؟` — are kept character for character. No English post slugs and no post 301s now. Renaming them to English with 301s (via `legacySlugs`) may come later, after the site is stable — only on request.
 - New pages (packages, contact, sectors, legal) keep their clean English slugs.
 - Pages, sectors and posts all live at the **site root** (`/slug/`). Posts are served by one `[slug]` route; sectors have their own static route folders. The build must **fail if the same slug exists twice** — the check (blog phase) must cover posts, every slug in `sectors.json` and every static route folder under `app/(ar)/` (`packages`, `contact`, `news`, sector folders, …). It must also fail if a slug is not NFC, contains `/ ? # %` or whitespace, or is over 255 bytes in UTF-8 (the Linux folder-name limit).
-- Blog index: `/news/`, pagination: `/news/page/2/`, categories: `/category/{whatsapp|marketing|hrwhats-guide}/`.
+- Blog index: `/news/`, pagination: `/news/page/2/`, categories: `/category/{whatsapp|marketing|hrwhats-guide}/`. The WordPress category `tutorials` (one post) is **not built**: `/category/tutorials/` → 301 to `/category/whatsapp/` in the generated `.htaccess` at launch (review the target against the Search Console data).
 - Old `/index.php/...` URLs redirect to the clean URL.
 - **Redirects:** a build script generates `out/.htaccess` (`ErrorDocument 404 /404.html`, the URL forms below, plus 301s from `legacySlugs` once any exist). Arabic slugs in rules must be matched correctly in their percent-encoded form — verified by the test script, not assumed.
+- **WordPress old-slug redirects:** WordPress redirects a post's old slugs by itself, and those redirects disappear at launch. They must be extracted in the launch phase (see Phases), kept as 301s in `.htaccess` and added to the URL test's sources. Confirmed example (checked by hand in the browser): `/فك-حظر-الواتساب/` → `/unblocking-whatsapp/`, an old slug of post 3356, which also links to it; it must stay a 301 after launch.
 - **URL forms the `.htaccess` must handle and the test script must check:**
   - `www` → no `www` and `http` → `https`, so there is one final URL: `https://hrwhats.com/…/`.
   - A URL without the trailing `/` → the same URL with it.
   - `/index.php/…` → the clean URL.
   - WordPress side pages: `/feed/`, `/tag/…`, `/author/…`, `?p=ID`, attachment pages.
   - `/wp-content/uploads/…` images that external links target or that appear in image search (decided in the launch phase, from the data).
-- **URL test script** (`scripts/test-redirects.ts`): takes every URL from **three sources** — the current sitemap (read from the committed snapshot `scripts/data/wp-sitemap-urls.json`, not the live sitemap, which disappears at launch), the Search Console export of indexed pages, and the list of backlink targets (see Search Console and backlinks) — and checks it on the new site: **200 at the same URL** (posts, kept pages) or **301 to a working page** (anything that moved). Must pass 100% **on Spaceship** before launch.
+- **URL test script** (`scripts/test-redirects.ts`): takes every URL from **three sources** — the current sitemap (read from the committed snapshot `scripts/data/wp-sitemap-urls.json`, not the live sitemap, which disappears at launch), the Search Console export of indexed pages, and the list of backlink targets (see Search Console and backlinks) — plus the WordPress old-slug redirects once extracted, and checks it on the new site: **200 at the same URL** (posts, kept pages) or **301 to a working page** (anything that moved). Must pass 100% **on Spaceship** before launch.
 - **Titles of pages indexed on the current site keep the phrase "حلول واتس اب اعمال"** (the search phrase they rank for): inner pages `[name] - حلول واتس اب اعمال | HRwhats`, home `حلول واتس اب اعمال | HRwhats — منظومة واتساب API للأعمال` (`meta.homeTitle`; title, Open Graph and Twitter all come from it). **Do not change the title of an important page before its Search Console data has been reviewed with the developer.**
 - Every page: unique `title` + `description` via the Metadata API, canonical URL with trailing slash, Open Graph image.
 - JSON-LD: `Organization` (site-wide), `FAQPage` (FAQ sections), `Article` (posts), `BreadcrumbList`.
-- Internal links between posts point to the final URL directly (no redirect hops): at launch that is the same Arabic URL, written relative (`/slug/`).
+- Internal links between posts point to the final URL directly (no redirect hops): at launch that is the same Arabic URL, written relative (`/slug/`). When converting to MDX, a link that points to an old slug is written with the final URL directly (e.g. `/فك-حظر-الواتساب/` → `/unblocking-whatsapp/`).
 
 ### Search Console and backlinks
 
@@ -235,7 +236,7 @@ A temporary `[slug]` route with real WordPress slugs (plain Arabic, `📌-…`, 
 | Main | `/`, `/packages/`, `/contact/`, `/news/`, `/whatsapp-ban/` (indexed on WordPress: URL, canonical and title kept) |
 | Sectors | `charity`, `real-estate-contracting`, `education-training`, `tourism-hospitality`, `online-stores-systems`, `advertising`, `hr`, `operating-service`, `restaurants-cafes`, `shops` |
 | Legal | `privacy-policy`, `terms-of-use`, `refund-policy` |
-| Blog | ~50 posts migrated from WordPress |
+| Blog | 38 posts migrated from WordPress |
 
 ### Usage guide: docs.hrwhats.com (decision 2026-11-03)
 
@@ -302,6 +303,7 @@ scripts/
 ├── build.mjs                 ← `npm run build` (restores next.config.ts, see Build environments)
 ├── inventory-sitemap.ts      ← read-only snapshot of the Yoast sitemap (URLs + image URLs) → data/wp-sitemap-urls.json
 ├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX (Arabic slugs kept)
+├── data/post-file-names.json ← reviewed MDX file names (post id → name), applied by `migrate-wordpress.ts --apply-names`
 ├── generate-htaccess.ts
 └── test-redirects.ts         ← every old URL: 200 in place or 301 to a working page
 ```
@@ -333,6 +335,7 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
    - **Before any change:** a full WordPress backup (files + database), kept off the server.
    - Add the test domain to `ALLOWED_ORIGINS` in the server's `~/hrwhats-config.php` while testing the contact form there (`contact.php` already reads it); remove it afterwards.
    - Add the test domain and `newhr.tmt3.sa` to the Hostnames list of the Turnstile key in Cloudflare.
+   - WordPress old-slug redirects: extract them from the database backup, from three sources: `_wp_old_slug` in `wp_postmeta`, the Redirection plugin's tables if present, and Yoast Premium redirects if present. Add them as 301s in the generated `.htaccess` and to the URL test's sources (see URLs and SEO).
    - Tracking tools: check the old site for Google Analytics, Google Tag Manager and Meta Pixel, and put the same IDs in the new site (after the developer approves).
    - 301s from the old usage-guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/` — not `/whatsapp-ban/`, which stays a page here) to their pages on docs.hrwhats.com, in the generated `.htaccess` — **only after the developer sends the exact page URLs** (until then they would all go to the guide's home); the URL test must then expect these 301s. Update the site's guide links to the exact URLs at the same time (see Usage guide).
    - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.
