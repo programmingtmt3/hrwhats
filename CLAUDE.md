@@ -204,7 +204,7 @@ The current site ranks on Google. **Protecting existing traffic is the top prior
   - `/index.php/…` → the clean URL.
   - WordPress side pages: `/feed/`, `/tag/…`, `/author/…`, `?p=ID`, attachment pages.
   - `/wp-content/uploads/…` images that external links target or that appear in image search (decided in the launch phase, from the data).
-- **URL test script** (`scripts/test-redirects.ts`): takes every URL from **three sources** — the current sitemap, the Search Console export of indexed pages, and the list of backlink targets (see Search Console and backlinks) — and checks it on the new site: **200 at the same URL** (posts, kept pages) or **301 to a working page** (anything that moved). Must pass 100% **on Spaceship** before launch.
+- **URL test script** (`scripts/test-redirects.ts`): takes every URL from **three sources** — the current sitemap (read from the committed snapshot `scripts/data/wp-sitemap-urls.json`, not the live sitemap, which disappears at launch), the Search Console export of indexed pages, and the list of backlink targets (see Search Console and backlinks) — and checks it on the new site: **200 at the same URL** (posts, kept pages) or **301 to a working page** (anything that moved). Must pass 100% **on Spaceship** before launch.
 - **Titles of pages indexed on the current site keep the phrase "حلول واتس اب اعمال"** (the search phrase they rank for): inner pages `[name] - حلول واتس اب اعمال | HRwhats`, home `حلول واتس اب اعمال | HRwhats — منظومة واتساب API للأعمال` (`meta.homeTitle`; title, Open Graph and Twitter all come from it). **Do not change the title of an important page before its Search Console data has been reviewed with the developer.**
 - Every page: unique `title` + `description` via the Metadata API, canonical URL with trailing slash, Open Graph image.
 - JSON-LD: `Organization` (site-wide), `FAQPage` (FAQ sections), `Article` (posts), `BreadcrumbList`.
@@ -300,6 +300,7 @@ docs/contact-form-setup.md    ← server setup guide (Arabic)
 docs/deploy-hostinger.md      ← staging deploy on Hostinger: GitHub build + why next.base.ts/build.mjs (Arabic)
 scripts/
 ├── build.mjs                 ← `npm run build` (restores next.config.ts, see Build environments)
+├── inventory-sitemap.ts      ← read-only snapshot of the Yoast sitemap (URLs + image URLs) → data/wp-sitemap-urls.json
 ├── migrate-wordpress.ts      ← pulls posts from WP REST API → MDX (Arabic slugs kept)
 ├── generate-htaccess.ts
 └── test-redirects.ts         ← every old URL: 200 in place or 301 to a working page
