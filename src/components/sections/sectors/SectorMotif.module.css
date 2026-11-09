@@ -557,3 +557,168 @@
     height: 20px;
   }
 }
+
+/* ---------- enlarged inside a blog cover (never on the home cards) ----------
+   The parent cover box is a size container, so --s follows the box in steps:
+   the object must fit both its height (128px at --s: 1) and width. Full-width
+   pieces, patterns and offsets follow --s too, to keep the card's proportions.
+   The cursor's name is hidden because covers carry no text. */
+.motif.enlarged {
+  --s: 0.6;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+@container (min-width: 150px) and (min-height: 100px) {
+  .motif.enlarged {
+    --s: 0.8;
+  }
+}
+@container (min-width: 185px) and (min-height: 125px) {
+  .motif.enlarged {
+    --s: 1;
+  }
+}
+@container (min-width: 240px) and (min-height: 165px) {
+  .motif.enlarged {
+    --s: 1.3;
+  }
+}
+@container (min-width: 300px) and (min-height: 205px) {
+  .motif.enlarged {
+    --s: 1.6;
+  }
+}
+@container (min-width: 370px) and (min-height: 255px) {
+  .motif.enlarged {
+    --s: 2;
+  }
+}
+@container (min-width: 460px) and (min-height: 320px) {
+  .motif.enlarged {
+    --s: 2.5;
+  }
+}
+@container (min-width: 550px) and (min-height: 385px) {
+  .motif.enlarged {
+    --s: 3;
+  }
+}
+.motif.enlarged.real-estate-contracting {
+  background-size: calc(14px * var(--s)) calc(14px * var(--s));
+}
+.enlarged .mark {
+  width: calc(12px * var(--s));
+  height: calc(12px * var(--s));
+}
+.enlarged .markStart {
+  top: calc(10px * var(--s));
+  inset-inline-start: calc(10px * var(--s));
+  border-block-start-width: calc(1.5px * var(--s));
+  border-inline-start-width: calc(1.5px * var(--s));
+}
+.enlarged .markEnd {
+  bottom: calc(10px * var(--s));
+  inset-inline-end: calc(10px * var(--s));
+  border-block-end-width: calc(1.5px * var(--s));
+  border-inline-end-width: calc(1.5px * var(--s));
+}
+.motif.enlarged.education-training {
+  background-size: 100% calc(16px * var(--s));
+}
+.motif.enlarged.education-training::before {
+  inset-inline-start: calc(22px * var(--s));
+  width: calc(2px * var(--s));
+}
+.enlarged .route {
+  top: calc(12px * var(--s));
+  height: calc(44px * var(--s));
+  stroke-width: calc(1.5px * var(--s));
+  stroke-dasharray: calc(2px * var(--s)) calc(5px * var(--s));
+}
+.enlarged .ticket {
+  margin-top: calc(22px * var(--s));
+}
+.enlarged .receipt {
+  translate: 0 calc(-8px * var(--s));
+}
+.motif.enlarged.advertising {
+  background-image: radial-gradient(
+    rgb(var(--dark-rgb) / 0.16) calc(1px * var(--s)),
+    transparent calc(1.3px * var(--s))
+  );
+  background-size: calc(12px * var(--s)) calc(12px * var(--s));
+}
+.enlarged .cursor {
+  top: calc(50% + 14px * var(--s));
+  inset-inline-end: calc(50% - 72px * var(--s));
+}
+.enlarged .cursor em {
+  display: none;
+}
+.enlarged .ribbon {
+  height: 38px;
+}
+.motif.enlarged.operating-service {
+  padding-block-end: calc(18px * var(--s));
+}
+.enlarged .tape {
+  top: calc(22px * var(--s));
+  height: calc(22px * var(--s));
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--dark) 0 calc(12px * var(--s)),
+    var(--wa) calc(12px * var(--s)) calc(24px * var(--s))
+  );
+}
+.enlarged .awning {
+  height: calc(30px * var(--s));
+  background: repeating-linear-gradient(
+    90deg,
+    var(--dark) 0 calc(18px * var(--s)),
+    var(--wa) calc(18px * var(--s)) calc(36px * var(--s))
+  );
+}
+.enlarged .awning::after {
+  height: calc(9px * var(--s));
+  background:
+    radial-gradient(circle at calc(9px * var(--s)) 0, var(--dark) calc(8px * var(--s)), transparent calc(9px * var(--s)))
+      0 0 / calc(36px * var(--s)) calc(9px * var(--s)) repeat-x,
+    radial-gradient(circle at calc(9px * var(--s)) 0, var(--wa) calc(8px * var(--s)), transparent calc(9px * var(--s)))
+      calc(18px * var(--s)) 0 / calc(36px * var(--s)) calc(9px * var(--s)) repeat-x;
+}
+.enlarged .shelf {
+  bottom: calc(20px * var(--s));
+}
+
+/* Stronger inside covers, where the motif is large and sits on the dark panel or
+   the page (approved 2026-11-09). The home cards keep the quiet originals. */
+.enlarged .bar,
+.enlarged .note i,
+.enlarged .ticketMain i,
+.enlarged .receipt i:not(.total),
+.enlarged .frame i,
+.enlarged .badge i:not(.photo) {
+  background: rgb(var(--dark-rgb) / 0.2);
+}
+.enlarged .note {
+  background:
+    linear-gradient(rgb(var(--wa-rgb) / 0.45), rgb(var(--wa-rgb) / 0.45)),
+    var(--surface);
+  box-shadow: var(--shadow);
+}
+.motif.enlarged.online-stores-systems {
+  background: rgb(var(--green-rgb) / 0.2);
+}
+.motif.enlarged.hr {
+  background: rgb(var(--green-rgb) / 0.16);
+}
+.enlarged .badge,
+.enlarged .campaign {
+  border: 1px solid rgb(var(--dark-rgb) / 0.14);
+  box-shadow: var(--shadow);
+}
+/* The badge keeps its thick dark top band. */
+.enlarged .badge {
+  border-block-start: 6px solid var(--dark);
+}

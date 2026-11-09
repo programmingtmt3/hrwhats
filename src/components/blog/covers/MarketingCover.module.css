@@ -1,0 +1,130 @@
+/* Base styles are the final state. */
+.ringOuter {
+  fill: rgb(var(--neon-rgb) / 0.09);
+  stroke: rgb(var(--neon-rgb) / 0.3);
+  stroke-width: 2;
+}
+.ringMid {
+  fill: rgb(var(--deep-rgb) / 0.7);
+}
+.ringInner {
+  fill: rgb(var(--wa-rgb) / 0.32);
+}
+.bull {
+  fill: var(--neon);
+}
+.impact {
+  fill: none;
+  stroke: var(--neon);
+  stroke-width: 4;
+  opacity: 0;
+}
+.arrow line {
+  stroke: var(--surface);
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+.fletch {
+  fill: var(--wa);
+}
+
+.baseline {
+  stroke: rgb(var(--neon-rgb) / 0.28);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.column {
+  fill: var(--wa);
+}
+.curve {
+  fill: none;
+  stroke: var(--neon);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+}
+.curveEnd {
+  fill: var(--neon);
+}
+
+.scatter {
+  fill: rgb(var(--neon-rgb) / 0.42);
+}
+.gatherHalo {
+  fill: rgb(var(--neon-rgb) / 0.08);
+}
+.gatherRing {
+  fill: none;
+  stroke: var(--neon);
+  stroke-width: 7;
+}
+.settled {
+  fill: var(--wa);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animated .arrow {
+    animation: arrow-in 0.7s var(--ease) 0.4s backwards;
+  }
+  .animated .impact {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: impact-out 0.8s var(--ease) 1.05s;
+  }
+  .animated .column {
+    transform-box: fill-box;
+    transform-origin: bottom;
+    animation: column-grow 0.7s var(--ease) calc(0.2s + var(--i) * 0.09s) backwards;
+  }
+  .animated .curve {
+    animation: draw 1s var(--ease) 0.8s backwards;
+  }
+  .animated .curveEnd {
+    animation: fade-in 0.3s var(--ease) 1.7s backwards;
+  }
+  .animated .scatter {
+    animation: gather 1.1s var(--ease) calc(var(--i) * 0.05s) backwards;
+  }
+  .animated .settled {
+    animation: fade-in 0.5s var(--ease) calc(0.7s + var(--i) * 0.05s) backwards;
+  }
+}
+
+@keyframes arrow-in {
+  from {
+    opacity: 0;
+    transform: translate(190px, -98px);
+  }
+}
+@keyframes impact-out {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3.4);
+  }
+}
+@keyframes column-grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: 100;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes gather {
+  from {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy));
+  }
+}

@@ -1,0 +1,164 @@
+/* Base styles are the final state. */
+.rails line {
+  stroke: rgb(var(--neon-rgb) / 0.3);
+  stroke-width: 3;
+  stroke-dasharray: 4 12;
+  stroke-linecap: round;
+}
+.pulses circle {
+  fill: var(--neon);
+}
+.pulses .back {
+  fill: var(--wa);
+}
+.block {
+  fill: var(--dark-glow);
+  stroke: rgb(var(--neon-rgb) / 0.3);
+  stroke-width: 2;
+}
+.blockOn {
+  fill: var(--wa);
+}
+.server rect {
+  fill: rgb(var(--deep-rgb) / 0.65);
+}
+.server circle {
+  fill: var(--neon);
+}
+.server line {
+  stroke: rgb(var(--white-rgb) / 0.28);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+.chat {
+  fill: var(--deep);
+}
+
+.orbit {
+  fill: none;
+  stroke: rgb(var(--neon-rgb) / 0.26);
+  stroke-width: 2.5;
+}
+.node {
+  fill: var(--dark-glow);
+  stroke: var(--neon);
+  stroke-width: 3;
+}
+.nodeCore {
+  fill: var(--neon);
+}
+.hubHalo {
+  fill: rgb(var(--neon-rgb) / 0.1);
+}
+.hub {
+  fill: var(--wa);
+}
+.hubMark {
+  fill: none;
+  stroke: var(--deep);
+  stroke-width: 11;
+}
+
+.lightBubble path {
+  fill: var(--surface);
+}
+.lightBubble line {
+  stroke: rgb(var(--dark-rgb) / 0.17);
+  stroke-width: 16;
+  stroke-linecap: round;
+}
+.seal polygon {
+  fill: var(--wa);
+  stroke: var(--wa);
+  stroke-width: 10;
+  stroke-linejoin: round;
+}
+.seal path {
+  fill: none;
+  stroke: var(--deep);
+  stroke-width: 13;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.greenBubble {
+  fill: var(--wa);
+}
+.hidden circle {
+  fill: rgb(var(--deep-rgb) / 0.4);
+}
+.keyhole {
+  fill: var(--deep);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animated .pulses circle {
+    animation: pulse-forward 1.3s var(--ease) calc(0.3s + var(--i) * 0.14s) backwards;
+  }
+  .animated .pulses .back {
+    animation-name: pulse-back;
+  }
+  .animated .spin {
+    animation: turn 1.6s var(--ease) 0.2s backwards;
+  }
+  .animated .spinBack {
+    animation: turn-back 1.6s var(--ease) 0.2s backwards;
+  }
+  .animated .lightBubble,
+  .animated .greenBubble {
+    animation: rise 0.6s var(--ease) 0.1s backwards;
+  }
+  .animated .seal {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pop 0.6s var(--ease) 0.7s backwards;
+  }
+  .animated .hidden {
+    animation: fade-in 0.6s var(--ease) 0.7s backwards;
+  }
+  .animated .keyhole {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pop 0.7s var(--ease) 0.4s backwards;
+  }
+}
+
+@keyframes pulse-forward {
+  from {
+    opacity: 0;
+    transform: translateX(-160px);
+  }
+}
+@keyframes pulse-back {
+  from {
+    opacity: 0;
+    transform: translateX(160px);
+  }
+}
+@keyframes turn {
+  from {
+    transform: rotate(-70deg);
+  }
+}
+@keyframes turn-back {
+  from {
+    transform: rotate(70deg);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

@@ -152,9 +152,17 @@ function Motif({ slug, cursorName }: { slug: MotifSlug; cursorName: string }) {
   }
 }
 
-export function SectorMotif({ slug, cursorName }: { slug: MotifSlug; cursorName: string }) {
+export function SectorMotif({
+  slug,
+  cursorName,
+  className,
+}: {
+  slug: MotifSlug;
+  cursorName: string;
+  className?: string;
+}) {
   return (
-    <div className={cn(styles.motif, styles[slug])} aria-hidden="true">
+    <div className={cn(styles.motif, styles[slug], className)} aria-hidden="true">
       <Motif slug={slug} cursorName={cursorName} />
     </div>
   );

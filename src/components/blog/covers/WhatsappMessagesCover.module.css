@@ -1,0 +1,101 @@
+/* Base styles are the final state. */
+.branches path {
+  fill: none;
+  stroke: rgb(var(--neon-rgb) / 0.4);
+  stroke-width: 3;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+}
+.row rect {
+  fill: rgb(var(--neon-rgb) / 0.08);
+  stroke: rgb(var(--neon-rgb) / 0.22);
+  stroke-width: 2;
+}
+.row line {
+  stroke: rgb(var(--white-rgb) / 0.22);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+.row path {
+  fill: none;
+  stroke: var(--neon);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.bubble path {
+  fill: var(--wa);
+}
+.bubble line {
+  stroke: rgb(var(--deep-rgb) / 0.45);
+  stroke-width: 13;
+  stroke-linecap: round;
+}
+
+.card {
+  fill: var(--dark-glow);
+  stroke: rgb(var(--neon-rgb) / 0.28);
+  stroke-width: 2;
+}
+.cardHead {
+  fill: rgb(var(--neon-rgb) / 0.12);
+}
+.cardLine {
+  stroke: rgb(var(--white-rgb) / 0.2);
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+.cardButton {
+  fill: rgb(var(--neon-rgb) / 0.14);
+}
+.picked .card {
+  fill: var(--surface);
+  stroke: var(--wa);
+  stroke-width: 4;
+}
+.picked .cardHead {
+  fill: rgb(var(--wa-rgb) / 0.3);
+}
+.picked .cardLine {
+  stroke: rgb(var(--dark-rgb) / 0.22);
+}
+.picked .cardButton {
+  fill: var(--wa);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animated .branches path {
+    animation: draw 0.8s var(--ease) 0.5s backwards;
+  }
+  .animated .row {
+    animation: fade-in 0.5s var(--ease) calc(0.9s + var(--i) * 0.12s) backwards;
+  }
+  .animated .bubble {
+    animation: rise 0.6s var(--ease) 0.1s backwards;
+  }
+  .animated .pulled {
+    animation: pull-out 0.9s var(--ease) 0.4s backwards;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 100;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes pull-out {
+  from {
+    transform: translateX(-340px);
+  }
+}

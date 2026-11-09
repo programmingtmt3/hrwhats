@@ -189,7 +189,8 @@ updated: "2026-09-21T10:00:00Z"  # WordPress modified_gmt
 categories: [whatsapp]   # the first is the primary one (breadcrumb); must be in categories.json
 cover:
   template: ban-protection   # code-drawn; one of COVER_TEMPLATES in velite.config.ts
-  variant: 1                 # optional
+  variant: 1                 # optional; must exist in COVER_VARIANTS
+  # sector: hr               # only with template: sector (required there): a slug from sectors.json, or healthcare / legal
 ---
 ```
 
@@ -198,7 +199,14 @@ cover:
 `src/app/(ar)/[slug]/page.tsx` (thin wrapper) → `src/components/pages/PostPage.tsx` + `src/components/blog/`: breadcrumb (home → blog → primary category), title, categories (plain text until the category pages exist), code-drawn cover, table of contents + text, context box, WhatsApp share, related posts, site-wide `<Cta>`. Text in `messages/ar.json` → `blog`.
 - **No dates are shown on a post page, neither published nor updated (decision 2026-11-05).** `date` and `updated` stay in the frontmatter and feed JSON-LD (`datePublished`, `dateModified`) and the order of posts.
 - **No reading time on posts (decision 2026-11-05):** not on the page, not in `ar.json`, and not computed anywhere.
-- **Covers are code-drawn, never images, and carry no text.** One template per kind of post, registered in `src/components/blog/covers/index.tsx` and listed in `COVER_TEMPLATES` (`velite.config.ts`). Built so far: `ban-protection` (a padlock in a ring: red → the shackle lifts and the ring closes green, once; base styles = final state). New templates must differ from the home ban-protection panel and `MetaVerify`.
+- **Covers are code-drawn, never images, and carry no text.** One template per kind of post, registered in `src/components/blog/covers/index.tsx` and listed in `COVER_TEMPLATES` with its variant count in `COVER_VARIANTS` (`velite.config.ts`). Base styles = final state; a short one-time motion plays only with `animated` (the post page; cards are static) and never with reduced motion. Drawn on a 1200×430 SVG (`CoverSvg`); phones crop it to 16:9, so main shapes stay within x 218–982. New templates must differ from the home ban-protection panel, `MetaVerify` and the hero phone. The six templates (ideas, per-post assignment and the reasons: `docs/blog-covers-plan.md`, `scripts/data/post-covers.json`):
+  - `ban-protection`: v1 a padlock in a ring (red → the shackle lifts and the ring closes green); v2 the same lock on the panel's side, larger bubbles on the other.
+  - `whatsapp-messages`: v1 one bubble branching to rows of read ticks; v2 a stack of template cards, one pulled out.
+  - `platform`: v1 two blocks joined by a link with data pulses; v2 a hub with orbiting connection points; v3 a bubble with a verified seal; v4 a bubble with a keyhole.
+  - `chatbot-ai`: v1 a decision tree with one lit route; v2 a dot-matrix robot face; v3 tasks travelling an automation loop around a gear.
+  - `marketing`: v1 an arrow in a target; v2 columns rising to the right under a curve (rising to the left reads as a decline); v3 scattered dots gathering toward a ring.
+  - `sector`: the sector's home-card motif (`SectorMotif`), enlarged: v1 in a window on the dark panel (many motif pieces are translucent dark and would vanish on it), v2 filling the cover with a thin edge line. Needs **`cover.sector`**: a slug from `sectors.json`, or `healthcare` (calendar with a medical cross) / `legal` (balance scale) — these two are drawn in `SectorCover.tsx` for covers only: no home card, no `ar.json` line, no sector page. The build fails if `cover.sector` is missing from a `sector` cover, given to another template, or unknown.
+  - **`SectorMotif` inside covers:** an optional `className` and a `.enlarged` class in `SectorMotif.module.css`. Under `.enlarged`, `--s` steps up with the cover box (container queries), full-width pieces and patterns follow it, the advertising cursor's name is hidden (no text in covers), and weak motifs are strengthened. Every such rule sits under `.enlarged`, so the home cards never change — keep it that way.
 - The ban context box (link to `/whatsapp-ban/`) appears on posts with the `ban-protection` cover.
 - Related posts: up to 3 sharing a category, newest first; the section disappears when there are none.
 - Heading anchors are generated from the heading text the way WordPress wrote them (checked: 16 of 16 on the pilot post), so old links to a section keep working. The table of contents lists `h2` only.
@@ -366,6 +374,7 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
    - Tracking tools: check the old site for Google Analytics, Google Tag Manager and Meta Pixel, and put the same IDs in the new site (after the developer approves).
    - 301s from the old usage-guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/` — not `/whatsapp-ban/`, which stays a page here) to their pages on docs.hrwhats.com, in the generated `.htaccess` — **only after the developer sends the exact page URLs** (until then they would all go to the guide's home); the URL test must then expect these 301s. Update the site's guide links to the exact URLs at the same time (see Usage guide).
    - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.
+   - Evaluate `experimental.cssChunking: "strict"` (in `next.base.ts`; see the bundled docs). Webpack groups CSS of different routes into shared files, so the home page loads about 4.5 KB gzipped of blog CSS (the cover templates and the post page) it does not use (measured 2026-11-09). Adopt it only after comparing the computed styles of every page before and after, since it changes CSS order site-wide.
    - **After launch:** submit the new sitemap in Search Console and check the most important pages with URL Inspection.
    - **After launch:** protect the staging copy `newhr.tmt3.sa` (a password, or a redirect to the main site).
    - **After launch:** weekly Search Console checks for the first two months; new 404 pages get redirects right away.

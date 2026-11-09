@@ -1,0 +1,164 @@
+/* Base styles are the final state. */
+.links path {
+  fill: none;
+  stroke: rgb(var(--neon-rgb) / 0.26);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+.route {
+  fill: none;
+  stroke: var(--neon);
+  stroke-width: 5;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+}
+.root {
+  fill: var(--wa);
+}
+.rootEye {
+  fill: var(--deep);
+}
+.rootMouth {
+  fill: none;
+  stroke: var(--deep);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+.branch,
+.leaf {
+  fill: var(--dark-glow);
+  stroke: rgb(var(--neon-rgb) / 0.3);
+  stroke-width: 2;
+}
+.branchOn {
+  stroke: var(--neon);
+  stroke-width: 4;
+}
+.leafOn {
+  fill: var(--neon);
+  stroke: var(--neon);
+}
+.leafCheck {
+  fill: none;
+  stroke: var(--deep);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dotField {
+  fill: rgb(var(--neon-rgb) / 0.07);
+}
+.dotHead {
+  fill: rgb(var(--neon-rgb) / 0.62);
+}
+.dotFill {
+  fill: rgb(var(--neon-rgb) / 0.13);
+}
+.dotEye {
+  fill: var(--neon);
+}
+.dotMouth {
+  fill: var(--wa);
+}
+
+.track {
+  fill: none;
+  stroke: rgb(var(--neon-rgb) / 0.32);
+  stroke-width: 4;
+  stroke-dasharray: 3 14;
+  stroke-linecap: round;
+}
+.trackArrow {
+  fill: none;
+  stroke: var(--neon);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.gear {
+  fill: var(--wa);
+  transform-box: view-box;
+  transform-origin: 600px 215px;
+}
+.gear .gearHole {
+  fill: var(--deep);
+}
+.task {
+  offset-path: path("M470 85H730A130 130 0 0 1 730 345H470A130 130 0 0 1 470 85Z");
+  offset-rotate: 0deg;
+  offset-distance: var(--p);
+}
+.task rect {
+  fill: var(--surface);
+}
+.task line {
+  stroke: rgb(var(--dark-rgb) / 0.22);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+.task circle {
+  fill: var(--wa);
+}
+.task .taskPending {
+  fill: rgb(var(--dark-rgb) / 0.16);
+}
+.task path {
+  fill: none;
+  stroke: var(--deep);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animated .route {
+    animation: draw 1.1s var(--ease) 0.5s backwards;
+  }
+  .animated .leafOn,
+  .animated .leafCheck {
+    animation: fade-in 0.4s var(--ease) 1.5s backwards;
+  }
+  .animated .dotRow {
+    animation: fade-in 0.45s var(--ease) calc(var(--i) * 0.06s) backwards;
+  }
+  .animated .eyes {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: blink 0.5s var(--ease) 1s backwards;
+  }
+  .animated .gear {
+    animation: gear-turn 1.6s var(--ease) 0.2s backwards;
+  }
+  .animated .task {
+    animation: task-travel 1.6s var(--ease) 0.2s backwards;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 100;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes blink {
+  from {
+    transform: scaleY(0.08);
+  }
+}
+@keyframes gear-turn {
+  from {
+    transform: rotate(-90deg);
+  }
+}
+@keyframes task-travel {
+  from {
+    offset-distance: calc(var(--p) - 12%);
+    opacity: 0;
+  }
+}

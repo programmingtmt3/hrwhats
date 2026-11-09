@@ -1,0 +1,135 @@
+/* Base styles are the final state. */
+.cover {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+}
+/* Variant 2 is light: a thin line keeps its edge on the light page. */
+.full::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgb(var(--dark-rgb) / 0.2);
+  pointer-events: none;
+}
+/* The size container the enlarged motif reads (see SectorMotif.module.css).
+   White underneath: some motif backgrounds are translucent tints. */
+.box {
+  container-type: size;
+  overflow: hidden;
+  background: var(--surface);
+}
+.panel .box {
+  width: 46%;
+  height: 76%;
+  border-radius: var(--r);
+  box-shadow:
+    0 0 0 1px rgb(var(--neon-rgb) / 0.3),
+    0 18px 50px rgb(var(--black-rgb) / 0.35);
+}
+.full .box {
+  width: 100%;
+  height: 100%;
+}
+
+/* The two motifs drawn for covers only. */
+.own {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.own svg {
+  display: block;
+  width: 100%;
+  height: 82%;
+}
+.healthcare {
+  background: rgb(var(--wa-rgb) / 0.1);
+}
+.legal {
+  background: var(--cream);
+}
+.paper {
+  fill: var(--surface);
+  stroke: var(--line);
+}
+.calendarHead {
+  fill: var(--dark);
+}
+.calendarRings {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.day {
+  fill: rgb(var(--dark-rgb) / 0.1);
+}
+.dayOn {
+  fill: var(--wa);
+}
+.crossBadge {
+  fill: var(--green);
+  stroke: var(--surface);
+  stroke-width: 3;
+}
+.cross {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+.scaleBase {
+  fill: var(--wood);
+}
+.scaleLine {
+  fill: none;
+  stroke: var(--dark);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.scalePin {
+  fill: var(--green);
+}
+.scaleCord {
+  fill: none;
+  stroke: var(--wood);
+  stroke-width: 1.6;
+}
+.scalePan {
+  fill: var(--kraft);
+  stroke: var(--wood);
+  stroke-width: 1.6;
+}
+
+@media (max-width: 600px) {
+  .panel .box {
+    width: 58%;
+    height: 80%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animated.panel .box {
+    animation: window-rise 0.7s var(--ease) 0.15s backwards;
+  }
+  .animated.full .box {
+    animation: fade-in 0.7s var(--ease) 0.1s backwards;
+  }
+}
+
+@keyframes window-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

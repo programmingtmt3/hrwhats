@@ -17,6 +17,16 @@ const BUBBLES: [number, number, number, number, "in" | "out"][] = [
   [1066, 346, 96, 42, "out"],
 ];
 
+/** Variant 2: larger bubbles on one side, the lock on the other. */
+const SIDE_BUBBLES: [number, number, number, number, "in" | "out"][] = [
+  [46, 40, 300, 84, "in"],
+  [300, 150, 250, 76, "out"],
+  [70, 246, 280, 80, "out"],
+  [352, 322, 236, 72, "in"],
+];
+/** How far variant 2 moves the lock toward the panel's side. */
+const SIDE_SHIFT = 270;
+
 const CENTER_X = 600;
 const CENTER_Y = 215;
 const RING = 136;
@@ -41,20 +51,9 @@ function Bubble({ x, y, width, height, side }: { x: number; y: number; width: nu
  * cards, with `animated` off) show the open lock directly. Decorative, no text.
  */
 export function BanProtectionCover({ variant, animated }: { variant: number; animated: boolean }) {
-  return (
-    <svg
-      className={cn(styles.cover, animated && styles.animated)}
-      viewBox="0 0 1200 430"
-      preserveAspectRatio="xMidYMid slice"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <g className={styles.bubbles} transform={variant % 2 === 0 ? "matrix(-1 0 0 1 1200 0)" : undefined}>
-        {BUBBLES.map(([x, y, width, height, side]) => (
-          <Bubble key={`${x}-${y}`} x={x} y={y} width={width} height={height} side={side} />
-        ))}
-      </g>
-
+  const onSide = variant === 2;
+  const lock = (
+    <>
       <circle className={styles.halo} cx={CENTER_X} cy={CENTER_Y} r={RING + 42} />
       <circle className={styles.ringAlert} cx={CENTER_X} cy={CENTER_Y} r={RING} />
       <circle
@@ -77,6 +76,24 @@ export function BanProtectionCover({ variant, animated }: { variant: number; ani
       <rect className={styles.body} x="540" y="195" width="120" height="96" rx="18" />
       <circle className={styles.keyhole} cx={CENTER_X} cy="233" r="12" />
       <rect className={styles.keyhole} x="594" y="236" width="12" height="28" rx="4" />
+    </>
+  );
+
+  return (
+    <svg
+      className={cn(styles.cover, animated && styles.animated)}
+      viewBox="0 0 1200 430"
+      preserveAspectRatio={onSide ? "xMaxYMid slice" : "xMidYMid slice"}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <g className={cn(styles.bubbles, onSide && styles.sideBubbles)}>
+        {(onSide ? SIDE_BUBBLES : BUBBLES).map(([x, y, width, height, side]) => (
+          <Bubble key={`${x}-${y}`} x={x} y={y} width={width} height={height} side={side} />
+        ))}
+      </g>
+
+      {onSide ? <g transform={`translate(${SIDE_SHIFT} 0)`}>{lock}</g> : lock}
     </svg>
   );
 }

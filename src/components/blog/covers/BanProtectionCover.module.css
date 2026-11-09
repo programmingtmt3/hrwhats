@@ -7,6 +7,9 @@
 .bubbles {
   fill: rgb(var(--neon-rgb) / 0.07);
 }
+.sideBubbles {
+  fill: rgb(var(--neon-rgb) / 0.13);
+}
 .halo {
   fill: rgb(var(--deep-rgb) / 0.75);
   stroke: rgb(var(--neon-rgb) / 0.16);

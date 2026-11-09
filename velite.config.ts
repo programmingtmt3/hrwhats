@@ -3,7 +3,18 @@ import { basename } from "node:path";
 
 import { defineCollection, defineConfig, s } from "velite";
 
-const COVER_TEMPLATES = ["ban-protection"] as const;
+const COVER_TEMPLATES = ["ban-protection", "whatsapp-messages", "platform", "chatbot-ai", "marketing", "sector"] as const;
+/** How many variants each cover template draws. */
+const COVER_VARIANTS: Record<(typeof COVER_TEMPLATES)[number], number> = {
+  "ban-protection": 2,
+  "whatsapp-messages": 2,
+  platform: 4,
+  "chatbot-ai": 3,
+  marketing: 3,
+  sector: 2,
+};
+/** Motifs drawn for covers only: these have no sector page and no home card. */
+const COVER_ONLY_SECTORS = ["healthcare", "legal"];
 const MAX_SLUG_BYTES = 255;
 const ASCII_FILE_NAME = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 /** Static routes that are planned but have no folder yet. */
@@ -13,6 +24,7 @@ const readSlugs = (file: string) =>
   (JSON.parse(readFileSync(file, "utf8")) as { slug: string }[]).map((item) => item.slug);
 
 const categorySlugs = readSlugs("content/data/categories.json") as [string, ...string[]];
+const coverSectors = [...readSlugs("content/data/sectors.json"), ...COVER_ONLY_SECTORS] as [string, ...string[]];
 
 type AstNode = {
   type: string;
@@ -68,10 +80,20 @@ const posts = defineCollection({
       date: s.isodate(),
       updated: s.isodate(),
       categories: s.array(s.enum(categorySlugs)).min(1),
-      cover: s.object({
-        template: s.enum(COVER_TEMPLATES),
-        variant: s.number().int().min(1).default(1),
-      }),
+      cover: s
+        .object({
+          template: s.enum(COVER_TEMPLATES),
+          variant: s.number().int().min(1).default(1),
+          sector: s.enum(coverSectors).optional(),
+        })
+        .superRefine((cover, ctx) => {
+          const problem = (message: string) => ctx.addIssue({ code: "custom", message });
+          if (cover.template === "sector" && !cover.sector) problem('A "sector" cover needs cover.sector');
+          if (cover.template !== "sector" && cover.sector) problem('cover.sector belongs only to a "sector" cover');
+          if (cover.variant > COVER_VARIANTS[cover.template]) {
+            problem(`The "${cover.template}" cover has no variant ${cover.variant}`);
+          }
+        }),
       body: s.mdx(),
     })
     .transform((data, { meta }) => {
