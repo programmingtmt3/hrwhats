@@ -1,6 +1,7 @@
 {
-  "_about": "Approved fixes to single heading levels, applied before the general heading rule in scripts/migrate-wordpress.ts. Each entry names the exact heading text (trimmed) and its WordPress level; the run stops if it no longer matches exactly one heading.",
+  "_about": "Approved fixes to single headings, applied before the general heading rule in scripts/migrate-wordpress.ts. Each entry names the exact heading text (trimmed) and its WordPress level; `to` is a new level, or \"paragraph\" = the heading becomes a bold paragraph with the same text (its WordPress anchor is then not expected by --verify). The run stops if an entry no longer matches exactly one heading.",
   "posts": {
-    "3346": [{ "text": "مثال 3", "from": 3, "to": 5, "reason": "An h3 among its siblings «مثال 1، 2، 4» (h5): an entry error." }]
+    "3346": [{ "text": "مثال 3", "from": 3, "to": 5, "reason": "An h3 among its siblings «مثال 1، 2، 4» (h5): an entry error." }],
+    "2010": [{ "text": "الخطوة 5: الوصول للمحادثات المقفلة", "from": 6, "to": "paragraph", "reason": "The only heading among its sibling steps «الخطوة 1–4» (bold paragraphs): an entry error. Approved 2026-11-10." }]
   }
 }

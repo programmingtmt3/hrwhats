@@ -797,7 +797,8 @@ type CoverEntry = {
   provisional?: boolean;
 };
 type DescriptionEntry = { source: "excerpt" | "yoast" | "custom"; text?: string; proposed?: string };
-type HeadingFix = { text: string; from: number; to: number };
+/** `to`: a new level, or "paragraph" = the heading becomes a bold paragraph (same text). */
+type HeadingFix = { text: string; from: number; to: number | "paragraph" };
 
 const readJson = <T,>(file: string): T => JSON.parse(readFileSync(file, "utf8")) as T;
 
@@ -865,7 +866,7 @@ function brandTree(tree: HastNode, post: number, changes: BrandChange[]): void {
 
 // ----------------------------------------------------------- heading levels
 
-type LevelReport = { before: number[]; after: number[]; rule: "A" | "B" };
+type LevelReport = { before: number[]; after: number[]; rule: "A" | "B"; paragraphs: string[] };
 
 const levelOf = (node: HastNode) => Number(node.tagName?.slice(1));
 
@@ -877,7 +878,41 @@ const levelOf = (node: HastNode) => Number(node.tagName?.slice(1));
  *    headings before the first top-level one become h2; none sits more than one level below
  *    the heading before it.
  */
+/**
+ * Approved "paragraph" fixes: a heading that is an entry error among bold-paragraph siblings
+ * becomes a bold paragraph with the same text. Each must match exactly one heading.
+ * Returns the WordPress ids of the headings it turned into paragraphs.
+ */
+function headingsToParagraphs(tree: HastNode, id: number, fixes: HeadingFix[]): string[] {
+  const excused: string[] = [];
+  for (const fix of fixes) {
+    if (fix.to !== "paragraph") continue;
+    const matches: HastNode[] = [];
+    walk(tree, (node) => {
+      if (node.type !== "element" || !/^h[1-6]$/.test(node.tagName ?? "")) return;
+      if (levelOf(node) === fix.from && hastText(node).trim() === fix.text) matches.push(node);
+    });
+    if (matches.length !== 1) {
+      throw new StopError(`Post ${id}: heading fix "${fix.text}" (h${fix.from} → paragraph) matched ${matches.length} headings.`);
+    }
+    const [node] = matches;
+    excused.push(String(node.properties?.id ?? "(none)"));
+    // Blank text and <br> at the edges mean nothing in a paragraph of its own.
+    const isEdge = (child: HastNode) =>
+      (child.type === "text" && !/S/.test(child.value ?? "")) || (child.type === "element" && child.tagName === "br");
+    const inner = [...(node.children ?? [])];
+    while (inner.length > 0 && isEdge(inner[0])) inner.shift();
+    while (inner.length > 0 && isEdge(inner[inner.length - 1])) inner.pop();
+    const bold = inner.length === 1 && inner[0].type === "element" && ["strong", "b"].includes(inner[0].tagName ?? "");
+    node.tagName = "p";
+    node.properties = {};
+    node.children = bold ? inner : [{ type: "element", tagName: "strong", properties: {}, children: inner }];
+  }
+  return excused;
+}
+
 function fixHeadingLevels(tree: HastNode, id: number, fixes: HeadingFix[]): LevelReport {
+  const paragraphs = headingsToParagraphs(tree, id, fixes);
   const headings: HastNode[] = [];
   walk(tree, (node, parents) => {
     if (node.type !== "element" || !/^h[1-6]$/.test(node.tagName ?? "")) return;
@@ -888,6 +923,7 @@ function fixHeadingLevels(tree: HastNode, id: number, fixes: HeadingFix[]): Leve
   const levels = [...before];
 
   for (const fix of fixes) {
+    if (fix.to === "paragraph") continue;
     const matches = headings.flatMap((node, index) =>
       hastText(node).trim() === fix.text && levels[index] === fix.from ? [index] : [],
     );
@@ -915,7 +951,7 @@ function fixHeadingLevels(tree: HastNode, id: number, fixes: HeadingFix[]): Leve
     });
   }
   headings.forEach((node, index) => (node.tagName = `h${after[index]}`));
-  return { before, after, rule: neverClimbs ? "A" : "B" };
+  return { before, after, rule: neverClimbs ? "A" : "B", paragraphs };
 }
 
 // ------------------------------------------------------------------ links
@@ -1018,6 +1054,44 @@ function cleanHast(node: HastNode, snapshot: Set<string>, oldSlugs: Record<strin
     child.properties = typeof href === "string" ? { href: finalHref(href, snapshot, oldSlugs) } : {};
     cleanHast(child, snapshot, oldSlugs);
   }
+  hoistEdgeBreaks(node);
+}
+
+const INLINE_TAGS = new Set(["strong", "b", "em", "i", "u", "span", "mark", "a", "sub", "sup"]);
+
+/**
+ * `<strong>text<br></strong>` would become `**text\` + an encoded newline + `**`, which MDX
+ * renders as a visible backslash. A <br> at either edge of an inline element (whitespace
+ * aside) moves just outside it: same text, same line break.
+ */
+function hoistEdgeBreaks(node: HastNode): void {
+  const isBreak = (child: HastNode) => child.type === "element" && child.tagName === "br";
+  const isBlank = (child: HastNode) => child.type === "text" && !/\S/.test(child.value ?? "");
+  const result: HastNode[] = [];
+  for (const child of node.children ?? []) {
+    if (child.type !== "element" || !INLINE_TAGS.has(child.tagName ?? "")) {
+      result.push(child);
+      continue;
+    }
+    const inner = [...(child.children ?? [])];
+    const before: HastNode[] = [];
+    const after: HastNode[] = [];
+    while (inner.length > 0 && (isBreak(inner[0]) || isBlank(inner[0]))) {
+      const edge = inner.shift() as HastNode;
+      if (isBreak(edge)) before.push(edge);
+    }
+    while (inner.length > 0 && (isBreak(inner[inner.length - 1]) || isBlank(inner[inner.length - 1]))) {
+      const edge = inner.pop() as HastNode;
+      if (isBreak(edge)) after.unshift(edge);
+    }
+    if (before.length === 0 && after.length === 0) {
+      result.push(child);
+      continue;
+    }
+    child.children = inner;
+    result.push(...before, ...(inner.length > 0 ? [child] : []), ...after);
+  }
+  node.children = result;
 }
 
 // ------------------------------------------------------------- descriptions
@@ -1123,6 +1197,7 @@ async function convertPost(
   log.push(`Headings (rule ${levels.rule}):`);
   log.push(`  before: ${levels.before.map((level) => `h${level}`).join(" ") || "(none)"}`);
   log.push(`  after:  ${levels.after.map((level) => `h${level}`).join(" ") || "(none)"}`);
+  for (const paragraph of levels.paragraphs) log.push(`  heading → bold paragraph (approved fix): #${paragraph}`);
   log.push(`Description: ${description?.source ?? "?"}${description?.proposed !== undefined && description.source === "yoast" ? " (proposal waiting for approval)" : ""}`);
   log.push(`Machine-directed paragraphs removed: ${removed.length}`);
   for (const text of removed) log.push(`  ${text}`);
@@ -1246,6 +1321,7 @@ function firstDifference(source: string[], built: string[]): string | null {
 async function verify(ids: number[]): Promise<void> {
   const reviewed = readReviewed(ids);
   const rules = readMachineNoteRules();
+  const headingFixes = readJson<{ posts: Record<string, HeadingFix[]> }>(HEADING_FIXES_FILE).posts;
   const posts = await fetchPosts(ids, "id,slug,content");
   const rows: string[] = [];
   const details: string[] = [];
@@ -1262,6 +1338,8 @@ async function verify(ids: number[]): Promise<void> {
     if (!body) throw new StopError(`${file}: no #post-body.`);
 
     const source = parseHtml((posts.get(id) as FullPost).content.rendered);
+    // Approved heading → paragraph fixes: no anchor is expected for them.
+    const excused = headingsToParagraphs(source, id, headingFixes[String(id)] ?? []);
     const sourceIds = headingIds(source);
     const replace = rules.replace.filter((rule) => rule.post === id);
     applyReplacements(source, replace, []);
@@ -1285,10 +1363,11 @@ async function verify(ids: number[]): Promise<void> {
 
     rows.push(
       `#${id}  text: ${textDiff ? "DIFF" : "same"}  ids: ${idDiffs.length ? `DIFF ${idDiffs.length}` : `same ${sourceIds.length}/${sourceIds.length}`}` +
-        `  folder: ok  canonical: ${canonicalOk ? "ok" : `WRONG ${JSON.stringify(canonicals)}`}  removed: ${removed.length}  replaced: ${replace.length}`,
+        `${excused.length ? `  excused: ${excused.length}` : ""}  folder: ok  canonical: ${canonicalOk ? "ok" : `WRONG ${JSON.stringify(canonicals)}`}  removed: ${removed.length}  replaced: ${replace.length}`,
     );
     if (textDiff) details.push(`#${id} text: ${textDiff}`);
     for (const diff of idDiffs) details.push(`#${id} id ${diff}`);
+    for (const excusedId of excused) details.push(`#${id} excused (approved heading → paragraph): ${excusedId}`);
   }
 
   heading("Verification");
