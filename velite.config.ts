@@ -19,8 +19,6 @@ const COVER_ONLY_SECTORS = ["healthcare", "legal"];
 const POST_CONTEXTS = ["unblock", "avoid", "sector"] as const;
 const MAX_SLUG_BYTES = 255;
 const ASCII_FILE_NAME = /^[a-z0-9]+(-[a-z0-9]+)*$/;
-/** Static routes that are planned but have no folder yet. */
-const PLANNED_ROUTES = ["news", "category"];
 
 const readSlugs = (file: string) =>
   (JSON.parse(readFileSync(file, "utf8")) as { slug: string }[]).map((item) => item.slug);
@@ -136,7 +134,7 @@ export default defineConfig({
     const routeFolders = readdirSync("src/app/(ar)", { withFileTypes: true })
       .filter((entry) => entry.isDirectory() && !/^[[(]/.test(entry.name))
       .map((entry) => entry.name);
-    const reserved = new Set([...routeFolders, ...readSlugs("content/data/sectors.json"), ...PLANNED_ROUTES]);
+    const reserved = new Set([...routeFolders, ...readSlugs("content/data/sectors.json")]);
 
     const problems: string[] = [];
     const seen = new Map<string, string>();

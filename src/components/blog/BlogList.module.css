@@ -1,0 +1,210 @@
+/* Blog listings (/news/, /category/<slug>/): category bar, card grid, pagination. */
+.listing {
+  padding-bottom: 80px;
+}
+
+/* ---------- Category bar ---------- */
+.categoryBar ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+}
+.categoryBar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 8px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  transition:
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
+}
+.categoryBar a:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+.categoryBar a[aria-current] {
+  border-color: var(--dark);
+  background: var(--dark);
+  color: var(--surface);
+}
+.categoryBar a:focus-visible,
+.card:focus-visible,
+.pagination a:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+/* ---------- Grid: 3 columns, 2 on tablets, 1 on phones ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 36px;
+  list-style: none;
+}
+.grid > li {
+  display: flex;
+}
+
+/* ---------- Card: one link ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition:
+    translate 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+.card:hover {
+  translate: 0 -4px;
+  border-color: rgb(var(--green-rgb) / 0.35);
+  box-shadow: var(--shadow);
+}
+/* Cards crop the 1200×430 drawing to 16:9 (main shapes stay in x 218–982). */
+.card .cover {
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r);
+}
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 10px 12px;
+}
+.cardCategory {
+  align-self: flex-start;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: rgb(var(--wa-rgb) / 0.12);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+.cardTitle {
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  transition: color 0.2s var(--ease);
+}
+.card:hover .cardTitle {
+  color: var(--green);
+}
+.cardText {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+  margin-top: 48px;
+}
+.pagination ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+.number,
+.step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  height: 44px;
+  padding-inline: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  font-weight: 600;
+  color: var(--ink);
+  transition:
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+.number:hover,
+.step:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+.number[aria-current="page"] {
+  border-color: var(--dark);
+  background: var(--dark);
+  color: var(--surface);
+}
+.step svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Tablets: 2 columns. With an odd number of cards, the first one spans both
+   columns (cover beside the text), so the last row is never a lone card. */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .grid > li:first-child:nth-last-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .grid > li:first-child:nth-last-child(odd) .card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .listing {
+    padding-bottom: 56px;
+  }
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .grid > li:first-child:nth-last-child(odd) .card {
+    display: flex;
+  }
+  .categoryBar a {
+    padding: 6px 14px;
+    font-size: 0.9rem;
+  }
+  /* Previous/next keep their accessible text, shown as arrows only. */
+  .stepText {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .step {
+    padding-inline: 0;
+  }
+}

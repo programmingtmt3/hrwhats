@@ -260,6 +260,17 @@ export function getPostBySlug(locale: Locale, slug: string): Post | undefined {
   return getPosts(locale).find((post) => post.slug === decoded);
 }
 
+/** Every category, in the order of categories.json (the blog's category bar). */
+export function getCategories(): Category[] {
+  return categories;
+}
+
+/** Posts of a locale listed under one category, newest first. */
+export function getPostsInCategory(locale: Locale, slug: string): Post[] {
+  getCategory(slug);
+  return getPosts(locale).filter((post) => post.categories.includes(slug));
+}
+
 /** Newest posts sharing a category with this one. */
 export function getRelatedPosts(locale: Locale, post: Post, limit = 3): Post[] {
   return getPosts(locale)

@@ -41,12 +41,25 @@
   list-style: none;
   font-size: 0.9rem;
 }
-.categories li {
+.categories a {
+  display: inline-block;
   padding: 3px 12px;
   border-radius: 999px;
   font-weight: 600;
   color: var(--dark);
   background: rgb(var(--wa-rgb) / 0.12);
+  transition:
+    background-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+.categories a:hover {
+  color: var(--green);
+  background: rgb(var(--wa-rgb) / 0.2);
+}
+.breadcrumb a:focus-visible,
+.categories a:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
 }
 
 .layout {
