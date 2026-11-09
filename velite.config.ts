@@ -15,6 +15,8 @@ const COVER_VARIANTS: Record<(typeof COVER_TEMPLATES)[number], number> = {
 };
 /** Motifs drawn for covers only: these have no sector page and no home card. */
 const COVER_ONLY_SECTORS = ["healthcare", "legal"];
+/** The context box under a post's text (texts in messages/ar.json → blog.context). */
+const POST_CONTEXTS = ["unblock", "avoid", "sector"] as const;
 const MAX_SLUG_BYTES = 255;
 const ASCII_FILE_NAME = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 /** Static routes that are planned but have no folder yet. */
@@ -24,7 +26,8 @@ const readSlugs = (file: string) =>
   (JSON.parse(readFileSync(file, "utf8")) as { slug: string }[]).map((item) => item.slug);
 
 const categorySlugs = readSlugs("content/data/categories.json") as [string, ...string[]];
-const coverSectors = [...readSlugs("content/data/sectors.json"), ...COVER_ONLY_SECTORS] as [string, ...string[]];
+const sectorSlugs = readSlugs("content/data/sectors.json");
+const coverSectors = [...sectorSlugs, ...COVER_ONLY_SECTORS] as [string, ...string[]];
 
 type AstNode = {
   type: string;
@@ -44,11 +47,12 @@ function createHeadingIds() {
   return (text: string) => {
     const base = text
       .normalize("NFC")
-      .replace(/[ً-ْ]/g, "")
+      .replace(/[ً-ْ]/g, "-") // WordPress turns each haraka into a hyphen (جدًا → جد-ا)
       .toLowerCase()
       .replace(/[^\p{L}\p{N}\s-]/gu, "")
       .trim()
-      .replace(/[\s-]+/g, "-");
+      .replace(/[\s-]+/g, "-")
+      .replace(/^-|-$/g, ""); // a haraka at either end leaves no hyphen there (نهائياً → نهائيا)
     const count = (used.get(base) ?? 0) + 1;
     used.set(base, count);
     return count === 1 ? base : `${base}-${count}`;
@@ -94,7 +98,14 @@ const posts = defineCollection({
             problem(`The "${cover.template}" cover has no variant ${cover.variant}`);
           }
         }),
+      context: s.enum(POST_CONTEXTS).optional(),
       body: s.mdx(),
+    })
+    .superRefine((post, ctx) => {
+      // The sector box links to the sector's page, so only sectors that have one qualify.
+      if (post.context === "sector" && !sectorSlugs.includes(post.cover.sector ?? "")) {
+        ctx.addIssue({ code: "custom", message: 'context "sector" needs a cover.sector that has a sector page' });
+      }
     })
     .transform((data, { meta }) => {
       const nextId = createHeadingIds();

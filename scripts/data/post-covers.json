@@ -1,5 +1,5 @@
 {
-  "_about": "Approved cover and context box for each of the 38 WordPress posts, newest first (the /news/ index order, 9 per page, assumed 3 columns). Variants are spread so no two neighbours match, horizontally or vertically. Ideas and rules: docs/blog-covers-plan.md. Only post 3511 is migrated so far.",
+  "_about": "Approved cover and context box for each of the 38 WordPress posts, newest first (the /news/ index order, 9 per page, assumed 3 columns). Variants are spread so no two neighbours match, horizontally or vertically. Ideas and rules: docs/blog-covers-plan.md. Post 3329 was settled from its excerpt (online stores) on 2026-11-10.",
   "posts": [
     { "id": 3511, "template": "ban-protection", "variant": 1, "sector": null, "context": "unblock" },
     { "id": 3420, "template": "platform", "variant": 3, "sector": null, "context": null },
@@ -8,15 +8,7 @@
     { "id": 3343, "template": "sector", "variant": 1, "sector": "healthcare", "context": null },
     { "id": 3338, "template": "ban-protection", "variant": 1, "sector": null, "context": "avoid" },
     { "id": 3336, "template": "platform", "variant": 1, "sector": null, "context": null },
-    {
-      "id": 3329,
-      "template": "sector",
-      "variant": 1,
-      "sector": "online-stores-systems",
-      "context": null,
-      "provisional": true,
-      "provisionalNote": "The title says only «متجرك» (online store or physical shop). Settle from the post's excerpt at migration and show the developer. If it is about an online store: keep this sector and set context to \"sector\". If not: ask the developer for the sector and context."
-    },
+    { "id": 3329, "template": "sector", "variant": 1, "sector": "online-stores-systems", "context": "sector" },
     { "id": 2068, "template": "sector", "variant": 2, "sector": "legal", "context": null },
     { "id": 2063, "template": "sector", "variant": 1, "sector": "charity", "context": "sector" },
     { "id": 2060, "template": "sector", "variant": 2, "sector": "education-training", "context": "sector" },

@@ -78,7 +78,7 @@ function Hub() {
   );
 }
 
-/** v3: a message bubble carrying a verified seal (the blue tick post). */
+/** v3: a message bubble carrying WhatsApp's blue verified badge. Reserved for the blue tick post (3420). */
 function VerifiedBubble() {
   return (
     <>

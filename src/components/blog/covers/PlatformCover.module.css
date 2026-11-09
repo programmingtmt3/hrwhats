@@ -67,15 +67,16 @@
   stroke-width: 16;
   stroke-linecap: round;
 }
+/* v3 only: WhatsApp's own blue badge with a white tick, since the post is about the blue tick. */
 .seal polygon {
-  fill: var(--wa);
-  stroke: var(--wa);
+  fill: var(--verified-blue);
+  stroke: var(--verified-blue);
   stroke-width: 10;
   stroke-linejoin: round;
 }
 .seal path {
   fill: none;
-  stroke: var(--deep);
+  stroke: var(--on-verified-blue);
   stroke-width: 13;
   stroke-linecap: round;
   stroke-linejoin: round;

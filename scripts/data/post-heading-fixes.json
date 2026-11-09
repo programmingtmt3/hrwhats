@@ -1,0 +1,6 @@
+{
+  "_about": "Approved fixes to single heading levels, applied before the general heading rule in scripts/migrate-wordpress.ts. Each entry names the exact heading text (trimmed) and its WordPress level; the run stops if it no longer matches exactly one heading.",
+  "posts": {
+    "3346": [{ "text": "مثال 3", "from": 3, "to": 5, "reason": "An h3 among its siblings «مثال 1، 2، 4» (h5): an entry error." }]
+  }
+}

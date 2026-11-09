@@ -1,0 +1,14 @@
+{
+  "_about": "Meta description of each converted post, applied by scripts/migrate-wordpress.ts. source: \"excerpt\" = the hand-written WordPress excerpt verbatim, cleaned of HTML (posts that share the one Yoast description); \"yoast\" = the post's Yoast description verbatim; \"custom\" = text approved by the developer (3346, 3343, 3338, 3336, 3329 on 2026-11-10). \"proposed\" is a suggestion waiting for approval: until then the Yoast description is written. Decision 2026-11-05 (CLAUDE.md, WordPress migration).",
+  "posts": {
+    "3511": { "source": "yoast" },
+    "3420": { "source": "excerpt" },
+    "3356": { "source": "yoast" },
+    "3346": { "source": "custom", "text": "رسائل واتساب تسويقية جاهزة للعملاء مع أمثلة تناسب المتاجر الإلكترونية والمطاعم والخدمات والعروض والخصومات، ونصائح لكتابة رسائل تسويقية أكثر فعالية." },
+    "3343": { "source": "custom", "text": "كيفية استخدام واتساب لإدارة مواعيد العيادات والمرضى: استقبال طلبات الحجز وتأكيدها، والتذكيرات، وتقليل حالات عدم الحضور، وتنظيم التواصل مع المرضى." },
+    "3338": { "source": "custom", "text": "أهم الممارسات التي تساعدك على تقليل احتمالية حظر حساب واتساب عند إرسال الرسائل الجماعية، والأخطاء التي يجب تجنبها للحفاظ على حسابك وحملاتك التسويقية." },
+    "3336": { "source": "custom", "text": "ما هو WhatsApp Business API وما الفرق بينه وبين WhatsApp Business في طريقة الاستخدام والإمكانيات وعدد المستخدمين والتكامل مع الأنظمة، وأيهما يناسب نشاطك التجاري." },
+    "3329": { "source": "custom", "text": "أهم الطرق التي تساعد أصحاب المتاجر الإلكترونية على زيادة المبيعات باستخدام واتساب: الرد السريع، والعروض المخصصة، واستعادة من لم يكملوا الشراء، والمتابعة بعد الشراء." },
+    "2068": { "source": "excerpt" }
+  }
+}

@@ -4,7 +4,13 @@
  *   node scripts/migrate-wordpress.ts                 fetch posts → scripts/slug-map.json
  *   node scripts/migrate-wordpress.ts --apply-names   no network: apply the reviewed file
  *                                                     names from data/post-file-names.json
- *   node scripts/migrate-wordpress.ts --only <id>     one post → content/posts/ar/<name>.mdx
+ *   node scripts/migrate-wordpress.ts --only <ids>    posts (3420,3356,…) → content/posts/ar/<name>.mdx,
+ *                                                     in one request; nothing is written unless all succeed
+ *   node scripts/migrate-wordpress.ts --verify <ids>  after `npm run build`: built pages vs WordPress
+ *                                                     (text word for word, heading anchors, folder, canonical)
+ *
+ * Conversion inputs in scripts/data/: post-covers.json (cover + context box),
+ * post-descriptions.json, post-heading-fixes.json, machine-note-rules.json, old-slug-targets.json.
  *
  * Polite by design: one request at a time, about a second apart, no retries, no
  * credentials, no redirects followed. slug-map.json is written only after the whole
@@ -763,9 +769,14 @@ async function fetchInventory(): Promise<SlugMap> {
 
 /** The site's categories, primary first. A WordPress category outside this list is not built. */
 const BUILT_CATEGORIES = ["whatsapp", "marketing", "hrwhats-guide"];
-/** Code-drawn cover template of each converted post. */
-const POST_COVERS: Record<number, string> = { 3511: "ban-protection" };
+const COVERS_FILE = join("scripts", "data", "post-covers.json");
+const DESCRIPTIONS_FILE = join("scripts", "data", "post-descriptions.json");
+const HEADING_FIXES_FILE = join("scripts", "data", "post-heading-fixes.json");
 const ALLOWED_IN_POSTS = new Set([...USUAL_TAGS, "h1"]);
+const POST_FIELDS = "id,slug,status,date_gmt,modified_gmt,title,content,excerpt,yoast_head_json";
+const BLOCK_TAGS = new Set(
+  "p h1 h2 h3 h4 h5 h6 li ul ol table thead tbody tfoot tr td th blockquote pre br hr figure figcaption div".split(" "),
+);
 
 type HastNode = {
   type: string;
@@ -775,11 +786,143 @@ type HastNode = {
   children?: HastNode[];
 };
 
+type FullPost = ApiPost & { date_gmt: string; modified_gmt: string; excerpt: { rendered: string } };
+
+type CoverEntry = {
+  id: number;
+  template: string;
+  variant: number;
+  sector: string | null;
+  context: string | null;
+  provisional?: boolean;
+};
+type DescriptionEntry = { source: "excerpt" | "yoast" | "custom"; text?: string; proposed?: string };
+type HeadingFix = { text: string; from: number; to: number };
+
+const readJson = <T,>(file: string): T => JSON.parse(readFileSync(file, "utf8")) as T;
+
 const hastText = (node: HastNode): string =>
-  node.value ?? (node.children ?? []).map(hastText).join("");
+  node.type === "comment" ? "" : (node.value ?? (node.children ?? []).map(hastText).join(""));
+
+/** Text with a space at every block boundary, so words of adjacent blocks never merge. */
+const blockText = (node: HastNode): string => {
+  if (node.type === "comment") return "";
+  if (node.type === "text") return node.value ?? "";
+  const inner = (node.children ?? []).map(blockText).join("");
+  return node.tagName && BLOCK_TAGS.has(node.tagName) ? ` ${inner} ` : inner;
+};
+
+function walk(node: HastNode, visit: (node: HastNode, parents: HastNode[]) => void, parents: HastNode[] = []): void {
+  visit(node, parents);
+  for (const child of node.children ?? []) walk(child, visit, [...parents, node]);
+}
+
+const parseHtml = (html: string, fragment = true) =>
+  unified().use(rehypeParse, { fragment }).parse(html) as unknown as HastNode;
+
+// ------------------------------------------------------------- brand name
+
+/**
+ * Every spelling of the brand in post text becomes "HRwhats" (the developer's decision,
+ * 2026-11-10). Links, domains and e-mail addresses are never touched: a match glued to
+ * "@", ".", "/", "-" or a Latin letter, or followed by ".letter", is part of one.
+ */
+const BRAND = "HRwhats";
+const BRAND_PATTERN = /(?<![A-Za-z0-9_@./-])hr[  ]?whats(?![A-Za-z0-9_-]|\.[A-Za-z])/giu;
+
+type BrandChange = { post: number; before: string; after: string };
+
+function brandText(text: string): string {
+  return text.replace(BRAND_PATTERN, BRAND);
+}
+
+/** Applies the brand spelling to one string and records each change with its context. */
+function brandFix(text: string, post: number, changes: BrandChange[]): string {
+  const fixed = brandText(text);
+  if (fixed !== text) {
+    for (const match of text.matchAll(BRAND_PATTERN)) {
+      if (match[0] === BRAND) continue;
+      const start = Math.max(0, (match.index ?? 0) - 40);
+      const end = (match.index ?? 0) + match[0].length + 40;
+      changes.push({ post, before: text.slice(start, end).trim(), after: brandText(text.slice(start, end)).trim() });
+    }
+  }
+  return fixed;
+}
+
+function brandTree(tree: HastNode, post: number, changes: BrandChange[]): void {
+  walk(tree, (node, parents) => {
+    if (node.type !== "text" || !node.value) return;
+    if (parents.some((parent) => parent.tagName === "code" || parent.tagName === "pre")) return;
+    const fixed = brandText(node.value);
+    if (fixed === node.value) return;
+    // Logged with the text of the block around it, so a bold «HRWhats» shows its sentence.
+    const block = [...parents].reverse().find((parent) => BLOCK_TAGS.has(parent.tagName ?? ""));
+    brandFix(block ? hastText(block).replace(/\s+/g, " ") : node.value, post, changes);
+    node.value = fixed;
+  });
+}
+
+// ----------------------------------------------------------- heading levels
+
+type LevelReport = { before: number[]; after: number[]; rule: "A" | "B" };
+
+const levelOf = (node: HastNode) => Number(node.tagName?.slice(1));
+
+/**
+ * Heading levels, approved 2026-11-10. Text and anchors never change.
+ * 0. The developer's fixes for single headings (post-heading-fixes.json).
+ * A. Levels that never climb back up (old posts: h2 h3 h4 h5 h6 h6 …) are siblings: all h2.
+ * B. Otherwise: h1 takes the post's top level; the levels in use are renumbered h2, h3, …;
+ *    headings before the first top-level one become h2; none sits more than one level below
+ *    the heading before it.
+ */
+function fixHeadingLevels(tree: HastNode, id: number, fixes: HeadingFix[]): LevelReport {
+  const headings: HastNode[] = [];
+  walk(tree, (node, parents) => {
+    if (node.type !== "element" || !/^h[1-6]$/.test(node.tagName ?? "")) return;
+    if (parents.length !== 1) throw new StopError(`Post ${id}: a heading inside <${parents.at(-1)?.tagName}>.`);
+    headings.push(node);
+  });
+  const before = headings.map(levelOf);
+  const levels = [...before];
+
+  for (const fix of fixes) {
+    const matches = headings.flatMap((node, index) =>
+      hastText(node).trim() === fix.text && levels[index] === fix.from ? [index] : [],
+    );
+    if (matches.length !== 1) {
+      throw new StopError(`Post ${id}: heading fix "${fix.text}" (h${fix.from}) matched ${matches.length} headings.`);
+    }
+    levels[matches[0]] = fix.to;
+  }
+
+  const neverClimbs = levels.every((level, index) => index === 0 || level >= levels[index - 1]);
+  let after: number[];
+  if (neverClimbs) {
+    after = levels.map(() => 2);
+  } else {
+    const others = levels.filter((level) => level !== 1);
+    const top = others.length > 0 ? Math.min(...others) : 2;
+    const lifted = levels.map((level) => (level === 1 ? top : level));
+    const ranks = [...new Set(lifted)].sort((a, b) => a - b);
+    const renumbered = lifted.map((level) => ranks.indexOf(level) + 2);
+    const firstTop = renumbered.indexOf(2);
+    after = [];
+    renumbered.forEach((level, index) => {
+      const capped = index < firstTop ? 2 : Math.min(level, index === 0 ? 2 : after[index - 1] + 1);
+      after.push(capped);
+    });
+  }
+  headings.forEach((node, index) => (node.tagName = `h${after[index]}`));
+  return { before, after, rule: neverClimbs ? "A" : "B" };
+}
+
+// ------------------------------------------------------------------ links
 
 /** Relative final URL of an internal link. Anything unknown stops the conversion. */
 function finalHref(href: string, snapshot: Set<string>, oldSlugs: Record<string, string>): string {
+  if (/^mailto:/i.test(href)) return href; // e-mail links stay as written in every post (approved 2026-11-10)
   const link = classifyLink(href, snapshot, new Map());
   if (!link) throw new StopError(`Unsupported link: ${href}`);
   if ("external" in link) return href;
@@ -793,31 +936,38 @@ function finalHref(href: string, snapshot: Set<string>, oldSlugs: Record<string,
   return `${target}${decodeNfc(url.hash) ?? url.hash}`;
 }
 
+// ---------------------------------------------------------- machine notes
+
 type TextReplacement = { post: number; from: string; to: string };
 
 type MachineNoteRules = {
   remove: RegExp[];
   review: RegExp[];
   replace: TextReplacement[];
-  removed: string[];
 };
 
-/** The developer's exact edits to one post's text. A rule that no longer applies stops the run. */
-function applyReplacements(tree: HastNode, replacements: TextReplacement[]): void {
-  const textNodes: HastNode[] = [];
-  const collect = (node: HastNode) => {
-    if (node.type === "text") textNodes.push(node);
-    (node.children ?? []).forEach(collect);
+function readMachineNoteRules(): MachineNoteRules {
+  const source = readJson<{ remove: string[]; review: string[]; replace: TextReplacement[] }>(MACHINE_NOTES_FILE);
+  return {
+    remove: source.remove.map((pattern) => new RegExp(pattern, "u")),
+    review: source.review.map((pattern) => new RegExp(pattern, "u")),
+    replace: source.replace,
   };
-  collect(tree);
+}
 
+/** The developer's exact edits to one post's text. A rule that no longer applies stops the run. */
+function applyReplacements(tree: HastNode, replacements: TextReplacement[], log: string[]): void {
+  const textNodes: HastNode[] = [];
+  walk(tree, (node) => {
+    if (node.type === "text") textNodes.push(node);
+  });
   for (const { from, to } of replacements) {
     const matching = textNodes.filter((node) => node.value?.includes(from));
     if (matching.length !== 1) {
       throw new StopError(`Replacement "${from}" matched ${matching.length} text nodes, expected 1.`);
     }
     matching[0].value = matching[0].value?.replace(from, to);
-    console.log(`Replaced: "${from}" → "${to}"`);
+    log.push(`Replaced: "${from}" → "${to}"`);
   }
 }
 
@@ -838,139 +988,328 @@ function isMachineNote(text: string, rules: MachineNoteRules): boolean {
   return true;
 }
 
-/** h1 → h2, no attributes but link targets, no empty paragraphs, no machine notes. Other text is never touched. */
-function cleanHast(
-  node: HastNode,
-  snapshot: Set<string>,
-  oldSlugs: Record<string, string>,
-  rules: MachineNoteRules,
-): void {
+/** Drops machine-note paragraphs at any depth and returns their text. */
+function removeMachineNotes(node: HastNode, rules: MachineNoteRules, removed: string[] = []): string[] {
+  // Only parents: a text node given `children` is no longer collapsed by rehype-remark.
+  if (!node.children) return removed;
+  node.children = node.children.filter((child) => {
+    if (child.tagName !== "p" || !isMachineNote(hastText(child), rules)) return true;
+    removed.push(hastText(child).trim());
+    return false;
+  });
+  for (const child of node.children) removeMachineNotes(child, rules, removed);
+  return removed;
+}
+
+/** No attributes but link targets, no empty paragraphs. Other text is never touched. */
+function cleanHast(node: HastNode, snapshot: Set<string>, oldSlugs: Record<string, string>): void {
   node.children = (node.children ?? []).filter((child) => {
     if (child.type === "comment") return false;
     if (child.tagName !== "p") return true;
-    const text = hastText(child);
-    if (isMachineNote(text, rules)) {
-      rules.removed.push(text.trim());
-      return false;
-    }
-    return text.replace(/[\s ]/g, "") !== "";
+    return hastText(child).replace(/[\s ]/g, "") !== "";
   });
   for (const child of node.children) {
     if (child.type !== "element") continue;
     if (!child.tagName || !ALLOWED_IN_POSTS.has(child.tagName)) {
       throw new StopError(`<${child.tagName}> needs a conversion decision (images are not downloaded).`);
     }
-    if (child.tagName === "h1") child.tagName = "h2";
+    if (child.tagName === "h1") throw new StopError("An h1 survived the heading rule.");
     const href = child.tagName === "a" ? child.properties?.href : undefined;
     child.properties = typeof href === "string" ? { href: finalHref(href, snapshot, oldSlugs) } : {};
-    cleanHast(child, snapshot, oldSlugs, rules);
+    cleanHast(child, snapshot, oldSlugs);
   }
 }
 
-/** Removes machine notes, then refuses any left outside a plain paragraph (a list item, a heading). */
-function cleanPost(
-  tree: HastNode,
-  snapshot: Set<string>,
-  oldSlugs: Record<string, string>,
-  rules: MachineNoteRules,
-): void {
-  applyReplacements(tree, rules.replace);
-  cleanHast(tree, snapshot, oldSlugs, rules);
-  const left = hastText(tree);
-  if (matchesAny(left, rules.remove)) {
-    throw new StopError("A machine-directed sentence remains outside a paragraph: it needs a decision.");
+// ------------------------------------------------------------- descriptions
+
+function excerptText(html: string): string {
+  return decodeHtml(html.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+}
+
+function chooseDescription(post: FullPost, entry: DescriptionEntry | undefined): string {
+  if (!entry) throw new StopError(`Post ${post.id} has no entry in ${DESCRIPTIONS_FILE}.`);
+  const yoast = post.yoast_head_json?.description;
+  if (entry.source === "custom") {
+    if (!entry.text) throw new StopError(`Post ${post.id}: a "custom" description needs its text.`);
+    return entry.text;
   }
-  for (const pattern of rules.review) {
-    const match = pattern.exec(left);
-    if (match) {
-      console.log(`Review (kept): "${left.slice(Math.max(0, match.index - 60), match.index + 80).trim()}"`);
+  if (entry.source === "excerpt") {
+    const excerpt = excerptText(post.excerpt.rendered);
+    if (!excerpt || /\[…\]$|\[&hellip;\]$/.test(excerpt)) {
+      throw new StopError(`Post ${post.id}: its excerpt is generated by WordPress, not hand-written.`);
     }
+    return excerpt;
   }
+  if (!yoast) throw new StopError(`Post ${post.id} has no Yoast description.`);
+  return decodeHtml(yoast);
 }
 
-async function writeMdx(id: number): Promise<void> {
-  const reviewed = (JSON.parse(readFileSync(SLUG_MAP_FILE, "utf8")) as SlugMap).posts.find((p) => p.id === id);
-  if (!reviewed?.fileName) throw new StopError(`Post ${id} has no reviewed file name in ${SLUG_MAP_FILE}.`);
-  const cover = POST_COVERS[id];
-  if (!cover) throw new StopError(`Post ${id} has no cover template in POST_COVERS.`);
+// ---------------------------------------------------------------- conversion
 
-  const snapshot = new Set(readSnapshot().flatMap((url) => (url.path === null ? [] : [withSlash(url.path)])));
-  const oldSlugs = JSON.parse(readFileSync(OLD_SLUGS_FILE, "utf8")) as Record<string, string>;
-  const ruleSource = JSON.parse(readFileSync(MACHINE_NOTES_FILE, "utf8")) as {
-    remove: string[];
-    review: string[];
-    replace: TextReplacement[];
-  };
-  const rules: MachineNoteRules = {
-    remove: ruleSource.remove.map((pattern) => new RegExp(pattern, "u")),
-    review: ruleSource.review.map((pattern) => new RegExp(pattern, "u")),
-    replace: ruleSource.replace.filter((rule) => rule.post === id),
-    removed: [],
-  };
+type Converted = { id: number; file: string; text: string; log: string[] };
 
-  const { data } = (await fetchJson(
-    `${API}/posts/${id}?_fields=id,slug,status,date_gmt,modified_gmt,title,content,yoast_head_json`,
-  )) as JsonResponse;
-  const post = data as ApiPost & { date_gmt: string; modified_gmt: string };
+async function convertPost(
+  post: FullPost,
+  reviewed: Post,
+  cover: CoverEntry,
+  description: DescriptionEntry | undefined,
+  fixes: HeadingFix[],
+  shared: { snapshot: Set<string>; oldSlugs: Record<string, string>; rules: MachineNoteRules; brand: BrandChange[] },
+): Promise<Converted> {
+  const { id } = post;
+  const log: string[] = [];
+  if (!reviewed.fileName) throw new StopError(`Post ${id} has no reviewed file name in ${SLUG_MAP_FILE}.`);
+  if (cover.provisional) throw new StopError(`Post ${id}: its cover in ${COVERS_FILE} is still provisional.`);
   const slug = decodeNfc(post.slug);
   if (post.status !== "publish" || slug !== reviewed.slug) {
     throw new StopError(`Post ${id} changed since the review: status ${post.status}, slug ${slug}.`);
   }
   const seoTitle = post.yoast_head_json?.title;
-  const description = post.yoast_head_json?.description;
-  if (!seoTitle || !description) throw new StopError(`Post ${id} has no Yoast title or description.`);
+  if (!seoTitle) throw new StopError(`Post ${id} has no Yoast title.`);
+
+  const tree = parseHtml(post.content.rendered);
+  applyReplacements(tree, shared.rules.replace.filter((rule) => rule.post === id), log);
+  const removed = removeMachineNotes(tree, shared.rules);
+  const levels = fixHeadingLevels(tree, id, fixes);
+  brandTree(tree, id, shared.brand);
+  cleanHast(tree, shared.snapshot, shared.oldSlugs);
+
+  const left = hastText(tree);
+  if (matchesAny(left, shared.rules.remove)) {
+    throw new StopError(`Post ${id}: a machine-directed sentence remains outside a paragraph: it needs a decision.`);
+  }
+  for (const pattern of shared.rules.review) {
+    for (const match of left.matchAll(new RegExp(pattern.source, "gu"))) {
+      const start = Math.max(0, (match.index ?? 0) - 60);
+      log.push(`Review (kept): "${left.slice(start, (match.index ?? 0) + 80).replace(/\s+/g, " ").trim()}"`);
+    }
+  }
+
+  const processor = unified()
+    .use(rehypeRemark)
+    .use(remarkGfm, { tablePipeAlign: false })
+    .use(remarkMdx)
+    .use(remarkStringify, { bullet: "-", rule: "-", listItemIndent: "one" });
+  const markdown = processor.stringify((await processor.run(tree as never)) as never);
 
   const categories = BUILT_CATEGORIES.filter((category) =>
     reviewed.categories.some((term) => term.slug === category),
   );
-
-  const converted = await unified()
-    .use(rehypeParse, { fragment: true })
-    .use(() => (tree: unknown) => cleanPost(tree as HastNode, snapshot, oldSlugs, rules))
-    .use(rehypeRemark)
-    .use(remarkGfm, { tablePipeAlign: false })
-    .use(remarkMdx)
-    .use(remarkStringify, { bullet: "-", rule: "-", listItemIndent: "one" })
-    .process(post.content.rendered);
+  const title = brandFix(decodeHtml(post.title.rendered), id, shared.brand);
+  const metaDescription = brandFix(chooseDescription(post, description), id, shared.brand);
 
   // JSON strings are valid YAML, which keeps ":" and "|" in titles safe.
   const quote = (value: string) => JSON.stringify(value);
   const frontmatter = [
     "---",
-    `title: ${quote(decodeHtml(post.title.rendered))}`,
-    `seoTitle: ${quote(decodeHtml(seoTitle).replace(/hrwhats/gi, "HRwhats"))}`,
-    `description: ${quote(decodeHtml(description))}`,
+    `title: ${quote(title)}`,
+    `seoTitle: ${quote(decodeHtml(seoTitle).replace(/hrwhats/gi, BRAND))}`,
+    `description: ${quote(metaDescription)}`,
     `slug: ${quote(reviewed.slug)}`,
     "legacySlugs: []",
     `date: ${quote(`${post.date_gmt}Z`)}`,
     `updated: ${quote(`${post.modified_gmt}Z`)}`,
     `categories: [${categories.join(", ")}]`,
     "cover:",
-    `  template: ${cover}`,
+    `  template: ${cover.template}`,
+    `  variant: ${cover.variant}`,
+    ...(cover.sector ? [`  sector: ${cover.sector}`] : []),
+    ...(cover.context ? [`context: ${cover.context}`] : []),
     "---",
     "",
     "",
   ].join("\n");
 
-  const file = join("content", "posts", "ar", `${reviewed.fileName}.mdx`);
-  mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(`${file}.tmp`, `${frontmatter}${String(converted)}`, "utf8");
-  renameSync(`${file}.tmp`, file);
-  console.log(`Written: ${file.replaceAll("\\", "/")} (requests sent: ${requestCount})`);
-  console.log(`Machine-directed paragraphs removed from post ${id}: ${rules.removed.length}`);
-  for (const text of rules.removed) console.log(`  ${text}`);
+  log.push(`Headings (rule ${levels.rule}):`);
+  log.push(`  before: ${levels.before.map((level) => `h${level}`).join(" ") || "(none)"}`);
+  log.push(`  after:  ${levels.after.map((level) => `h${level}`).join(" ") || "(none)"}`);
+  log.push(`Description: ${description?.source ?? "?"}${description?.proposed !== undefined && description.source === "yoast" ? " (proposal waiting for approval)" : ""}`);
+  log.push(`Machine-directed paragraphs removed: ${removed.length}`);
+  for (const text of removed) log.push(`  ${text}`);
+
+  return {
+    id,
+    file: join("content", "posts", "ar", `${reviewed.fileName}.mdx`),
+    text: `${frontmatter}${String(markdown)}`,
+    log,
+  };
+}
+
+/** Parses "3420,3356,…": distinct post ids. */
+function parseIds(value: string | undefined): number[] {
+  const ids = (value ?? "").split(",").map((part) => Number(part.trim()));
+  if (ids.length === 0 || ids.some((id) => !Number.isInteger(id) || id <= 0) || new Set(ids).size !== ids.length) {
+    throw new StopError("Expected a comma-separated list of distinct post ids, e.g. 3420,3356");
+  }
+  return ids;
+}
+
+/** All requested posts in one request, each checked present. */
+async function fetchPosts(ids: number[], fields: string): Promise<Map<number, FullPost>> {
+  const posts = await fetchCollection<FullPost>("posts", `include=${ids.join(",")}&orderby=include&_fields=${fields}`);
+  const byId = new Map(posts.map((post) => [post.id, post]));
+  const missing = ids.filter((id) => !byId.has(id));
+  if (missing.length > 0) throw new StopError(`Not returned by WordPress: ${missing.join(", ")}.`);
+  return byId;
+}
+
+function readReviewed(ids: number[]): Map<number, Post> {
+  const posts = readJson<SlugMap>(SLUG_MAP_FILE).posts;
+  const byId = new Map(posts.map((post) => [post.id, post]));
+  for (const id of ids) if (!byId.has(id)) throw new StopError(`Post ${id} is not in ${SLUG_MAP_FILE}.`);
+  return byId;
+}
+
+/** Converts every post in memory first; files are written only if all of them succeed. */
+async function writeMdx(ids: number[]): Promise<void> {
+  const reviewed = readReviewed(ids);
+  const covers = new Map(readJson<{ posts: CoverEntry[] }>(COVERS_FILE).posts.map((entry) => [entry.id, entry]));
+  const descriptions = readJson<{ posts: Record<string, DescriptionEntry> }>(DESCRIPTIONS_FILE).posts;
+  const headingFixes = readJson<{ posts: Record<string, HeadingFix[]> }>(HEADING_FIXES_FILE).posts;
+  for (const id of ids) {
+    if (!covers.has(id)) throw new StopError(`Post ${id} has no cover in ${COVERS_FILE}.`);
+    if (!descriptions[String(id)]) throw new StopError(`Post ${id} has no entry in ${DESCRIPTIONS_FILE}.`);
+  }
+  const shared = {
+    snapshot: new Set(readSnapshot().flatMap((url) => (url.path === null ? [] : [withSlash(url.path)]))),
+    oldSlugs: readJson<Record<string, string>>(OLD_SLUGS_FILE),
+    rules: readMachineNoteRules(),
+    brand: [] as BrandChange[],
+  };
+
+  const posts = await fetchPosts(ids, POST_FIELDS);
+  const converted: Converted[] = [];
+  for (const id of ids) {
+    converted.push(
+      await convertPost(
+        posts.get(id) as FullPost,
+        reviewed.get(id) as Post,
+        covers.get(id) as CoverEntry,
+        descriptions[String(id)],
+        headingFixes[String(id)] ?? [],
+        shared,
+      ),
+    );
+  }
+
+  for (const { file, text } of converted) {
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(`${file}.tmp`, text, "utf8");
+    renameSync(`${file}.tmp`, file);
+  }
+  for (const { id, file, log } of converted) {
+    heading(`#${id} → ${file.replaceAll("\\", "/")}`);
+    list(log);
+  }
+  heading(`Brand spelling → "${BRAND}"`);
+  list(shared.brand.map(({ post, before, after }) => `#${post}  «${before}»  →  «${after}»`));
+  console.log(`\nWritten: ${converted.length} post(s). Requests sent: ${requestCount}`);
+}
+
+// ------------------------------------------------------------------ --verify
+
+const words = (text: string) => brandText(text).split(/\s+/).filter(Boolean);
+
+function findById(node: HastNode, id: string): HastNode | null {
+  let found: HastNode | null = null;
+  walk(node, (child) => {
+    if (!found && child.properties?.id === id) found = child;
+  });
+  return found;
+}
+
+function headingIds(node: HastNode): string[] {
+  const ids: string[] = [];
+  walk(node, (child) => {
+    if (/^h[1-6]$/.test(child.tagName ?? "")) ids.push(String(child.properties?.id ?? "(none)"));
+  });
+  return ids;
+}
+
+/** First point where two word lists part, with a little context from each. */
+function firstDifference(source: string[], built: string[]): string | null {
+  const length = Math.max(source.length, built.length);
+  for (let index = 0; index < length; index += 1) {
+    if (source[index] !== built[index]) {
+      const around = (list: string[]) => list.slice(Math.max(0, index - 6), index + 8).join(" ");
+      return `word ${index + 1} of ${source.length} (built: ${built.length})\n      source: …${around(source)}…\n      built:  …${around(built)}…`;
+    }
+  }
+  return null;
+}
+
+/**
+ * Checks the built pages against WordPress: the text word for word (approved removals,
+ * replacements and the brand spelling aside), every heading anchor, the folder name and
+ * one raw-Arabic canonical. Run after `npm run build`.
+ */
+async function verify(ids: number[]): Promise<void> {
+  const reviewed = readReviewed(ids);
+  const rules = readMachineNoteRules();
+  const posts = await fetchPosts(ids, "id,slug,content");
+  const rows: string[] = [];
+  const details: string[] = [];
+
+  for (const id of ids) {
+    const { slug } = reviewed.get(id) as Post;
+    const file = join("out", slug, "index.html");
+    if (!existsSync(file)) {
+      rows.push(`#${id}  folder: MISSING (${file})`);
+      continue;
+    }
+    const page = parseHtml(readFileSync(file, "utf8"), false);
+    const body = findById(page, "post-body");
+    if (!body) throw new StopError(`${file}: no #post-body.`);
+
+    const source = parseHtml((posts.get(id) as FullPost).content.rendered);
+    const sourceIds = headingIds(source);
+    const replace = rules.replace.filter((rule) => rule.post === id);
+    applyReplacements(source, replace, []);
+    const removed = removeMachineNotes(source, rules);
+
+    const textDiff = firstDifference(words(blockText(source)), words(blockText(body)));
+    const builtIds = headingIds(body);
+    const idDiffs = sourceIds.flatMap((sourceId, index) =>
+      sourceId === builtIds[index] ? [] : [`${index + 1}: ${sourceId} ≠ ${builtIds[index] ?? "(missing)"}`],
+    );
+    if (builtIds.length > sourceIds.length) idDiffs.push(`extra built ids: ${builtIds.slice(sourceIds.length).join(", ")}`);
+
+    const canonicals: string[] = [];
+    walk(page, (node) => {
+      const rel = node.properties?.rel;
+      if (node.tagName === "link" && Array.isArray(rel) && rel.includes("canonical")) {
+        canonicals.push(String(node.properties?.href));
+      }
+    });
+    const canonicalOk = canonicals.length === 1 && canonicals[0] === `${SITE}/${slug}/`;
+
+    rows.push(
+      `#${id}  text: ${textDiff ? "DIFF" : "same"}  ids: ${idDiffs.length ? `DIFF ${idDiffs.length}` : `same ${sourceIds.length}/${sourceIds.length}`}` +
+        `  folder: ok  canonical: ${canonicalOk ? "ok" : `WRONG ${JSON.stringify(canonicals)}`}  removed: ${removed.length}  replaced: ${replace.length}`,
+    );
+    if (textDiff) details.push(`#${id} text: ${textDiff}`);
+    for (const diff of idDiffs) details.push(`#${id} id ${diff}`);
+  }
+
+  heading("Verification");
+  list(rows);
+  heading("Differences");
+  list(details);
+  console.log(`\nRequests sent: ${requestCount}`);
 }
 
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
-  if (args[0] === "--only") {
-    const id = Number(args[1]);
-    if (!Number.isInteger(id) || args.length !== 2) throw new StopError("Usage: --only <post id>");
-    await writeMdx(id);
+  if (args[0] === "--only" || args[0] === "--verify") {
+    if (args.length !== 2) throw new StopError(`Usage: ${args[0]} <id>[,<id>…]`);
+    const ids = parseIds(args[1]);
+    await (args[0] === "--only" ? writeMdx(ids) : verify(ids));
     return;
   }
   if (args.length > 1 || (args[0] && args[0] !== "--apply-names")) {
-    throw new StopError("Usage: node scripts/migrate-wordpress.ts [--apply-names | --only <post id>]");
+    throw new StopError(
+      "Usage: node scripts/migrate-wordpress.ts [--apply-names | --only <ids> | --verify <ids>]",
+    );
   }
   if (!existsSync(AR_ROUTES_DIR)) {
     throw new StopError(`Run from the project root: ${AR_ROUTES_DIR} not found.`);

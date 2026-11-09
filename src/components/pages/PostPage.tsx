@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { PostCover } from "@/components/blog/covers";
-import { BanContextBox, PostShare } from "@/components/blog/PostAside";
+import { ContextBox, PostShare } from "@/components/blog/PostAside";
 import { PostBody } from "@/components/blog/PostBody";
 import { PostHeader } from "@/components/blog/PostHeader";
 import styles from "@/components/blog/Post.module.css";
@@ -45,7 +45,7 @@ export function PostPage({ locale, slug }: { locale: Locale; slug: string }) {
           <PageToc items={post.toc} title={dict.blog.toc.title} label={dict.blog.toc.label} />
           <div>
             <PostBody code={post.body} locale={locale} />
-            {post.cover.template === "ban-protection" && <BanContextBox locale={locale} />}
+            <ContextBox post={post} locale={locale} />
             <PostShare title={post.title} url={url} locale={locale} />
           </div>
         </div>

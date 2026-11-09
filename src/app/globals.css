@@ -50,6 +50,10 @@
   --cream-rgb: 251 246 236;
   --sun: #ffcf5c; /* drawn sun / key-card chip (tourism page) */
   --sand: #f2e6cc; /* drawn beach and postcard paper (tourism page) */
+  /* WhatsApp's blue verified badge: the blue tick post's cover only (platform v3). Every other verification mark on the site stays green. */
+  --verified-blue: #1d8cf8;
+  --verified-blue-rgb: 29 140 248;
+  --on-verified-blue: #ffffff; /* the tick inside the badge */
   /* Example agency clients (advertising page mockups only): calm, readable on white. */
   --client-food: #a84e15;
   --client-food-rgb: 168 78 21;
