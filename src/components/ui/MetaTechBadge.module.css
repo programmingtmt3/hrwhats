@@ -1,0 +1,43 @@
+/* "Meta Tech Provider" badge (English pages). Same footprint as the image it replaces
+   on the API card: a white 44px-high box. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  height: 44px;
+  padding-block: 4px;
+  padding-inline: 8px 12px;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+}
+.icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  color: var(--green);
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.text b {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+.text span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Icon only (trust bar slot). */
+.seal {
+  width: 28px;
+  height: 28px;
+  color: var(--green);
+}

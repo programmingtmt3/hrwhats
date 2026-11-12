@@ -9,6 +9,7 @@ import {
   TrendIcon,
   UserPlusIcon,
 } from "@/components/icons";
+import { MetaTechBadge } from "@/components/ui/MetaTechBadge";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { META_PARTNER } from "@/lib/brand";
 import { getDictionary, type Dictionary, type Locale } from "@/lib/i18n";
@@ -60,13 +61,18 @@ export function Features({ locale }: { locale: Locale }) {
     api: (
       <>
         <div className={styles.apiBadge}>
-          <SiteImage
-            src={META_PARTNER.src}
-            width={META_PARTNER.width}
-            height={META_PARTNER.height}
-            alt={api.badgeImageAlt}
-            sizes="130px"
-          />
+          {/* English never shows the "Meta Business Partner" image (docs/en-glossary.md 4.10). */}
+          {locale === "ar" ? (
+            <SiteImage
+              src={META_PARTNER.src}
+              width={META_PARTNER.width}
+              height={META_PARTNER.height}
+              alt={api.badgeImageAlt}
+              sizes="130px"
+            />
+          ) : (
+            <MetaTechBadge />
+          )}
           <span>{api.badge}</span>
         </div>
         <span className={styles.tag}>{api.tag}</span>

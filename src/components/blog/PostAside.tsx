@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { WhatsAppIcon } from "@/components/icons";
 import { NewTabLink } from "@/components/ui/NewTabLink";
-import { getSector, t, type Post } from "@/lib/content";
+import { getSector, tRequired, type Post } from "@/lib/content";
 import { format, getDictionary, localePath, type Locale } from "@/lib/i18n";
 
 import styles from "./Post.module.css";
@@ -19,7 +19,7 @@ function contextText(post: Post, locale: Locale): BoxText | null {
     case "sector": {
       // velite.config.ts guarantees a sector with its own page here.
       const sector = getSector(post.cover.sector ?? "");
-      const name = t(sector.name, locale);
+      const name = tRequired(sector.name, locale);
       const titles: Record<string, string> = texts.sector.titleBySector;
       return {
         title: titles[sector.slug] ?? format(texts.sector.title, { sector: name }),

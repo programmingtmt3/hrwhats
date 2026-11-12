@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getCategory, t, type Post } from "@/lib/content";
+import { getCategory, tRequired, type Post } from "@/lib/content";
 import { localePath, type Locale } from "@/lib/i18n";
 
 import styles from "./BlogList.module.css";
@@ -12,7 +12,7 @@ import { PostCover } from "./covers";
  * no reading time (see CLAUDE.md).
  */
 export function PostCard({ post, locale, id }: { post: Post; locale: Locale; id: string }) {
-  const category = t(getCategory(post.categories[0]).name, locale);
+  const category = tRequired(getCategory(post.categories[0]).name, locale);
 
   return (
     <Link

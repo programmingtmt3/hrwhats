@@ -25,6 +25,10 @@
   height: var(--header-h);
   gap: 24px;
 }
+/* Never squeezed by a wide menu (it shrank in English at 1081–1250px). */
+.logo {
+  flex-shrink: 0;
+}
 /* Trimmed logo file: no transparent margins, so these heights are the
    visible logo (the design's 42px/34px padded file showed ~29px/~24px). */
 .logo img {
@@ -157,6 +161,57 @@
   }
   .menu .mOnly {
     display: block;
+  }
+  /* Language switcher: in the bar on desktop, inside the menu (.mOnly) below 1080px. */
+  .dOnly {
+    display: none;
+  }
+  /* Keep the globe icon on the label's line inside the open menu. */
+  .header.open .menu a.langLink {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+/* English only: the English menu (600px) wraps two links at exactly 1081px and fits on
+   one line from 1082px (measured in the page container, 2026-11-12), so the burger menu
+   covers 1081px too. Same rules as the 1080px block above. Measure again when the
+   menu labels change. */
+@media (min-width: 1081px) and (max-width: 1081px) {
+  :global(html:lang(en)) .menu,
+  :global(html:lang(en)) .navCta :global(.btn-ghost),
+  :global(html:lang(en)) .dOnly {
+    display: none;
+  }
+  :global(html:lang(en)) .burger {
+    display: inline-flex;
+  }
+  :global(html:lang(en)) .header.open {
+    background: var(--white);
+    box-shadow: var(--shadow);
+  }
+  :global(html:lang(en)) .header.open .menu {
+    display: flex;
+    position: absolute;
+    top: var(--header-h);
+    inset-inline: 0;
+    flex-direction: column;
+    background: var(--white);
+    padding: 12px 20px 24px;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 20px 30px -20px rgb(var(--deep-rgb) / 0.3);
+  }
+  :global(html:lang(en)) .header.open .menu a {
+    display: block;
+    padding: 12px 16px;
+  }
+  :global(html:lang(en)) .menu .mOnly {
+    display: block;
+  }
+  :global(html:lang(en)) .header.open .menu a.langLink {
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 }
 @media (max-width: 600px) {

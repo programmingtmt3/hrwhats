@@ -2,7 +2,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
 import { blogListPath } from "@/lib/blog";
-import { getCategory, t, type Post } from "@/lib/content";
+import { getCategory, tRequired, type Post } from "@/lib/content";
 import { getDictionary, localePath, type Locale } from "@/lib/i18n";
 
 import styles from "./Post.module.css";
@@ -11,7 +11,7 @@ import styles from "./Post.module.css";
 export function PostHeader({ post, locale }: { post: Post; locale: Locale }) {
   const dict = getDictionary(locale);
   const categories = post.categories.map((slug) => ({
-    name: t(getCategory(slug).name, locale),
+    name: tRequired(getCategory(slug).name, locale),
     href: localePath(locale, blogListPath({ category: slug })),
   }));
   const separator = <ChevronLeft className="icon-forward" aria-hidden="true" />;

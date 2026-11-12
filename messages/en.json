@@ -1,0 +1,325 @@
+{
+  "meta": {
+    "siteName": "HRwhats",
+    "homeTitle": "WhatsApp Business API Platform | HRwhats",
+    "homeDescription": "Official WhatsApp Business API platform in Saudi Arabia: bulk campaigns with far lower ban risk than unofficial tools, AI auto-replies, and sales automation."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "HRwhats — The best solutions for business",
+      "title": {
+        "before": "Grow your sales and organize your business with the ",
+        "highlight": "WhatsApp Business API",
+        "after": ""
+      },
+      "lead": "One platform to grow your sales and organize your team and your business: bulk campaigns through the official WhatsApp Business API, with far lower ban risk than unofficial tools, AI-powered automated replies, and complete customer management in one place.",
+      "primaryCta": "Start your 14-day free trial",
+      "secondaryCta": "View pricing",
+      "floatCards": {
+        "campaign": {
+          "title": "50,000+ messages",
+          "subtitle": "Today's campaign — official API"
+        },
+        "ai": {
+          "title": "AI auto-reply",
+          "subtitle": "Train the AI on your own data"
+        }
+      }
+    },
+    "chat": {
+      "name": "HRwhats",
+      "online": "online",
+      "typing": "typing…",
+      "inputPlaceholder": "Type a message",
+      "readReceipt": " ✓✓",
+      "messages": [
+        {
+          "dir": "in",
+          "text": "Hi! I'd like to know about broadcast campaigns 👋",
+          "time": "10:21"
+        },
+        {
+          "dir": "out",
+          "text": "Hi! Welcome to HRwhats 🌿 You can send campaigns to thousands of customers through the official WhatsApp Business API, with far lower ban risk than unofficial tools.",
+          "time": "10:21"
+        },
+        {
+          "dir": "in",
+          "text": "Great. Do you have automated replies?",
+          "time": "10:22"
+        },
+        {
+          "dir": "out",
+          "text": "Of course ✅ Automated replies and AI that answer your customers 24/7.",
+          "time": "10:22"
+        },
+        {
+          "dir": "out",
+          "text": "Try the platform free for 14 days 🎁",
+          "time": "10:22",
+          "buttons": ["Start free trial", "View pricing"]
+        },
+        {
+          "dir": "in",
+          "text": "Awesome! I just signed up 🚀",
+          "time": "10:23"
+        }
+      ]
+    },
+    "trust": {
+      "meta": {
+        "title": "Meta Tech Provider",
+        "subtitle": "Official WhatsApp Business API",
+        "imageAlt": ""
+      },
+      "support": {
+        "title": "Dedicated support",
+        "subtitle": "From setup… to after launch"
+      },
+      "trial": {
+        "title": "14 days",
+        "subtitle": "Full-featured free trial"
+      },
+      "price": {
+        "title": "From SAR {price}",
+        "subtitle": "Monthly plans for every business size"
+      }
+    },
+    "banProtection": {
+      "eyebrow": "Protect your number",
+      "title": "Struggling with WhatsApp bans?",
+      "subtitle": {
+        "before": "Build trust with your customers — ",
+        "highlight": "verify your business with Meta",
+        "after": ""
+      },
+      "description": "We handle your Meta business portfolio verification: a one-time step.",
+      "cta": "Verify your business now",
+      "learnMore": "Learn why numbers get banned",
+      "phone": {
+        "label": "Illustration: a banned WhatsApp number becomes a Meta-verified business",
+        "account": "WhatsApp Business account",
+        "banned": "This number has been banned",
+        "verified": "Verified business ✓"
+      }
+    },
+    "features": {
+      "eyebrow": "Features",
+      "title": {
+        "before": "Everything you need to grow your business, ",
+        "highlight": "in one platform",
+        "after": ""
+      },
+      "lead": "From the first message to the closed sale—integrated tools for your sales, marketing, and customer service teams.",
+      "cards": {
+        "api": {
+          "title": "Official WhatsApp Business API connection",
+          "text": "A reliable WhatsApp connection on Meta's official API that reduces the risk of bans and lets you send broadcast messages securely and professionally.",
+          "badge": "Direct connection to the official WhatsApp Cloud API",
+          "badgeImageAlt": "",
+          "tag": "✓ Secure and reliable"
+        },
+        "automation": {
+          "title": "Marketing and sales automation",
+          "text": "Smart tools that automate your WhatsApp campaigns and follow up with leads automatically to grow your sales."
+        },
+        "ai": {
+          "title": "Automated replies and AI",
+          "text": "Choose between effective automated replies or smart, AI-powered replies to support your customers."
+        },
+        "otp": {
+          "title": "OTP messages",
+          "text": "Send verification codes over WhatsApp and get the details of the people who sign up on your website."
+        },
+        "campaigns": {
+          "title": "Marketing campaigns",
+          "text": "Run your WhatsApp marketing campaigns at the scale of thousands of messages, through the official channel and with lower ban risk."
+        },
+        "leads": {
+          "title": "New leads, automatically",
+          "text": "Connect your website, landing pages, and campaigns to the platform to capture lead details and turn them into paying customers."
+        },
+        "manager": {
+          "title": "Get a dedicated account manager",
+          "text": "A specialist manages your whole account: designs, campaigns, replies, and organizing your new leads."
+        }
+      }
+    },
+    "why": {
+      "eyebrow": "Why HRwhats?",
+      "title": {
+        "before": "Smart tools that make ",
+        "highlight": "the difference in your results",
+        "after": ""
+      },
+      "lead": "The platform is built to save you time and raise your message delivery rate and customer engagement.",
+      "items": {
+        "numbers": {
+          "title": "Smart number management",
+          "text": "Upload thousands of numbers from Excel files with automatic error filtering, and recover the numbers that didn't receive your messages."
+        },
+        "inbox": {
+          "title": "One platform for all your channels",
+          "text": "Manage WhatsApp, Instagram, and Facebook messages and comments from one inbox."
+        },
+        "peak": {
+          "title": "Peak-hours indicator",
+          "text": "Know when your customers are online on WhatsApp, so your messages are read as soon as they arrive."
+        }
+      },
+      "verify": {
+        "title": {
+          "before": "Meta business portfolio verification, now ",
+          "highlight": "with a Freelance Certificate",
+          "after": ""
+        },
+        "stagesLabel": "Verification stages",
+        "stages": {
+          "store": "Online store",
+          "certificate": "Freelance Certificate",
+          "portfolio": "Meta business portfolio",
+          "verified": "Verified",
+          "campaigns": "Campaigns to thousands of customers"
+        },
+        "question": "Have an online store and want to subscribe with us?",
+        "line": "We now verify your portfolio with your Freelance Certificate.",
+        "cta": "Start verification with us"
+      }
+    },
+    "leadFinder": {
+      "eyebrow": "New feature",
+      "title": {
+        "before": "",
+        "highlight": "Lead Finder",
+        "after": ""
+      },
+      "subtitle": {
+        "before": "(Business leads from ",
+        "brand": "Google Maps",
+        "after": ")"
+      },
+      "lead": "Search for businesses on Google Maps and turn them into a contact list ready for your campaigns.",
+      "features": {
+        "city": "Search easily in any city",
+        "activity": "Search by business type",
+        "export": "Export results straight to your account",
+        "campaigns": "Ready for your marketing campaigns"
+      },
+      "cta": "Get in touch",
+      "mock": {
+        "ariaLabel": "Example of the Lead Finder: a search for restaurants in Riyadh and its results",
+        "title": "Lead Finder",
+        "activityLabel": "Business type or service",
+        "activityValue": "Restaurants",
+        "locationLabel": "City or country",
+        "locationValue": "Riyadh, Saudi Arabia",
+        "search": "Search",
+        "expand": "Expand the keyword with similar terms",
+        "aiBadge": "AI",
+        "added": "Added",
+        "results": [
+          { "name": "Sunbula Restaurant", "district": "Al Narjis" },
+          { "name": "Levant House Restaurant", "district": "Al Olaya" },
+          { "name": "Vine Leaves Restaurant", "district": "Al Malqa" },
+          { "name": "Golden Table Restaurant", "district": "Al Yasmin" }
+        ],
+        "count": "104 results",
+        "export": "Export to campaigns"
+      }
+    },
+    "sectors": {
+      "eyebrow": "Industries we serve",
+      "title": {
+        "before": "Solutions designed ",
+        "highlight": "for every industry",
+        "after": ""
+      },
+      "lead": "Discover how HRwhats serves your industry and its specific needs.",
+      "cards": {
+        "charity": "Smarter outreach… bigger impact",
+        "real-estate-contracting": "Every inquiry is a sales opportunity",
+        "education-training": "A communication channel you can't do without",
+        "tourism-hospitality": "A guest experience that starts with the first message",
+        "online-stores-systems": "Turn conversations into sales",
+        "advertising": "Stronger marketing results",
+        "hr": "Smarter communication with your employees",
+        "operating-service": "Smart operations, no lost requests",
+        "restaurants-cafes": "Faster orders, a better experience",
+        "shops": "Bring customers closer and grow your sales"
+      },
+      "cursorName": "Sultan"
+    },
+    "partners": {
+      "eyebrow": "Our partners",
+      "title": {
+        "before": "Partners and ",
+        "highlight": "clients who trust us",
+        "after": ""
+      },
+      "lead": "Charities, companies, and stores across Saudi Arabia have chosen HRwhats."
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": {
+        "before": "Have a question? ",
+        "highlight": "We have the answer",
+        "after": ""
+      }
+    },
+    "cta": {
+      "eyebrow": "14-day free trial",
+      "title": "Ready to take your customer communication to the next level?",
+      "lead": "Start free now and enjoy every feature for 14 days—no commitment.",
+      "primaryCta": "Start your free trial",
+      "salesCta": "Talk to sales"
+    }
+  },
+  "nav": {
+    "logoLabel": "HRwhats home",
+    "home": "Home",
+    "packages": "Pricing",
+    "blog": "Blog",
+    "guide": "User guide",
+    "contact": "Contact us",
+    "whatsappBan": "WhatsApp bans",
+    "dashboard": "Dashboard",
+    "signup": "Try for free",
+    "menu": "Menu",
+    "newTab": "{label} (opens in a new tab)"
+  },
+  "footer": {
+    "description": "An all-in-one WhatsApp Business API platform to grow your sales and organize your team and your business.",
+    "quickLinks": "Quick links",
+    "guide": "User guide",
+    "contact": "Contact us",
+    "guideLinks": {
+      "hrwhats-guide": "Platform guides",
+      "link-account": "Connecting your account",
+      "documentation-requirements-for-meta": "Verification requirements",
+      "whatsapp-ban": "WhatsApp bans"
+    },
+    "copyright": "© {year} HRwhats — a product of"
+  },
+  "waFloat": {
+    "label": "Chat on WhatsApp"
+  },
+  "languageSwitcher": {
+    "label": "العربية"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Sorry, the page you're looking for doesn't exist or has moved.",
+    "backHome": "Back to home"
+  },
+  "legal": {
+    "pages": {
+      "privacy-policy": { "name": "Privacy policy" },
+      "terms-of-use": { "name": "Terms of use" },
+      "refund-policy": { "name": "Refund policy" }
+    }
+  },
+  "metaBadge": {
+    "name": "Meta",
+    "status": "Tech Provider"
+  }
+}

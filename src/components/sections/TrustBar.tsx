@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { CalendarCheckIcon, HeadsetIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
+import { MetaTechBadge } from "@/components/ui/MetaTechBadge";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { META_PARTNER } from "@/lib/brand";
 import { getStartingMonthlyPrice } from "@/lib/content";
@@ -31,13 +32,18 @@ export function TrustBar({ locale }: { locale: Locale }) {
         <Reveal className={styles.grid}>
           <TrustItem
             icon={
-              <SiteImage
-                src={META_PARTNER.src}
-                width={META_PARTNER.width}
-                height={META_PARTNER.height}
-                alt={trust.meta.imageAlt}
-                sizes="40px"
-              />
+              // English never shows the "Meta Business Partner" image (docs/en-glossary.md 4.10).
+              locale === "ar" ? (
+                <SiteImage
+                  src={META_PARTNER.src}
+                  width={META_PARTNER.width}
+                  height={META_PARTNER.height}
+                  alt={trust.meta.imageAlt}
+                  sizes="40px"
+                />
+              ) : (
+                <MetaTechBadge seal />
+              )
             }
             title={trust.meta.title}
             subtitle={trust.meta.subtitle}

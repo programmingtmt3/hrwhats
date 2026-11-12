@@ -7,10 +7,13 @@ import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 
 import { NewTabLink } from "@/components/ui/NewTabLink";
 import { format } from "@/lib/format";
+import type { Locale } from "@/lib/locales";
 import type { NavLink } from "@/lib/navigation";
+import { counterpartHref } from "@/lib/translations";
 import { cn } from "@/lib/utils";
 
 import styles from "./Header.module.css";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 type HeaderBarProps = {
   logo: ReactNode;
@@ -19,8 +22,8 @@ type HeaderBarProps = {
   items: NavLink[];
   labels: { logo: string; dashboard: string; signup: string; menu: string; newTab: string };
   urls: { login: string; signup: string };
-  /** Extra controls before the CTAs (language switcher in the English phase). */
-  extra?: ReactNode;
+  /** Language switcher, when the other language is published. */
+  languageSwitch?: { from: Locale; to: Locale; label: string };
 };
 
 const MENU_ID = "site-menu";
@@ -28,8 +31,14 @@ const MENU_ID = "site-menu";
 /** Compare paths ignoring the trailing slash (/packages vs /packages/). */
 const samePath = (a: string, b: string) => a.replace(/\/+$/, "") === b.replace(/\/+$/, "");
 
-export function HeaderBar({ logo, homeHref, items, labels, urls, extra }: HeaderBarProps) {
+export function HeaderBar({ logo, homeHref, items, labels, urls, languageSwitch }: HeaderBarProps) {
   const pathname = usePathname();
+  // Same page in the other language if it exists, otherwise that language's home.
+  const switcher = languageSwitch && {
+    href: counterpartHref(languageSwitch.from, languageSwitch.to, pathname),
+    label: languageSwitch.label,
+    hrefLang: languageSwitch.to,
+  };
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   // New-tab link clicked with the mouse: no hover style until the pointer leaves it, so
@@ -67,6 +76,7 @@ export function HeaderBar({ logo, homeHref, items, labels, urls, extra }: Header
                 <NewTabLink
                   href={item.href}
                   label={format(labels.newTab, { label: item.label })}
+                  hrefLang={item.hrefLang}
                   className={cn(styles.ext, leftTab === item.href && styles.noHover)}
                   onClick={openNewTab(item.href)}
                   onPointerLeave={() => setLeftTab(null)}
@@ -77,6 +87,7 @@ export function HeaderBar({ logo, homeHref, items, labels, urls, extra }: Header
               ) : (
                 <Link
                   href={item.href}
+                  hrefLang={item.hrefLang}
                   aria-current={samePath(pathname, item.href) ? "page" : undefined}
                   onClick={close}
                 >
@@ -90,10 +101,15 @@ export function HeaderBar({ logo, homeHref, items, labels, urls, extra }: Header
               {labels.dashboard}
             </a>
           </li>
+          {switcher && (
+            <li className={styles.mOnly}>
+              <LanguageSwitcher {...switcher} className={styles.langLink} onClick={close} />
+            </li>
+          )}
         </ul>
 
         <div className={styles.navCta}>
-          {extra}
+          {switcher && <LanguageSwitcher {...switcher} className={styles.dOnly} />}
           <a href={urls.login} className="btn btn-ghost btn-sm">
             {labels.dashboard}
           </a>

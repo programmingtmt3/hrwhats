@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ArrowIcon, BotIcon, PaperPlaneIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
 import { getSite } from "@/lib/content";
-import { getDictionary, localePath, type Locale } from "@/lib/i18n";
+import { getDictionary, type Locale } from "@/lib/i18n";
+import { localizeLink } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 import { ChatPhone } from "./ChatPhone";
@@ -13,6 +14,7 @@ import { HeroBackdrop } from "./HeroBackdrop";
 export function Hero({ locale }: { locale: Locale }) {
   const { hero, chat } = getDictionary(locale).home;
   const site = getSite();
+  const pricing = localizeLink(locale, "/packages/", hero.secondaryCta);
 
   return (
     <section className={styles.hero}>
@@ -32,8 +34,8 @@ export function Hero({ locale }: { locale: Locale }) {
               {hero.primaryCta}
               <ArrowIcon className="icon-forward" />
             </a>
-            <Link href={localePath(locale, "/packages/")} className="btn btn-ghost">
-              {hero.secondaryCta}
+            <Link href={pricing.href} hrefLang={pricing.hrefLang} className="btn btn-ghost">
+              {pricing.label}
             </Link>
           </div>
         </Reveal>

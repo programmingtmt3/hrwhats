@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { blogListPath, type BlogList } from "@/lib/blog";
-import { getCategories, t } from "@/lib/content";
+import { getCategories, tRequired } from "@/lib/content";
 import { getDictionary, localePath, type Locale } from "@/lib/i18n";
 
 import styles from "./BlogList.module.css";
@@ -17,7 +17,7 @@ export function CategoryBar({ locale, list, page }: { locale: Locale; list: Blog
     { key: "news", label: dict.allPosts, list: {} },
     ...getCategories().map((category) => ({
       key: category.slug,
-      label: t(category.name, locale),
+      label: tRequired(category.name, locale),
       list: { category: category.slug },
     })),
   ];

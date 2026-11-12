@@ -1,9 +1,12 @@
 import Link from "next/link";
 
-import { getDictionary, localePath, type Locale } from "@/lib/i18n";
+import { getDictionary, isLocaleActive, localePath, type Locale } from "@/lib/i18n";
 
 export function NotFoundPage({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
+  // out/404.html is Arabic and serves every unknown URL, /en/… included: once English is
+  // published, it also carries one English line linking to the English home.
+  const english = locale === "ar" && isLocaleActive("en") ? getDictionary("en").notFound : null;
 
   return (
     <section className="pt-[160px] text-center">
@@ -16,6 +19,14 @@ export function NotFoundPage({ locale }: { locale: Locale }) {
         <Link href={localePath(locale, "/")} className="btn btn-primary mt-9">
           {dict.notFound.backHome}
         </Link>
+        {english && (
+          <p lang="en" dir="ltr" className="mt-8 text-muted-foreground">
+            {english.title}.{" "}
+            <Link href={localePath("en", "/")} hrefLang="en" className="font-medium text-green underline">
+              {english.backHome}
+            </Link>
+          </p>
+        )}
       </div>
     </section>
   );

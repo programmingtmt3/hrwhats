@@ -9,12 +9,13 @@ import {
   XIcon,
   YouTubeIcon,
 } from "@/components/icons";
-import { getSite, t, type SocialPlatform } from "@/lib/content";
+import { getSite, tRequired, type SocialPlatform } from "@/lib/content";
 import { format, getDictionary, localePath, type Locale } from "@/lib/i18n";
 import {
   getFooterGuideLinks,
   getFooterQuickLinks,
   getLegalLinks,
+  localizeLinks,
   type NavLink,
 } from "@/lib/navigation";
 
@@ -30,18 +31,27 @@ const socialIcons: Record<SocialPlatform, typeof XIcon> = {
   whatsapp: WhatsAppIcon,
 };
 
+/** `link` comes from localizeLinks: its href is final. */
 function FooterLink({ link, locale }: { link: NavLink; locale: Locale }) {
   if (link.newTab) {
     return (
-      <NewTabLink href={link.href} label={format(getDictionary(locale).nav.newTab, { label: link.label })}>
+      <NewTabLink
+        href={link.href}
+        hrefLang={link.hrefLang}
+        label={format(getDictionary(locale).nav.newTab, { label: link.label })}
+      >
         {link.label}
       </NewTabLink>
     );
   }
   return link.external ? (
-    <a href={link.href}>{link.label}</a>
+    <a href={link.href} hrefLang={link.hrefLang}>
+      {link.label}
+    </a>
   ) : (
-    <Link href={localePath(locale, link.href)}>{link.label}</Link>
+    <Link href={link.href} hrefLang={link.hrefLang}>
+      {link.label}
+    </Link>
   );
 }
 
@@ -74,7 +84,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <div>
             <h4>{dict.footer.quickLinks}</h4>
             <ul>
-              {getFooterQuickLinks(dict, site).map((link) => (
+              {localizeLinks(locale, getFooterQuickLinks(dict, site)).map((link) => (
                 <li key={link.href}>
                   <FooterLink link={link} locale={locale} />
                 </li>
@@ -85,7 +95,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <div>
             <h4>{dict.footer.guide}</h4>
             <ul>
-              {getFooterGuideLinks(dict, site).map((link) => (
+              {localizeLinks(locale, getFooterGuideLinks(dict, site)).map((link) => (
                 <li key={link.label}>
                   <FooterLink link={link} locale={locale} />
                 </li>
@@ -125,10 +135,10 @@ export function Footer({ locale }: { locale: Locale }) {
 
         <div className={styles.bottom}>
           <div>
-            {format(dict.footer.copyright, { year })} <b>{t(site.publisher.name, locale)}</b>
+            {format(dict.footer.copyright, { year })} <b>{tRequired(site.publisher.name, locale)}</b>
           </div>
           <div className={styles.pol}>
-            {getLegalLinks(dict).map((link) => (
+            {localizeLinks(locale, getLegalLinks(dict)).map((link) => (
               <FooterLink key={link.href} link={link} locale={locale} />
             ))}
           </div>

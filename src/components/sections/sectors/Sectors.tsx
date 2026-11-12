@@ -1,7 +1,8 @@
 import { ArrowIcon } from "@/components/icons";
 import { RevealLink } from "@/components/motion/RevealLink";
-import { getSectors, t } from "@/lib/content";
-import { getDictionary, localePath, type Locale } from "@/lib/i18n";
+import { getSectors, tRequired } from "@/lib/content";
+import { getDictionary, type Locale } from "@/lib/i18n";
+import { localizeLink } from "@/lib/navigation";
 
 import { SectionHeading } from "../SectionHeading";
 import { SectorMotif, type MotifSlug } from "./SectorMotif";
@@ -21,18 +22,21 @@ export function Sectors({ locale }: { locale: Locale }) {
             const tagline = heading.cards[slug];
             // Fails the build when a sector in sectors.json has no card text.
             if (!tagline) throw new Error(`home.sectors.cards["${sector.slug}"] is missing in messages`);
+            // An untranslated sector page: the Arabic page, with hrefLang="ar".
+            const link = localizeLink(locale, `/${sector.slug}/`, tRequired(sector.name, locale));
 
             return (
               <RevealLink
                 key={sector.slug}
-                href={localePath(locale, `/${sector.slug}/`)}
+                href={link.href}
+                hrefLang={link.hrefLang}
                 className={styles.card}
                 // Stagger per row of five, as in the design.
                 delay={(i % 5) * 0.06}
               >
                 <SectorMotif slug={slug} cursorName={heading.cursorName} />
                 <div className={styles.body}>
-                  <h3>{t(sector.name, locale)}</h3>
+                  <h3>{link.label}</h3>
                   <p>{tagline}</p>
                   <span className={styles.arrow}>
                     <ArrowIcon strokeWidth={2.5} className="icon-forward" />

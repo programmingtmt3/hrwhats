@@ -3,70 +3,70 @@
     "slug": "charity",
     "name": {
       "ar": "القطاع غير الربحي والجمعيات",
-      "en": ""
+      "en": "Nonprofits & Charities"
     }
   },
   {
     "slug": "real-estate-contracting",
     "name": {
       "ar": "العقارات والمقاولات",
-      "en": ""
+      "en": "Real Estate & Contracting"
     }
   },
   {
     "slug": "education-training",
     "name": {
       "ar": "التعليم والتدريب",
-      "en": ""
+      "en": "Education & Training"
     }
   },
   {
     "slug": "tourism-hospitality",
     "name": {
       "ar": "السياحة والفندقة",
-      "en": ""
+      "en": "Tourism & Hospitality"
     }
   },
   {
     "slug": "online-stores-systems",
     "name": {
       "ar": "المتاجر الإلكترونية والأنظمة",
-      "en": ""
+      "en": "Online Stores & Software Systems"
     }
   },
   {
     "slug": "advertising",
     "name": {
       "ar": "وكالات التسويق والإعلان",
-      "en": ""
+      "en": "Marketing & Advertising Agencies"
     }
   },
   {
     "slug": "hr",
     "name": {
       "ar": "الموارد البشرية",
-      "en": ""
+      "en": "Human Resources"
     }
   },
   {
     "slug": "operating-service",
     "name": {
       "ar": "شركات التشغيل والخدمات",
-      "en": ""
+      "en": "Operations & Service Companies"
     }
   },
   {
     "slug": "restaurants-cafes",
     "name": {
       "ar": "المطاعم والكافيهات",
-      "en": ""
+      "en": "Restaurants & Cafes"
     }
   },
   {
     "slug": "shops",
     "name": {
       "ar": "المحلات التجارية",
-      "en": ""
+      "en": "Retail Shops"
     }
   }
 ]

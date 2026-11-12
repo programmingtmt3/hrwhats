@@ -1,5 +1,5 @@
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getSector, t } from "@/lib/content";
+import { getSector, tRequired } from "@/lib/content";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { breadcrumbJsonLd, getPageMetadata, serviceJsonLd } from "@/lib/seo";
 
@@ -22,7 +22,7 @@ export function charityMetadata(locale: Locale) {
 export function CharityPage({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const page = dict.sectors.charity;
-  const name = t(getSector(SLUG).name, locale);
+  const name = tRequired(getSector(SLUG).name, locale);
   const path = sectorPath();
 
   return (

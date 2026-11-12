@@ -1,7 +1,9 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename } from "node:path";
 
 import { defineCollection, defineConfig, s } from "velite";
+
+import { englishPaths } from "./src/lib/translations";
 
 const COVER_TEMPLATES = ["ban-protection", "whatsapp-messages", "platform", "chatbot-ai", "marketing", "sector"] as const;
 /** How many variants each cover template draws. */
@@ -19,6 +21,37 @@ const COVER_ONLY_SECTORS = ["healthcare", "legal"];
 const POST_CONTEXTS = ["unblock", "avoid", "sector"] as const;
 const MAX_SLUG_BYTES = 255;
 const ASCII_FILE_NAME = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/**
+ * English pages: the routes under src/app/(en)/en/ must be exactly the paths listed in
+ * src/lib/translations.ts (which drives hreflang, the language switcher and links), and
+ * each one must also exist in Arabic, at the same path.
+ */
+function checkEnglishRoutes(): string[] {
+  const root = "src/app/(en)/en";
+  const routes: string[] = [];
+  const problems: string[] = [];
+  const walk = (dir: string, segments: string[]) => {
+    if (!existsSync(dir)) return;
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.isFile() && entry.name === "page.tsx") routes.push(segments.length ? `/${segments.join("/")}/` : "/");
+      if (!entry.isDirectory()) continue;
+      if (entry.name.startsWith("[")) problems.push(`${dir}/${entry.name}: dynamic English routes are not supported yet`);
+      walk(`${dir}/${entry.name}`, entry.name.startsWith("(") ? segments : [...segments, entry.name]);
+    }
+  };
+  walk(root, []);
+
+  const listed = new Set(englishPaths);
+  for (const path of routes) {
+    if (!listed.has(path)) problems.push(`English page ${path} is missing from englishPaths in src/lib/translations.ts`);
+    if (!existsSync(`src/app/(ar)${path}page.tsx`)) problems.push(`English page ${path} has no Arabic page at the same path`);
+  }
+  for (const path of listed) {
+    if (!routes.includes(path)) problems.push(`englishPaths lists ${path}, but ${root}${path}page.tsx does not exist`);
+  }
+  return problems;
+}
 
 const readSlugs = (file: string) =>
   (JSON.parse(readFileSync(file, "utf8")) as { slug: string }[]).map((item) => item.slug);
@@ -131,6 +164,11 @@ export default defineConfig({
   mdx: { rehypePlugins: [rehypeHeadingIds] },
   /** Pages, sectors and posts share the site root, so a post's slug must be free and valid. */
   prepare({ posts: all }) {
+    const routeProblems = checkEnglishRoutes();
+    if (routeProblems.length > 0) {
+      throw new Error(`Invalid English routes:\n  ${routeProblems.join("\n  ")}`);
+    }
+
     const routeFolders = readdirSync("src/app/(ar)", { withFileTypes: true })
       .filter((entry) => entry.isDirectory() && !/^[[(]/.test(entry.name))
       .map((entry) => entry.name);

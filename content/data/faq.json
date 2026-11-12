@@ -2,61 +2,61 @@
   {
     "question": {
       "ar": "هل يمكنني استخدام الرقم المرتبط بمحفظة الأعمال على واتساب؟",
-      "en": ""
+      "en": "Can I also use my number in the WhatsApp Business app?"
     },
     "answer": {
       "ar": "نعم، يمكنك ربط رقمك الحالي بواتساب للأعمال من خلال منصة الأعمال في تطبيق واتساب للأعمال.",
-      "en": ""
+      "en": "Yes. The number you use on the platform for campaigns also keeps working normally in the WhatsApp Business app, through Meta's Coexistence feature."
     }
   },
   {
     "question": {
       "ar": "هل يتوفر دعم فني؟",
-      "en": ""
+      "en": "Is technical support available?"
     },
     "answer": {
       "ar": "نعم، فريق دعم متخصص يرافقك من إعداد الحساب وربط الرقم حتى ما بعد الإطلاق، عبر واتساب والهاتف والبريد الإلكتروني، من السبت للخميس، 9 صباحاً حتى 5 مساءً.",
-      "en": ""
+      "en": "Yes. A dedicated support team is with you from account setup and number connection to after launch, via WhatsApp, phone, and email, Saturday to Thursday, 9 AM–5 PM (Saudi time)."
     }
   },
   {
     "question": {
       "ar": "هل يمكنني تجربة الخدمة قبل الاشتراك؟",
-      "en": ""
+      "en": "Can I try the service before subscribing?"
     },
     "answer": {
       "ar": "نعم، نوفر لك تجربة مجانية لمدة أسبوعين بكامل المميزات.",
-      "en": ""
+      "en": "Yes. We offer a 14-day free trial with all features."
     }
   },
   {
     "question": {
       "ar": "هل يلزم الاشتراك لإتمام التوثيق؟",
-      "en": ""
+      "en": "Do I need to subscribe to complete verification?"
     },
     "answer": {
       "ar": "نعم، يتم التوثيق بعد الاشتراك ويستغرق عادةً من 14 إلى 28 يوماً حسب مراجعة البيانات والمستندات.",
-      "en": ""
+      "en": "Yes. Verification starts after you subscribe and usually takes 14 to 28 days, depending on the review of your details and documents."
     }
   },
   {
     "question": {
       "ar": "هل يمكن الربط مع الأنظمة الخارجية؟",
-      "en": ""
+      "en": "Can it integrate with external systems?"
     },
     "answer": {
       "ar": "نعم، عبر واجهة برمجة التطبيقات (API) لتبادل البيانات وتنفيذ العمليات بأمان، مثل التحقق من الهوية وإدارة المدفوعات وتحديث بيانات الأعمال.",
-      "en": ""
+      "en": "Yes, through an API that exchanges data and runs operations securely, such as identity verification, payment management, and updating business data."
     }
   },
   {
     "question": {
       "ar": "ما هي متطلبات توثيق محفظة الأعمال؟",
-      "en": ""
+      "en": "What are the requirements for business portfolio verification?"
     },
     "answer": {
       "ar": "يمكنك الاطلاع على جميع المتطلبات في صفحة [متطلبات التوثيق](docs:/) ضمن دليل الاستخدام.",
-      "en": ""
+      "en": "You can find all the requirements on the [verification requirements](docs:/) page in the user guide."
     }
   }
 ]

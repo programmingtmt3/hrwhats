@@ -1,51 +1,65 @@
 import ar from "../../messages/ar.json";
+import en from "../../messages/en.json";
 
-export const localeConfig = {
-  ar: { dir: "rtl", prefix: "" },
-  en: { dir: "ltr", prefix: "/en" },
-} as const;
+import type { Locale } from "./locales";
 
-export type Locale = keyof typeof localeConfig;
-export type Direction = (typeof localeConfig)[Locale]["dir"];
-
-export const defaultLocale: Locale = "ar";
-
-// Locales that are actually published. Add "en" in the English phase,
-// together with messages/en.json.
-export const activeLocales: readonly Locale[] = ["ar"];
-
-export function isLocaleActive(locale: Locale): boolean {
-  return activeLocales.includes(locale);
-}
-
-export function getDirection(locale: Locale): Direction {
-  return localeConfig[locale].dir;
-}
+export * from "./locales";
+export { activeLocales, isLocaleActive } from "./translations";
 
 // The Arabic dictionary is the source of truth for the shape of all dictionaries.
 export type Dictionary = typeof ar;
 
-// English phase: add `en` (typed with `satisfies Dictionary` so any missing key
-// is a TypeScript error) and change this to a full Record<Locale, Dictionary>.
-const dictionaries: Partial<Record<Locale, Dictionary>> = { ar };
+/**
+ * Namespaces of messages/en.json. A page's namespace is added here (and to en.json)
+ * when that page is translated; a missing key inside a listed namespace is a
+ * TypeScript error.
+ */
+type EnglishNamespace =
+  | "meta"
+  | "nav"
+  | "footer"
+  | "waFloat"
+  | "languageSwitcher"
+  | "notFound"
+  | "home";
+
+type EnglishMessages = Pick<Dictionary, EnglishNamespace> & {
+  /** Names only: the footer links to the Arabic legal pages until they are translated. */
+  legal: { pages: { [Slug in keyof Dictionary["legal"]["pages"]]: { name: string } } };
+  /** English only: the code-drawn badge that replaces the "Meta Business Partner" image. */
+  metaBadge: { name: string; status: string };
+};
+
+const english = en satisfies EnglishMessages;
+
+/**
+ * The English dictionary, typed as a full Dictionary. Reading a namespace that is
+ * not translated yet throws, so an English page that needs one fails the build
+ * instead of rendering empty text.
+ */
+const englishDictionary = new Proxy(english, {
+  get(target, key, receiver) {
+    if (typeof key === "string" && key in ar && !(key in target)) {
+      throw new Error(
+        `messages/en.json has no "${key}" yet: translate it before building an English page that uses it.`,
+      );
+    }
+    return Reflect.get(target, key, receiver);
+  },
+}) as unknown as Dictionary;
+
+const dictionaries: Record<Locale, Dictionary> = { ar, en: englishDictionary };
 
 export function getDictionary(locale: Locale): Dictionary {
-  const dictionary = dictionaries[locale];
-  if (!dictionary) {
-    throw new Error(`No dictionary for locale "${locale}"`);
-  }
-  return dictionary;
+  return dictionaries[locale];
 }
 
 /**
- * Build an internal URL for a locale. Always returns a trailing slash.
- * localePath("ar", "/packages") → "/packages/"
- * localePath("en", "/packages") → "/en/packages/"
+ * English pages never show the "Meta Business Partner" image (HRwhats is a Meta Tech
+ * Provider); they show MetaTechBadge, whose text is this. docs/en-glossary.md 4.10.
  */
-export function localePath(locale: Locale, path: string = "/"): string {
-  const clean = path.replace(/^\/+|\/+$/g, "");
-  const prefix = localeConfig[locale].prefix;
-  return clean ? `${prefix}/${clean}/` : `${prefix}/`;
+export function getMetaBadgeText(): EnglishMessages["metaBadge"] {
+  return english.metaBadge;
 }
 
 export { format } from "./format";

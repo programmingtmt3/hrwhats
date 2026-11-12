@@ -1,7 +1,7 @@
 import { Check, Info, X } from "lucide-react";
 
 import { Reveal } from "@/components/motion/Reveal";
-import { getSite, getWhatsappPlans, t, type WhatsappFeatureKey, type WhatsappPlan } from "@/lib/content";
+import { getSite, getWhatsappPlans, tRequired, type WhatsappFeatureKey, type WhatsappPlan } from "@/lib/content";
 import { format, getDictionary, type Dictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -41,8 +41,8 @@ function PlanCard({ plan, text, locale, signupUrl, delay }: {
   return (
     <Reveal as="article" className={cn(styles.plan, plan.featured && styles.featured)} delay={delay}>
       {plan.featured && <span className={styles.badge}>{text.featuredBadge}</span>}
-      <h3>{t(plan.name, locale)}</h3>
-      <p className={styles.desc}>{t(plan.description, locale)}</p>
+      <h3>{tRequired(plan.name, locale)}</h3>
+      <p className={styles.desc}>{tRequired(plan.description, locale)}</p>
 
       <div className={cn(styles.price, styles.monthly)}>
         <b>{number(plan.monthly)}</b>

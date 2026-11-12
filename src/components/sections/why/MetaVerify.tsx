@@ -51,6 +51,8 @@ export function MetaVerify({ locale }: { locale: Locale }) {
           <NewTabLink
             href={getSite().docsUrl}
             label={format(dict.nav.newTab, { label: verify.cta })}
+            // The usage guide exists only in Arabic.
+            hrefLang={locale === "ar" ? undefined : "ar"}
             className={cn("btn btn-primary", styles.cta)}
           >
             {verify.cta}

@@ -68,13 +68,26 @@ The site is built with `next build` into `out/` and uploaded to `public_html`. T
 | Language | URL | `<html>` |
 |---|---|---|
 | Arabic (default) | `/charity/` — no prefix | `lang="ar" dir="rtl"` |
-| English (later phase) | `/en/charity/` | `lang="en" dir="ltr"` |
+| English (phase 7, in progress) | `/en/charity/` | `lang="en" dir="ltr"` |
 
 - Two root layouts via route groups: `app/(ar)/layout.tsx` and `app/(en)/en/layout.tsx`.
 - Route files are **thin wrappers** (2–3 lines) that render a shared page component with a `locale` prop. All real logic lives in `src/components`.
-- **No hardcoded UI strings in components.** Every UI string goes in `messages/ar.json` (later `messages/en.json`), loaded with a typed `getDictionary(locale)`. Missing keys must be a TypeScript error.
+- **No hardcoded UI strings in components.** Every UI string goes in `messages/ar.json` and `messages/en.json`, loaded with a typed `getDictionary(locale)`. Missing keys must be a TypeScript error.
 - No automatic redirect based on browser language. A language switcher in the header links to the same page in the other language if it exists, otherwise to that language's home.
 - `hreflang` alternates (`ar`, `en`, `x-default` → Arabic) only for pages that actually have a translation.
+
+**English — how it is wired (foundation, 2026-11-11):**
+- **Translation rules and terms: `docs/en-glossary.md`** (approved 2026-11-11: US English, `SAR 150`, title formats, terms, the developer's decisions). Read it before translating anything. Every English sentence that replaces a "بدون حظر"-style promise is shown to the developer, word for word, before it is used. Arabic text never changes because of a translation.
+- Order: home → packages → contact → whatsapp-ban (phase 1); the ten sectors (phase 2); blog later; legal pages deferred.
+- **`src/lib/translations.ts` → `englishPaths`** is the only list of translated pages (locale-neutral paths, `"/"`, `"/packages/"`). It drives the switcher, hreflang, links from English pages, and whether English is published at all (`activeLocales` = `["ar", "en"]` once the list is non-empty; until then no switcher and no `/en/` output). A page is added to it in the same change as its route `src/app/(en)/en/<path>/page.tsx`; `velite.config.ts` fails the build if the list and the routes differ or an English page has no Arabic page at the same path. No dictionary import in this module (client components use it); locale basics live in `src/lib/locales.ts` (re-exported by `i18n.ts`).
+- **`messages/en.json` is built per namespace.** `EnglishNamespace` in `src/lib/i18n.ts` lists the translated ones (`en.json` must match their full shape: a missing key is a TypeScript error); add a page's namespace (e.g. `home`) when it is translated. Reading an untranslated namespace on an English page throws, so the build fails. `legal` holds page names only (footer) until the legal pages are translated; `metaBadge` is English-only.
+- **Links to Arabic-only content (decision 2026-11-12, replaces the "(Arabic)" tag of 2026-11-11):** links go through `localizeLinks()` / `localizeLink()` (`src/lib/navigation.ts`) — header, footer, buttons, sector cards, FAQ inline links. On an English page, a target with no English version points to the Arabic page, keeps its **English label with no visible tag**, and carries `hrefLang="ar"`; the usage guide (docs.hrwhats.com, `arabicOnly`) also gets `hrefLang="ar"`. When a page is added to `englishPaths`, its links switch to `/en/…` automatically.
+- **Data text:** `tRequired(value, locale)` (`src/lib/content.ts`) for visible text — an empty `en` fails the build. `t()` falls back to Arabic and is used only for client/partner logo names.
+- **Switcher:** `LanguageSwitcher` in `HeaderBar` (desktop: in the bar; below 1080px: inside the menu), target from `counterpartHref()`; label = the other language's name in that language (`languageSwitcher.label`), with `lang`/`hrefLang`.
+- **404:** `out/404.html` stays Arabic and serves every unknown URL; once English is published it also carries one English line (`lang="en"`) linking to `/en/`. A separate English 404 (`out/en/404.html` + `ErrorDocument` under `/en/`) is a launch-phase option, testable only on Spaceship.
+- **Meta:** English pages never use `meta-business-partner.png` and never write "Meta Business Partner" / "Meta partner". The home's two badge spots use `MetaTechBadge` (`src/components/ui/`, code-drawn seal, no Meta logo, text from `metaBadge` in `en.json`): the full badge on the API card; the seal as the trust-bar icon with the title "Meta Tech Provider". The Meta Business Suite logo is hidden from the English partners section (`"hiddenIn": ["en"]` in `partners.json`, filtered by `getPartners(locale)`). See `docs/en-glossary.md` 4.4 and 4.10.
+- **English header:** the English menu (600px) fits on one line from **1082px** (measured in the page container, 2026-11-12), so on English pages the burger menu covers up to **1081px** (Arabic: 1080px) — `html:lang(en)` block in `Header.module.css`; the logo has `flex-shrink: 0`. Measure again whenever the menu labels change.
+- Organization / ContactPage JSON-LD keep `availableLanguage: ["Arabic"]` (nothing states support in English).
 
 ## Styling rules (RTL-safe)
 
@@ -148,7 +161,7 @@ content/
 - **No image banners.** Promotional panels are built in code from the design tokens (e.g. the Meta verification panel under "لماذا HRwhats": `src/components/sections/why/MetaVerify.tsx`) — never a picture of text.
 - **Home additions beyond the design:** the ban-protection panel (`src/components/sections/banProtection/`) between the trust bar and the features — dark panel, copy + one sales-WhatsApp button (new tab), and a code-drawn phone whose status plays once: red "banned" warning (`--alert-light` on dark) → green shield lands → "رقم موثّق ✓" (base styles = final state, so reduced motion / no JS show it directly). Keep it distinct from `MetaVerify` (light, horizontal stages) and the hero phone (chat).
 - A translation of a post has the **same file name** under the other locale folder.
-- Text fields in JSON data are bilingual objects: `{ "ar": "...", "en": "..." }` (`en` may be empty until the English phase).
+- Text fields in JSON data are bilingual objects: `{ "ar": "...", "en": "..." }` (`en` may be empty until its page is translated; visible text is read with `tRequired`, which fails the build on an empty `en`).
 - **Legal pages** (`privacy-policy`, `terms-of-use`, `refund-policy`) share **one template**, `LegalPage` (`src/components/pages/LegalPage.tsx` + `src/components/legal/`): `PageHero` (eyebrow "السياسات"), a sticky side table of contents marking the current section (`PageToc`, shared with blog posts; phones: a collapsible list above the text), sections with English anchor ids and a direct-link button, and a closing help box (contact channels from `site.json` + the other two policies). No marketing CTA. Their text lives in `messages/ar.json` under `legal.pages.<slug>` (`name`, `title`, `meta`, `sections[]` of `id`, `title`, `text[]`, optional `list[]`) — copied verbatim from WordPress (only HRWhats → HRwhats and small punctuation fixes); never add or reword legal text without the developer. `legal.pages.<slug>.name` is the only source of each page's name (footer included); the second page is "شروط الاستخدام" (never "سياسة الاستخدام"). Static routes `src/app/(ar)/<slug>/page.tsx`, no MDX.
 - Every content type has a Zod schema in `velite.config.ts`. A missing required field must fail the build.
 - **Sector pages are custom, one design per sector** — no shared sector template and no sector MDX. Each sector has a static route folder `src/app/(ar)/<slug>/page.tsx` (thin wrapper) and its own sections in `src/components/sectors/<slug>/` (e.g. `charity/`). Shared: tokens, fonts, buttons, `SectionHeading`, header, footer, `Reveal`. The slug and name come from `sectors.json` via `getSector(slug)` (throws if missing); all page text lives in `messages/ar.json` under `sectors.<slug>`. Page-only assets go in `public/images/sectors/<slug>/`. **Sector pages use no images from the old WordPress site — not on the page and not as Open Graph images.** Every visual is built in code (or generated, like the tourism world map). Sector pages set no page OG image: they inherit the site-wide one (1200×630, launch phase). The home sector cards use no images either: each card (`src/components/sections/sectors/`) has a small code-drawn motif from its page's theme (`SectorMotif`) and a short line from `home.sectors.cards.<slug>` in `ar.json` (a missing line fails the build). **A new sector page needs its card motif and line too.**
@@ -302,7 +315,7 @@ src/
 │   │   ├── packages/ contact/ news/ category/
 │   │   ├── charity/ …         ← one static folder per sector (slug from sectors.json)
 │   │   └── not-found.tsx
-│   ├── (en)/en/              ← English routes (English phase only — no files before then)
+│   ├── (en)/en/              ← English routes: layout.tsx + one folder per translated page (listed in lib/translations.ts)
 │   ├── global-not-found.tsx  ← builds out/404.html (Arabic)
 │   ├── favicon.ico icon.png apple-icon.png
 │   ├── sitemap.ts
@@ -322,13 +335,16 @@ src/
 │   └── mdx/                  ← components usable inside MDX
 ├── lib/
 │   ├── content.ts            ← the only content access layer (Zod-validated)
-│   ├── i18n.ts               ← locales, getDictionary, localePath, format
+│   ├── i18n.ts               ← getDictionary (ar + per-namespace en), getMetaBadgeText; re-exports locales.ts, format
+│   ├── locales.ts            ← locales, localePath, neutralPath (no dictionary: safe for client components)
+│   ├── translations.ts       ← englishPaths (translated pages), activeLocales, hasPage, counterpartHref
 │   ├── env.ts                ← SITE_ENV (staging | production)
 │   ├── navigation.ts         ← header/footer menu structure
 │   ├── brand.ts              ← LOGO (single source for the logo path)
 │   ├── fonts/{ar,en}.ts      ← next/font/local definitions, one module per language
 │   └── seo.ts                ← metadata + JSON-LD helpers
 messages/ar.json
+messages/en.json              ← English, per namespace (see Internationalization)
 content/
 public/images/{brand,clients,partners,sectors,posts}/
 public/api/
@@ -395,6 +411,7 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
    - Tracking tools: check the old site for Google Analytics, Google Tag Manager and Meta Pixel, and put the same IDs in the new site (after the developer approves).
    - 301s from the old usage-guide URLs (`/documentation-requirements-for-meta/`, `/link-account/`, `/hrwhats-guide/` — not `/whatsapp-ban/`, which stays a page here) to their pages on docs.hrwhats.com, in the generated `.htaccess` — **only after the developer sends the exact page URLs** (until then they would all go to the guide's home); the URL test must then expect these 301s. Update the site's guide links to the exact URLs at the same time (see Usage guide).
    - Site-wide Open Graph image, 1200×630 (deferred from the packages page). Wire it into `getRootMetadata` so every page inherits it.
+   - **Meta badge on the Arabic home (decision needed from the developer before launch):** the Arabic home shows `public/images/brand/meta-business-partner.png` (`META_PARTNER`; the image reads "Meta / Business Partner") in the trust bar and on the API feature card, plus the text "شريك Meta" (`home.trust.meta.title`) and "شريك أعمال رسمي لدى Meta" (`home.features.cards.api.badge`), and the partners section ("شركاء النجاح") shows the **Meta Business Suite** logo (`public/images/partners/03-mbs.png`), which reads as a Meta partnership. HRwhats' actual status is **Meta Tech Provider**. Do not change the Arabic until the developer decides. (English pages never use this image: see `docs/en-glossary.md` 4.10.)
    - Review the word "الأرشيف" in the category titles ("واتساب الأرشيف", "تسويق الأرشيف", kept from WordPress) against the Search Console data with the developer; change it only after that review.
    - When writing `scripts/generate-htaccess.ts`, review the rules of the old staging `.htaccess` one by one (`docs/legacy-staging-htaccess.md`: candidates only, not approved — its `/news/page/N/` → `/news/` rule broke pagination, `/feed/` uses 302, `/account-verification-on-meta/` would chain into the docs 301, `/old/`, `/author/`, `/ar/` have no decision yet).
    - **Deploys never delete old files from `public_html`** (Hostinger's GitHub deploy did not; an FTP/zip upload to Spaceship will not either). Before the first upload, check what is already in `public_html` (WordPress files, an old `.htaccess`) and decide what to remove; the generated `out/.htaccess` must replace any old one.
@@ -403,7 +420,10 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
    - **After launch:** submit the new sitemap in Search Console and check the most important pages with URL Inspection.
    - **After launch:** protect the staging copy `newhr.tmt3.sa` (a password, or a redirect to the main site).
    - **After launch:** weekly Search Console checks for the first two months; new 404 pages get redirects right away.
-7. **English** — `messages/en.json`, translated pages, then posts gradually.
+7. **English** — `messages/en.json`, translated pages, then posts gradually. Rules and terms: `docs/en-glossary.md`.
+   - Done: glossary (approved 2026-11-11); foundation (English layout, `en.json` common namespaces, `translations.ts`, `localizeLinks`, switcher, hreflang, 404 line, `tRequired`), not published until the English home is added to `englishPaths`.
+   - Home translated (2026-11-11, `/en/`, in review): `home` namespace in `en.json`, English FAQ and sector names in `content/data/`, Meta Tech Provider badge; approved promise sentences in `docs/en-glossary.md` 4.1.
+   - Next: packages, contact, whatsapp-ban; then the ten sectors.
 
 ## Commands
 

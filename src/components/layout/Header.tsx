@@ -1,18 +1,15 @@
 import { getSite } from "@/lib/content";
 import { getDictionary, isLocaleActive, localePath, type Locale } from "@/lib/i18n";
-import { getMainNav } from "@/lib/navigation";
+import { getMainNav, localizeLinks } from "@/lib/navigation";
 
 import { BrandLogo } from "./BrandLogo";
 import { HeaderBar } from "./HeaderBar";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const site = getSite();
-  const items = getMainNav(dict, site).map((item) =>
-    item.external ? item : { ...item, href: localePath(locale, item.href) },
-  );
-  // Hidden until the English phase; per-page alternates are wired in then.
+  const items = localizeLinks(locale, getMainNav(dict, site));
+  // Shown once the other language is published (see src/lib/translations.ts).
   const otherLocale: Locale = locale === "ar" ? "en" : "ar";
 
   return (
@@ -28,14 +25,10 @@ export function Header({ locale }: { locale: Locale }) {
         newTab: dict.nav.newTab,
       }}
       urls={site.appUrls}
-      extra={
-        isLocaleActive(otherLocale) ? (
-          <LanguageSwitcher
-            href={localePath(otherLocale, "/")}
-            label={dict.languageSwitcher.label}
-            hrefLang={otherLocale}
-          />
-        ) : undefined
+      languageSwitch={
+        isLocaleActive(otherLocale)
+          ? { from: locale, to: otherLocale, label: dict.languageSwitcher.label }
+          : undefined
       }
     />
   );

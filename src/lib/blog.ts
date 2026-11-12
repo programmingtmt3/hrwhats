@@ -4,7 +4,7 @@
  */
 import type { Metadata } from "next";
 
-import { getCategory, getPosts, getPostsInCategory, t, type Post } from "./content";
+import { getCategory, getPosts, getPostsInCategory, tRequired, type Post } from "./content";
 import { format, getDictionary, type Dictionary, type Locale } from "./i18n";
 import { getPageMetadata } from "./seo";
 
@@ -47,7 +47,7 @@ export function getBlogListTexts(locale: Locale, { category }: BlogList) {
 
 /** Display name of the listing: "المدونة" or the category's name (categories.json). */
 export function getBlogListName(locale: Locale, { category }: BlogList): string {
-  return category ? t(getCategory(category).name, locale) : getDictionary(locale).nav.blog;
+  return category ? tRequired(getCategory(category).name, locale) : getDictionary(locale).nav.blog;
 }
 
 /** Parse and check a page param ("2".."N"); throws if out of range. */

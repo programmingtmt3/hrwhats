@@ -5,7 +5,8 @@ import { ArrowIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
 import { NewTabLink } from "@/components/ui/NewTabLink";
 import { getSite } from "@/lib/content";
-import { format, getDictionary, localePath, type Dictionary, type Locale } from "@/lib/i18n";
+import { format, getDictionary, type Dictionary, type Locale } from "@/lib/i18n";
+import { localizeLink } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 import styles from "./BanProtection.module.css";
@@ -70,6 +71,7 @@ function StatusPhone({ text }: { text: PhoneText }) {
 /** Home: "worried about WhatsApp bans?" — dark panel between the trust bar and the features. */
 export function BanProtection({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
+  const banPage = localizeLink(locale, "/whatsapp-ban/", dict.home.banProtection.learnMore);
   const text = dict.home.banProtection;
   const { whatsapp } = getSite().contact;
 
@@ -95,8 +97,8 @@ export function BanProtection({ locale }: { locale: Locale }) {
                 {text.cta}
                 <ArrowIcon className="icon-forward" />
               </NewTabLink>
-              <Link href={localePath(locale, "/whatsapp-ban/")} className={styles.learnMore}>
-                {text.learnMore}
+              <Link href={banPage.href} hrefLang={banPage.hrefLang} className={styles.learnMore}>
+                {banPage.label}
               </Link>
             </div>
           </div>

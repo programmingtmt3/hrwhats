@@ -10,7 +10,7 @@ import { Cta } from "@/components/sections/cta/Cta";
 import { PageGlow } from "@/components/sections/PageGlow";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageToc } from "@/components/shared/PageToc";
-import { getCategory, getPostBySlug, t } from "@/lib/content";
+import { getCategory, getPostBySlug, tRequired } from "@/lib/content";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { articleJsonLd, breadcrumbJsonLd, getPostUrl } from "@/lib/seo";
 
@@ -32,7 +32,7 @@ export function PostPage({ locale, slug }: { locale: Locale; slug: string }) {
         data={breadcrumbJsonLd(locale, [
           [dict.nav.home, "/"],
           [dict.nav.blog, "/news/"],
-          [t(getCategory(post.categories[0]).name, locale), `/category/${post.categories[0]}/`],
+          [tRequired(getCategory(post.categories[0]).name, locale), `/category/${post.categories[0]}/`],
           [post.title, `/${post.slug}/`],
         ])}
       />

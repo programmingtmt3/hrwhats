@@ -1,7 +1,7 @@
 import { Clock, Info } from "lucide-react";
 
 import { Reveal } from "@/components/motion/Reveal";
-import { getHiringPlans, getSite, t } from "@/lib/content";
+import { getHiringPlans, getSite, tRequired } from "@/lib/content";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -21,8 +21,8 @@ export function HiringPlans({ locale }: { locale: Locale }) {
         <div className={styles.hirePlans}>
           {getHiringPlans().map((plan, i) => (
             <Reveal key={plan.id} as="article" className={styles.plan} delay={i * 0.06}>
-              <h3>{t(plan.name, locale)}</h3>
-              <p className={styles.tagline}>{t(plan.tagline, locale)}</p>
+              <h3>{tRequired(plan.name, locale)}</h3>
+              <p className={styles.tagline}>{tRequired(plan.tagline, locale)}</p>
               <div className={styles.price}>
                 <b>{plan.price.toLocaleString("en-US")}</b>
                 <span>{text.per[plan.period]}</span>
@@ -30,7 +30,7 @@ export function HiringPlans({ locale }: { locale: Locale }) {
               <p className={styles.usage}>
                 <Clock aria-hidden="true" />
                 <span>
-                  <bdi>{t(plan.usage, locale)}</bdi>: <b><bdi>{t(plan.hours, locale)}</bdi></b>
+                  <bdi>{tRequired(plan.usage, locale)}</bdi>: <b><bdi>{tRequired(plan.hours, locale)}</bdi></b>
                 </span>
               </p>
               <a href={signupUrl} className={cn("btn btn-ghost", styles.planBtn, styles.pushDown)}>

@@ -1,5 +1,6 @@
 import type { Site } from "./content";
-import type { Dictionary } from "./i18n";
+import { localePath, type Dictionary, type Locale } from "./i18n";
+import { hasPage } from "./translations";
 
 export type NavLink = {
   label: string;
@@ -8,6 +9,10 @@ export type NavLink = {
   external?: boolean;
   /** External link that opens in a new tab (the usage guide). */
   newTab?: boolean;
+  /** External content that exists only in Arabic (the usage guide). */
+  arabicOnly?: boolean;
+  /** Set by localizeLinks when the target is in another language than the page. */
+  hrefLang?: Locale;
 };
 
 /**
@@ -40,7 +45,7 @@ export function getMainNav(dict: Dictionary, site: Site): NavLink[] {
     { label: dict.nav.contact, href: "/contact/" },
     { label: dict.nav.whatsappBan, href: "/whatsapp-ban/" },
     // External (docs.hrwhats.com), so it comes last.
-    { label: dict.nav.guide, href: site.docsUrl, external: true, newTab: true },
+    { label: dict.nav.guide, href: site.docsUrl, external: true, newTab: true, arabicOnly: true },
   ];
 }
 
@@ -58,10 +63,37 @@ export function getFooterGuideLinks(dict: Dictionary, site: Site): NavLink[] {
   return guideSlugs.map((slug) =>
     slug === "whatsapp-ban"
       ? { label: dict.footer.guideLinks[slug], href: `/${slug}/` }
-      : { label: dict.footer.guideLinks[slug], href: site.docsUrl, external: true, newTab: true },
+      : {
+          label: dict.footer.guideLinks[slug],
+          href: site.docsUrl,
+          external: true,
+          newTab: true,
+          arabicOnly: true,
+        },
   );
 }
 
 export function getLegalLinks(dict: Dictionary): NavLink[] {
   return legalSlugs.map((slug) => ({ label: dict.legal.pages[slug].name, href: `/${slug}/` }));
+}
+
+/** One internal link inside a section (a button, a card): same rules as localizeLinks. */
+export function localizeLink(locale: Locale, path: string, label: string): NavLink {
+  return localizeLinks(locale, [{ label, href: path }])[0];
+}
+
+/**
+ * Links for a page in `locale`: internal paths get the locale prefix when the page
+ * exists in that language; otherwise they point to the Arabic page with hrefLang="ar"
+ * (no visible tag: decision 2026-11-12). The Arabic-only usage guide gets hrefLang="ar" too.
+ */
+export function localizeLinks(locale: Locale, links: NavLink[]): NavLink[] {
+  return links.map((link) => {
+    if (link.external) {
+      return link.arabicOnly && locale !== "ar" ? { ...link, hrefLang: "ar" } : link;
+    }
+    return hasPage(locale, link.href)
+      ? { ...link, href: localePath(locale, link.href) }
+      : { ...link, href: localePath("ar", link.href), hrefLang: "ar" };
+  });
 }

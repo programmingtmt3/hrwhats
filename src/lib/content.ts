@@ -22,9 +22,22 @@ import { hasOnlyAllowedLinks } from "./inline-links";
 const localized = z.object({ ar: z.string().min(1), en: z.string() });
 export type Localized = z.infer<typeof localized>;
 
-/** Pick the text for a locale, falling back to Arabic while `en` is empty. */
+/**
+ * Pick the text for a locale, falling back to Arabic while `en` is empty. Use it only
+ * where Arabic is an acceptable fallback (client/partner logo names); visible text on
+ * an English page uses tRequired.
+ */
 export function t(value: Localized, locale: Locale): string {
   return value[locale] || value.ar;
+}
+
+/** Pick the text for a locale; an empty translation fails the build. */
+export function tRequired(value: Localized, locale: Locale): string {
+  const text = value[locale];
+  if (!text) {
+    throw new Error(`Missing "${locale}" text for "${value.ar}" in content/data/.`);
+  }
+  return text;
 }
 
 const siteSchema = z.object({
@@ -113,7 +126,15 @@ export function getClients(): Client[] {
   return clients;
 }
 
-const partnerSchema = z.object({ name: localized, logo: logo("partners") });
+const partnerSchema = z.object({
+  name: localized,
+  logo: logo("partners"),
+  /**
+   * Locales where this logo is not shown. Meta Business Suite is hidden on English
+   * pages: under "Our partners" it would read as a Meta partnership (docs/en-glossary.md 4.10).
+   */
+  hiddenIn: z.array(z.enum(["ar", "en"])).optional(),
+});
 export type Partner = z.infer<typeof partnerSchema>;
 
 const partners = z
@@ -122,8 +143,9 @@ const partners = z
   .refine(orderedByLogo, "partners must be listed in logo-number order (01-, 02-, …)")
   .parse(partnersJson);
 
-export function getPartners(): Partner[] {
-  return partners;
+/** Partners shown on a `locale` page (without those hidden in that locale). */
+export function getPartners(locale: Locale): Partner[] {
+  return partners.filter((partner) => !partner.hiddenIn?.includes(locale));
 }
 
 

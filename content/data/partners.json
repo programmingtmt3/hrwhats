@@ -30,7 +30,10 @@
       "src": "/images/partners/03-mbs.png",
       "width": 600,
       "height": 198
-    }
+    },
+    "hiddenIn": [
+      "en"
+    ]
   },
   {
     "name": {

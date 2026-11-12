@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
 
 import { LOGO } from "./brand";
-import { getCurrency, getSite, getWhatsappPlans, t, type Post } from "./content";
+import { getCurrency, getSite, getWhatsappPlans, tRequired, type Post } from "./content";
 import { isProduction } from "./env";
 import { getDictionary, localePath, type Locale } from "./i18n";
 import { toPlainText } from "./inline-links";
+import { hasPage } from "./translations";
+
+/**
+ * hreflang alternates (ar, en, x-default → Arabic), only for pages that exist in English
+ * (src/lib/translations.ts). Arabic-only pages get none.
+ */
+function languageAlternates(path: string): { languages?: Record<string, string> } {
+  if (!hasPage("en", path)) return {};
+  const ar = localePath("ar", path);
+  return { languages: { ar, en: localePath("en", path), "x-default": ar } };
+}
 
 /** Site-wide defaults set by each root layout. Pages override title/description. */
 export function getRootMetadata(locale: Locale): Metadata {
@@ -31,12 +42,13 @@ export function getRootMetadata(locale: Locale): Metadata {
 /** Home page: title/description from the dictionary, mirrored in Open Graph. */
 export function getHomeMetadata(locale: Locale): Metadata {
   const dict = getDictionary(locale);
-  const url = localePath(locale, "/");
+  const path = "/";
+  const url = localePath(locale, path);
 
   return {
     title: { absolute: dict.meta.homeTitle },
     description: dict.meta.homeDescription,
-    alternates: { canonical: url },
+    alternates: { canonical: url, ...languageAlternates(path) },
     openGraph: {
       title: dict.meta.homeTitle,
       description: dict.meta.homeDescription,
@@ -98,7 +110,7 @@ export function getPageMetadata(
   return {
     title: { absolute: meta.title },
     description: meta.description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, ...languageAlternates(path) },
     openGraph: {
       title: meta.title,
       description: meta.description,
@@ -152,8 +164,8 @@ export function whatsappPlansJsonLd(locale: Locale) {
   return getWhatsappPlans().map((plan) => ({
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `${site.name} — ${t(plan.name, locale)}`,
-    description: t(plan.description, locale),
+    name: `${site.name} — ${tRequired(plan.name, locale)}`,
+    description: tRequired(plan.description, locale),
     brand: { "@type": "Brand", name: site.name },
     offers: {
       "@type": "Offer",
