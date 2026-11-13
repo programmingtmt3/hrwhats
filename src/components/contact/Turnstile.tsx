@@ -40,9 +40,11 @@ type TurnstileProps = {
   onToken: (token: string | null) => void;
   /** Change this number to reset the widget (tokens are single-use). */
   resetSignal: number;
+  /** Widget language: the page's locale. */
+  language: string;
 };
 
-export function Turnstile({ siteKey, onToken, resetSignal }: TurnstileProps) {
+export function Turnstile({ siteKey, onToken, resetSignal, language }: TurnstileProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetRef = useRef<string | null>(null);
   const onTokenRef = useRef(onToken);
@@ -66,7 +68,7 @@ export function Turnstile({ siteKey, onToken, resetSignal }: TurnstileProps) {
             if (cancelled || widgetRef.current) return;
             widgetRef.current = turnstile.render(el, {
               sitekey: siteKey,
-              language: "ar",
+              language,
               theme: "light",
               size: "flexible",
               callback: (token: string) => onTokenRef.current(token),
@@ -86,7 +88,7 @@ export function Turnstile({ siteKey, onToken, resetSignal }: TurnstileProps) {
       if (widgetRef.current && window.turnstile) window.turnstile.remove(widgetRef.current);
       widgetRef.current = null;
     };
-  }, [siteKey]);
+  }, [siteKey, language]);
 
   useEffect(() => {
     if (resetSignal > 0 && widgetRef.current && window.turnstile) {

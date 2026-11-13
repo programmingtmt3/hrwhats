@@ -15,6 +15,8 @@ export type ContactPayload = {
   website: string;
   /** Cloudflare Turnstile response token. */
   token: string;
+  /** Language of the page the message was sent from ("en": the team replies in English). */
+  locale: "ar" | "en";
 };
 
 export async function submitContact(endpoint: string, payload: ContactPayload): Promise<boolean> {

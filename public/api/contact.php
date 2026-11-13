@@ -110,6 +110,8 @@ $subject = $field('subject');
 $message = $field('message');
 $honeypot = $field('website');
 $token = $field('token');
+// Sent from /en/contact/: the team should reply in English.
+$isEnglish = $field('locale') === 'en';
 $ip = $_SERVER['REMOTE_ADDR'] ?? '';
 
 // ---------- Honeypot: pretend success, send nothing ----------
@@ -211,19 +213,22 @@ if (($verification['success'] ?? false) !== true) {
 
 // ---------- Email ----------
 $sentAt = (new DateTimeImmutable('now', new DateTimeZone('Asia/Riyadh')))->format('Y-m-d H:i:s');
-$mailSubject = 'رسالة جديدة من موقع HRwhats: ' . $subject;
-$mailBody = implode("\n", [
-    'الاسم: ' . $name,
-    'البريد الإلكتروني: ' . $email,
-    'الموضوع: ' . $subject,
-    '',
-    'الرسالة:',
-    $message === '' ? '(بدون رسالة)' : $message,
-    '',
-    '---',
-    'تاريخ الإرسال: ' . $sentAt . ' (توقيت الرياض)',
-    'IP: ' . $ip,
-]);
+$mailSubject = ($isEnglish ? '[EN] ' : '') . 'رسالة جديدة من موقع HRwhats: ' . $subject;
+$mailBody = implode("\n", array_merge(
+    $isEnglish ? ['⚠ أُرسلت من الصفحة الإنجليزية — يُرجى الرد بالإنجليزية', ''] : [],
+    [
+        'الاسم: ' . $name,
+        'البريد الإلكتروني: ' . $email,
+        'الموضوع: ' . $subject,
+        '',
+        'الرسالة:',
+        $message === '' ? '(بدون رسالة)' : $message,
+        '',
+        '---',
+        'تاريخ الإرسال: ' . $sentAt . ' (توقيت الرياض)',
+        'IP: ' . $ip,
+    ]
+));
 
 // Local testing only: write the email to a file instead of sending it.
 if (!empty($config['MAIL_LOG_FILE'])) {

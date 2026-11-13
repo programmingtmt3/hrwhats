@@ -9,6 +9,7 @@ import { z } from "zod";
 import { WhatsAppIcon } from "@/components/icons";
 import { CONTACT_LIMITS, submitContact } from "@/lib/contact-submit";
 import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/locales";
 import { cn } from "@/lib/utils";
 
 import styles from "./Contact.module.css";
@@ -18,6 +19,7 @@ type FormText = Dictionary["contactPage"]["form"];
 
 type ContactFormProps = {
   text: FormText;
+  locale: Locale;
   endpoint: string;
   siteKey: string;
   whatsappUrl: string;
@@ -43,7 +45,7 @@ function makeSchema(errors: FormText["errors"]) {
 type Values = z.infer<ReturnType<typeof makeSchema>>;
 const EMPTY: Values = { name: "", email: "", subject: "", message: "", website: "" };
 
-export function ContactForm({ text, endpoint, siteKey, whatsappUrl }: ContactFormProps) {
+export function ContactForm({ text, locale, endpoint, siteKey, whatsappUrl }: ContactFormProps) {
   const schema = useMemo(() => makeSchema(text.errors), [text.errors]);
   const {
     register,
@@ -59,7 +61,7 @@ export function ContactForm({ text, endpoint, siteKey, whatsappUrl }: ContactFor
   const onSubmit = handleSubmit(async (values) => {
     if (!token) return;
     setStatus("sending");
-    const ok = await submitContact(endpoint, { ...values, token });
+    const ok = await submitContact(endpoint, { ...values, token, locale });
     setStatus(ok ? "success" : "error");
     if (ok) reset(EMPTY);
     // Turnstile tokens are single-use: get a fresh one either way.
@@ -129,7 +131,7 @@ export function ContactForm({ text, endpoint, siteKey, whatsappUrl }: ContactFor
         <input id="contact-website" type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
       </div>
 
-      <Turnstile siteKey={siteKey} onToken={setToken} resetSignal={resetSignal} />
+      <Turnstile siteKey={siteKey} onToken={setToken} resetSignal={resetSignal} language={locale} />
 
       <div className={styles.actions}>
         <button type="submit" className="btn btn-primary" disabled={!token || sending}>

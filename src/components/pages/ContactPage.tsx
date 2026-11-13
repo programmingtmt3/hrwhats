@@ -31,6 +31,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
             <Reveal className={styles.formCard}>
               <ContactForm
                 text={page.form}
+                locale={locale}
                 endpoint={site.contactEndpoint}
                 siteKey={getTurnstileSiteKey()}
                 whatsappUrl={site.contact.whatsapp.url}
