@@ -78,7 +78,7 @@
 
 - قاعدة "مثال توضيحي" تبقى كما هي: أسماء عامة، وأماكن بالنوع والمنطقة، ولا أسماء جهات حقيقية.
 - **الأسماء السعودية تبقى وتُكتب بالحروف اللاتينية** (لا نستبدلها بـ John أو Sarah): الجمهور والسياق سعوديان. التهجئة الموحدة:
-  `Majed`، `Khaled`، `Reem`، `Sara`، `Fahad`، `Abdullah`، `Abdulrahman`، `Salman`، `Rayan`، `Dana`، `Omar`، `Mona`، `Haya`، `Sultan`، `Mohammed`، `Hind`، `Lama`، `Yousef`، `Munirah`، `Turki`، `Ahmed`، `Noura` (`Ms. Noura`)، `Jood`، `Faisal`، `Leen`.
+  `Majed`، `Khaled`، `Reem`، `Sara`، `Fahad`، `Abdullah`، `Abdulrahman`، `Salman`، `Rayan`، `Dana`، `Omar`، `Mona`، `Haya`، `Sultan`، `Mohammed`، `Hind`، `Lama`، `Yousef`، `Munirah`، `Turki`، `Ahmed`، `Noura` (`Ms. Noura`)، `Jood`، `Faisal`، `Leen`، `Salma`، `Nouf`، `Saad`، `Amal`، `Lina`، `Badr`، `Yasser`، `Haifa`.
   الكنى: `Abu` / `Umm` + الاسم (`Abu Faisal`، `Umm Khaled`). الاسم الكامل في المجسم: `Ahmed Ali`.
 - الأماكن: `Riyadh, Saudi Arabia`، والأحياء بـ `Al` + الاسم: `Al Narjis`، `Al Olaya`، `Al Malqa`، `Al Yasmin`.
 - النصوص داخل المحادثات تُترجم إلى الإنجليزية (الصفحة كلها إنجليزية)، والإيموجي يبقى.
@@ -498,3 +498,36 @@
 - المبالغ تُنقل كما في العربي بصيغة `SAR 850,000` / `SAR 36,450` / `of SAR 50,000`.
 - "لوحة 01 / 06" (العقارات) ← `Sheet 01 / 06`.
 - التقويم (التعليم): "الإعلان عن دورة جديدة" ← `New course launch` (الكلمة `announcement` لا تتسع في خانة اليوم).
+
+### 4.14 القطاعات، الدفعة الثانية: السياحة والمتاجر والوكالات (2026-11-14)
+
+**نصوص الوعود المعتمدة** (في `messages/en.json`، ولا تُعدَّل دون المطوّر):
+
+| المفتاح | العربي | النص المعتمد |
+|---|---|---|
+| `sectors.tourism.meta.description` | …حملات موسمية ورسائل جماعية بدون حظر… | WhatsApp Business API for hotels and tourism: booking inquiries, automatic confirmations, and bulk campaigns with far lower ban risk than unofficial tools. |
+| `sectors.tourism.journey.items.inquiries.note` | لضمان سرعة الرد وعدم فقدان أي حجز محتمل | …so you can reply quickly without missing potential bookings. |
+| `sectors.tourism.journey.visuals.backstage.rows` (مثال) | في ارتفاع / في تحسّن / أكثر كفاءة | Rising / Improving / More efficient |
+| `sectors.tourism.closing.text` | حوّل كل استفسار إلى حجز… | Turn every inquiry into a booking and every interaction into a memorable experience… |
+| `sectors.stores.meta.description` | …حملات ورسائل جماعية بدون حظر… | WhatsApp Business API for online stores: orders, inquiries, abandoned carts, and bulk campaigns with far lower ban risk than unofficial tools. |
+| `sectors.stores.services.items.inquiries.note` | لضمان سرعة الرد وتحسين تجربة العميل | …so you can reply quickly and improve the customer experience. |
+| `sectors.stores.services.items.experience.text` | تجربة احترافية تزيد من الولاء | Deliver a professional experience that builds loyalty: |
+| `sectors.stores.services.items.campaigns.title` | الحملات التسويقية وزيادة المبيعات | Marketing campaigns and sales growth |
+| `sectors.stores.closing.highlight` | وحقق نمواً حقيقياً في مبيعاتك | Start now, and start growing your sales. (صيغة المطوّر، اتساقاً مع `help grow donations` في 4.13) |
+| `sectors.{tourism,stores}.hero.lead` | نساعدكم على… وزيادة المبيعات | we help you … and increase sales on WhatsApp |
+| `sectors.advertising.meta.description` | …حملات ورسائل جماعية بدون حظر… | WhatsApp Business API for agencies: multi-client management, bulk campaigns with far lower ban risk than unofficial tools, and lead qualification. |
+| `sectors.advertising.services.items.team.points[3]` | ضمان جودة الرد وسرعته | Help ensure fast, high-quality replies |
+| `sectors.advertising.hero.title` | وحقق نتائج تسويقية أقوى | Manage your clients smartly and achieve stronger marketing results |
+| `sectors.advertising.hero.badges[1]` | مبيعات أعلى | Higher sales |
+| `sectors.advertising.services.items.leads.points[3]` | زيادة فرص التحويل إلى عملاء فعليين | Improve your chances of turning leads into customers |
+| `sectors.advertising.closing.title` | نتائج أقوى لعملائك | Smarter marketing, stronger results for your clients |
+
+**قرارات أخرى:**
+- الأسماء الجديدة: انظر 1.9.
+- عملاء الوكالة في المثال: `Restaurant` / `Clinic` / `Store`. في صفحة الوكالات `clients` = عملاء الوكالة، و`customers` = عملاؤهم (2.4).
+- عنوانا المتاجر والوكالات (66 حرفاً) يبقيان بالصيغة المعتمدة رغم الطول.
+- التواريخ في الأمثلة: `Thursday, December 10` / `Sunday, December 13` (مطابقة لأيام 2026).
+- الخريطة الحرارية: `Sat … Fri`، والأسبوع يبدأ بالسبت كما في العربي.
+- المحاكيات التفاعلية: `Interactive illustrative example: …`.
+- عنوان المتاجر: `Turn WhatsApp conversations into sales—simply and smartly`.
+- وسم `Illustrative example` لا ينكسر على سطرين في الإنجليزية (`:lang(en)` في `ExampleTag.module.css`).

@@ -31,7 +31,7 @@ type EnglishNamespace =
  * (each with the full shape of its Arabic entry). Add a sector's key here when its
  * page is translated.
  */
-type EnglishSector = "charity" | "realEstate" | "education";
+type EnglishSector = "charity" | "realEstate" | "education" | "tourism" | "stores" | "advertising";
 
 type EnglishMessages = Pick<Dictionary, EnglishNamespace> & {
   sectors: Pick<Dictionary["sectors"], EnglishSector>;

@@ -16,6 +16,9 @@ export const englishPaths: readonly string[] = [
   "/charity/",
   "/real-estate-contracting/",
   "/education-training/",
+  "/tourism-hospitality/",
+  "/online-stores-systems/",
+  "/advertising/",
 ];
 
 /** English is published once at least one English page exists. */

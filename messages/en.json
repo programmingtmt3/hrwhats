@@ -1281,6 +1281,634 @@
         "primaryCta": "Start your free trial",
         "salesCta": "Talk to sales"
       }
+    },
+    "tourism": {
+      "meta": {
+        "title": "Tourism & Hospitality - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for hotels and tourism: booking inquiries, automatic confirmations, and bulk campaigns with far lower ban risk than unofficial tools."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for hotels and tourism companies"
+      },
+      "exampleTag": "Illustrative example",
+      "hero": {
+        "title": {
+          "before": "An exceptional guest experience starts ",
+          "highlight": "with the first WhatsApp message",
+          "after": ""
+        },
+        "lead": "In tourism and hospitality, fast replies and quality communication play a decisive role in the booking decision. With our smart solutions, we help you manage bookings, improve the guest experience, and increase sales on WhatsApp, through professional, easy-to-use automation.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "ticket": {
+          "label": "Illustrative example: a hotel booking confirmation on WhatsApp",
+          "sender": "Your hotel",
+          "autoReply": "Auto-reply",
+          "time": "4:12 PM",
+          "heading": "Your booking is confirmed ✓",
+          "fields": [
+            { "label": "Room type", "value": "Deluxe suite with sea view" },
+            { "label": "Check-in", "value": "Thursday, December 10" },
+            { "label": "Check-out", "value": "Sunday, December 13" },
+            { "label": "Guests", "value": "2 guests" }
+          ],
+          "bookingLabel": "Booking no.",
+          "bookingNumber": "#48219",
+          "button": "Booking details"
+        },
+        "keyCard": {
+          "room": "Room 1204"
+        }
+      },
+      "journey": {
+        "eyebrow": "The guest journey",
+        "title": {
+          "before": "Guest follow-up ",
+          "highlight": "before, during, and after the stay",
+          "after": ""
+        },
+        "carouselLabel": "Stages of the guest journey",
+        "slideRole": "stage",
+        "slideLabel": "{n} of {total}: {name}",
+        "prev": "Previous stage",
+        "next": "Next stage",
+        "goTo": "Go to stage: {name}",
+        "stages": {
+          "beforeBooking": "Before booking",
+          "booking": "Booking",
+          "stay": "During the stay",
+          "afterStay": "After checkout",
+          "backstage": "Behind the scenes"
+        },
+        "items": {
+          "inquiries": {
+            "title": "Booking inquiries",
+            "text": "Receive every guest inquiry about:",
+            "points": ["Room availability", "Rates and offers", "Services and facilities"],
+            "note": "All on one platform, with organized conversations so you can reply quickly without missing potential bookings."
+          },
+          "autoReplies": {
+            "title": "Automated replies and guest service",
+            "text": "Build a smart reply system that provides:",
+            "points": [
+              "Room details and rates, automatically",
+              "Photos and offers",
+              "Answers to common questions",
+              "24/7 support"
+            ],
+            "note": ""
+          },
+          "bookings": {
+            "title": "Booking management and follow-up",
+            "text": "Make the path from inquiry to booking easier:",
+            "points": [
+              "Send booking links directly",
+              "Confirm bookings automatically",
+              "Send arrival reminders",
+              "Follow up with guests before, during, and after their stay"
+            ],
+            "note": ""
+          },
+          "guestExperience": {
+            "title": "A better guest experience",
+            "text": "Smart communication with your guests:",
+            "points": [
+              "Send arrival instructions",
+              "Share the services available",
+              "Receive requests (room service, maintenance, inquiries)",
+              "Measure guest satisfaction after the stay"
+            ],
+            "note": ""
+          },
+          "campaigns": {
+            "title": "Tourism marketing campaigns",
+            "text": "Launch WhatsApp campaigns to boost occupancy:",
+            "points": ["Seasonal offers and discounts", "Travel packages", "Target past guests with tailored offers"],
+            "note": ""
+          },
+          "team": {
+            "title": "Front desk and customer service team",
+            "text": "",
+            "points": ["Assign conversations to the booking team", "Track performance", "Improve service speed and quality"],
+            "note": ""
+          },
+          "reports": {
+            "title": "Reports & analytics",
+            "text": "A clear view that helps you:",
+            "points": [
+              "Track the number of bookings",
+              "Analyze campaign performance",
+              "Measure guest engagement",
+              "Improve your operations"
+            ],
+            "note": ""
+          }
+        },
+        "visuals": {
+          "beforeBooking": {
+            "label": "Illustrative example: a WhatsApp message with room photos and quick reply buttons",
+            "sender": "Your hotel",
+            "text": "Welcome 👋 Here are photos of our rooms available for your dates:",
+            "photos": ["Sea view", "The suite", "The pool"],
+            "quickReplies": ["Room availability", "Rates and offers", "Services and facilities"]
+          },
+          "booking": {
+            "label": "Illustrative example: booking, confirmation, and arrival reminder messages",
+            "linkText": "Tap to complete your booking:",
+            "linkTitle": "Book now",
+            "linkSub": "Deluxe suite — 3 nights",
+            "stamp": "Confirmed",
+            "reminderTitle": "Your arrival reminder",
+            "reminderText": "We look forward to welcoming you on Thursday. Check-in starts at 3:00 PM.",
+            "countdown": "In 3 days"
+          },
+          "stay": {
+            "label": "Illustrative example: a guest's requests during the stay",
+            "sent": "Arrival instructions sent ✓",
+            "title": "Room 1204 requests",
+            "requests": [
+              { "type": "Room service", "text": "Dinner to the room" },
+              { "type": "Maintenance", "text": "Adjust the AC temperature" },
+              { "type": "Inquiry", "text": "When does the pool close?" }
+            ],
+            "statuses": ["Received", "In progress", "Done ✓"]
+          },
+          "afterStay": {
+            "label": "Illustrative example: a post-stay rating and a seasonal offer card",
+            "ratingTitle": "How was your stay?",
+            "ratingReply": "A wonderful stay, thank you 🌟",
+            "to": "To: Mr. Khaled",
+            "greeting": "Dear guest, we miss you 🌴",
+            "offer": "Winter offer: 20% off your next stay",
+            "package": "Family package with breakfast and tours"
+          },
+          "backstage": {
+            "label": "Illustrative example: conversations assigned to the front desk team and a reports board",
+            "rackTitle": "Front desk team",
+            "staff": [
+              { "name": "Salma", "chats": ["New booking", "Stay extension"] },
+              { "name": "Majed", "chats": ["Invoice request", "Date change"] },
+              { "name": "Nouf", "chats": ["Rate inquiry", "Airport transfer"] }
+            ],
+            "boardTitle": "Reports board",
+            "rows": [
+              { "label": "Bookings", "status": "Rising" },
+              { "label": "Campaign performance", "status": "Rising" },
+              { "label": "Guest engagement", "status": "Improving" },
+              { "label": "Operations", "status": "More efficient" }
+            ]
+          }
+        }
+      },
+      "closing": {
+        "title": "Take your guest experience further",
+        "text": "Turn every inquiry into a booking and every interaction into a memorable experience, with a smart system that manages your communication efficiently.",
+        "highlight": "Start now, and give your guests an experience worth repeating.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales"
+      }
+    },
+    "stores": {
+      "meta": {
+        "title": "Online Stores & Software Systems - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for online stores: orders, inquiries, abandoned carts, and bulk campaigns with far lower ban risk than unofficial tools."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for online stores and software systems"
+      },
+      "exampleTag": "Illustrative example",
+      "price": "SAR {amount}",
+      "hero": {
+        "title": {
+          "before": "Turn WhatsApp conversations ",
+          "highlight": "into sales",
+          "after": "—simply and smartly"
+        },
+        "lead": "In e-commerce, fast replies and customer experience are the keys to success. With our smart solutions, we help online stores and software systems manage orders, automate customer service, and increase sales on WhatsApp, through an all-in-one, easy-to-use platform.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "shop": {
+          "label": "Interactive illustrative example: a product catalog in a WhatsApp message",
+          "hint": "Try it: add a product to the cart, then check out",
+          "sender": "Your store",
+          "intro": "Welcome 👋 Here are our latest products:",
+          "time": "7:45 PM",
+          "products": [
+            { "id": "headphones", "name": "Wireless headphones", "price": 249 },
+            { "id": "watch", "name": "Smartwatch", "price": 599 },
+            { "id": "backpack", "name": "Backpack", "price": 189 }
+          ],
+          "add": "Add to cart",
+          "addLabel": "Add {name} to cart",
+          "inCart": "In cart: {count}",
+          "cart": "Cart",
+          "cartCount": "Items in cart: {count}",
+          "checkout": "Check out",
+          "restart": "Start over",
+          "confirmTitle": "Order received ✓",
+          "orderLabel": "Order no.",
+          "orderNumber": "#10482",
+          "quantity": "Qty: {count}",
+          "total": "Total",
+          "delivery": "We'll send your shipment tracking link here as soon as your order ships.",
+          "announceAdded": "{name} added to cart. Items in cart: {count}",
+          "announceOrdered": "Order placed. Total: {total}",
+          "announceRestart": "Cart cleared. You can start over."
+        }
+      },
+      "services": {
+        "eyebrow": "From the chat to the customer's door",
+        "title": {
+          "before": "How ",
+          "highlight": "HRwhats",
+          "after": " serves you"
+        },
+        "items": {
+          "inquiries": {
+            "title": "Customer inquiries",
+            "text": "Receive every customer inquiry about:",
+            "points": ["Products and specifications", "Prices and offers", "Shipping and delivery"],
+            "note": "All on one platform, with organized conversations so you can reply quickly and improve the customer experience."
+          },
+          "autoReplies": {
+            "title": "Automated replies and customer service",
+            "text": "Build a smart reply system that:",
+            "points": [
+              "Shows products automatically",
+              "Answers common questions",
+              "Guides customers to the right product",
+              "Provides 24/7 support"
+            ],
+            "note": ""
+          },
+          "orders": {
+            "title": "Easy order management",
+            "text": "Simplify buying on WhatsApp:",
+            "points": [
+              "Receive orders directly",
+              "Confirm orders automatically",
+              "Send invoice details",
+              "Keep customers updated on their order status"
+            ],
+            "note": ""
+          },
+          "campaigns": {
+            "title": "Marketing campaigns and sales growth",
+            "text": "Launch effective marketing campaigns:",
+            "points": ["Promote new products", "Send offers and discounts", "Retarget past customers", "Recover abandoned carts"],
+            "note": ""
+          },
+          "experience": {
+            "title": "A better customer experience",
+            "text": "Deliver a professional experience that builds loyalty:",
+            "points": [
+              "Fast, organized replies",
+              "Post-purchase follow-up",
+              "Shipping and delivery notifications",
+              "Messages tailored to customer behavior"
+            ],
+            "note": ""
+          },
+          "reports": {
+            "title": "Reports & analytics",
+            "text": "A smart dashboard that shows:",
+            "points": ["Number of orders", "Campaign performance", "Customer behavior", "Inquiry-to-purchase conversion rate"],
+            "note": ""
+          }
+        },
+        "visuals": {
+          "inquiries": {
+            "label": "Illustrative example: an inbox with filters",
+            "filtersLabel": "Filter conversations",
+            "filters": ["All", "Products", "Prices", "Shipping"],
+            "showing": "Conversations shown: {count}",
+            "messages": [
+              { "name": "Noura", "text": "Is the smartwatch waterproof?", "filter": 1 },
+              { "name": "Saad", "text": "Is there a discount on the headphones?", "filter": 2 },
+              { "name": "Reem", "text": "When will my order arrive?", "filter": 3 },
+              { "name": "Fahad", "text": "Is the backpack available in black?", "filter": 1 },
+              { "name": "Hind", "text": "How much is shipping to Jeddah?", "filter": 3 },
+              { "name": "Khaled", "text": "Does the price include VAT?", "filter": 2 }
+            ]
+          },
+          "autoReplies": {
+            "label": "Illustrative example: an auto-reply that suggests the right product",
+            "customer": "I'm looking for a gift for someone who loves sports 🎁",
+            "question": "Great choice! What's your budget?",
+            "options": ["Under SAR 300", "SAR 300–700"],
+            "answer": "SAR 300–700",
+            "suggestion": "I recommend this product:",
+            "product": {
+              "name": "Sports smartwatch",
+              "detail": "Fitness and heart rate tracking",
+              "price": 599
+            },
+            "view": "View product",
+            "auto": "Auto-reply"
+          },
+          "orders": {
+            "label": "Illustrative example: an order invoice printing",
+            "title": "Invoice",
+            "orderLabel": "Order no.",
+            "orderNumber": "#10482",
+            "customer": "Customer: Sara",
+            "lines": [
+              { "name": "Wireless headphones", "price": 249 },
+              { "name": "Backpack", "price": 189 }
+            ],
+            "shipping": "Shipping",
+            "shippingValue": "Free",
+            "total": "Total",
+            "stamp": "Order confirmed ✓"
+          },
+          "campaigns": {
+            "label": "Illustrative example: recovering an abandoned cart",
+            "eyebrow": "Abandoned cart recovery",
+            "steps": ["Abandoned cart", "Reminder message", "Cart recovered"],
+            "abandoned": "Left 2 hours ago",
+            "items": ["Smartwatch", "Wireless headphones"],
+            "reminder": "Hi Sara 👋 Your items are still in your cart! Use this code for 10% off:",
+            "code": "WELCOME10",
+            "codeLabel": "Discount code",
+            "complete": "Complete your order",
+            "recovered": "Cart recovered ✓",
+            "recoveredText": "Sara completed her order with the discount code."
+          },
+          "experience": {
+            "label": "Illustrative example: conversations before and after automation",
+            "sliderLabel": "Drag to compare conversations before and after automation",
+            "dragHint": "↔ Drag the handle to compare",
+            "before": "Without automation",
+            "after": "With HRwhats",
+            "messy": [
+              "Where's my order??",
+              "Anyone there?",
+              "How much is the watch?",
+              "No reply since yesterday",
+              "I want to change the size"
+            ],
+            "unread": "Unread",
+            "organized": [
+              { "text": "Where's my order?", "tag": "Shipping" },
+              { "text": "Anyone there?", "tag": "General inquiry" },
+              { "text": "How much is the watch?", "tag": "Products" },
+              { "text": "No reply since yesterday", "tag": "Orders" },
+              { "text": "I want to change the size", "tag": "Orders" }
+            ],
+            "replied": "Replied",
+            "trackingTitle": "Shipment tracking #10482",
+            "tracking": ["Shipped", "On the way", "Delivered"]
+          },
+          "reports": {
+            "label": "Illustrative example: a heatmap of customer behavior",
+            "title": "Customer behavior by time of day",
+            "days": ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+            "slots": ["Morning", "Noon", "Afternoon", "Evening", "Night"],
+            "less": "Less",
+            "more": "More"
+          }
+        }
+      },
+      "closing": {
+        "summaryTitle": "Order summary",
+        "item": "HRwhats free trial — 14 days",
+        "itemPrice": "Free",
+        "title": "Smarter e-commerce",
+        "text": "Make every conversation a sales opportunity, and take your customer experience further with a smart system that manages your communication efficiently.",
+        "highlight": "Start now, and start growing your sales.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "noCommitment": "No commitment"
+      }
+    },
+    "advertising": {
+      "meta": {
+        "title": "Marketing & Advertising Agencies - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for agencies: multi-client management, bulk campaigns with far lower ban risk than unofficial tools, and lead qualification."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for marketing and advertising agencies"
+      },
+      "exampleTag": "Illustrative example",
+      "clients": ["Restaurant", "Clinic", "Store"],
+      "team": ["Reem", "Khaled", "Noura", "Fahad"],
+      "hero": {
+        "title": {
+          "before": "Manage your clients smartly and achieve ",
+          "highlight": "stronger marketing results",
+          "after": ""
+        },
+        "lead": "In marketing, fast execution and quality communication with clients make the difference. With our smart solutions, we help marketing and advertising agencies manage clients, run campaigns, and improve communication results on WhatsApp, through advanced automation and one unified platform.",
+        "badges": ["Faster communication", "Higher sales", "Professional client management"],
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "board": {
+          "label": "Interactive illustrative example: an agency dashboard managing several clients",
+          "title": "Agency dashboard",
+          "switchLabel": "Choose a client",
+          "announce": "Now showing the dashboard for: {name}",
+          "chatsTitle": "Latest conversations",
+          "campaignTitle": "Current campaign",
+          "performance": "Campaign performance",
+          "accounts": [
+            {
+              "chats": [
+                { "name": "Mona", "text": "I'd like to book a table for four tonight" },
+                { "name": "Salman", "text": "What are today's lunch offers?" },
+                { "name": "Abdullah", "text": "Do you deliver to north Riyadh?" }
+              ],
+              "campaign": "Weekly lunch offer",
+              "status": "Sending"
+            },
+            {
+              "chats": [
+                { "name": "Amal", "text": "When's the earliest dentist appointment?" },
+                { "name": "Majed", "text": "Do you accept insurance?" },
+                { "name": "Lina", "text": "I'd like to confirm my appointment on Sunday" }
+              ],
+              "campaign": "Checkup reminders",
+              "status": "Scheduled"
+            },
+            {
+              "chats": [
+                { "name": "Turki", "text": "When will my order arrive?" },
+                { "name": "Dana", "text": "Is the large size available?" },
+                { "name": "Badr", "text": "Is there a discount code for a first order?" }
+              ],
+              "campaign": "End-of-season sale",
+              "status": "Active"
+            }
+          ]
+        }
+      },
+      "services": {
+        "eyebrow": "One workspace for all your clients",
+        "title": {
+          "before": "How ",
+          "highlight": "HRwhats",
+          "after": " serves you"
+        },
+        "frameLabel": "Frame {n} — {name}",
+        "frames": ["Unified inbox", "Auto-replies", "A/B campaign", "Lead qualification", "Team", "Client report"],
+        "items": {
+          "clients": {
+            "title": "Client communication management",
+            "text": "Receive all your clients' conversations in one place:",
+            "points": ["Client inquiries", "Service requests", "Campaign follow-up"],
+            "note": "With fully organized conversations that make managing multiple accounts efficient."
+          },
+          "autoReplies": {
+            "title": "Automated replies and customer service",
+            "text": "Create smart replies that help you:",
+            "points": [
+              "Reply instantly to inquiries",
+              "Explain your services and packages",
+              "Qualify leads",
+              "Deliver a professional experience 24/7"
+            ],
+            "note": ""
+          },
+          "campaigns": {
+            "title": "Running WhatsApp marketing campaigns",
+            "text": "Manage and run campaigns with ease:",
+            "points": [
+              "Send personalized bulk messages",
+              "Launch campaigns for your clients or your clients' customers",
+              "Retarget audiences",
+              "Improve reach and engagement"
+            ],
+            "note": ""
+          },
+          "leads": {
+            "title": "Lead qualification and management",
+            "text": "The system helps you:",
+            "points": [
+              "Collect customer details automatically",
+              "Classify leads by interest",
+              "Follow up with personalized messages",
+              "Improve your chances of turning leads into customers"
+            ],
+            "note": ""
+          },
+          "team": {
+            "title": "Team and account management",
+            "text": "",
+            "points": [
+              "Assign conversations to your team",
+              "Manage multiple client accounts",
+              "Track team performance",
+              "Help ensure fast, high-quality replies"
+            ],
+            "note": ""
+          },
+          "reports": {
+            "title": "Campaign reports & analytics",
+            "text": "Get a clear view of:",
+            "points": [
+              "Marketing campaign performance",
+              "Engagement rate",
+              "Number of leads",
+              "Results for each client or campaign"
+            ],
+            "note": ""
+          }
+        },
+        "visuals": {
+          "inbox": {
+            "label": "Illustrative example: a unified inbox for several clients",
+            "title": "All conversations",
+            "messages": [
+              { "client": 0, "name": "Mona", "text": "I'd like to book a table tonight", "kind": "Inquiry" },
+              { "client": 1, "name": "Majed", "text": "I'd like a consultation appointment", "kind": "Service request" },
+              { "client": 2, "name": "Dana", "text": "I got the offer message. How do I use the code?", "kind": "Campaign follow-up" },
+              { "client": 1, "name": "Amal", "text": "How long is the session?", "kind": "Inquiry" },
+              { "client": 0, "name": "Salman", "text": "Does the offer include delivery?", "kind": "Campaign follow-up" }
+            ]
+          },
+          "autoReplies": {
+            "label": "Illustrative example: an auto-reply showing the agency's services and packages",
+            "sender": "Your agency",
+            "always": "Available 24/7",
+            "auto": "Auto-reply",
+            "customer": "Hi, I'd like to know about your services",
+            "customerTime": "2:14 AM",
+            "menu": "Welcome 👋 Type the number of the service you're interested in:",
+            "options": ["Social media management", "Sponsored ads", "Brand identity design"],
+            "answer": "2",
+            "reply": "Here's the right package for you:",
+            "package": {
+              "name": "Sponsored ads package",
+              "detail": "Campaign setup, management, and results tracking",
+              "period": "Monthly package"
+            },
+            "contact": "Talk to a consultant",
+            "botTime": "2:14 AM"
+          },
+          "campaigns": {
+            "label": "Illustrative example: comparing two versions of a campaign message",
+            "switchLabel": "Show campaign messages for your clients' customers",
+            "audiences": ["For your clients", "For your clients' customers"],
+            "announce": "Messages now shown: {name}",
+            "variants": ["Version A", "Version B"],
+            "engagement": "Engagement",
+            "winner": "Best performer",
+            "messages": [
+              [
+                "We'll launch your next WhatsApp campaign and track its results for you. Shall we book a meeting?",
+                "Your customers are on WhatsApp all day 📱 Let your next campaign reach them directly. Shall we start?"
+              ],
+              [
+                "Weekend offer: 20% off all dishes 🍽️",
+                "Hungry? 😋 20% off is waiting for you—this week only. Order now!"
+              ]
+            ]
+          },
+          "leads": {
+            "label": "Illustrative example: leads classified by interest",
+            "levels": ["Cold", "Warm", "Hot"],
+            "leads": [
+              { "name": "Yasser", "interest": "Engaged with the ad", "level": 0 },
+              { "name": "Haifa", "interest": "Asked about packages", "level": 1 },
+              { "name": "Omar", "interest": "Requested a quote", "level": 2 }
+            ],
+            "captureTitle": "Automatic data capture",
+            "fields": [
+              { "label": "Name", "value": "Omar" },
+              { "label": "Interest", "value": "Sponsored ads" },
+              { "label": "Budget", "value": "Medium" }
+            ],
+            "followUp": "Automatic follow-up: we've sent you the quote 📄"
+          },
+          "team": {
+            "label": "Illustrative example: a team working on different client accounts",
+            "badge": "Multi-client",
+            "owner": "Owner: {name}",
+            "speedTitle": "Reply speed"
+          },
+          "reports": {
+            "label": "Illustrative example: a ready-made performance report under the client's name",
+            "title": "Monthly performance report",
+            "preparedBy": "Prepared by: Your agency",
+            "export": "Export PDF",
+            "cards": ["Campaign performance", "Engagement rate", "Leads", "Results per campaign"]
+          }
+        }
+      },
+      "closing": {
+        "brand": "HRwhats",
+        "sponsored": "Sponsored",
+        "title": {
+          "before": "Smarter marketing, ",
+          "highlight": "stronger results for your clients",
+          "after": ""
+        },
+        "text": "Turn your communication with clients into a powerful tool for better marketing results, and take your services to the next level.",
+        "highlight": "Start now, and give your clients a professional marketing experience.",
+        "domain": "app.hrwhats.com",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "actions": ["Like", "Comment", "Share"]
+      }
     }
   }
 }

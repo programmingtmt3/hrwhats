@@ -9,6 +9,10 @@
   padding: 3px 10px;
   background: var(--surface);
 }
+/* "Illustrative example" is a single label: never split over two lines. */
+.tag:lang(en) {
+  white-space: nowrap;
+}
 .dark {
   color: rgb(var(--white-rgb) / 0.7);
   border-color: rgb(var(--white-rgb) / 0.25);
