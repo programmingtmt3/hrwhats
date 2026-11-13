@@ -8,7 +8,15 @@ import { localeConfig, localePath, neutralPath, type Locale } from "./locales";
  * route under src/app/(en)/en/ — the build fails if the two differ (velite.config.ts).
  * No dictionary import: client components use this module.
  */
-export const englishPaths: readonly string[] = ["/", "/packages/", "/contact/", "/whatsapp-ban/"];
+export const englishPaths: readonly string[] = [
+  "/",
+  "/packages/",
+  "/contact/",
+  "/whatsapp-ban/",
+  "/charity/",
+  "/real-estate-contracting/",
+  "/education-training/",
+];
 
 /** English is published once at least one English page exists. */
 export const activeLocales: readonly Locale[] = englishPaths.length ? ["ar", "en"] : ["ar"];

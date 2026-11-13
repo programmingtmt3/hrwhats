@@ -592,5 +592,695 @@
   "metaBadge": {
     "name": "Meta",
     "status": "Tech Provider"
+  },
+  "sectors": {
+    "charity": {
+      "meta": {
+        "title": "Nonprofits & Charities - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for nonprofits: beneficiary communication, bulk donation campaigns with far lower ban risk than unofficial tools, and reports."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for nonprofits and charities"
+      },
+      "exampleTag": "Illustrative example",
+      "hero": {
+        "title": {
+          "before": "WhatsApp messaging for nonprofits: smarter outreach and ",
+          "highlight": "bigger impact",
+          "after": ""
+        },
+        "lead": "In the nonprofit sector, fast, high-quality communication makes a real difference in reaching beneficiaries and building supporters' trust. With our smart solutions, nonprofits can manage their communication efficiently, automate their operations, and maximize their social impact.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "campaign": {
+          "label": "Illustrative example: a donation campaign card",
+          "status": "Active campaign",
+          "name": "Clean Water campaign",
+          "text": "Clean drinking water for families in need",
+          "raisedLabel": "Raised",
+          "raised": "SAR 36,450",
+          "goal": "of SAR 50,000",
+          "percent": 73,
+          "stats": [
+            { "value": "412", "label": "donors" },
+            { "value": "9", "label": "days left" },
+            { "value": "73%", "label": "of goal" }
+          ]
+        },
+        "notifications": [
+          { "title": "New donation ✓", "text": "SAR 100 to the Clean Water campaign" },
+          { "title": "Thank-you message sent", "text": "Automatically, to the donor" },
+          { "title": "New beneficiary", "text": "Signed up for the Winter Clothing initiative" }
+        ]
+      },
+      "services": {
+        "eyebrow": "Our services for nonprofits",
+        "title": {
+          "before": "How we serve ",
+          "highlight": "nonprofits",
+          "after": ""
+        },
+        "items": {
+          "beneficiaries": {
+            "title": "Beneficiary communication",
+            "text": "We help you organize and manage every beneficiary inquiry on WhatsApp in one place, with fast, organized replies for a professional, smooth experience.",
+            "points": []
+          },
+          "team": {
+            "title": "Team management",
+            "text": "Organize your team's work inside the platform:",
+            "points": ["Assign conversations", "Track performance", "Improve response times"]
+          },
+          "donationStores": {
+            "title": "Integration with donation stores",
+            "text": "",
+            "points": [
+              "Save donors' numbers and target them with marketing campaigns",
+              "Resend failed campaigns in one click"
+            ]
+          },
+          "automation": {
+            "title": "Automated replies and services",
+            "text": "Build smart replies (chatbot) to handle:",
+            "points": ["Common questions", "Requests for help", "Initiative sign-ups", "Case follow-ups"]
+          },
+          "reports": {
+            "title": "Reports & analytics",
+            "text": "A smart dashboard that shows:",
+            "points": [
+              "Number of conversations",
+              "Team performance",
+              "Beneficiary engagement",
+              "Service improvement indicators"
+            ]
+          }
+        },
+        "inbox": {
+          "label": "Illustrative example: a beneficiary inbox",
+          "title": "Beneficiary conversations",
+          "count": "3 new",
+          "items": [
+            {
+              "name": "Umm Khaled",
+              "text": "When is the food basket distribution?",
+              "tag": "Inquiry",
+              "time": "10:42"
+            },
+            {
+              "name": "Abdullah",
+              "text": "I'd like to sign up for the volunteering initiative",
+              "tag": "Initiative sign-up",
+              "time": "10:38"
+            },
+            {
+              "name": "Sara",
+              "text": "I applied for help last week. What's the status?",
+              "tag": "Case follow-up",
+              "time": "10:31"
+            }
+          ]
+        }
+      },
+      "campaigns": {
+        "eyebrow": "The donor journey",
+        "title": {
+          "before": "Managing campaigns ",
+          "highlight": "and donations",
+          "after": ""
+        },
+        "lead": "We give you a complete system to manage donation campaigns and communicate with supporters on WhatsApp. It helps you plan, run, and follow up in a smart, automated way, so your campaigns are more efficient and your returns grow.",
+        "stageLabel": "Stage",
+        "stages": [
+          {
+            "title": "Launching the campaign",
+            "features": [
+              {
+                "title": "Targeted donation campaigns",
+                "text": "Create campaigns by project type or target group, and tailor the messages to each group of supporters.",
+                "points": [],
+                "note": ""
+              },
+              {
+                "title": "Supporter database management",
+                "text": "Segment supporters by:",
+                "points": ["Interests", "Engagement", "Donation history"],
+                "note": "For more precise and more effective targeting."
+              }
+            ]
+          },
+          {
+            "title": "A WhatsApp message with the donation link",
+            "features": [
+              {
+                "title": "Smart bulk messaging",
+                "text": "Send thousands of WhatsApp messages in an organized, professional way, personalized with each name and message to boost engagement and get better results.",
+                "points": [],
+                "note": ""
+              }
+            ]
+          },
+          {
+            "title": "Completing the donation",
+            "features": [
+              {
+                "title": "Direct donation links",
+                "text": "Include payment and donation links in your messages, so supporters can donate right away, with no hassle.",
+                "points": [],
+                "note": ""
+              }
+            ]
+          },
+          {
+            "title": "Thank-you message and project updates",
+            "features": [
+              {
+                "title": "Automated donor follow-up",
+                "text": "Send automatic messages such as:",
+                "points": [
+                  "Donation receipt confirmation",
+                  "Thank-you messages",
+                  "Project status updates",
+                  "Reminders about active campaigns"
+                ],
+                "note": ""
+              }
+            ]
+          }
+        ],
+        "phone": {
+          "label": "Illustrative example: a WhatsApp chat between a nonprofit and a donor",
+          "name": "Your nonprofit",
+          "status": "Verified business account",
+          "inputPlaceholder": "Type a message",
+          "readReceipt": " ✓✓",
+          "messages": [
+            [
+              {
+                "kind": "poster",
+                "title": "Clean Water campaign",
+                "text": "Today we launched our campaign to bring clean drinking water to families in need 💧",
+                "time": "9:00"
+              }
+            ],
+            [
+              {
+                "kind": "text",
+                "text": "Hi Abu Faisal 🌿 Your donation to the Clean Water campaign makes a real difference for a family waiting for water.",
+                "button": "Donate now",
+                "time": "9:01"
+              }
+            ],
+            [
+              {
+                "kind": "receipt",
+                "title": "Donation received ✓",
+                "rows": [
+                  ["Amount", "SAR 100"],
+                  ["Campaign", "Clean Water campaign"],
+                  ["Transaction no.", "#4821"]
+                ],
+                "time": "9:04"
+              }
+            ],
+            [
+              {
+                "kind": "text",
+                "text": "Thank you, Abu Faisal 💚 Your donation has arrived, and we'll keep you posted on the project.",
+                "time": "9:04"
+              },
+              {
+                "kind": "update",
+                "title": "Project update",
+                "text": "Drilling of the well has started, and 73% of the goal is reached.",
+                "progress": 73,
+                "time": "A week later"
+              },
+              {
+                "kind": "reply",
+                "text": "May God reward you all 🤍",
+                "time": "A week later"
+              }
+            ]
+          ]
+        }
+      },
+      "impact": {
+        "eyebrow": "Analytics",
+        "title": {
+          "before": "Measure your impact and ",
+          "highlight": "improve your campaigns",
+          "after": ""
+        },
+        "features": [
+          {
+            "title": "Advanced analytics and reports",
+            "text": "Track campaign performance through:",
+            "points": ["Message open rate", "Engagement rate", "Number of donations", "Each campaign's performance"],
+            "note": ""
+          },
+          {
+            "title": "Continuous campaign improvement",
+            "text": "With data and analytics, you can refine your messages and strategies to raise conversion rates and maximize your impact.",
+            "points": [],
+            "note": ""
+          }
+        ],
+        "dashboard": {
+          "label": "Illustrative example: a campaign performance dashboard",
+          "title": "Campaign performance",
+          "period": "Last 30 days",
+          "kpis": [
+            { "label": "Message open rate", "value": "92%" },
+            { "label": "Engagement rate", "value": "38%" },
+            { "label": "Donations", "value": "1,284" }
+          ],
+          "chartTitle": "Each campaign's performance",
+          "campaigns": [
+            { "name": "Clean Water", "value": 86 },
+            { "name": "Food Basket", "value": 72 },
+            { "name": "Winter Clothing", "value": 64 },
+            { "name": "Orphan Sponsorship", "value": 51 }
+          ]
+        }
+      },
+      "result": {
+        "eyebrow": "The result",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "text": {
+          "before": "More organized campaigns and more effective communication that ",
+          "highlight": "help grow donations",
+          "after": "—with less manual effort and more reliance on smart automation."
+        },
+        "cards": {
+          "organized": { "title": "More organized campaigns" },
+          "engagement": { "title": "More effective communication" },
+          "donations": { "title": "Help grow donations" },
+          "effort": {
+            "title": "Less manual effort",
+            "manual": "Manual effort",
+            "automation": "Smart automation"
+          }
+        }
+      }
+    },
+    "realEstate": {
+      "meta": {
+        "title": "Real Estate & Contracting - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for real estate and contracting: customer inquiries, auto-replies, and bulk campaigns with far lower ban risk than unofficial tools."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for real estate and contracting companies"
+      },
+      "exampleTag": "Illustrative example",
+      "hero": {
+        "title": {
+          "before": "WhatsApp messaging for ",
+          "highlight": "real estate and contracting companies",
+          "after": ""
+        },
+        "lead": "In real estate and contracting, every inquiry is a sales opportunity, and every delayed reply can mean a lost lead. With our smart solutions, we help you manage your customers, reply faster, and turn inquiries into real deals on WhatsApp.",
+        "badges": ["Faster communication", "Higher sales", "Professional customer management"],
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "chat": {
+          "label": "Illustrative example: a WhatsApp chat between a real estate company and a customer",
+          "contact": "Abdulrahman",
+          "status": "online",
+          "tag": "Buying",
+          "autoReply": "Auto-reply",
+          "inputPlaceholder": "Type a message",
+          "readReceipt": " ✓✓",
+          "messages": [
+            {
+              "kind": "text",
+              "dir": "in",
+              "text": "Hi, I'm looking for a 3-bedroom apartment in north Riyadh",
+              "time": "8:14"
+            },
+            {
+              "kind": "text",
+              "dir": "out",
+              "auto": true,
+              "text": "Hi! 👋 Here's an available property that matches your request:",
+              "time": "8:14"
+            },
+            {
+              "kind": "property",
+              "dir": "out",
+              "auto": true,
+              "title": "3-bedroom apartment",
+              "location": "North Riyadh",
+              "price": "SAR 850,000",
+              "specs": ["165 m²", "3 bedrooms", "2 bathrooms"],
+              "button": "Book a viewing",
+              "time": "8:14"
+            },
+            {
+              "kind": "text",
+              "dir": "in",
+              "text": "Book a viewing",
+              "time": "8:15"
+            },
+            {
+              "kind": "text",
+              "dir": "out",
+              "auto": true,
+              "text": "Viewing booked ✓ Thursday at 5 PM. A sales consultant will contact you before the appointment.",
+              "time": "8:15"
+            }
+          ]
+        }
+      },
+      "services": {
+        "eyebrow": "From inquiry to closing",
+        "title": {
+          "before": "How ",
+          "highlight": "HRwhats",
+          "after": " serves you"
+        },
+        "indexLabel": "Deal stages",
+        "sheetLabel": "Sheet",
+        "items": {
+          "inquiries": {
+            "title": "Customer inquiries and offers",
+            "text": "Receive every customer inquiry (buying, selling, renting, contracting) on one platform, with conversations organized and assigned to your team, so you can reply quickly without missing opportunities.",
+            "points": [],
+            "note": ""
+          },
+          "autoReplies": {
+            "title": "Automated replies for projects and properties",
+            "text": "Create smart automatic replies that show:",
+            "points": [
+              "Property details (location, price, size)",
+              "Project photos and specifications",
+              "Visit and viewing times",
+              "Common questions"
+            ],
+            "note": "This helps ensure an instant reply 24/7, without constant human intervention."
+          },
+          "campaigns": {
+            "title": "Real estate marketing campaigns",
+            "text": "Launch direct marketing campaigns on WhatsApp:",
+            "points": ["Send offers for new projects", "Alert customers to available properties", "Retarget interested leads"],
+            "note": "And send personalized bulk messages to thousands of customers with ease."
+          },
+          "leads": {
+            "title": "Turning leads into deals",
+            "text": "The system helps you:",
+            "points": [
+              "Collect customer details automatically",
+              "Classify customers by interest (buying / investing / renting)",
+              "Follow up automatically with reminders and tailored offers"
+            ],
+            "note": "Automation speeds up the sales cycle and improves your chances of closing."
+          },
+          "team": {
+            "title": "Sales team and project management",
+            "text": "",
+            "points": [
+              "Assign conversations to your salespeople",
+              "Track team performance",
+              "Help ensure no customer is duplicated or lost"
+            ],
+            "note": "All from one easy-to-use dashboard."
+          },
+          "reports": {
+            "title": "Smart reports & analytics",
+            "text": "Get a clear view of:",
+            "points": [
+              "The number of interested customers",
+              "Real estate campaign performance",
+              "Inquiry-to-deal conversion rate",
+              "Sales team performance"
+            ],
+            "note": ""
+          }
+        },
+        "visuals": {
+          "inquiries": {
+            "label": "Illustrative example: customer inquiries assigned to the team",
+            "title": "Incoming inquiries",
+            "assignedTo": "Assigned to",
+            "items": [
+              { "lane": "Buying", "name": "Mohammed", "text": "I'm looking for an apartment to buy in Jeddah", "agent": "Sara" },
+              { "lane": "Selling", "name": "Hind", "text": "I'd like to sell a residential plot", "agent": "Khaled" },
+              { "lane": "Renting", "name": "Fahad", "text": "Do you have an office for rent?", "agent": "Reem" },
+              { "lane": "Contracting", "name": "Salman", "text": "I need a quote to build a villa", "agent": "Majed" }
+            ]
+          },
+          "autoReplies": {
+            "label": "Illustrative example: an automated WhatsApp list menu",
+            "greeting": "Welcome 👋 How can we help? Choose from the menu:",
+            "menuButton": "View options",
+            "menuTitle": "Our services",
+            "options": [
+              { "title": "Property details", "text": "Location, price, and size" },
+              { "title": "Project photos", "text": "Photos and specifications" },
+              { "title": "Book a viewing", "text": "Available times" },
+              { "title": "FAQ", "text": "Instant answers" }
+            ],
+            "badge": "Available around the clock"
+          },
+          "campaigns": {
+            "label": "Illustrative example: setting up a real estate WhatsApp campaign",
+            "title": "New campaign",
+            "audienceLabel": "Audience",
+            "audiences": ["Interested in buying", "Rental customers", "Past viewing visitors"],
+            "messageLabel": "Message",
+            "message": {
+              "before": "Hi ",
+              "variable": "{name}",
+              "after": " 👋 New units are now available in north Riyadh. Would you like the details?"
+            },
+            "send": "Send campaign"
+          },
+          "leads": {
+            "label": "Illustrative example: a lead pipeline board",
+            "columns": ["New inquiry", "Interested", "Viewing", "Deal"],
+            "closed": "Closed",
+            "cards": [
+              { "name": "Abdulrahman", "text": "3-bedroom apartment — north Riyadh", "tag": "Buying" },
+              { "name": "Lama", "text": "Office space — central Jeddah", "tag": "Renting" },
+              { "name": "Yousef", "text": "Commercial land — east Dammam", "tag": "Investing" },
+              { "name": "Munirah", "text": "Duplex villa — west Riyadh", "tag": "Buying" },
+              { "name": "Turki", "text": "Residential building — south Jeddah", "tag": "Investing" }
+            ]
+          },
+          "team": {
+            "label": "Illustrative example: tracking sales team performance",
+            "title": "Sales team",
+            "conversations": "Conversations",
+            "performance": "Performance",
+            "agents": [
+              { "name": "Sara", "status": "Online", "online": true },
+              { "name": "Khaled", "status": "Online", "online": true },
+              { "name": "Reem", "status": "Busy", "online": false },
+              { "name": "Majed", "status": "Online", "online": true }
+            ]
+          },
+          "reports": {
+            "label": "Illustrative example: an inquiry-to-deal conversion funnel",
+            "title": "Conversion funnel",
+            "stages": ["Inquiries", "Interested", "Viewings", "Deals"]
+          }
+        }
+      },
+      "closing": {
+        "title": "Toward smarter real estate sales",
+        "text": "Make every conversation a real sales opportunity, and start managing your customers professionally, with automation and speed.",
+        "highlight": "Start now, and take your real estate business further with smart communication solutions.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales"
+      }
+    },
+    "education": {
+      "meta": {
+        "title": "Education & Training - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for training institutes: student inquiries, automated registration and replies, course campaigns, reminders, and trainee follow-up."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for institutes and training centers"
+      },
+      "exampleTag": "Illustrative example",
+      "hero": {
+        "title": {
+          "before": "WhatsApp messaging for institutes and training centers: ",
+          "highlight": "a channel you can't do without",
+          "after": ""
+        },
+        "lead": "Reach your audience easily, organize your students' and trainees' data, and stay in touch with them on WhatsApp with every new course. From the first inquiry to the end of the program, communication that is faster and more organized.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "message": {
+          "label": "Illustrative example: a WhatsApp message from a training institute with a course card",
+          "sender": "Your institute",
+          "text": "Hi Ahmed 👋 Registration is now open for our new course:",
+          "course": "Digital Marketing course",
+          "details": ["Starts Sunday, November 8, 6:00 PM", "Instructor: Ms. Noura", "In person and online"],
+          "button": "Register now",
+          "time": "10:30"
+        },
+        "notes": ["Registration confirmed ✓", "Reminder: class tomorrow", "Course details sent"]
+      },
+      "services": {
+        "eyebrow": "The student journey",
+        "title": {
+          "before": "How ",
+          "highlight": "HRwhats",
+          "after": " serves you"
+        },
+        "tabsLabel": "Student journey stages",
+        "items": {
+          "inquiries": {
+            "tab": "Inquiries",
+            "title": "Student and trainee inquiries",
+            "text": "Receive every inquiry about:",
+            "points": ["Programs and courses", "Fees and registration", "Dates and schedules"],
+            "note": "All on one platform, with fast, organized replies that improve the experience."
+          },
+          "registration": {
+            "tab": "Registration",
+            "title": "Automated registration and replies",
+            "text": "Build a smart reply system that:",
+            "points": [
+              "Explains course details automatically",
+              "Sends registration links",
+              "Collects applicant details directly",
+              "Answers common questions 24/7"
+            ],
+            "note": ""
+          },
+          "campaigns": {
+            "tab": "Campaigns",
+            "title": "Education campaign management",
+            "text": "Launch marketing campaigns for your courses and programs on WhatsApp:",
+            "points": ["Announce new courses", "Remind people of registration dates", "Retarget interested leads"],
+            "note": "And tailor the messages to each target group."
+          },
+          "followUp": {
+            "tab": "Follow-up",
+            "title": "Student and trainee follow-up",
+            "text": "Automate communication with students after they register:",
+            "points": [
+              "Registration confirmation",
+              "Course details",
+              "Schedule reminders",
+              "Attendance and engagement tracking"
+            ],
+            "note": ""
+          },
+          "team": {
+            "tab": "Admissions team",
+            "title": "Admissions and customer service team",
+            "text": "",
+            "points": [
+              "Assign conversations to the admissions team",
+              "Track team performance",
+              "Improve response speed and service quality"
+            ],
+            "note": ""
+          },
+          "reports": {
+            "tab": "Reports",
+            "title": "Reports & analytics",
+            "text": "A dashboard that shows:",
+            "points": [
+              "Number of applications and registrations",
+              "Campaign performance",
+              "Student engagement",
+              "Team efficiency"
+            ],
+            "note": ""
+          }
+        },
+        "visuals": {
+          "inquiries": {
+            "label": "Illustrative example: student inquiries sorted into folders",
+            "folders": [
+              {
+                "name": "Programs and courses",
+                "messages": [
+                  { "name": "Rayan", "text": "Do you have a data analysis course?" },
+                  { "name": "Dana", "text": "What does the design course cover?" }
+                ]
+              },
+              {
+                "name": "Fees and registration",
+                "messages": [{ "name": "Omar", "text": "How much is the course? Can I pay in installments?" }]
+              },
+              {
+                "name": "Dates and schedules",
+                "messages": [
+                  { "name": "Jood", "text": "Is there an evening session?" },
+                  { "name": "Faisal", "text": "When does the next cohort start?" }
+                ]
+              }
+            ]
+          },
+          "registration": {
+            "label": "Illustrative example: a registration form that fills itself from the chat",
+            "chat": [
+              { "dir": "in", "text": "I want to sign up for the Digital Marketing course" },
+              { "dir": "out", "text": "Welcome! What's your full name?" },
+              { "dir": "in", "text": "Ahmed Ali" },
+              { "dir": "out", "text": "Great. Which time suits you, morning or evening?" },
+              { "dir": "in", "text": "Evening" }
+            ],
+            "formTitle": "Registration request",
+            "fields": [
+              { "label": "Name", "value": "Ahmed Ali" },
+              { "label": "Course", "value": "Digital Marketing course" },
+              { "label": "Preferred time", "value": "Evening" }
+            ],
+            "done": "Registration request created ✓"
+          },
+          "campaigns": {
+            "label": "Illustrative example: an education campaign calendar",
+            "month": "November",
+            "weekdays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+            "events": [
+              { "day": 2, "title": "New course launch" },
+              { "day": 12, "title": "Registration reminder" },
+              { "day": 19, "title": "Retarget interested leads" },
+              { "day": 26, "title": "Reminder: last day to register" }
+            ]
+          },
+          "followUp": {
+            "label": "Illustrative example: an attendance sheet and automated follow-up messages",
+            "sentTitle": "Automated messages sent",
+            "sent": ["Registration confirmation", "Course details", "Schedule reminder"],
+            "sheetTitle": "Attendance sheet",
+            "sessionLabel": "Session",
+            "students": ["Ahmed", "Sara", "Rayan", "Leen"]
+          },
+          "team": {
+            "label": "Illustrative example: conversations assigned to the admissions team",
+            "members": ["Mona", "Abdullah", "Haya"],
+            "incoming": [
+              "Fee inquiry",
+              "Registration request",
+              "Schedule question",
+              "Certificate request",
+              "Course inquiry",
+              "Details update"
+            ],
+            "speed": "Response speed"
+          },
+          "reports": {
+            "label": "Illustrative example: report indicators",
+            "title": "Reports dashboard",
+            "rings": ["Applications and registrations", "Campaign performance", "Student engagement", "Team efficiency"]
+          }
+        }
+      },
+      "closing": {
+        "title": "Smarter education starts with communication",
+        "text": "Make your educational journey smoother and more organized, and give students a professional experience from the first contact to the end of the program.",
+        "highlight": "Start now, and take your educational experience further with smart communication solutions.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales"
+      }
+    }
   }
 }

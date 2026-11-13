@@ -121,7 +121,7 @@ export function DonorPhone({
         <div className={phone.chatInput}>
           <div>{labels.inputPlaceholder}</div>
           <b>
-            <SendIcon />
+            <SendIcon className="icon-forward" />
           </b>
         </div>
       </div>

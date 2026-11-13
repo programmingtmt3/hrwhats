@@ -78,7 +78,8 @@
 
 - قاعدة "مثال توضيحي" تبقى كما هي: أسماء عامة، وأماكن بالنوع والمنطقة، ولا أسماء جهات حقيقية.
 - **الأسماء السعودية تبقى وتُكتب بالحروف اللاتينية** (لا نستبدلها بـ John أو Sarah): الجمهور والسياق سعوديان. التهجئة الموحدة:
-  `Majed`، `Khaled`، `Reem`، `Sara`، `Fahad`، `Abdullah`، `Abdulrahman`، `Salman`، `Rayan`، `Dana`، `Omar`، `Mona`، `Haya`، `Sultan`.
+  `Majed`، `Khaled`، `Reem`، `Sara`، `Fahad`، `Abdullah`، `Abdulrahman`، `Salman`، `Rayan`، `Dana`، `Omar`، `Mona`، `Haya`، `Sultan`، `Mohammed`، `Hind`، `Lama`، `Yousef`، `Munirah`، `Turki`، `Ahmed`، `Noura` (`Ms. Noura`)، `Jood`، `Faisal`، `Leen`.
+  الكنى: `Abu` / `Umm` + الاسم (`Abu Faisal`، `Umm Khaled`). الاسم الكامل في المجسم: `Ahmed Ali`.
 - الأماكن: `Riyadh, Saudi Arabia`، والأحياء بـ `Al` + الاسم: `Al Narjis`، `Al Olaya`، `Al Malqa`، `Al Yasmin`.
 - النصوص داخل المحادثات تُترجم إلى الإنجليزية (الصفحة كلها إنجليزية)، والإيموجي يبقى.
 - التحية `السلام عليكم` / `وعليكم السلام` في محادثة الرئيسية ← `Hi!` (قرار 4.5).
@@ -474,3 +475,26 @@
 - **رسالة صفحة الحظر الأساسية** تبقى صريحة: `No method can guarantee 100% that an account won't be restricted.`، و«واتساب بدون حظر نهائيًا» تُترجم حرفياً لأنها نفي للوعد: `“WhatsApp with zero bans, ever”`.
 - **الباقات:** أسماء باقات واتساب `Starter` / `Pro` / `Business`؛ وباقات مدير الحسابات تحت عنوان `Dedicated account manager`: `One-day package` / `Weekly package` / `Part-time package` / `Full-time package`. الأسعار تُكتب `SAR 150 / month` والعملة من `packages.json`.
 - **نموذج التواصل الإنجليزي:** الرسالة تصل إلى بريد الشركة بعنوان يبدأ بـ `[EN]`، وأول سطر فيها "⚠ أُرسلت من الصفحة الإنجليزية — يُرجى الرد بالإنجليزية" (`contact.php`). الرسائل العربية لا تتغير.
+
+### 4.13 القطاعات، الدفعة الأولى: الجمعيات والعقارات والتعليم (2026-11-14)
+
+**نصوص الوعود المعتمدة** (في `messages/en.json`، ولا تُعدَّل دون المطوّر):
+
+| المفتاح | العربي | النص المعتمد |
+|---|---|---|
+| `sectors.charity.meta.description` | …رسائل جماعية بدون حظر… | WhatsApp Business API for nonprofits: beneficiary communication, bulk donation campaigns with far lower ban risk than unofficial tools, and reports. |
+| `sectors.realEstate.meta.description` | …رسائل جماعية بدون حظر، وتحويل العملاء إلى صفقات | WhatsApp Business API for real estate and contracting: customer inquiries, auto-replies, and bulk campaigns with far lower ban risk than unofficial tools. (بلا "الصفقات" ليبقى ≤155 حرفاً) |
+| `sectors.charity.services.items.beneficiaries.text` | ردود … تضمن تجربة احترافية | …with fast, organized replies for a professional, smooth experience. |
+| `sectors.realEstate.services.items.inquiries.text` | لضمان سرعة الاستجابة وعدم فقدان أي فرصة | …so you can reply quickly without missing opportunities. |
+| `sectors.realEstate.services.items.autoReplies.note` | هذا يضمن رداً فورياً 24/7… | This helps ensure an instant reply 24/7, without constant human intervention. |
+| `sectors.realEstate.services.items.team.points[2]` | ضمان عدم تكرار العملاء أو ضياعهم | Help ensure no customer is duplicated or lost |
+| `sectors.charity.result.text` + `cards.donations.title` | زيادة واضحة في التبرعات | `help grow donations` (صيغة المطوّر). الجملة: `More organized campaigns and more effective communication that help grow donations—with less manual effort…`؛ البطاقة: `Help grow donations` |
+| `sectors.realEstate.hero.badges[1]` | مبيعات أعلى | Higher sales |
+
+**بيانات المجسمات المعتمدة:**
+- الأسماء والكنى: انظر 1.9.
+- أسماء الحملات (متخيَّلة وعامة، مترجمة بالمعنى): `Clean Water campaign` (سقيا الماء)، `Food Basket`، `Winter Clothing`، `Orphan Sponsorship`، ومبادرة `Winter Clothing initiative`.
+- "جزاكم الله خيراً" ← `May God reward you all 🤍`.
+- المبالغ تُنقل كما في العربي بصيغة `SAR 850,000` / `SAR 36,450` / `of SAR 50,000`.
+- "لوحة 01 / 06" (العقارات) ← `Sheet 01 / 06`.
+- التقويم (التعليم): "الإعلان عن دورة جديدة" ← `New course launch` (الكلمة `announcement` لا تتسع في خانة اليوم).

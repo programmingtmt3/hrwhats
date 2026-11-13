@@ -373,6 +373,10 @@ ul .teamRow {
     grid-template-columns: 64px 1fr;
     gap: 8px 10px;
   }
+  /* English lane names are longer ("Contracting"). */
+  .inquiries li:lang(en) {
+    grid-template-columns: 76px 1fr;
+  }
   .agent {
     grid-column: 2;
   }

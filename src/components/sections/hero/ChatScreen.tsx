@@ -128,7 +128,7 @@ export function ChatScreen({ avatar, messages, labels }: ChatScreenProps) {
       <div className={styles.chatInput}>
         <div>{labels.inputPlaceholder}</div>
         <b>
-          <SendIcon />
+          <SendIcon className="icon-forward" />
         </b>
       </div>
     </div>

@@ -26,7 +26,15 @@ type EnglishNamespace =
   | "contactPage"
   | "whatsappBan";
 
+/**
+ * Sector pages are translated one by one: `sectors` in en.json holds only these
+ * (each with the full shape of its Arabic entry). Add a sector's key here when its
+ * page is translated.
+ */
+type EnglishSector = "charity" | "realEstate" | "education";
+
 type EnglishMessages = Pick<Dictionary, EnglishNamespace> & {
+  sectors: Pick<Dictionary["sectors"], EnglishSector>;
   /** Names only: the footer links to the Arabic legal pages until they are translated. */
   legal: { pages: { [Slug in keyof Dictionary["legal"]["pages"]]: { name: string } } };
   /** English only: the code-drawn badge that replaces the "Meta Business Partner" image. */
@@ -40,16 +48,24 @@ const english = en satisfies EnglishMessages;
  * not translated yet throws, so an English page that needs one fails the build
  * instead of rendering empty text.
  */
-const englishDictionary = new Proxy(english, {
-  get(target, key, receiver) {
-    if (typeof key === "string" && key in ar && !(key in target)) {
-      throw new Error(
-        `messages/en.json has no "${key}" yet: translate it before building an English page that uses it.`,
-      );
-    }
-    return Reflect.get(target, key, receiver);
-  },
-}) as unknown as Dictionary;
+function untranslatedGuard<T extends object>(target: T, source: object, prefix: string): T {
+  return new Proxy(target, {
+    get(obj, key, receiver) {
+      if (typeof key === "string" && key in source && !(key in obj)) {
+        throw new Error(
+          `messages/en.json has no "${prefix}${key}" yet: translate it before building an English page that uses it.`,
+        );
+      }
+      return Reflect.get(obj, key, receiver);
+    },
+  });
+}
+
+const englishDictionary = untranslatedGuard(
+  { ...english, sectors: untranslatedGuard(english.sectors, ar.sectors, "sectors.") },
+  ar,
+  "",
+) as unknown as Dictionary;
 
 const dictionaries: Record<Locale, Dictionary> = { ar, en: englishDictionary };
 

@@ -108,7 +108,7 @@ export function PropertyChat({
       <div className={styles.input}>
         <span>{labels.inputPlaceholder}</span>
         <b aria-hidden="true">
-          <SendIcon />
+          <SendIcon className="icon-forward" />
         </b>
       </div>
       <figcaption className={styles.caption}>
