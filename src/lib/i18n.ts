@@ -21,7 +21,10 @@ type EnglishNamespace =
   | "waFloat"
   | "languageSwitcher"
   | "notFound"
-  | "home";
+  | "home"
+  | "packagesPage"
+  | "contactPage"
+  | "whatsappBan";
 
 type EnglishMessages = Pick<Dictionary, EnglishNamespace> & {
   /** Names only: the footer links to the Arabic legal pages until they are translated. */

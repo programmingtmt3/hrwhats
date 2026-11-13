@@ -311,6 +311,277 @@
     "description": "Sorry, the page you're looking for doesn't exist or has moved.",
     "backHome": "Back to home"
   },
+  "packagesPage": {
+    "meta": {
+      "title": "Pricing - WhatsApp Business API | HRwhats",
+      "description": "WhatsApp Business API plans from SAR {price}/month: bulk campaigns with far lower ban risk than unofficial tools, and dedicated account manager plans."
+    },
+    "hero": {
+      "eyebrow": "Pricing",
+      "title": {
+        "before": "Start your journey to more professional communication with ",
+        "highlight": "plans that fit your business size",
+        "after": ""
+      }
+    },
+    "whatsapp": {
+      "eyebrow": "Platform subscriptions",
+      "title": {
+        "before": "",
+        "highlight": "WhatsApp",
+        "after": " plans"
+      },
+      "lead": "Get powerful capabilities with HRwhats: send thousands of messages through the official WhatsApp Business API, with far lower ban risk than unofficial tools, and enjoy outstanding customer service.",
+      "billing": {
+        "label": "Billing",
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+      },
+      "perMonth": "/ month",
+      "perYear": "/ year",
+      "save": "Save SAR {amount}",
+      "featuredBadge": "Most popular",
+      "cta": "Try it now",
+      "features": {
+        "campaigns": "Campaigns",
+        "messages": "Messages",
+        "contacts": "Contacts",
+        "quickReplies": "Quick replies",
+        "users": "Users",
+        "qrLeads": "QR code lead capture",
+        "mapsLeads": "Business leads from Google Maps"
+      },
+      "values": {
+        "unlimited": "Unlimited",
+        "available": "Included",
+        "unavailable": "Not included",
+        "perMonthResults": "{count} results / month"
+      }
+    },
+    "hiring": {
+      "eyebrow": "Add-on services",
+      "title": {
+        "before": "",
+        "highlight": "Dedicated account manager",
+        "after": ""
+      },
+      "lead": "Get a dedicated account manager who handles your operations, admin work, designs, and everything else you need, on the schedule that suits you.",
+      "per": {
+        "day": "/ day",
+        "week": "/ week",
+        "month": "/ month"
+      },
+      "cta": "Subscribe now"
+    },
+    "vatNote": "Note: Prices exclude 15% VAT."
+  },
+  "contactPage": {
+    "meta": {
+      "title": "Contact Us - WhatsApp Business API | HRwhats",
+      "description": "Contact the HRwhats team about WhatsApp Business API solutions, pricing, or verification. Our support team is here by phone, email, and WhatsApp."
+    },
+    "hero": {
+      "eyebrow": "Contact us",
+      "title": {
+        "before": "We're here ",
+        "highlight": "to help",
+        "after": ""
+      },
+      "lead": "Our support team is ready to answer all your questions"
+    },
+    "form": {
+      "ariaLabel": "Contact form",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "optional": "(optional)",
+      "honeypot": "Leave this field empty",
+      "submit": "Send",
+      "sending": "Sending…",
+      "captchaHint": "Complete the check above to enable the Send button.",
+      "success": "We've received your message and will get back to you soon.",
+      "error": "We couldn't send your message. Please try again or contact us on WhatsApp.",
+      "whatsappCta": "Chat on WhatsApp",
+      "errors": {
+        "nameRequired": "Please enter your name",
+        "nameTooLong": "Name is too long (100 characters max)",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Please enter a valid email address",
+        "subjectRequired": "Please enter a subject",
+        "subjectTooLong": "Subject is too long (200 characters max)",
+        "messageTooLong": "Message is too long (5,000 characters max)"
+      }
+    },
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "social": "Follow us"
+    }
+  },
+  "whatsappBan": {
+    "name": "WhatsApp bans",
+    "meta": {
+      "title": "Why WhatsApp Numbers Get Banned | HRwhats",
+      "description": "Why do company WhatsApp numbers get banned? Learn the causes of account restrictions, how the WhatsApp Business API differs, and steps that lower ban risk."
+    },
+    "hero": {
+      "title": {
+        "before": "Why ",
+        "highlight": "WhatsApp numbers",
+        "after": " get banned"
+      },
+      "question": "Is your company's number getting banned when you message customers?"
+    },
+    "intro": {
+      "text": "If your company relies on WhatsApp to talk to customers or run marketing campaigns, you may face a restricted or banned number, especially when you use unsuitable sending methods or message heavily without following WhatsApp's policies.",
+      "highlight": "The solution isn't to stop using WhatsApp, but to use it the right way.",
+      "platform": "With HRwhats, you can move from regular WhatsApp use to a professional environment built on the WhatsApp Business Platform (API), and manage your company's communication and campaigns in a more organized way."
+    },
+    "reasons": {
+      "title": "Why might a WhatsApp number get banned?",
+      "lead": "The risk of account restrictions can rise with practices such as:",
+      "items": [
+        "Sending large numbers of messages through unofficial methods.",
+        "Using unapproved sending software or tools.",
+        "Messaging people who didn't expect to hear from your business.",
+        "High rates of people blocking or reporting your messages.",
+        "Sending unwanted or repetitive content.",
+        "Not giving customers a clear way to stop the messages.",
+        "Violating WhatsApp Business policies."
+      ]
+    },
+    "honest": {
+      "question": "Does the WhatsApp API prevent bans completely?",
+      "statement": "No method can guarantee 100% that an account won't be restricted.",
+      "text": "Using the WhatsApp Business Platform the right way helps companies manage communication and campaigns through official channels, but you must also follow WhatsApp's policies, consent requirements, and message quality standards.",
+      "promise": {
+        "before": "That's why, at HRwhats, we don't promise you ",
+        "quote": "“WhatsApp with zero bans, ever”",
+        "after": ". Instead, we give you the tools that help your company work in a more professional and organized way."
+      }
+    },
+    "compare": {
+      "title": "Conventional sending vs. the WhatsApp API",
+      "traditional": "Conventional sending",
+      "api": "WhatsApp API with HRwhats",
+      "rows": [
+        {
+          "traditional": "Suited to limited use",
+          "api": "Built for businesses"
+        },
+        {
+          "traditional": "Conversations managed by hand",
+          "api": "Conversations managed from one platform"
+        },
+        {
+          "traditional": "Hard to distribute conversations",
+          "api": "Distribute and manage your customer service team"
+        },
+        {
+          "traditional": "Customers followed up by hand",
+          "api": "Customer management and follow-up"
+        },
+        {
+          "traditional": "Limited campaign tools",
+          "api": "Organized campaign management"
+        },
+        {
+          "traditional": "Hard to measure results",
+          "api": "Track the performance of your communication and campaigns"
+        }
+      ]
+    },
+    "help": {
+      "title": "How does HRwhats help?",
+      "lead": "The HRwhats platform brings your customer communication tools together in one place and helps your company use WhatsApp professionally.",
+      "items": {
+        "api": {
+          "title": "WhatsApp Business API",
+          "text": "Manage your company's communication through the WhatsApp Business Platform instead of relying on conventional sending methods that don't suit large-scale business."
+        },
+        "campaigns": {
+          "title": "Campaign management",
+          "text": "Create and manage customer campaigns and track their results from a single dashboard."
+        },
+        "crm": {
+          "title": "CRM (customer management)",
+          "text": "Save and organize customer data, and follow the customer journey and sales opportunities."
+        },
+        "team": {
+          "title": "Team management",
+          "text": "Let several employees handle conversations, assign customers, and organize customer service and sales operations."
+        },
+        "templates": {
+          "title": "Message templates",
+          "text": "Organize your use of message templates in line with WhatsApp Business Platform requirements."
+        },
+        "reports": {
+          "title": "Reports and tracking",
+          "text": "Track campaigns and conversations, and improve how you communicate with customers based on the results."
+        }
+      }
+    },
+    "checklist": {
+      "title": "Before you send any WhatsApp campaign",
+      "lead": "Ask yourself:",
+      "items": [
+        "Does the customer expect this message?",
+        "Did you get their consent in the right way?",
+        "Is the message useful and clear?",
+        "Are the number and frequency of messages reasonable?",
+        "Can the customer stop the messages easily?",
+        "Are you using an official channel suited to business?"
+      ],
+      "progress": "{done} of {total}",
+      "progressLabel": "Questions you answered yes to: {done} of {total}",
+      "note": "If the answer is no, sending more messages isn't the solution."
+    },
+    "steps": {
+      "title": "Have a large customer database?",
+      "text": "Having thousands of customer numbers doesn't mean that sending one message to everyone is the best strategy.",
+      "best": "The better way:",
+      "items": [
+        "Segment your customers",
+        "Define the right audience",
+        "Choose the message",
+        "Run the campaign",
+        "Measure the results",
+        "Improve the next campaign"
+      ],
+      "after": {
+        "before": "That's where WhatsApp turns from just a sending tool into ",
+        "strong": "a marketing, sales, and customer service channel",
+        "after": "."
+      }
+    },
+    "banned": {
+      "question": "Has your company's WhatsApp number already been banned?",
+      "paragraphs": [
+        "If the number is restricted or banned, first find out the reason for the restriction and follow the review procedures that WhatsApp/Meta offer, where they apply.",
+        "Trying to get around the ban with tools or new numbers, to continue the same practices that caused the problem, is not recommended.",
+        "Once the cause is fixed, you can build a more organized way of communicating that reduces the chance of the problem happening again."
+      ]
+    },
+    "closing": {
+      "title": "Turn WhatsApp into a professional channel for your company",
+      "lead": "If your company relies on WhatsApp for:",
+      "uses": [
+        "Marketing",
+        "Sales",
+        "Customer service",
+        "Customer follow-up",
+        "Campaigns",
+        "Notifications"
+      ],
+      "after": "then it's time to move from conventional management to a more professional approach.",
+      "startTitle": "Get started with HRwhats",
+      "startText": "Discover how the platform helps you manage your customers, conversations, campaigns, and team from one place.",
+      "trial": "Request an HRwhats trial now",
+      "consult": "Get a consultation"
+    }
+  },
   "legal": {
     "pages": {
       "privacy-policy": { "name": "Privacy policy" },

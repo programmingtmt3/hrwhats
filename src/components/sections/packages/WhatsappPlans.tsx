@@ -1,7 +1,14 @@
 import { Check, Info, X } from "lucide-react";
 
 import { Reveal } from "@/components/motion/Reveal";
-import { getSite, getWhatsappPlans, tRequired, type WhatsappFeatureKey, type WhatsappPlan } from "@/lib/content";
+import {
+  getCurrencyBefore,
+  getSite,
+  getWhatsappPlans,
+  tRequired,
+  type WhatsappFeatureKey,
+  type WhatsappPlan,
+} from "@/lib/content";
 import { format, getDictionary, type Dictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -38,6 +45,7 @@ function PlanCard({ plan, text, locale, signupUrl, delay }: {
   signupUrl: string;
   delay?: number;
 }) {
+  const currency = getCurrencyBefore(locale);
   return (
     <Reveal as="article" className={cn(styles.plan, plan.featured && styles.featured)} delay={delay}>
       {plan.featured && <span className={styles.badge}>{text.featuredBadge}</span>}
@@ -45,10 +53,12 @@ function PlanCard({ plan, text, locale, signupUrl, delay }: {
       <p className={styles.desc}>{tRequired(plan.description, locale)}</p>
 
       <div className={cn(styles.price, styles.monthly)}>
+        {currency && <span>{currency}</span>}
         <b>{number(plan.monthly)}</b>
         <span>{text.perMonth}</span>
       </div>
       <div className={cn(styles.price, styles.yearly)}>
+        {currency && <span>{currency}</span>}
         <b>{number(plan.yearly)}</b>
         <span>{text.perYear}</span>
         {plan.yearlySavings > 0 && (

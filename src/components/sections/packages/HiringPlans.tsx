@@ -1,7 +1,7 @@
 import { Clock, Info } from "lucide-react";
 
 import { Reveal } from "@/components/motion/Reveal";
-import { getHiringPlans, getSite, tRequired } from "@/lib/content";
+import { getCurrencyBefore, getHiringPlans, getSite, tRequired } from "@/lib/content";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,7 @@ export function HiringPlans({ locale }: { locale: Locale }) {
   const text = page.hiring;
   // Subscription and payment happen inside the dashboard.
   const signupUrl = getSite().appUrls.signup;
+  const currency = getCurrencyBefore(locale);
 
   return (
     <section className={cn(styles.section, styles.hiring)} id="hiring-plans">
@@ -24,6 +25,7 @@ export function HiringPlans({ locale }: { locale: Locale }) {
               <h3>{tRequired(plan.name, locale)}</h3>
               <p className={styles.tagline}>{tRequired(plan.tagline, locale)}</p>
               <div className={styles.price}>
+                {currency && <span>{currency}</span>}
                 <b>{plan.price.toLocaleString("en-US")}</b>
                 <span>{text.per[plan.period]}</span>
               </div>

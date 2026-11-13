@@ -255,6 +255,15 @@ export function getCurrency() {
   return packages.currency;
 }
 
+/**
+ * Currency shown before a price: English writes "SAR 150" (docs/en-glossary.md 1.6),
+ * with the code from packages.json. Arabic: null — its period label carries the
+ * currency word ("150 ريال / شهر").
+ */
+export function getCurrencyBefore(locale: Locale): string | null {
+  return locale === "ar" ? null : packages.currency;
+}
+
 const categorySchema = z.object({ slug: z.string().min(1), name: localized });
 export type Category = z.infer<typeof categorySchema>;
 

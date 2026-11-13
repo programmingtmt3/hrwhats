@@ -423,8 +423,9 @@ The static site has no Node server, so the contact form posts to **PHP on the sa
    - **After launch:** weekly Search Console checks for the first two months; new 404 pages get redirects right away.
 7. **English** — `messages/en.json`, translated pages, then posts gradually. Rules and terms: `docs/en-glossary.md`.
    - Done: glossary (approved 2026-11-11); foundation (English layout, `en.json` common namespaces, `translations.ts`, `localizeLinks`, switcher, hreflang, 404 line, `tRequired`), not published until the English home is added to `englishPaths`.
-   - Home translated (2026-11-11, `/en/`, in review): `home` namespace in `en.json`, English FAQ and sector names in `content/data/`, Meta Tech Provider badge; approved promise sentences in `docs/en-glossary.md` 4.1.
-   - Next: packages, contact, whatsapp-ban; then the ten sectors.
+   - Home translated (2026-11-11, `/en/`, approved): `home` namespace in `en.json`, English FAQ and sector names in `content/data/`, Meta Tech Provider badge; approved promise sentences in `docs/en-glossary.md` 4.1.
+   - Packages, contact, whatsapp-ban translated (approved 2026-11-14): `/en/packages/`, `/en/contact/`, `/en/whatsapp-ban/`. English prices are written `SAR 150 / month` — the currency code comes from `packages.json` via `getCurrencyBefore(locale)`, the packages meta description gets `{price}` from `getPackagesMetadata()`. The contact form sends the page `locale` with the message and renders Turnstile in that language.
+   - Next: the ten sectors.
 
 ## Commands
 

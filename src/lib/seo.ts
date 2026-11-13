@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 import { LOGO } from "./brand";
-import { getCurrency, getSite, getWhatsappPlans, tRequired, type Post } from "./content";
+import { getCurrency, getSite, getStartingMonthlyPrice, getWhatsappPlans, tRequired, type Post } from "./content";
 import { isProduction } from "./env";
-import { getDictionary, localePath, type Locale } from "./i18n";
+import { format, getDictionary, localePath, type Locale } from "./i18n";
 import { toPlainText } from "./inline-links";
 import { hasPage } from "./translations";
 
@@ -121,6 +121,16 @@ export function getPageMetadata(
       ...(image && { images: [image] }),
     },
   };
+}
+
+/**
+ * Packages page metadata. `{price}` in the description (English) is the lowest monthly
+ * WhatsApp plan from packages.json, never typed in a translation.
+ */
+export function getPackagesMetadata(locale: Locale): Metadata {
+  const meta = getDictionary(locale).packagesPage.meta;
+  const price = getStartingMonthlyPrice().toLocaleString("en-US");
+  return getPageMetadata(locale, "/packages/", { ...meta, description: format(meta.description, { price }) });
 }
 
 /** JSON-LD: Service offered by the organization to one audience (sector pages). */

@@ -3,8 +3,8 @@
   "whatsapp": [
     {
       "id": "starter",
-      "name": { "ar": "باقة الانطلاقة", "en": "" },
-      "description": { "ar": "انطلاقة ذكية لإدارة تواصلك اليومي بكفاءة وسهولة", "en": "" },
+      "name": { "ar": "باقة الانطلاقة", "en": "Starter" },
+      "description": { "ar": "انطلاقة ذكية لإدارة تواصلك اليومي بكفاءة وسهولة", "en": "A smart start to managing your daily communication easily and efficiently" },
       "monthly": 150,
       "yearly": 1500,
       "featured": false,
@@ -20,8 +20,8 @@
     },
     {
       "id": "pro",
-      "name": { "ar": "البرو", "en": "" },
-      "description": { "ar": "حل متكامل لنمو أعمالك وتنظيم تواصلك بشكل أكثر احترافية", "en": "" },
+      "name": { "ar": "البرو", "en": "Pro" },
+      "description": { "ar": "حل متكامل لنمو أعمالك وتنظيم تواصلك بشكل أكثر احترافية", "en": "A complete solution to grow your business and organize your communication more professionally" },
       "monthly": 220,
       "yearly": 2200,
       "featured": true,
@@ -37,8 +37,8 @@
     },
     {
       "id": "business",
-      "name": { "ar": "البزنس", "en": "" },
-      "description": { "ar": "إمكانات متقدمة لإدارة فرق كبيرة وتواصل واسع النطاق بكفاءة عالية", "en": "" },
+      "name": { "ar": "البزنس", "en": "Business" },
+      "description": { "ar": "إمكانات متقدمة لإدارة فرق كبيرة وتواصل واسع النطاق بكفاءة عالية", "en": "Advanced capabilities to manage large teams and large-scale communication efficiently" },
       "monthly": 290,
       "yearly": 2900,
       "featured": false,
@@ -56,39 +56,39 @@
   "hiring": [
     {
       "id": "day",
-      "name": { "ar": "باقة اليوم الواحد", "en": "" },
-      "tagline": { "ar": "حل سريع للمهام العاجلة", "en": "" },
+      "name": { "ar": "باقة اليوم الواحد", "en": "One-day package" },
+      "tagline": { "ar": "حل سريع للمهام العاجلة", "en": "A quick fix for urgent tasks" },
       "price": 180,
       "period": "day",
-      "usage": { "ar": "للمهام العاجلة", "en": "" },
-      "hours": { "ar": "6 ساعات", "en": "" }
+      "usage": { "ar": "للمهام العاجلة", "en": "For urgent tasks" },
+      "hours": { "ar": "6 ساعات", "en": "6 hours" }
     },
     {
       "id": "week",
-      "name": { "ar": "باقة الأسبوع", "en": "" },
-      "tagline": { "ar": "إنجاز مكثف خلال أسبوع", "en": "" },
+      "name": { "ar": "باقة الأسبوع", "en": "Weekly package" },
+      "tagline": { "ar": "إنجاز مكثف خلال أسبوع", "en": "Intensive work over one week" },
       "price": 850,
       "period": "week",
-      "usage": { "ar": "للأعمال التي تستلزم وقتاً", "en": "" },
-      "hours": { "ar": "30 ساعة خلال 6 أيام", "en": "" }
+      "usage": { "ar": "للأعمال التي تستلزم وقتاً", "en": "For work that takes time" },
+      "hours": { "ar": "30 ساعة خلال 6 أيام", "en": "30 hours over 6 days" }
     },
     {
       "id": "part-time",
-      "name": { "ar": "باقة الدوام الجزئي", "en": "" },
-      "tagline": { "ar": "دعم مرن للمهام اليومية", "en": "" },
+      "name": { "ar": "باقة الدوام الجزئي", "en": "Part-time package" },
+      "tagline": { "ar": "دعم مرن للمهام اليومية", "en": "Flexible support for daily tasks" },
       "price": 1900,
       "period": "month",
-      "usage": { "ar": "مناسبة للأعمال الشهرية الجزئية", "en": "" },
-      "hours": { "ar": "20 ساعة أسبوعياً (80 ساعة شهرياً)", "en": "" }
+      "usage": { "ar": "مناسبة للأعمال الشهرية الجزئية", "en": "For part-time monthly work" },
+      "hours": { "ar": "20 ساعة أسبوعياً (80 ساعة شهرياً)", "en": "20 hours a week (80 hours a month)" }
     },
     {
       "id": "full-time",
-      "name": { "ar": "باقة الدوام الكامل", "en": "" },
-      "tagline": { "ar": "تغطية كاملة للمهام والتواصل", "en": "" },
+      "name": { "ar": "باقة الدوام الكامل", "en": "Full-time package" },
+      "tagline": { "ar": "تغطية كاملة للمهام والتواصل", "en": "Full coverage of your tasks and communication" },
       "price": 2900,
       "period": "month",
-      "usage": { "ar": "مناسبة للأعمال الكبيرة", "en": "" },
-      "hours": { "ar": "40 ساعة أسبوعياً (160 ساعة شهرياً)", "en": "" }
+      "usage": { "ar": "مناسبة للأعمال الكبيرة", "en": "For large businesses" },
+      "hours": { "ar": "40 ساعة أسبوعياً (160 ساعة شهرياً)", "en": "40 hours a week (160 hours a month)" }
     }
   ]
 }

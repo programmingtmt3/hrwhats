@@ -458,3 +458,19 @@
 - **جواب Coexistence (`faq[0]`) معتمد:** `Can I also use my number in the WhatsApp Business app?` — `Yes. The number you use on the platform for campaigns also keeps working normally in the WhatsApp Business app, through Meta's Coexistence feature.`
 - **أسماء الشعارات العربية** (عملاء وشركاء بلا اسم إنجليزي رسمي) تبقى عربية، وحاويتها تحمل `lang="ar"`.
 - **الهيدر الإنجليزي (قياس 2026-11-12، بعد إزالة الوسوم):** القائمة الإنجليزية (600px) تبقى في سطر واحد من 1082px. لذلك يظهر زر القائمة في الإنجليزية حتى **1081px** (العربية حتى 1080px)، والشعار لا يُضغط. يُعاد القياس إذا تغيّرت أسماء القائمة. (`Header.module.css`)
+
+### 4.12 الباقات وتواصل معنا وحظر الواتساب (2026-11-14)
+
+**نصوص الوعود المعتمدة** (في `messages/en.json`، ولا تُعدَّل دون المطوّر):
+
+| المفتاح | النص المعتمد |
+|---|---|
+| `packagesPage.meta.description` | WhatsApp Business API plans from SAR {price}/month: bulk campaigns with far lower ban risk than unofficial tools, and dedicated account manager plans. (صيغة المطوّر: مدير الحسابات خدمة منفصلة، غير مشمولة في باقات واتساب. `{price}` = أقل سعر شهري من `packages.json`) |
+| `packagesPage.whatsapp.lead` | Get powerful capabilities with HRwhats: send thousands of messages through the official WhatsApp Business API, with far lower ban risk than unofficial tools, and enjoy outstanding customer service. |
+| `whatsappBan.meta.description` | Why do company WhatsApp numbers get banned? Learn the causes of account restrictions, how the WhatsApp Business API differs, and steps that lower ban risk. |
+
+**قرارات أخرى:**
+- **العنوان الرئيسي (h1) لصفحة الحظر:** `Why WhatsApp numbers get banned` (يطابق عنوان الصفحة؛ العربي "حظر الواتساب"). اسمها في القائمة والفوتر يبقى `WhatsApp bans`.
+- **رسالة صفحة الحظر الأساسية** تبقى صريحة: `No method can guarantee 100% that an account won't be restricted.`، و«واتساب بدون حظر نهائيًا» تُترجم حرفياً لأنها نفي للوعد: `“WhatsApp with zero bans, ever”`.
+- **الباقات:** أسماء باقات واتساب `Starter` / `Pro` / `Business`؛ وباقات مدير الحسابات تحت عنوان `Dedicated account manager`: `One-day package` / `Weekly package` / `Part-time package` / `Full-time package`. الأسعار تُكتب `SAR 150 / month` والعملة من `packages.json`.
+- **نموذج التواصل الإنجليزي:** الرسالة تصل إلى بريد الشركة بعنوان يبدأ بـ `[EN]`، وأول سطر فيها "⚠ أُرسلت من الصفحة الإنجليزية — يُرجى الرد بالإنجليزية" (`contact.php`). الرسائل العربية لا تتغير.
