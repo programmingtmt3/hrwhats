@@ -78,9 +78,9 @@
 
 - قاعدة "مثال توضيحي" تبقى كما هي: أسماء عامة، وأماكن بالنوع والمنطقة، ولا أسماء جهات حقيقية.
 - **الأسماء السعودية تبقى وتُكتب بالحروف اللاتينية** (لا نستبدلها بـ John أو Sarah): الجمهور والسياق سعوديان. التهجئة الموحدة:
-  `Majed`، `Khaled`، `Reem`، `Sara`، `Fahad`، `Abdullah`، `Abdulrahman`، `Salman`، `Rayan`، `Dana`، `Omar`، `Mona`، `Haya`، `Sultan`، `Mohammed`، `Hind`، `Lama`، `Yousef`، `Munirah`، `Turki`، `Ahmed`، `Noura` (`Ms. Noura`)، `Jood`، `Faisal`، `Leen`، `Salma`، `Nouf`، `Saad`، `Amal`، `Lina`، `Badr`، `Yasser`، `Haifa`.
+  `Majed`، `Khaled`، `Reem`، `Sara`، `Fahad`، `Abdullah`، `Abdulrahman`، `Salman`، `Rayan`، `Dana`، `Omar`، `Mona`، `Haya`، `Sultan`، `Mohammed`، `Hind`، `Lama`، `Yousef`، `Munirah`، `Turki`، `Ahmed`، `Noura` (`Ms. Noura`)، `Jood`، `Faisal`، `Leen`، `Salma`، `Nouf`، `Saad`، `Amal`، `Lina`، `Badr`، `Yasser`، `Haifa`، `Hala`، `Asma`، `Mazen`، `Saeed`، `Nasser`، `Waleed`، `Sami`، `Salem`، `Adel`.
   الكنى: `Abu` / `Umm` + الاسم (`Abu Faisal`، `Umm Khaled`). الاسم الكامل في المجسم: `Ahmed Ali`.
-- الأماكن: `Riyadh, Saudi Arabia`، والأحياء بـ `Al` + الاسم: `Al Narjis`، `Al Olaya`، `Al Malqa`، `Al Yasmin`.
+- الأماكن: `Riyadh, Saudi Arabia`، والأحياء بـ `Al` + الاسم: `Al Narjis`، `Al Olaya`، `Al Malqa`، `Al Yasmin`، `Al Nakheel`.
 - النصوص داخل المحادثات تُترجم إلى الإنجليزية (الصفحة كلها إنجليزية)، والإيموجي يبقى.
 - التحية `السلام عليكم` / `وعليكم السلام` في محادثة الرئيسية ← `Hi!` (قرار 4.5).
 
@@ -531,3 +531,34 @@
 - المحاكيات التفاعلية: `Interactive illustrative example: …`.
 - عنوان المتاجر: `Turn WhatsApp conversations into sales—simply and smartly`.
 - وسم `Illustrative example` لا ينكسر على سطرين في الإنجليزية (`:lang(en)` في `ExampleTag.module.css`).
+
+### 4.15 القطاعات، الدفعة الأخيرة: الموارد البشرية والتشغيل والمطاعم والمحلات (2026-11-14)
+
+**نصوص الوعود المعتمدة** (في `messages/en.json`، ولا تُعدَّل دون المطوّر):
+
+| المفتاح | العربي | النص المعتمد |
+|---|---|---|
+| `sectors.hr.journey.items.inquiries.note` | لضمان سرعة الرد ودقة الخدمة | With organized conversations, so you can reply quickly and accurately. |
+| `sectors.hr.hero.title` | …وكفاءة تشغيل أعلى | Manage employee communication on WhatsApp smartly and run more efficiently |
+| `sectors.hr.closing.title` | موارد بشرية أكثر كفاءة… وموظفون أكثر رضا | More efficient HR, happier employees |
+| `sectors.hr.closing.highlight` | وحقق بيئة عمل أكثر كفاءة وسلاسة | Start now, and start building a more efficient, smoother workplace. |
+| `sectors.operating.services.items.requests.note` | تنظيم كامل يضمن عدم فقدان أي طلب | Fully organized, to help ensure no request gets lost and every one is handled quickly. |
+| `sectors.operating.closing.title` | تشغيل ذكي… بلا طلب ضائع | Smart operations, no lost requests |
+| `sectors.operating.closing.highlight` | وحقق كفاءة تشغيل أعلى ورضا عملاء أكبر | Start now, and start improving your operational efficiency and customer satisfaction. |
+| `sectors.operating.hero.title` | تشغيل أكثر كفاءة… وتواصل أسرع | More efficient operations, faster communication with your customers on WhatsApp |
+| `sectors.restaurants.meta.description` | …ورسائل جماعية بدون حظر… | WhatsApp Business API for restaurants and cafes: orders and menus, delivery updates, and bulk offers with far lower ban risk than unofficial tools. |
+| `sectors.restaurants.values.items[0]` | زيادة عدد الطلبات والمبيعات | Grow your orders and sales |
+| `sectors.restaurants.closing.text` | …وعميلك أكثر رضا | Make ordering easier, communication faster, and customers happier… |
+| `sectors.restaurants.closing.highlight` | ارتقِ بتجربة مطعمك إلى مستوى جديد | Start now, and take your restaurant experience to a new level. |
+| `sectors.shops.meta.description` | …عروض موسمية ورسائل جماعية بدون حظر | WhatsApp Business API for retail shops: QR code lead capture, pickup or delivery, and bulk campaigns with far lower ban risk than unofficial tools. |
+| `sectors.shops.hero.title` | وزِد مبيعاتك بذكاء | Bring your customers closer on WhatsApp and grow your sales smartly |
+| `sectors.shops.closing.highlight` | وارتقِ بمبيعاتك إلى مستوى أعلى | Start now, and take your sales further. |
+| `sectors.{restaurants,shops}.services.items.campaigns.title` / `hero.lead` | وزيادة المبيعات | `Marketing campaigns and sales growth` / `…and increase sales on WhatsApp` (كما في 4.14) |
+
+**قرارات أخرى:**
+- الأسماء الجديدة والمكان `Al Nakheel`: انظر 1.9.
+- **أسماء الأطباق والمنتجات في الأمثلة تُترجم بالمعنى لا بالنقل الحرفي** (أصناف عامة): `Beef burger`، `Grilled chicken`، `Pasta Alfredo`، `Fries`، `Iced latte`، `Orange juice`، `Luxury oud perfume`، `White musk perfume`، `Oud oil`.
+- لافتات محطات الموارد البشرية: `First` / `Second` / `Third`؛ وعنوان قسمها `How does HRwhats serve you?` بعلامة استفهام كما في العربي.
+- التشغيل: الأقسام `AC` / `Electrical` / `Plumbing`، والأولويات `Urgent` / `Medium` / `Normal`. عنوان الصفحة (64 حرفاً) يبقى بالصيغة المعتمدة.
+- أوقات الذروة: `Morning` / `Lunch` / `Afternoon` / `Dinner` / `Late night`، والمفتاح `Quiet` / `Medium` / `Peak`.
+- لافتة النيون: `Open now`.

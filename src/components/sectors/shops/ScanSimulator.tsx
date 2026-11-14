@@ -158,7 +158,7 @@ export function ScanSimulator({ data, steps, stepsLabel }: { data: Data; steps: 
                     {data.prefilled}
                   </span>
                   <button ref={sendRef} type="button" className={styles.send} onClick={send}>
-                    <SendHorizontal aria-hidden="true" className="icon-forward" />
+                    <SendHorizontal aria-hidden="true" />
                     <span className="sr-only">{data.send}</span>
                   </button>
                 </div>

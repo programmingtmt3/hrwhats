@@ -19,6 +19,10 @@ export const englishPaths: readonly string[] = [
   "/tourism-hospitality/",
   "/online-stores-systems/",
   "/advertising/",
+  "/hr/",
+  "/operating-service/",
+  "/restaurants-cafes/",
+  "/shops/",
 ];
 
 /** English is published once at least one English page exists. */

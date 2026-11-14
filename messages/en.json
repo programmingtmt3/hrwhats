@@ -1909,6 +1909,938 @@
         "salesCta": "Talk to sales",
         "actions": ["Like", "Comment", "Share"]
       }
+    },
+    "hr": {
+      "meta": {
+        "title": "Human Resources - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for HR departments: automate employee inquiries, leave and salary certificate requests, internal announcements, and recruiting."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for HR departments"
+      },
+      "exampleTag": "Illustrative example",
+      "badge": {
+        "label": "Illustrative example: an employee ID card",
+        "company": "Your company",
+        "name": "Faisal",
+        "role": "Graphic designer",
+        "department": "Marketing department",
+        "idLabel": "Employee ID",
+        "id": "E-1042"
+      },
+      "hero": {
+        "title": {
+          "before": "Manage employee communication on WhatsApp smartly and ",
+          "highlight": "run more efficiently",
+          "after": ""
+        },
+        "lead": "In today's workplace, fast, organized communication is key to a better employee experience and more efficient operations. With our smart solutions, we help HR departments automate communication, organize requests, and improve the employee experience on WhatsApp, through one unified, easy-to-use platform.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "chat": {
+          "label": "Illustrative example: a leave request through the HR assistant on WhatsApp",
+          "assistant": "HR assistant",
+          "status": "online",
+          "auto": "Auto-reply",
+          "message": "I'd like to apply for annual leave from May 12 to 16",
+          "time": "9:05 AM",
+          "reply": "Hi Faisal 👋 Your remaining annual leave balance:",
+          "balance": "18 days",
+          "summary": "Request: annual leave, May 12–16 (5 days)",
+          "submit": "Submit request"
+        }
+      },
+      "journey": {
+        "eyebrow": "The employee journey with HRwhats",
+        "title": {
+          "before": "How does ",
+          "highlight": "HRwhats",
+          "after": " serve you?"
+        },
+        "stations": [
+          {
+            "label": "First",
+            "title": "Before joining",
+            "text": "From the applicant's first message until they join the team."
+          },
+          {
+            "label": "Second",
+            "title": "Daily work",
+            "text": "Employees' inquiries, requests, and communication with management, on WhatsApp."
+          },
+          {
+            "label": "Third",
+            "title": "HR management",
+            "text": "An organized team and a clear view of everything that's happening."
+          }
+        ],
+        "items": {
+          "recruiting": {
+            "title": "Recruiting and talent acquisition support",
+            "text": "Improve the recruiting experience by:",
+            "points": [
+              "Answering applicants' questions",
+              "Collecting candidate details",
+              "Following up on applications automatically",
+              "Organizing screening and communication"
+            ],
+            "note": ""
+          },
+          "inquiries": {
+            "title": "Employee inquiries",
+            "text": "Receive all employee inquiries in one place:",
+            "points": ["Leave", "Salaries and benefits", "Internal policies", "Administrative requests"],
+            "note": "With organized conversations, so you can reply quickly and accurately."
+          },
+          "automation": {
+            "title": "HR service automation",
+            "text": "Build a smart reply system that helps you:",
+            "points": [
+              "Answer common questions",
+              "Guide employees to the right procedures",
+              "Provide 24/7 support",
+              "Reduce the load on your HR team"
+            ],
+            "note": ""
+          },
+          "requests": {
+            "title": "Employee requests",
+            "text": "Simplify and automate requests, such as:",
+            "points": ["Leave requests", "Salary certificate requests", "Other HR requests"],
+            "note": "And collect and organize the details automatically."
+          },
+          "internal": {
+            "title": "Internal communication and notifications",
+            "text": "Send important alerts and notifications:",
+            "points": [
+              "Policy updates",
+              "Internal announcements",
+              "Appointment and meeting reminders",
+              "Internal awareness campaigns"
+            ],
+            "note": ""
+          },
+          "team": {
+            "title": "HR team management",
+            "text": "",
+            "points": ["Assign conversations to the team", "Track performance", "Improve response speed and service quality"],
+            "note": ""
+          },
+          "reports": {
+            "title": "Reports & analytics",
+            "text": "A smart dashboard that shows:",
+            "points": [
+              "Number of requests and inquiries",
+              "Team performance",
+              "Employee engagement",
+              "Operational efficiency"
+            ],
+            "note": ""
+          }
+        },
+        "visuals": {
+          "cv": {
+            "label": "Illustrative example: CV details extracted into a candidate card",
+            "file": "CV.pdf",
+            "received": "Received on WhatsApp",
+            "cardTitle": "Candidate card",
+            "position": "Position: Accountant",
+            "fields": [
+              { "label": "Name", "value": "Lama" },
+              { "label": "Title", "value": "Accountant" },
+              { "label": "Experience", "value": "4 years" },
+              { "label": "Skills", "value": "Financial reporting, Excel" }
+            ],
+            "status": "Added to screening"
+          },
+          "flip": {
+            "hint": "Tap a card to see the reply",
+            "show": "Show reply",
+            "questionLabel": "Employee's question",
+            "answerLabel": "Auto-reply",
+            "cards": [
+              {
+                "topic": "Leave",
+                "question": "How much annual leave do I have left?",
+                "answer": "You have 18 days left, and you can submit a leave request right here."
+              },
+              {
+                "topic": "Salaries and benefits",
+                "question": "When will salaries be paid this month?",
+                "answer": "Salaries are paid on the 27th of each month. If that falls on a holiday, they're paid on the last working day before it."
+              },
+              {
+                "topic": "Internal policies",
+                "question": "Is remote work allowed?",
+                "answer": "Yes, under the flexible work policy: two days a week, with your direct manager's approval."
+              },
+              {
+                "topic": "Administrative requests",
+                "question": "I lost my access card. I need a new one.",
+                "answer": "We've opened replacement card request #3381. You'll get a message when it's ready for pickup."
+              }
+            ]
+          },
+          "guide": {
+            "label": "Illustrative example: an automated assistant guiding an employee to the right procedure",
+            "sender": "HR assistant",
+            "always": "Available 24/7",
+            "auto": "Auto-reply",
+            "question": "How do I update my bank account details?",
+            "intro": "Follow these steps:",
+            "steps": [
+              "Open the bank details update form",
+              "Attach your IBAN certificate from the bank",
+              "Submit the form. You'll get a message once it's approved"
+            ],
+            "button": "Open the form",
+            "time": "11:20 PM"
+          },
+          "slip": {
+            "label": "Illustrative example: a request moving through approval stages",
+            "title": "Request routing slip",
+            "number": "HR-2291",
+            "fields": [
+              { "label": "Request type", "value": "Salary certificate" },
+              { "label": "Employee", "value": "Faisal — Marketing department" }
+            ],
+            "steps": [
+              { "title": "Received", "by": "System" },
+              { "title": "Direct manager approval", "by": "Direct manager" },
+              { "title": "HR approval", "by": "Human Resources" }
+            ],
+            "approved": "Approved",
+            "done": "Certificate sent to the employee on WhatsApp ✓"
+          },
+          "memo": {
+            "label": "Illustrative example: an internal memo sent to employees on WhatsApp",
+            "org": "Your company",
+            "dept": "Human Resources",
+            "kind": "Internal memo",
+            "number": "No. 14",
+            "date": "Date: November 3",
+            "subject": "Subject: Flexible work policy update",
+            "body": "Please note that the flexible work policy will be updated starting next month. You'll find the details in the attached file.",
+            "sign": "Human Resources",
+            "recipientsTitle": "Sent on WhatsApp to:",
+            "recipients": [
+              { "name": "Sales", "read": true },
+              { "name": "Marketing", "read": true },
+              { "name": "Finance", "read": true },
+              { "name": "IT", "read": false }
+            ],
+            "read": "Read",
+            "delivered": "Delivered"
+          },
+          "org": {
+            "label": "Illustrative example: conversations assigned to the HR team",
+            "manager": { "name": "Hala", "role": "HR manager" },
+            "members": [
+              { "name": "Rayan", "role": "Employee relations", "topic": "Leave request" },
+              { "name": "Asma", "role": "Payroll and benefits", "topic": "Salary inquiry" },
+              { "name": "Mazen", "role": "Recruiting", "topic": "Interview time" }
+            ]
+          },
+          "gauges": {
+            "label": "Illustrative example: relative performance indicators without figures",
+            "title": "HR dashboard",
+            "items": ["Operational efficiency", "Team performance", "Employee engagement"],
+            "low": "Low",
+            "high": "High"
+          }
+        }
+      },
+      "closing": {
+        "label": "Illustrative example: an employee badge tapped on the entrance reader",
+        "welcome": "Welcome",
+        "title": {
+          "before": "More efficient HR, ",
+          "highlight": "happier employees",
+          "after": ""
+        },
+        "text": "Make your internal communication more organized and professional, and take your employee experience further with smart automation.",
+        "highlight": "Start now, and start building a more efficient, smoother workplace.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales"
+      }
+    },
+    "operating": {
+      "meta": {
+        "title": "Operations & Service Companies - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for operations and maintenance companies: automatic request intake, field team dispatch, status updates, and contract reminders."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for operations and service companies"
+      },
+      "exampleTag": "Illustrative example",
+      "departments": ["AC", "Electrical", "Plumbing"],
+      "priorities": ["Urgent", "Medium", "Normal"],
+      "hero": {
+        "title": {
+          "before": "More efficient operations, ",
+          "highlight": "faster communication",
+          "after": " with your customers on WhatsApp"
+        },
+        "lead": "In operations and services, fast response and organized requests are decisive for customer satisfaction and business continuity. With our smart solutions, we help you manage requests, automate communication, and improve operational efficiency on WhatsApp, through one unified, easy-to-use platform.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "chat": {
+          "label": "Illustrative example: a maintenance report on WhatsApp that becomes a work order",
+          "customer": "Abdulrahman",
+          "message": "The AC in the meeting room isn't cooling, and it's making a noise",
+          "time": "10:42 AM",
+          "location": "Shared location",
+          "area": "Al Yasmin, Riyadh",
+          "photo": "Photo of the fault"
+        },
+        "order": {
+          "title": "Work order",
+          "number": "#4512",
+          "auto": "Created automatically from the chat",
+          "typeLabel": "Category",
+          "type": "AC — not cooling",
+          "priorityLabel": "Priority",
+          "routeLabel": "Routed to",
+          "route": "AC department"
+        }
+      },
+      "services": {
+        "eyebrow": "From report to closing",
+        "title": {
+          "before": "How ",
+          "highlight": "HRwhats",
+          "after": " serves you"
+        },
+        "orderLabel": "Work order {n}",
+        "items": {
+          "requests": {
+            "title": "Service request management",
+            "text": "Receive all customer requests in one place:",
+            "points": ["Maintenance requests", "Operations services", "Reports and inquiries"],
+            "note": "Fully organized, to help ensure no request gets lost and every one is handled quickly."
+          },
+          "intake": {
+            "title": "Automated request intake",
+            "text": "Build a smart system that:",
+            "points": [
+              "Receives requests automatically",
+              "Collects customer details and the service needed",
+              "Classifies requests by type or priority",
+              "Routes each request straight to the right department"
+            ],
+            "note": ""
+          },
+          "followUp": {
+            "title": "Request follow-up with customers",
+            "text": "Keep customers informed through every stage of the service:",
+            "points": [
+              "Request received confirmation",
+              "Request status updates",
+              "Completion notifications",
+              "Service rating requests"
+            ],
+            "note": ""
+          },
+          "field": {
+            "title": "Field team management",
+            "text": "Organize work between your operations teams:",
+            "points": ["Assign requests to technicians", "Track job status", "Speed up completion", "Reduce errors and delays"],
+            "note": ""
+          },
+          "contracts": {
+            "title": "Campaigns and service contracts",
+            "text": "Manage communication with customers:",
+            "points": [
+              "Periodic maintenance reminders",
+              "Contract renewals",
+              "Offers for additional services",
+              "Follow-up with existing customers"
+            ],
+            "note": ""
+          },
+          "reports": {
+            "title": "Reports & analytics",
+            "text": "Get a clear view of:",
+            "points": [
+              "Daily request volume",
+              "Response and completion times",
+              "Team performance",
+              "Customer satisfaction"
+            ],
+            "note": ""
+          }
+        },
+        "visuals": {
+          "board": {
+            "label": "Interactive illustrative example: a sortable request board",
+            "sortLabel": "Sort requests",
+            "hint": "Tap to sort the requests",
+            "sorts": ["Highest priority", "Newest", "By department"],
+            "announce": "Requests sorted: {name}",
+            "tickets": [
+              { "id": "#4512", "title": "AC not cooling — meeting room", "kind": "Maintenance", "department": 0, "priority": 0, "age": "5 min ago", "minutes": 5 },
+              { "id": "#4511", "title": "Power outage on the second floor", "kind": "Report", "department": 1, "priority": 0, "age": "12 min ago", "minutes": 12 },
+              { "id": "#4510", "title": "Water leak in the restroom", "kind": "Report", "department": 2, "priority": 1, "age": "25 min ago", "minutes": 25 },
+              { "id": "#4509", "title": "Run the emergency generator for routine testing", "kind": "Operations", "department": 1, "priority": 2, "age": "1 hour ago", "minutes": 60 },
+              { "id": "#4508", "title": "Clean the office AC filters", "kind": "Operations", "department": 0, "priority": 2, "age": "2 hours ago", "minutes": 120 },
+              { "id": "#4507", "title": "Low water pressure in the kitchen", "kind": "Maintenance", "department": 2, "priority": 1, "age": "3 hours ago", "minutes": 180 }
+            ]
+          },
+          "intake": {
+            "label": "Illustrative example: a bot that receives a request and routes it to its department",
+            "auto": "Auto-reply",
+            "messages": [
+              { "from": "bot", "text": "Welcome 👋 What type of service do you need?" },
+              { "from": "customer", "text": "Electrical" },
+              { "from": "bot", "text": "Please send your location 📍" },
+              { "from": "customer", "text": "📍 North Riyadh" },
+              { "from": "bot", "text": "When would you like the visit?" },
+              { "from": "customer", "text": "Today, in the afternoon" },
+              { "from": "bot", "text": "Your request #4513 has been created ✓" }
+            ],
+            "beltTitle": "Sorting line",
+            "parcels": ["#4513", "#4514", "#4515"],
+            "parcelDepartments": [1, 0, 2]
+          },
+          "followUp": {
+            "label": "Illustrative example: request follow-up notifications to the customer",
+            "sender": "Customer service",
+            "updates": [
+              { "text": "We've received your request #4512 ✓ We'll keep you posted.", "time": "10:43 AM" },
+              { "text": "Technician Saeed is on his way 🚐", "time": "11:20 AM" },
+              { "text": "Your request is complete and the AC is fixed ✓", "time": "12:05 PM" },
+              { "text": "How was the service? Rate your experience:", "time": "12:06 PM" }
+            ],
+            "progress": "Request progress",
+            "ratings": ["😞", "😐", "🙂", "😍"],
+            "ratingLabels": ["Poor", "Fair", "Good", "Excellent"],
+            "picked": 3
+          },
+          "field": {
+            "label": "Illustrative example: assigning a request to an available technician",
+            "newOrder": "New request #4513 — Electrical",
+            "statuses": ["Available", "On the way", "On a job", "Off duty"],
+            "technicians": [
+              { "name": "Saeed", "skill": "Electrician", "status": 0, "after": 1 },
+              { "name": "Majed", "skill": "AC technician", "status": 2, "after": 2 },
+              { "name": "Nasser", "skill": "Plumber", "status": 1, "after": 1 },
+              { "name": "Waleed", "skill": "AC technician", "status": 3, "after": 3 }
+            ],
+            "assigned": "Assigned"
+          },
+          "contracts": {
+            "label": "Illustrative example: a maintenance contract with a periodic visit reminder and an add-on offer",
+            "title": "Annual maintenance contract",
+            "client": "Office building — north Riyadh",
+            "visitsTitle": "Periodic visits",
+            "visits": ["January", "April", "July", "October"],
+            "done": 3,
+            "reminder": "Reminder: your next periodic visit is on October 12 at 9 AM. Reply 1 to confirm.",
+            "renew": "Renew contract",
+            "offerTag": "Add-on service offer",
+            "offer": "AC duct cleaning and sanitizing",
+            "offerCta": "Request service"
+          },
+          "reports": {
+            "label": "Illustrative example: a control room board without figures",
+            "title": "Control room",
+            "panels": ["Request volume", "Response speed", "Team performance", "Customer satisfaction"]
+          }
+        }
+      },
+      "closing": {
+        "label": "Power panel",
+        "title": {
+          "before": "Smart operations, ",
+          "highlight": "no lost requests",
+          "after": ""
+        },
+        "text": "Turn your service management into a more organized, professional experience, and raise the quality of your services with smart automation.",
+        "highlight": "Start now, and start improving your operational efficiency and customer satisfaction.",
+        "off": "Off",
+        "on": "On",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales"
+      }
+    },
+    "restaurants": {
+      "meta": {
+        "title": "Restaurants & Cafes - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for restaurants and cafes: orders and menus, delivery updates, and bulk offers with far lower ban risk than unofficial tools."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for restaurants and cafes"
+      },
+      "exampleTag": "Illustrative example",
+      "price": "SAR {amount}",
+      "orderTypes": ["Delivery", "Pickup"],
+      "hero": {
+        "title": {
+          "before": "Faster orders on WhatsApp, ",
+          "highlight": "a better customer experience",
+          "after": ""
+        },
+        "lead": "In restaurants and cafes, fast service and easy ordering make the difference. With our smart solutions, we help you manage orders, automate communication, and increase sales on WhatsApp, through a smooth, fast experience for your customers.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "chat": {
+          "label": "Illustrative example: an order from the menu on WhatsApp with an add-on suggestion, then the order ticket on the kitchen rail",
+          "restaurant": "Your restaurant",
+          "status": "online",
+          "auto": "Auto-reply",
+          "greeting": "Welcome 👋 Choose from the menu:",
+          "categories": ["Drinks", "Meals", "Desserts"],
+          "picked": 1,
+          "dishes": [
+            { "name": "Beef burger", "price": 32 },
+            { "name": "Grilled chicken", "price": 38 },
+            { "name": "Pasta Alfredo", "price": 34 }
+          ],
+          "customer": "I'd like a beef burger",
+          "time": "8:12 PM",
+          "summaryTitle": "Your order",
+          "upsell": "Add fries to your meal?",
+          "upsellItem": "Fries",
+          "upsellPrice": 9,
+          "yes": "Yes",
+          "no": "No",
+          "total": "Total"
+        },
+        "ticket": {
+          "rail": "Kitchen rail",
+          "number": "#217",
+          "type": 0,
+          "time": "8:13 PM"
+        }
+      },
+      "plan": {
+        "eyebrow": "A tour of your restaurant",
+        "title": {
+          "before": "How ",
+          "highlight": "HRwhats",
+          "after": " serves you"
+        },
+        "label": "Top-down floor plan of a restaurant",
+        "hint": "Tap any point in the restaurant to discover our services",
+        "listLabel": "HRwhats services in the restaurant",
+        "spotLabel": "{place} — {service}",
+        "places": ["Order screen", "Phone corner", "Kitchen", "Delivery door", "Tables", "Cashier", "Manager's office"]
+      },
+      "items": {
+        "receive": {
+          "title": "Receiving orders on WhatsApp",
+          "text": "Receive customer orders with ease:",
+          "points": ["Interactive menu", "Receive orders directly", "Rely less on phone calls", "Keep all orders in one place"],
+          "note": ""
+        },
+        "automation": {
+          "title": "Automated ordering and replies",
+          "text": "Build a smart system that:",
+          "points": [
+            "Sends the menu automatically",
+            "Suggests add-ons (upselling)",
+            "Answers common questions",
+            "Takes orders 24/7, nonstop"
+          ],
+          "note": ""
+        },
+        "manage": {
+          "title": "Efficient order management",
+          "text": "Fully organized ordering:",
+          "points": [
+            "Confirm orders automatically",
+            "Send invoice details",
+            "Set the order type (pickup / delivery)",
+            "Reduce human error"
+          ],
+          "note": ""
+        },
+        "delivery": {
+          "title": "Order and delivery tracking",
+          "text": "A better experience for your customers:",
+          "points": ["Order status notifications", "Delivery updates", "Direct contact with the customer", "Faster handover"],
+          "note": ""
+        },
+        "campaigns": {
+          "title": "Marketing campaigns and sales growth",
+          "text": "Launch WhatsApp campaigns:",
+          "points": ["Offers and discounts", "New product launches", "Target past customers", "Boost orders during quiet hours"],
+          "note": ""
+        },
+        "experience": {
+          "title": "A better customer experience",
+          "text": "",
+          "points": ["Fast, professional replies", "Easy, smooth ordering", "Post-order follow-up", "Build customer loyalty"],
+          "note": ""
+        },
+        "team": {
+          "title": "Team management",
+          "text": "",
+          "points": [
+            "Assign orders to the team",
+            "Organize work inside the restaurant",
+            "Reduce the load on the cashier and customer service"
+          ],
+          "note": ""
+        },
+        "reports": {
+          "title": "Reports & analytics",
+          "text": "A dashboard that shows:",
+          "points": ["Number of orders", "Peak hours", "Campaign performance", "Customer behavior"],
+          "note": ""
+        }
+      },
+      "visuals": {
+        "screen": {
+          "label": "Illustrative example: an incoming WhatsApp orders screen",
+          "title": "Incoming WhatsApp orders",
+          "fresh": "New",
+          "orders": [
+            { "id": "#217", "name": "Fahad", "items": "Beef burger + fries", "type": 0 },
+            { "id": "#218", "name": "Munirah", "items": "Iced latte ×2", "type": 1 },
+            { "id": "#219", "name": "Sami", "items": "Pasta Alfredo + orange juice", "type": 0 }
+          ]
+        },
+        "faq": {
+          "label": "Illustrative example: a late-night auto-reply that sends the menu",
+          "sender": "Your restaurant",
+          "always": "Available 24/7",
+          "auto": "Auto-reply",
+          "question": "What time do you open tomorrow?",
+          "time": "1:10 AM",
+          "answer": "We're open from 12 noon to 1 AM 🕛 Here's our menu so you can choose ahead:",
+          "menuFile": "Menu",
+          "menuMeta": "PDF · sent automatically"
+        },
+        "rail": {
+          "label": "Illustrative example: order tickets on the kitchen rail",
+          "confirmed": "Confirmed automatically ✓",
+          "bill": "Invoice details sent to the customer",
+          "tickets": [
+            { "id": "#217", "type": 0, "items": ["Beef burger", "Fries"], "time": "8:13 PM" },
+            { "id": "#218", "type": 1, "items": ["Iced latte ×2"], "time": "8:15 PM" },
+            { "id": "#219", "type": 0, "items": ["Pasta Alfredo", "Orange juice"], "time": "8:16 PM" }
+          ]
+        },
+        "delivery": {
+          "label": "Illustrative example: an order's statuses through delivery",
+          "order": "Order #217",
+          "statuses": ["Preparing", "Ready", "Out for delivery", "Delivered"],
+          "current": 2,
+          "message": "Your order is with our driver Salem and will arrive in a few minutes 🛵"
+        },
+        "loyalty": {
+          "label": "Illustrative example: a digital loyalty card and a post-order follow-up message",
+          "title": "Loyalty card",
+          "customer": "Reem",
+          "stamps": 6,
+          "filled": 5,
+          "reward": "Your 6th cup is on us ☕",
+          "followUp": "Thanks for visiting, Reem 🌟 How was your coffee today?",
+          "replies": ["Great", "Good"]
+        },
+        "team": {
+          "label": "Illustrative example: an order split across the restaurant team",
+          "incoming": "New order #220",
+          "roles": [
+            { "role": "Cashier", "person": "Haya", "task": "Confirm the order" },
+            { "role": "Kitchen", "person": "Adel", "task": "Prepare the meal" },
+            { "role": "Delivery", "person": "Salem", "task": "Pick up and deliver" }
+          ]
+        },
+        "peak": {
+          "label": "Illustrative example: peak hours through the day without figures",
+          "title": "Peak hours",
+          "slots": ["Morning", "Lunch", "Afternoon", "Dinner", "Late night"],
+          "levels": [1, 2, 0, 2, 1],
+          "legend": ["Quiet", "Medium", "Peak"]
+        },
+        "chalk": {
+          "label": "Illustrative example: a chalkboard offer sent to customers on WhatsApp",
+          "board": "Quiet-hours offer ☕",
+          "when": "3 to 5 PM",
+          "offer": "15% off cold drinks",
+          "sentTo": "Broadcast to past customers",
+          "broadcast": "☕ Quiet-hours offer! 15% off cold drinks today from 3 to 5 PM. Order now right here 👇",
+          "cta": "Order now",
+          "time": "2:45 PM"
+        }
+      },
+      "values": {
+        "tag": "From our menu",
+        "title": "The value for restaurants and cafes",
+        "intro": "With HRwhats, you can:",
+        "items": [
+          "Grow your orders and sales",
+          "Speed up ordering and communication",
+          "Reduce operational errors",
+          "Improve the customer experience",
+          "Make your team more efficient"
+        ]
+      },
+      "closing": {
+        "sign": "Open now",
+        "title": {
+          "before": "Order smarter, ",
+          "highlight": "deliver a different experience",
+          "after": ""
+        },
+        "text": "Make ordering easier, communication faster, and customers happier, with a smart system that manages everything professionally.",
+        "highlight": "Start now, and take your restaurant experience to a new level.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales"
+      }
+    },
+    "shops": {
+      "meta": {
+        "title": "Retail Shops - WhatsApp Business API | HRwhats",
+        "description": "WhatsApp Business API for retail shops: QR code lead capture, pickup or delivery, and bulk campaigns with far lower ban risk than unofficial tools."
+      },
+      "service": {
+        "name": "WhatsApp Business solutions for retail shops"
+      },
+      "exampleTag": "Illustrative example",
+      "price": "SAR {amount}",
+      "hero": {
+        "title": {
+          "before": "Bring your customers closer on WhatsApp ",
+          "highlight": "and grow your sales smartly",
+          "after": ""
+        },
+        "lead": "In retail, fast replies and easy access to products play a big role in the buying decision. With our smart solutions, we help retail shops manage customer communication, showcase products, and increase sales on WhatsApp, through a simple, effective experience.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales",
+        "store": {
+          "label": "Illustrative example: a shop front whose shutter rolls up",
+          "sign": "Your shop"
+        },
+        "chat": {
+          "label": "Illustrative example: a customer asking whether a size and color are available in the branch",
+          "sender": "Your shop",
+          "customer": "Do you have the large size in black?",
+          "time": "5:20 PM",
+          "reply": "Available in the branch ✓",
+          "product": "Cotton T-shirt",
+          "colorLabel": "Color",
+          "color": "Black",
+          "sizeLabel": "Size",
+          "size": "L",
+          "price": 89,
+          "branch": "Al Nakheel branch",
+          "reserve": "Hold it for me"
+        }
+      },
+      "qr": {
+        "eyebrow": "A QR code instead of “What's your number?”",
+        "title": {
+          "before": "Your customer scans, ",
+          "highlight": "and their number is saved",
+          "after": ""
+        },
+        "text": "Instead of asking “What's your number?” and typing it by hand, put a QR code in your shop: the customer scans it with their phone camera, a WhatsApp chat opens with a ready message, and one tap on Send saves their number automatically in your customer list.",
+        "stepsLabel": "Steps to save a customer's number",
+        "steps": [
+          "The customer scans the code with their phone camera",
+          "A WhatsApp chat opens with a ready message",
+          "The customer taps “Send”",
+          "Number saved automatically ✓"
+        ],
+        "sim": {
+          "label": "Interactive illustrative example: simulating a scan of the shop's code",
+          "scan": "Tap to scan",
+          "scanning": "Scanning…",
+          "hint": "Tap or press and hold",
+          "shop": "Your shop",
+          "prefilled": "Hi 👋",
+          "composerLabel": "Ready message",
+          "send": "Send",
+          "saved": "Number saved automatically ✓",
+          "listName": "Shop customer list",
+          "contact": "New customer",
+          "number": "+966 5• ••• ••••",
+          "again": "Try again",
+          "announceScanning": "Scanning the code…",
+          "announceChat": "A WhatsApp chat with the shop opened, with the ready message: Hi 👋. Tap Send.",
+          "announceSaved": "Message sent, and the number was saved automatically in the shop's customer list."
+        },
+        "compare": {
+          "label": "Comparing the traditional way with a QR scan",
+          "oldTitle": "The traditional way",
+          "oldAsk": "What's your number?",
+          "oldNote": "The employee asks, then types the number into the computer by hand.",
+          "fieldLabel": "Mobile number",
+          "typed": {
+            "before": "0551",
+            "wrong": "7",
+            "after": "23456"
+          },
+          "newTitle": "With a QR code",
+          "newNote": "One scan and one tap on Send, and the number is saved without anyone asking for it."
+        },
+        "placesTitle": "Where to put the code?",
+        "places": ["At the cashier", "On the glass front", "On a product tag or shelf"]
+      },
+      "services": {
+        "eyebrow": "On your shop's shelves",
+        "title": {
+          "before": "How ",
+          "highlight": "HRwhats",
+          "after": " serves you"
+        },
+        "items": {
+          "inquiries": {
+            "title": "Customer inquiries",
+            "text": "Receive every customer inquiry about:",
+            "points": ["Product availability", "Prices and offers", "Sizes and colors"],
+            "note": "All on one platform, with fast, organized replies that improve the customer experience."
+          },
+          "catalog": {
+            "title": "Automated product showcase",
+            "text": "Build a smart system that:",
+            "points": [
+              "Sends the product catalog automatically",
+              "Shows details and photos",
+              "Suggests similar products",
+              "Answers common questions 24/7"
+            ],
+            "note": ""
+          },
+          "orders": {
+            "title": "Easy order taking",
+            "text": "Let customers order directly:",
+            "points": ["Confirm orders automatically", "Send purchase details", "Choose pickup or delivery", "Reduce manual errors"],
+            "note": ""
+          },
+          "campaigns": {
+            "title": "Marketing campaigns and sales growth",
+            "text": "Launch effective WhatsApp campaigns:",
+            "points": [
+              "Seasonal offers and discounts",
+              "Promote new products",
+              "Target past customers",
+              "Boost sales during quiet periods"
+            ],
+            "note": ""
+          },
+          "experience": {
+            "title": "A better customer experience",
+            "text": "",
+            "points": [
+              "Instant, professional replies",
+              "Easy, fast shopping",
+              "After-sale follow-up",
+              "Long-term customer relationships"
+            ],
+            "note": ""
+          },
+          "team": {
+            "title": "Sales team management",
+            "text": "",
+            "points": ["Assign conversations to employees", "Track performance", "Improve service speed in store and beyond"],
+            "note": ""
+          },
+          "reports": {
+            "title": "Reports & analytics",
+            "text": "A dashboard that shows:",
+            "points": ["Number of orders", "Best-selling products", "Campaign performance", "Customer behavior"],
+            "note": ""
+          }
+        },
+        "visuals": {
+          "shelf": {
+            "label": "Illustrative example: a shelf card showing sizes and colors in stock",
+            "product": "Cotton T-shirt",
+            "price": 89,
+            "sizesLabel": "Sizes",
+            "sizes": ["S", "M", "L", "XL"],
+            "available": [true, true, true, false],
+            "soldOut": "Sold out",
+            "colorsLabel": "Colors",
+            "colors": ["Black", "Olive", "White"],
+            "question": "Is size L available?",
+            "answer": "Size L is available in black and olive ✓"
+          },
+          "sheet": {
+            "label": "Illustrative example: an auto-reply sending product details and similar products",
+            "auto": "Auto-reply",
+            "ask": "I'd like to see your new perfumes",
+            "time": "9:40 PM",
+            "intro": "Here's our newest perfume:",
+            "product": "Luxury oud perfume",
+            "size": "100 ml",
+            "price": 240,
+            "similarTitle": "Similar products",
+            "similar": [
+              { "name": "White musk perfume", "price": 180 },
+              { "name": "Oud oil", "price": 320 }
+            ]
+          },
+          "orders": {
+            "label": "Illustrative example: choosing branch pickup and confirming the order",
+            "options": ["Pick up at the branch", "Delivery"],
+            "picked": 0,
+            "item": "Cotton T-shirt — black — L",
+            "price": 89,
+            "confirm": "Order confirmed ✓ Ready for pickup at the Al Nakheel branch",
+            "codeLabel": "Pickup code",
+            "code": "4821"
+          },
+          "window": {
+            "label": "Illustrative example: a seasonal offer on the shop window, sent to customers",
+            "decals": ["End-of-season sale", "Up to 30% off"],
+            "sentTo": "Broadcast to past customers",
+            "broadcast": "🛍️ The end-of-season sale has started! Up to 30% off summer clothing in the branch and on WhatsApp.",
+            "time": "10:00 AM"
+          },
+          "care": {
+            "label": "Illustrative example: after-sale follow-up and welcoming a returning customer",
+            "followUp": "Hi Sultan 👋 How did the T-shirt fit? Tip: wash it in cold water to keep its color.",
+            "followUpTime": "11:15 AM",
+            "reply": "Perfect, thanks!",
+            "replyTime": "11:20 AM",
+            "later": "Two weeks later",
+            "welcomeBack": "Welcome back, Sultan 👋 A new collection just arrived in your size.",
+            "welcomeTime": "6:05 PM"
+          },
+          "team": {
+            "label": "Illustrative example: conversations split across the sales team in store and on WhatsApp",
+            "lanes": [
+              {
+                "title": "In store",
+                "staff": [
+                  { "name": "Khaled", "task": "Serving a customer at the perfume shelf" },
+                  { "name": "Haya", "task": "Handing over a branch pickup order" }
+                ]
+              },
+              {
+                "title": "On WhatsApp",
+                "staff": [
+                  { "name": "Nouf", "task": "Answering a size question" },
+                  { "name": "Majed", "task": "Confirming a delivery order" }
+                ]
+              }
+            ]
+          },
+          "bestsellers": {
+            "label": "Illustrative example: best-selling products without figures",
+            "title": "Best-selling products",
+            "items": ["Clothing", "Perfumes", "Electronics", "Home goods"],
+            "levels": [5, 4, 3, 2]
+          }
+        }
+      },
+      "closing": {
+        "label": "Shopping bag",
+        "title": {
+          "before": "From your shop's door ",
+          "highlight": "to your customer's phone",
+          "after": ""
+        },
+        "text": "Turn every inquiry into a sales opportunity, and give your customers an easy, fast shopping experience on WhatsApp.",
+        "highlight": "Start now, and take your sales further.",
+        "primaryCta": "Start your free trial",
+        "salesCta": "Talk to sales"
+      }
     }
   }
 }
