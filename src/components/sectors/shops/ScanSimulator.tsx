@@ -1,8 +1,9 @@
 "use client";
 
-import { Check, CheckCheck, Contact, RotateCcw, ScanLine, SendHorizontal } from "lucide-react";
+import { Check, CheckCheck, Contact, RotateCcw, ScanLine } from "lucide-react";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
+import { SendIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 import { QrArt } from "./QrArt";
@@ -158,7 +159,7 @@ export function ScanSimulator({ data, steps, stepsLabel }: { data: Data; steps: 
                     {data.prefilled}
                   </span>
                   <button ref={sendRef} type="button" className={styles.send} onClick={send}>
-                    <SendHorizontal aria-hidden="true" />
+                    <SendIcon className="icon-forward" />
                     <span className="sr-only">{data.send}</span>
                   </button>
                 </div>
