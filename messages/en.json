@@ -583,10 +583,254 @@
     }
   },
   "legal": {
+    "eyebrow": "Policies",
+    "toc": {
+      "title": "On this page",
+      "label": "{page}: on this page"
+    },
+    "sectionLink": "Direct link to section: {title}",
+    "help": {
+      "phone": "Phone",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "contactPage": "Contact us page"
+    },
+    "otherPolicies": "Other policies",
+    "translationNote": "This English version is provided for convenience. The Arabic version is the original; if there is any difference or inconsistency between the two versions, the Arabic version prevails.",
     "pages": {
-      "privacy-policy": { "name": "Privacy policy" },
-      "terms-of-use": { "name": "Terms of use" },
-      "refund-policy": { "name": "Refund policy" }
+      "privacy-policy": {
+        "name": "Privacy policy",
+        "helpTitle": "Have a question about this policy?",
+        "title": {
+          "before": "",
+          "highlight": "Privacy",
+          "after": " policy"
+        },
+        "meta": {
+          "title": "Privacy Policy | HRwhats",
+          "description": "HRwhats privacy policy: what information we collect, how we use and protect it, when it is shared, cookies, data retention, and user rights."
+        },
+        "sections": [
+          {
+            "id": "introduction",
+            "title": "Introduction",
+            "text": [
+              "The HRwhats platform is committed to protecting the privacy of its users and maintaining the confidentiality of their personal data. This policy explains how information is collected, used, stored, and protected when the website or its associated services are used."
+            ]
+          },
+          {
+            "id": "information-we-collect",
+            "title": "Information we collect",
+            "text": [
+              "We may collect certain information necessary to provide our services, including:"
+            ],
+            "list": [
+              "Name and contact details.",
+              "Email address and mobile number.",
+              "Account and subscription information.",
+              "Billing and payment data when purchases are completed.",
+              "Technical information such as IP address, browser type, operating system, and usage history.",
+              "Any information the user provides to us when contacting the support team."
+            ]
+          },
+          {
+            "id": "how-we-use-information",
+            "title": "How we use information",
+            "text": [
+              "The information we collect is used for the following purposes:"
+            ],
+            "list": [
+              "Creating and managing the user's account.",
+              "Providing the services and activating subscriptions.",
+              "Improving the platform's performance and developing its features.",
+              "Communicating with the user regarding requests, updates, or important notices.",
+              "Providing technical support and customer service.",
+              "Complying with laws and legal requirements where necessary."
+            ]
+          },
+          {
+            "id": "information-sharing",
+            "title": "Information sharing",
+            "text": [
+              "We do not sell or rent users' personal data. Some information may be shared with trusted service providers or technology partners where necessary to provide or operate the service, with a commitment to maintaining the confidentiality of the data, or where required by laws and regulations."
+            ]
+          },
+          {
+            "id": "data-protection",
+            "title": "Data protection",
+            "text": [
+              "We work to implement appropriate security, technical, and administrative measures to protect data against unauthorized access, modification, disclosure, or destruction, taking into account the best available security practices."
+            ]
+          },
+          {
+            "id": "cookies",
+            "title": "Cookies",
+            "text": [
+              "The website may use cookies and similar technologies to improve the user experience, analyze performance, and personalize certain features. The user can manage these cookies through their browser settings."
+            ]
+          },
+          {
+            "id": "data-retention",
+            "title": "Data retention",
+            "text": [
+              "Personal data is retained for as long as necessary to fulfill the purposes for which it was collected, or as required by laws and by legal and regulatory obligations."
+            ]
+          },
+          {
+            "id": "third-party-links",
+            "title": "Third-party links",
+            "text": [
+              "The platform may contain links to, or integrations with, external services or websites. HRwhats is not responsible for the privacy policies or practices of those third parties, and it is advisable to review their policies before using their services."
+            ]
+          },
+          {
+            "id": "user-rights",
+            "title": "User rights",
+            "text": [
+              "In accordance with applicable laws, the user may request that their data be updated or corrected, request its deletion, or object to certain aspects of its processing, where this is possible and does not conflict with legal or operational obligations."
+            ]
+          },
+          {
+            "id": "childrens-privacy",
+            "title": "Children's privacy",
+            "text": [
+              "HRwhats services are not intended to collect personal data from children under the legally permitted age. If any such data is found, it will be handled in accordance with applicable laws."
+            ]
+          },
+          {
+            "id": "policy-updates",
+            "title": "Changes to this privacy policy",
+            "text": [
+              "This policy may be amended from time to time to keep pace with regulatory, technical, or operational developments, and the updated version takes effect as soon as it is published on the website."
+            ]
+          },
+          {
+            "id": "contact-us",
+            "title": "Contact us",
+            "text": [
+              "For any questions or requests regarding the privacy policy or the processing of personal data, the support team can be contacted through the official channels listed on the website."
+            ]
+          }
+        ]
+      },
+      "terms-of-use": {
+        "name": "Terms of use",
+        "helpTitle": "Have a question about these terms?",
+        "title": {
+          "before": "",
+          "highlight": "Terms",
+          "after": " of use"
+        },
+        "meta": {
+          "title": "Terms of Use | HRwhats",
+          "description": "HRwhats terms of use: the purpose of the service, responsible use, account management, responsibility for content and messages, and suspension for misuse."
+        },
+        "sections": [
+          {
+            "id": "purpose-of-service",
+            "title": "Purpose of the service",
+            "text": [
+              "HRwhats aims to enable customers to manage their communications and their business through WhatsApp in a professional and organized manner."
+            ]
+          },
+          {
+            "id": "responsible-use",
+            "title": "Responsible use",
+            "text": [
+              "The user undertakes to use the platform for lawful purposes only, and to comply with telecommunications and privacy laws and with the policies of the relevant service providers."
+            ]
+          },
+          {
+            "id": "account-management",
+            "title": "Account management",
+            "text": [
+              "The user is responsible for all activities carried out through their account, and must protect their login credentials and not share them with others."
+            ]
+          },
+          {
+            "id": "content-and-messages",
+            "title": "Content and messages",
+            "text": [
+              "The user bears full responsibility for the messages and content they send or share using the platform, including obtaining the necessary consent from recipients where required."
+            ]
+          },
+          {
+            "id": "misuse",
+            "title": "Misuse",
+            "text": [
+              "The service may be suspended or terminated if any of the following is detected:"
+            ],
+            "list": [
+              "Sending unwanted bulk messages.",
+              "Using unauthorized data.",
+              "Exploiting the platform for activities that violate laws or regulations.",
+              "Any use that adversely affects the performance of the service or the reputation of the platform."
+            ]
+          },
+          {
+            "id": "updates-and-development",
+            "title": "Updates and development",
+            "text": [
+              "Certain features may be added, modified, or removed in order to improve the service without prior notice, while preserving subscribers' rights under their active plans."
+            ]
+          }
+        ]
+      },
+      "refund-policy": {
+        "name": "Refund policy",
+        "helpTitle": "Have a question about this policy?",
+        "title": {
+          "before": "",
+          "highlight": "Refund",
+          "after": " policy"
+        },
+        "meta": {
+          "title": "Refund Policy | HRwhats",
+          "description": "HRwhats refund policy: refunds of digital subscription fees, requests before the service is activated, remedies for technical issues, and canceling auto-renewal."
+        },
+        "sections": [
+          {
+            "id": "digital-subscriptions",
+            "title": "Digital subscriptions",
+            "text": [
+              "Because HRwhats services are digital services that are activated electronically, subscription fees are non-refundable once the service has been activated or its use has begun, except in cases approved by the platform."
+            ]
+          },
+          {
+            "id": "before-activation",
+            "title": "Before the service is activated",
+            "text": [
+              "If the subscription fee has been paid and the service has not been activated or provided, the customer may contact the support team to have the refund request reviewed. If the request is approved, the amount will be refunded in accordance with the payment method used."
+            ]
+          },
+          {
+            "id": "technical-issues",
+            "title": "Technical issues",
+            "text": [
+              "If a technical problem caused by the platform itself prevents use of the service and HRwhats is unable to resolve it within a reasonable period, the platform is entitled to offer one of the following remedies, depending on the case:"
+            ],
+            "list": [
+              "Extending the subscription period.",
+              "Compensating the customer with an alternative service.",
+              "Refunding the amount in full or in part, at the platform's discretion."
+            ]
+          },
+          {
+            "id": "cancellation-requests",
+            "title": "Cancellation requests",
+            "text": [
+              "The user may cancel automatic renewal at any time before the renewal date, and the subscription will remain active until the end of the paid period."
+            ]
+          },
+          {
+            "id": "contact-methods",
+            "title": "How to contact us",
+            "text": [
+              "For inquiries regarding refunds, billing, or subscriptions, the support team can be contacted through the official channels listed on the website, and the request will be reviewed and answered as soon as possible."
+            ]
+          }
+        ]
+      }
     }
   },
   "metaBadge": {

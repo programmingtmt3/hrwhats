@@ -25,11 +25,12 @@ type EnglishNamespace =
   | "packagesPage"
   | "contactPage"
   | "whatsappBan"
-  | "sectors";
+  | "sectors"
+  | "legal";
 
 type EnglishMessages = Pick<Dictionary, EnglishNamespace> & {
-  /** Names only: the footer links to the Arabic legal pages until they are translated. */
-  legal: { pages: { [Slug in keyof Dictionary["legal"]["pages"]]: { name: string } } };
+  /** English only: under the title of each English legal page (the Arabic text prevails). */
+  legal: { translationNote: string };
   /** English only: the code-drawn badge that replaces the "Meta Business Partner" image. */
   metaBadge: { name: string; status: string };
 };
@@ -64,6 +65,14 @@ export function getDictionary(locale: Locale): Dictionary {
  */
 export function getMetaBadgeText(): EnglishMessages["metaBadge"] {
   return english.metaBadge;
+}
+
+/**
+ * Shown under the title of the English legal pages only: the Arabic version is the
+ * original and prevails (docs/en-glossary.md 4.16). Arabic pages have no such note.
+ */
+export function getLegalTranslationNote(locale: Locale): string | undefined {
+  return locale === "en" ? english.legal.translationNote : undefined;
 }
 
 export { format } from "./format";

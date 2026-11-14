@@ -9,7 +9,7 @@
 
 - العربية في الجذر، والإنجليزية تحت `/en/` (نفس الـ slug).
 - المرحلة الأولى: الرئيسية ← الباقات ← تواصل معنا ← حظر الواتساب (ومعها الهيدر والفوتر وزر الواتساب العائم وصفحة 404).
-- المرحلة الثانية: القطاعات العشر. لاحقاً: المدونة. القانونية مؤجلة، والفوتر الإنجليزي يربط مؤقتاً إلى النسخ العربية.
+- المرحلة الثانية: القطاعات العشر. ثم الصفحات القانونية الثلاث (2026-11-14). لاحقاً: المدونة.
 
 ---
 
@@ -247,7 +247,7 @@
 | أدلة المنصة / خطوات ربط الحساب / متطلبات التوثيق | **Platform guides / Connecting your account / Verification requirements** | — |
 | © {year} HRwhats — أحد منتجات {الناشر} | **© {year} HRwhats — a product of Tmt3 Maana Agency** | اسم الوكالة معتمد (4.4)، ويُكتب في `site.json` → `publisher.name.en`. |
 | الهاتف / البريد الإلكتروني / واتساب / تابعنا | **Phone / Email / WhatsApp / Follow us** | — |
-| السياسات / سياسة الخصوصية / شروط الاستخدام / سياسة الاسترجاع | **Policies / Privacy policy / Terms of use / Refund policy** | مؤجلة؛ الروابط إلى العربية بلا وسم، مع `hrefLang="ar"` (4.7). |
+| السياسات / سياسة الخصوصية / شروط الاستخدام / سياسة الاسترجاع | **Policies / Privacy policy / Terms of use / Refund policy** | مترجمة (4.16)؛ روابط الفوتر إلى `/en/…`. |
 | متصل الآن / يكتب الآن... / اكتب رسالة | **online / typing… / Type a message** | كما في واجهة واتساب الإنجليزية. |
 | مسار التنقل | **Breadcrumb** | — |
 | محتويات المقال / محتويات الصفحة | **In this article / On this page** | — |
@@ -562,3 +562,28 @@
 - التشغيل: الأقسام `AC` / `Electrical` / `Plumbing`، والأولويات `Urgent` / `Medium` / `Normal`. عنوان الصفحة (64 حرفاً) يبقى بالصيغة المعتمدة.
 - أوقات الذروة: `Morning` / `Lunch` / `Afternoon` / `Dinner` / `Late night`، والمفتاح `Quiet` / `Medium` / `Peak`.
 - لافتة النيون: `Open now`.
+
+### 4.16 الصفحات القانونية (معتمد 2026-11-14)
+
+- **المبدأ (قرار المطوّر):** الترجمة تعكس العربي كما هو، ولا تحل غموضه ولا تقوّيه ولا تضعفه. لا تلخيص ولا إعادة صياغة ولا إضافة ولا حذف. نفس الأقسام والمعرّفات (`id`) والترتيب وعدد الفقرات والبنود. النص العربي هو الأصل ولا يتغير بسبب الترجمة.
+- **الأسماء والعناوين:** `Privacy policy` / `Terms of use` / `Refund policy` (sentence case في الصفحة والفوتر)، والعناوين `{Name} | HRwhats` بـ title case بلا عبارة بحث: `Privacy Policy | HRwhats`، `Terms of Use | HRwhats`، `Refund Policy | HRwhats`.
+- **بند اللغة المرجعية:** ملاحظة تحت عنوان الصفحات الإنجليزية الثلاث (`legal.translationNote`، الإنجليزية فقط، ليست قسماً): “This English version is provided for convenience. The Arabic version is the original; if there is any difference or inconsistency between the two versions, the Arabic version prevails.”
+- **صندوق المساعدة (نص واجهة):** عنوانه لكل صفحة (`legal.pages.<slug>.helpTitle`): “this policy” / «هذه السياسة» في الخصوصية والاسترجاع، و“these terms” / «هذه الشروط» في الشروط.
+- **لا أسماء أنظمة ولا جهات ولا كيان قانوني** في النص العربي، فلا شيء منها في الإنجليزي.
+
+**الصيغ المعتمدة للعبارات المحتملة** (كلها تُبقي غموض العربي أو قوته كما هو):
+
+| العربي | المعتمد | المرفوض ولماذا |
+|---|---|---|
+| الأنظمة / الأنظمة والقوانين / الأنظمة المعمول بها | `laws` / `laws and regulations` / `applicable laws` | `regulations` وحدها: قد تُفهم لوائح أدنى من النظام |
+| مع الالتزام بالحفاظ على سرية البيانات | `with a commitment to maintaining the confidentiality of the data` | تحديد الملتزم (المزودون أو HRwhats): العربي لا يحدده |
+| رسائل جماعية غير مرغوب فيها | `unwanted bulk messages` | `unsolicited`: أضيق من العربي |
+| الحالات التي تقرها المنصة | `cases approved by the platform` | `recognized`: يوحي بقائمة محددة سلفاً |
+| وفق آلية الدفع المستخدمة | `in accordance with the payment method used` | `to the original payment method`: يضيف التزاماً |
+| يحق للمنصة تقديم أحد الحلول | `is entitled to offer` | `will offer`: يحوّل الحق التزاماً |
+| نعمل على تطبيق إجراءات | `We work to implement` | `We implement`: أقوى من العربي |
+| المستخدم / العميل / المشترك | `the user` / `the customer` / `subscribers` (ضمير الغائب، استثناء من `you` في 1.2) | `you`: يوحّد أطرافاً فرّق بينها العربي |
+| فترة مناسبة | `reasonable period` | `appropriate`: أبعد عن المعيار القانوني |
+| الموافقات اللازمة | `the necessary consent` | — |
+
+- **غموض العربي ونواقصه** (نطاق السياسة على `app.hrwhats.com`، وموضع "أو إذا كان ذلك مطلوبًا"، و"متى كان ذلك ممكنًا"، وسن الأطفال، وتعدد أسماء الطرف، وغياب تاريخ النفاذ والقانون الحاكم وجهة الاختصاص والكيان القانوني): لا تغيير في النصين. تُعرض على محامٍ قبل الإطلاق (CLAUDE.md، المرحلة 6).

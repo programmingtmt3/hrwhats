@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { PageGlow } from "@/components/sections/PageGlow";
 import { PageHero } from "@/components/sections/PageHero";
 import { PageToc } from "@/components/shared/PageToc";
-import { format, getDictionary, type Locale } from "@/lib/i18n";
+import { format, getDictionary, getLegalTranslationNote, type Locale } from "@/lib/i18n";
 import type { LegalSlug } from "@/lib/navigation";
 import { breadcrumbJsonLd } from "@/lib/seo";
 
@@ -26,7 +26,7 @@ export function LegalPage({ locale, slug }: { locale: Locale; slug: LegalSlug })
         ])}
       />
       <PageGlow>
-        <PageHero eyebrow={legal.eyebrow} title={page.title} />
+        <PageHero eyebrow={legal.eyebrow} title={page.title} lead={getLegalTranslationNote(locale)} />
         <div className={`site-container ${styles.layout}`}>
           <PageToc items={toc} title={legal.toc.title} label={format(legal.toc.label, { page: page.name })} />
           <div className={styles.body}>

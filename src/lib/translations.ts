@@ -23,6 +23,9 @@ export const englishPaths: readonly string[] = [
   "/operating-service/",
   "/restaurants-cafes/",
   "/shops/",
+  "/privacy-policy/",
+  "/terms-of-use/",
+  "/refund-policy/",
 ];
 
 /** English is published once at least one English page exists. */

@@ -16,7 +16,7 @@ export function LegalHelp({ locale, current }: { locale: Locale; current: LegalS
 
   return (
     <aside className={styles.help} aria-labelledby="legal-help-title">
-      <h2 id="legal-help-title">{text.title}</h2>
+      <h2 id="legal-help-title">{dict.legal.pages[current].helpTitle}</h2>
       <ul className={styles.channels}>
         <li>
           <PhoneIcon />
