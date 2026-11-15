@@ -127,12 +127,13 @@
   border-radius: 16px;
   padding: 12px 14px;
 }
+/* Meta logo file as is (16:9, white background, wide margins): 72px high so the logo
+   inside reads clearly; its own white background is the light tile on the dark card. */
 .apiBadge img {
-  height: 44px;
+  height: 72px;
   width: auto;
+  flex-shrink: 0;
   border-radius: 8px;
-  background: var(--white);
-  padding: 4px;
 }
 .apiBadge span {
   font-size: 0.85rem;
@@ -147,6 +148,11 @@
 @media (max-width: 600px) {
   .bento {
     grid-template-columns: 1fr;
+  }
+  /* Phones: the logo above the text, so the text keeps the card's full width. */
+  .apiBadge {
+    flex-direction: column;
+    align-items: flex-start;
   }
   .span2,
   .row2 {

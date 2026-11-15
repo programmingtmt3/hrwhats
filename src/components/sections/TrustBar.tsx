@@ -1,11 +1,8 @@
-import { Tag } from "lucide-react";
+import { BadgeCheck, Server, Tag } from "lucide-react";
 import type { ReactNode } from "react";
 
-import { CalendarCheckIcon, HeadsetIcon } from "@/components/icons";
+import { CalendarCheckIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
-import { MetaTechBadge } from "@/components/ui/MetaTechBadge";
-import { SiteImage } from "@/components/ui/SiteImage";
-import { META_PARTNER } from "@/lib/brand";
 import { getStartingMonthlyPrice } from "@/lib/content";
 import { format, getDictionary, type Locale } from "@/lib/i18n";
 
@@ -30,25 +27,13 @@ export function TrustBar({ locale }: { locale: Locale }) {
     <section className={styles.trust}>
       <div className="site-container">
         <Reveal className={styles.grid}>
+          {/* Code-drawn seal, no Meta logo (docs/en-glossary.md 4.10). */}
           <TrustItem
-            icon={
-              // English never shows the "Meta Business Partner" image (docs/en-glossary.md 4.10).
-              locale === "ar" ? (
-                <SiteImage
-                  src={META_PARTNER.src}
-                  width={META_PARTNER.width}
-                  height={META_PARTNER.height}
-                  alt={trust.meta.imageAlt}
-                  sizes="40px"
-                />
-              ) : (
-                <MetaTechBadge seal />
-              )
-            }
+            icon={<BadgeCheck className={styles.seal} aria-hidden="true" />}
             title={trust.meta.title}
             subtitle={trust.meta.subtitle}
           />
-          <TrustItem icon={<HeadsetIcon />} title={trust.support.title} subtitle={trust.support.subtitle} />
+          <TrustItem icon={<Server aria-hidden="true" />} title={trust.hosting.title} subtitle={trust.hosting.subtitle} />
           <TrustItem icon={<CalendarCheckIcon />} title={trust.trial.title} subtitle={trust.trial.subtitle} />
           <TrustItem
             icon={<Tag aria-hidden="true" />}

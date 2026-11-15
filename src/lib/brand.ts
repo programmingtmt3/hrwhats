@@ -17,8 +17,10 @@ export const LOGO_SQUARE = {
   alt: "HRwhats",
 } as const;
 
-export const META_PARTNER = {
-  src: "/images/brand/meta-business-partner.png",
-  width: 786,
-  height: 267,
+// Meta's official logo, used as is (white background, original margins kept): the API
+// feature card on both languages, never with "Business Partner" (CLAUDE.md, Brand & design).
+export const META_LOGO = {
+  src: "/images/brand/meta-logo.jpg",
+  width: 1280,
+  height: 720,
 } as const;

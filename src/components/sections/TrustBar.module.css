@@ -38,6 +38,10 @@
 .ic img {
   width: 40px;
 }
+/* Meta item: code-drawn seal (no Meta logo). */
+.seal {
+  height: 28px;
+}
 .item strong {
   display: block;
   font-size: 1.45rem;

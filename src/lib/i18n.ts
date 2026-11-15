@@ -31,8 +31,6 @@ type EnglishNamespace =
 type EnglishMessages = Pick<Dictionary, EnglishNamespace> & {
   /** English only: under the title of each English legal page (the Arabic text prevails). */
   legal: { translationNote: string };
-  /** English only: the code-drawn badge that replaces the "Meta Business Partner" image. */
-  metaBadge: { name: string; status: string };
 };
 
 const english = en satisfies EnglishMessages;
@@ -57,14 +55,6 @@ const dictionaries: Record<Locale, Dictionary> = { ar, en: englishDictionary };
 
 export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale];
-}
-
-/**
- * English pages never show the "Meta Business Partner" image (HRwhats is a Meta Tech
- * Provider); they show MetaTechBadge, whose text is this. docs/en-glossary.md 4.10.
- */
-export function getMetaBadgeText(): EnglishMessages["metaBadge"] {
-  return english.metaBadge;
 }
 
 /**

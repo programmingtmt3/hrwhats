@@ -85,6 +85,10 @@
   gap: 12px;
   font-size: 0.9rem;
 }
+/* The full agency name makes this line wrap on phones: even lines, no lone last word. */
+.copy {
+  text-wrap: balance;
+}
 .pol {
   display: flex;
   gap: 20px;
@@ -93,6 +97,9 @@
 .bottom b {
   color: var(--neon);
   font-weight: 600;
+}
+.bottom b a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 1080px) {

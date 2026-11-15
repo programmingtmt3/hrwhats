@@ -69,12 +69,11 @@
     "trust": {
       "meta": {
         "title": "Meta Tech Provider",
-        "subtitle": "Official WhatsApp Business API",
-        "imageAlt": ""
+        "subtitle": "Official WhatsApp Business API"
       },
-      "support": {
-        "title": "Dedicated support",
-        "subtitle": "From setup… to after launch"
+      "hosting": {
+        "title": "Hosted in Saudi Arabia",
+        "subtitle": "Platform servers and database in the Kingdom"
       },
       "trial": {
         "title": "14 days",
@@ -115,8 +114,8 @@
         "api": {
           "title": "Official WhatsApp Business API connection",
           "text": "A reliable WhatsApp connection on Meta's official API that reduces the risk of bans and lets you send broadcast messages securely and professionally.",
-          "badge": "Direct connection to the official WhatsApp Cloud API",
-          "badgeImageAlt": "",
+          "badge": "Meta Tech Provider — direct connection to the official WhatsApp Cloud API",
+          "badgeImageAlt": "Meta",
           "tag": "✓ Secure and reliable"
         },
         "automation": {
@@ -832,10 +831,6 @@
         ]
       }
     }
-  },
-  "metaBadge": {
-    "name": "Meta",
-    "status": "Tech Provider"
   },
   "sectors": {
     "charity": {

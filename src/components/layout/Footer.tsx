@@ -134,8 +134,16 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
 
         <div className={styles.bottom}>
-          <div>
-            {format(dict.footer.copyright, { year })} <b>{tRequired(site.publisher.name, locale)}</b>
+          <div className={styles.copy}>
+            {format(dict.footer.copyright, { year })}{" "}
+            <b>
+              <NewTabLink
+                href={site.publisher.url}
+                label={format(dict.nav.newTab, { label: tRequired(site.publisher.name, locale) })}
+              >
+                {tRequired(site.publisher.name, locale)}
+              </NewTabLink>
+            </b>
           </div>
           <div className={styles.pol}>
             {localizeLinks(locale, getLegalLinks(dict)).map((link) => (

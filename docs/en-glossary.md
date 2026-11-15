@@ -245,7 +245,7 @@
 | مبدّل اللغة | النص يكون **العربية** في الصفحات الإنجليزية | — |
 | روابط سريعة | **Quick links** | — |
 | أدلة المنصة / خطوات ربط الحساب / متطلبات التوثيق | **Platform guides / Connecting your account / Verification requirements** | — |
-| © {year} HRwhats — أحد منتجات {الناشر} | **© {year} HRwhats — a product of Tmt3 Maana Agency** | اسم الوكالة معتمد (4.4)، ويُكتب في `site.json` → `publisher.name.en`. |
+| © {year} HRwhats — أحد منتجات {الناشر} | **© {year} HRwhats — a product of Tmt3 Maana Advertising & IT Agency** | اسم الوكالة معتمد (4.4)، ويُكتب في `site.json` → `publisher.name.en`. |
 | الهاتف / البريد الإلكتروني / واتساب / تابعنا | **Phone / Email / WhatsApp / Follow us** | — |
 | السياسات / سياسة الخصوصية / شروط الاستخدام / سياسة الاسترجاع | **Policies / Privacy policy / Terms of use / Refund policy** | مترجمة (4.16)؛ روابط الفوتر إلى `/en/…`. |
 | متصل الآن / يكتب الآن... / اكتب رسالة | **online / typing… / Type a message** | كما في واجهة واتساب الإنجليزية. |
@@ -394,11 +394,12 @@
 
 ### 4.4 الأسماء الرسمية وصفة HRwhats عند Meta
 
-- **اسم الوكالة:** `Tmt3 Maana Agency` (الفوتر، و`site.json` → `publisher.name.en`).
-- **صفة HRwhats عند Meta:** الصفة الفعلية **Tech Provider**. في النص الإنجليزي لا تُذكر أي صفة أو شراكة، ونكتفي بـ `the official WhatsApp Business API`. **ممنوع في أي نص إنجليزي:** `Meta Business Partner`، `Meta partner`، `official partner`. الاستثناء الوحيد: الشارة المرسومة بالكود `Meta Tech Provider` في موضعي 4.10. يشمل ذلك:
-  - `home.trust.meta.title` (شريك Meta) ← `Meta Tech Provider` مع الختم (معتمد، 4.10).
-  - `home.features.cards.api.badge` (شريك أعمال رسمي لدى Meta — اتصال مباشر بواجهة WhatsApp Cloud API) ← `Direct connection to the official WhatsApp Cloud API`.
-  - النص البديل `trust.meta.imageAlt` و`features.cards.api.badgeImageAlt`: لا صورة في الإنجليزية (4.10)، فلا يُستعملان فيها.
+- **اسم الوكالة (محدّث 2026-11-15):** `Tmt3 Maana Advertising & IT Agency` (الفوتر عبر `site.json` → `publisher.name.en`، والنص البديل لشعارها في `partners.json`). العربي: «وكالة تمتع معنا للدعاية والإعلان وتقنية المعلومات».
+- **شريط الثقة، عنصر الاستضافة (معتمد 2026-11-15):** «استضافة سعودية» / «خوادم المنصة وقاعدة بياناتها داخل المملكة» ← `Hosted in Saudi Arabia` / `Platform servers and database in the Kingdom`. يصف الخوادم وقاعدة البيانات فقط: لا يُكتب «كل بياناتك» ولا ما يوحي بأن رسائل واتساب لا تغادر السعودية (تمر عبر WhatsApp Cloud API لدى Meta).
+- **صفة HRwhats عند Meta:** الصفة الفعلية **Tech Provider**. في النص الإنجليزي لا تُذكر أي صفة أو شراكة، ونكتفي بـ `the official WhatsApp Business API`. **ممنوع في أي نص إنجليزي:** `Meta Business Partner`، `Meta partner`، `official partner`. الاستثناء الوحيد: صفة `Meta Tech Provider` في موضعي 4.10. يشمل ذلك:
+  - `home.trust.meta.title` (مزود خدمات معتمد في Meta) ← `Meta Tech Provider` مع الختم (معتمد، 4.10).
+  - `home.features.cards.api.badge` (مزود خدمات معتمد في Meta — اتصال مباشر بواجهة WhatsApp Cloud API) ← `Meta Tech Provider — direct connection to the official WhatsApp Cloud API` (2026-11-15).
+  - `features.cards.api.badgeImageAlt` = `Meta` (النص البديل لشعار Meta في البطاقة، في اللغتين).
 - أسماء الشركاء والعملاء الآخرين: النص البديل للشعار فقط؛ يبقى العربي حيث لا يوجد اسم رسمي بالإنجليزية (لا نخترع أسماء).
 
 ### 4.5 التحية في محادثة الرئيسية
@@ -435,28 +436,20 @@
 
 - لا تغيير في أي نص عربي بسبب الترجمة.
 - لا رقم ولا سعر مكتوب في `en.json`.
-- لا شراكة مع Meta (عدا شارة `Meta Tech Provider` في 4.10)، ولا وعد بعدم الحظر.
+- لا شراكة مع Meta (عدا صفة `Meta Tech Provider` في 4.10)، ولا وعد بعدم الحظر.
 
-### 4.10 شارة Meta في الرئيسية (محسوم للإنجليزية، 2026-11-11)
+### 4.10 Meta في الرئيسية (قرار المطوّر، محدّث 2026-11-15)
 
-الرئيسية تعرض الصورة `public/images/brand/meta-business-partner.png` (`META_PARTNER` في `src/lib/brand.ts`) في موضعين: شريط الثقة، وبطاقة "ربط واتساب API الرسمي". نص الصورة حرفياً: `Meta` / `Business Partner`.
+**الصفة:** في العربية **"مزود خدمات معتمد في Meta"**، وفي الإنجليزية **`Meta Tech Provider`**. لا يُذكر أي شراكة في اللغتين: ممنوع `Meta Business Partner` و`Meta partner` و«شريك Meta» و«شريك أعمال».
 
-**في الإنجليزية:**
-- الصورة **لا تُستخدم في أي صفحة إنجليزية**، لأنها تقول "Business Partner" وصفة HRwhats الفعلية **Tech Provider**.
-- مكانها في الموضعين: **شارة مرسومة بالكود** من رموز التصميم، نصها `Meta Tech Provider`، **بلا شعار Meta** داخلها.
-- لا يُكتب `Meta Business Partner` أو `Meta partner` في أي نص إنجليزي.
-- **التنفيذ (معتمد 2026-11-11):** `MetaTechBadge` (`src/components/ui/`)، ختم بعلامة صح (`BadgeCheck`، أخضر) بلا شعار Meta، ونصه من `metaBadge` في `en.json`.
-  - **بطاقة الـ API:** صندوق أبيض بارتفاع 44px (مكان الصورة): الختم + `Meta` / `Tech Provider`، وبجانبه `Direct connection to the official WhatsApp Cloud API`.
-  - **شريط الثقة:** الختم وحده أيقونةً، والعنوان `Meta Tech Provider`، وتحته `Official WhatsApp Business API` (`home.trust.meta`). هذا يحلّ محل اقتراح `Official API` في 4.4.
-  - `trust.meta.imageAlt` و`features.cards.api.badgeImageAlt` فارغان في `en.json` (لا صورة).
-- **شعار `Meta Business Suite` في قسم الشركاء: مخفي في الإنجليزية** (معتمد 2026-11-11)، لأن عنوان `Our partners` يجعله ادعاء شراكة. التنفيذ: `"hiddenIn": ["en"]` في `partners.json`، و`getPartners(locale)` يستبعده.
+**الصورة `meta-business-partner.png` (نصها "Meta / Business Partner") حُذفت من المشروع** (2026-11-15)، ومعها `META_PARTNER`. لا تُعاد.
 
-**في العربية (قرار المطوّر، 2026-11-15):** صفة HRwhats عند Meta في النصوص العربية هي **"مزود خدمات معتمد في Meta"**، ولا يُذكر أي شراكة:
-- `home.trust.meta.title`: "شريك Meta" ← "مزود خدمات معتمد في Meta".
-- `home.features.cards.api.badge`: "شريك أعمال رسمي لدى Meta — …" ← "مزود خدمات معتمد في Meta — اتصال مباشر بواجهة WhatsApp Cloud API".
-- النص البديل للصورة فارغ في الموضعين (`trust.meta.imageAlt`، `features.cards.api.badgeImageAlt`)، لأن النص المجاور يحمل المعنى.
-- **الصور باقية بقرار من المطوّر:** صورة `meta-business-partner.png` في موضعيها، وشعار `Meta Business Suite` تحت "شركاء النجاح".
-- الإنجليزية لا تتغير بهذا القرار (الشارة المرسومة `Meta Tech Provider`، والشعار مخفي).
+**الموضعان (اللغتان بالتصميم نفسه):**
+- **شريط الثقة:** الختم المرسوم بالكود (`BadgeCheck` من lucide، أخضر، بلا شعار Meta، في `TrustBar.tsx`) أيقونةً، والعنوان `home.trust.meta.title` ("مزود خدمات معتمد في Meta" / `Meta Tech Provider`).
+- **بطاقة "ربط واتساب API الرسمي":** **شعار Meta الرسمي** مسموح هنا (قرار المطوّر 2026-11-15)، بلا عبارة "Business Partner": الملف `public/images/brand/meta-logo.jpg` (`META_LOGO` في `src/lib/brand.ts`) **كما هو**: لا قصّ ولا تعديل ألوان أو نسب. خلفيته البيضاء هي البلاطة الفاتحة على البطاقة الداكنة، وارتفاعه 72px لأن الشعار يشغل نحو ثلث ارتفاع الملف. النص البديل `Meta` (`features.cards.api.badgeImageAlt`). بجانبه `home.features.cards.api.badge`: "مزود خدمات معتمد في Meta — اتصال مباشر بواجهة WhatsApp Cloud API" / `Meta Tech Provider — direct connection to the official WhatsApp Cloud API`.
+- مكوّن `MetaTechBadge` ونصوص `metaBadge` في `en.json` حُذفت (2026-11-15).
+
+**شعار `Meta Business Suite` في قسم الشركاء:** باقٍ في العربية بقرار المطوّر؛ **مخفي في الإنجليزية** (معتمد 2026-11-11)، لأن عنوان `Our partners` يجعله ادعاء شراكة. التنفيذ: `"hiddenIn": ["en"]` في `partners.json`، و`getPartners(locale)` يستبعده.
 
 ### 4.11 قرارات الرئيسية الإنجليزية (2026-11-11)
 
