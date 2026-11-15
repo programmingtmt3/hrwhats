@@ -451,7 +451,12 @@
   - `trust.meta.imageAlt` و`features.cards.api.badgeImageAlt` فارغان في `en.json` (لا صورة).
 - **شعار `Meta Business Suite` في قسم الشركاء: مخفي في الإنجليزية** (معتمد 2026-11-11)، لأن عنوان `Our partners` يجعله ادعاء شراكة. التنفيذ: `"hiddenIn": ["en"]` في `partners.json`، و`getPartners(locale)` يستبعده.
 
-**في العربية (لا تتغير الآن):** الرئيسية العربية تعرض الصورة نفسها ("Meta Business Partner") وعبارة "شريك Meta" (`home.trust.meta.title`)، و"شريك أعمال رسمي لدى Meta" (`home.features.cards.api.badge`)، وشعار `Meta Business Suite` تحت "شركاء النجاح"، بينما الصفة الفعلية Tech Provider. **يُراجع ذلك بقرار من المطوّر قبل الإطلاق** (مسجّل في مهام مرحلة الإطلاق في `CLAUDE.md`).
+**في العربية (قرار المطوّر، 2026-11-15):** صفة HRwhats عند Meta في النصوص العربية هي **"مزود خدمات معتمد في Meta"**، ولا يُذكر أي شراكة:
+- `home.trust.meta.title`: "شريك Meta" ← "مزود خدمات معتمد في Meta".
+- `home.features.cards.api.badge`: "شريك أعمال رسمي لدى Meta — …" ← "مزود خدمات معتمد في Meta — اتصال مباشر بواجهة WhatsApp Cloud API".
+- النص البديل للصورة فارغ في الموضعين (`trust.meta.imageAlt`، `features.cards.api.badgeImageAlt`)، لأن النص المجاور يحمل المعنى.
+- **الصور باقية بقرار من المطوّر:** صورة `meta-business-partner.png` في موضعيها، وشعار `Meta Business Suite` تحت "شركاء النجاح".
+- الإنجليزية لا تتغير بهذا القرار (الشارة المرسومة `Meta Tech Provider`، والشعار مخفي).
 
 ### 4.11 قرارات الرئيسية الإنجليزية (2026-11-11)
 

@@ -103,9 +103,9 @@
     },
     "trust": {
       "meta": {
-        "title": "شريك Meta",
+        "title": "مزود خدمات معتمد في Meta",
         "subtitle": "واتساب API الرسمي",
-        "imageAlt": "Meta Business Partner"
+        "imageAlt": ""
       },
       "support": {
         "title": "دعم متخصص",
@@ -146,8 +146,8 @@
         "api": {
           "title": "ربط واتساب API الرسمي",
           "text": "ربط واتساب موثوق ومعتمد من Meta يقلل خطر الحظر ويتيح لك إرسال الرسائل الجماعية بأمان واحترافية.",
-          "badge": "شريك أعمال رسمي لدى Meta — اتصال مباشر بواجهة WhatsApp Cloud API",
-          "badgeImageAlt": "Meta Business Partners",
+          "badge": "مزود خدمات معتمد في Meta — اتصال مباشر بواجهة WhatsApp Cloud API",
+          "badgeImageAlt": "",
           "tag": "✓ أمان وموثوقية"
         },
         "automation": {
