@@ -361,5 +361,126 @@
       "width": 600,
       "height": 477
     }
+  },
+  {
+    "name": {
+      "ar": "جمعية البر الخيرية بالحكامية بجازان",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/clients/34-albir-hakamiya.jpg",
+      "width": 600,
+      "height": 254
+    }
+  },
+  {
+    "name": {
+      "ar": "ردين",
+      "en": "RDEEN"
+    },
+    "logo": {
+      "src": "/images/clients/35-rdeen.jpg",
+      "width": 241,
+      "height": 76
+    }
+  },
+  {
+    "name": {
+      "ar": "جمعية النخيل الخيرية",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/clients/36-nakheel.png",
+      "width": 429,
+      "height": 523
+    }
+  },
+  {
+    "name": {
+      "ar": "الماجد للعسل البري",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/clients/37-majed-honey.webp",
+      "width": 600,
+      "height": 600
+    }
+  },
+  {
+    "name": {
+      "ar": "جمعية رتّل لتعليم القرآن وعلومه بالسهي",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/clients/38-rattil.webp",
+      "width": 250,
+      "height": 100
+    }
+  },
+  {
+    "name": {
+      "ar": "شركة نهج الشراكة القانونية",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/clients/39-nahj-legal.jpg",
+      "width": 400,
+      "height": 400
+    }
+  },
+  {
+    "name": {
+      "ar": "ترياقي",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/clients/40-tiryaqi.jpg",
+      "width": 300,
+      "height": 300
+    }
+  },
+  {
+    "name": {
+      "ar": "Greenhouse Foodstuff Trading LLC.",
+      "en": "Greenhouse Foodstuff Trading LLC."
+    },
+    "logo": {
+      "src": "/images/clients/41-greenhouse.jpg",
+      "width": 200,
+      "height": 200
+    }
+  },
+  {
+    "name": {
+      "ar": "Leema Spa",
+      "en": "Leema Spa"
+    },
+    "logo": {
+      "src": "/images/clients/42-leema-spa.jpg",
+      "width": 600,
+      "height": 600
+    }
+  },
+  {
+    "name": {
+      "ar": "استور نقوش",
+      "en": ""
+    },
+    "logo": {
+      "src": "/images/clients/43-nuqoosh.jpg",
+      "width": 215,
+      "height": 215
+    }
+  },
+  {
+    "name": {
+      "ar": "شركة وثير العالمية",
+      "en": "Watheer Global"
+    },
+    "logo": {
+      "src": "/images/clients/44-watheer.jpg",
+      "width": 299,
+      "height": 200
+    }
   }
 ]

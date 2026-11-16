@@ -47,8 +47,10 @@
 .track {
   display: flex;
   gap: 16px;
+  /* The gap after the last logo, so half the track equals one full copy (no jump on loop). */
+  padding-inline-end: 16px;
   width: max-content;
-  animation: scroll 60s linear infinite;
+  animation: scroll 78s linear infinite;
 }
 .rev .track {
   animation-direction: reverse;
